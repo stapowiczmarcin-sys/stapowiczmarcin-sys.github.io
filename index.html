@@ -90,8 +90,30 @@
     .button:hover { border-color: rgba(255,154,69,.65); background: rgba(255,154,69,.09); }
     .button-primary { color: #0b0e12; border-color: transparent; background: var(--orange); font-weight: 800; }
     .button-primary:hover { background: #ffad67; }
-    .button-youtube { border-color: rgba(255,92,92,.52); background: rgba(255,92,92,.1); font-weight: 800; }
+    .button-youtube { border-color: rgba(255,92,92,.52); background: rgba(255,92,92,.1); font-weight: 800; white-space: nowrap; }
     .button-youtube:hover { border-color: rgba(255,92,92,.82); background: rgba(255,92,92,.18); }
+    .youtube-mark {
+      position: relative;
+      width: 28px;
+      height: 19px;
+      flex: 0 0 auto;
+      border-radius: 6px;
+      background: #ff0033;
+      box-shadow: 0 5px 14px rgba(255,0,51,.32);
+    }
+    .youtube-mark::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 52%;
+      transform: translate(-50%,-50%);
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid white;
+    }
+    .youtube-label-short { display: none; }
     .hero { padding: 62px 0 36px; }
     .hero-grid {
       display: grid;
@@ -331,6 +353,9 @@
       .topbar-inner { min-height: 62px; }
       .brand span:last-child { display: none; }
       .button-label { display: none; }
+      .button-youtube { gap: 7px; padding-inline: 11px; }
+      .youtube-label-full { display: none; }
+      .youtube-label-short { display: inline; font-size: .78rem; }
       .hero { padding-top: 28px; }
       .hero-copy { padding: 27px 21px; }
       .hero-media { min-height: 420px; }
@@ -353,6 +378,9 @@
       .gallery-card.portrait { min-height: 430px; }
       .footer-inner { flex-direction: column; }
     }
+    @media (max-width: 340px) {
+      .button-print { display: none; }
+    }
     @media print {
       .topbar, .hero-buttons, .videos, dialog { display: none !important; }
       body { background: white; color: #111; }
@@ -365,9 +393,9 @@
     <div class="shell topbar-inner">
       <a class="brand" href="#start"><span class="brand-mark">M</span><span>Marcin / Maker Portfolio</span></a>
       <div class="top-actions">
-        <a class="button button-youtube" href="https://m.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" aria-label="Filmy na kanale YouTube Marcina"><span aria-hidden="true">▶</span><span class="button-label" data-pl="Filmy na YouTube" data-en="Videos on YouTube">Filmy na YouTube</span></a>
+        <a class="button button-youtube" href="https://m.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" aria-label="Otwórz mój kanał YouTube — Kreatywny Morrcin" title="Mój kanał YouTube — Kreatywny Morrcin"><span class="youtube-mark" aria-hidden="true"></span><span class="youtube-label-full" data-pl="Mój kanał YouTube" data-en="My YouTube channel">Mój kanał YouTube</span><span class="youtube-label-short" data-pl="Mój kanał" data-en="My channel">Mój kanał</span></a>
         <button class="button" id="languageButton" type="button" aria-label="Zmień język"><span>PL / EN</span></button>
-        <button class="button" type="button" onclick="window.print()"><span>⎙</span><span class="button-label" data-pl="Drukuj / PDF" data-en="Print / PDF">Drukuj / PDF</span></button>
+        <button class="button button-print" type="button" onclick="window.print()"><span>⎙</span><span class="button-label" data-pl="Drukuj / PDF" data-en="Print / PDF">Drukuj / PDF</span></button>
       </div>
     </div>
   </header>
