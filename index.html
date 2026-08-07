@@ -171,6 +171,7 @@
     .fact { padding: 16px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.025); }
     .fact strong { display: block; font-size: 1.22rem; letter-spacing: -.03em; }
     .fact span { color: var(--muted); font-size: .86rem; }
+    .tech-heading { margin: 24px 0 10px; color: var(--orange); font-size: .78rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
     .process { display: grid; gap: 17px; margin-top: 22px; }
     .process-row { display: grid; grid-template-columns: 34px 1fr; gap: 13px; align-items: start; }
     .process-index { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: #090c11; background: var(--mint); font-weight: 900; }
@@ -219,6 +220,16 @@
     .kora-fact { padding: 15px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.025); }
     .kora-fact strong { display: block; font-size: 1.15rem; letter-spacing: -.03em; }
     .kora-fact span { color: var(--muted); font-size: .83rem; }
+    .system-panel { margin-top: 18px; padding: clamp(24px, 4vw, 42px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(135deg, rgba(107,224,193,.07), rgba(156,132,255,.06)); }
+    .system-panel h3 { margin: 0 0 10px; font-size: clamp(1.55rem, 3vw, 2.35rem); letter-spacing: -.045em; }
+    .system-panel > p { margin: 0; max-width: 850px; color: var(--muted); }
+    .system-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 22px; }
+    .flow-node { position: relative; padding: 17px; border: 1px solid var(--line); border-radius: 17px; background: rgba(8,11,16,.46); }
+    .flow-node:not(:last-child)::after { content: "→"; position: absolute; right: -10px; top: 50%; z-index: 2; transform: translate(50%,-50%); color: var(--mint); font-weight: 900; }
+    .flow-node strong { display: block; margin-bottom: 5px; font-size: .93rem; }
+    .flow-node span { color: var(--muted); font-size: .79rem; line-height: 1.45; }
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .stack-chips span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: #dce1e8; background: rgba(255,255,255,.03); font-size: .78rem; }
     .kora-media-row { display: grid; grid-template-columns: .7fr 1.3fr; gap: 18px; margin-top: 18px; align-items: stretch; }
     .kora-wave { align-self: start; position: sticky; top: 86px; }
     .kora-wave video { width: 100%; min-height: 360px; aspect-ratio: 1; object-fit: cover; background: #030405; }
@@ -271,7 +282,8 @@
       .facts, .next-grid { grid-template-columns: 1fr; }
       .videos { grid-template-columns: minmax(0, 250px); }
       .videos .video-card:last-child { grid-column: auto; width: 100%; }
-      .kora-facts, .kora-gallery { grid-template-columns: 1fr; }
+      .kora-facts, .kora-gallery, .system-flow { grid-template-columns: 1fr; }
+      .flow-node:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -10px; transform: translate(50%,50%); }
       .kora-gallery .gallery-card:first-child { grid-column: auto; min-height: 300px; }
       .kora-main, .kora-main img { min-height: 380px; }
       .next-card:last-child { grid-column: auto; }
@@ -336,11 +348,14 @@
           <article class="panel">
             <h3 data-pl="Od pomysłu do prawdziwego detalu" data-en="From an idea to a physical part">Od pomysłu do prawdziwego detalu</h3>
             <p data-pl="Maszyna powstała jako praktyczne narzędzie do wykonywania własnych elementów. Projekt wymagał połączenia mechaniki, prowadzenia przewodów, zasilania, sterowania ruchem oraz przygotowania plików do obróbki." data-en="The machine was created as a practical tool for producing custom parts. The project required combining mechanics, cable management, power, motion control and preparation of machining files.">Maszyna powstała jako praktyczne narzędzie do wykonywania własnych elementów. Projekt wymagał połączenia mechaniki, prowadzenia przewodów, zasilania, sterowania ruchem oraz przygotowania plików do obróbki.</p>
+            <h4 class="tech-heading" data-pl="Specyfikacja techniczna" data-en="Technical specification">Specyfikacja techniczna</h4>
             <div class="facts">
               <div class="fact"><strong data-pl="3 osie" data-en="3 axes">3 osie</strong><span data-pl="ruch sterowany numerycznie" data-en="numerically controlled motion">ruch sterowany numerycznie</span></div>
-              <div class="fact"><strong data-pl="Własna budowa" data-en="Self-built">Własna budowa</strong><span data-pl="mechanika i elektronika" data-en="mechanics and electronics">mechanika i elektronika</span></div>
-              <div class="fact"><strong data-pl="CAD / CAM" data-en="CAD / CAM">CAD / CAM</strong><span data-pl="od grafiki do ścieżki narzędzia" data-en="from design to toolpath">od grafiki do ścieżki narzędzia</span></div>
+              <div class="fact"><strong data-pl="Własna budowa" data-en="Self-built">Własna budowa</strong><span data-pl="rama, mechanika i elektronika" data-en="frame, mechanics and electronics">rama, mechanika i elektronika</span></div>
+              <div class="fact"><strong data-pl="Prowadnice liniowe" data-en="Linear guides">Prowadnice liniowe</strong><span data-pl="prowadzenie osi i śruby napędowe" data-en="axis guidance and drive screws">prowadzenie osi i śruby napędowe</span></div>
+              <div class="fact"><strong data-pl="CAD / CAM" data-en="CAD / CAM">CAD / CAM</strong><span data-pl="od projektu do ścieżki narzędzia" data-en="from design to toolpath">od projektu do ścieżki narzędzia</span></div>
               <div class="fact"><strong data-pl="Drewno" data-en="Wood">Drewno</strong><span data-pl="grawerowanie, kieszenie i wycinanie" data-en="engraving, pocketing and cutting">grawerowanie, kieszenie i wycinanie</span></div>
+              <div class="fact"><strong data-pl="E-STOP" data-en="E-STOP">E-STOP</strong><span data-pl="panel operatorski i wyłącznik awaryjny" data-en="operator panel and emergency stop">panel operatorski i wyłącznik awaryjny</span></div>
             </div>
           </article>
 
@@ -424,17 +439,36 @@
             <span class="eyebrow" data-pl="Robotyka w praktyce" data-en="Hands-on robotics">Robotyka w praktyce</span>
             <h3 data-pl="Najpierw mechanika, potem charakter" data-en="Mechanics first, character next">Najpierw mechanika, potem charakter</h3>
             <p data-pl="Każda z sześciu nóg ma trzy stopnie ruchu. Na tym etapie skupiałem się na złożeniu aluminiowej konstrukcji, rozmieszczeniu 18 serw MG996R, zasilaniu i ręcznym testowaniu kanałów. Zdjęcia pokazują prototyp bez retuszu konstrukcyjnego — razem z przewodami, poprawkami i warsztatową rzeczywistością." data-en="Each of the six legs has three points of movement. At this stage I focused on assembling the aluminium structure, positioning 18 MG996R servos, power and manual channel tests. The photos show the prototype without structural retouching — including cables, adjustments and workshop reality.">Każda z sześciu nóg ma trzy stopnie ruchu. Na tym etapie skupiałem się na złożeniu aluminiowej konstrukcji, rozmieszczeniu 18 serw MG996R, zasilaniu i ręcznym testowaniu kanałów. Zdjęcia pokazują prototyp bez retuszu konstrukcyjnego — razem z przewodami, poprawkami i warsztatową rzeczywistością.</p>
+            <h4 class="tech-heading" data-pl="Specyfikacja techniczna" data-en="Technical specification">Specyfikacja techniczna</h4>
             <div class="kora-facts">
-              <div class="kora-fact"><strong data-pl="6 nóg" data-en="6 legs">6 nóg</strong><span data-pl="aluminiowa konstrukcja krocząca" data-en="aluminium walking structure">aluminiowa konstrukcja krocząca</span></div>
+              <div class="kora-fact"><strong data-pl="6 nóg / 18 DOF" data-en="6 legs / 18 DOF">6 nóg / 18 DOF</strong><span data-pl="aluminiowa konstrukcja krocząca" data-en="aluminium walking structure">aluminiowa konstrukcja krocząca</span></div>
               <div class="kora-fact"><strong data-pl="18 × MG996R" data-en="18 × MG996R">18 × MG996R</strong><span data-pl="po trzy serwa na każdą nogę" data-en="three servos per leg">po trzy serwa na każdą nogę</span></div>
-              <div class="kora-fact"><strong data-pl="32 kanały" data-en="32 channels">32 kanały</strong><span data-pl="kontroler do testów ruchu" data-en="controller for motion tests">kontroler do testów ruchu</span></div>
-              <div class="kora-fact"><strong data-pl="Prototyp" data-en="Prototype">Prototyp</strong><span data-pl="mechanika, zasilanie i sterowanie" data-en="mechanics, power and control">mechanika, zasilanie i sterowanie</span></div>
+              <div class="kora-fact"><strong data-pl="Raspberry Pi 5" data-en="Raspberry Pi 5">Raspberry Pi 5</strong><span data-pl="główny komputer robota" data-en="robot's main computer">główny komputer robota</span></div>
+              <div class="kora-fact"><strong data-pl="ESP32-C6" data-en="ESP32-C6">ESP32-C6</strong><span data-pl="sterowanie czasu rzeczywistego i czujniki" data-en="real-time control and sensors">sterowanie czasu rzeczywistego i czujniki</span></div>
+              <div class="kora-fact"><strong data-pl="RPLidar A2" data-en="RPLidar A2">RPLidar A2</strong><span data-pl="skanowanie otoczenia 2D" data-en="2D environment scanning">skanowanie otoczenia 2D</span></div>
+              <div class="kora-fact"><strong data-pl="2 × IMX708" data-en="2 × IMX708">2 × IMX708</strong><span data-pl="kamera dzienna i NoIR" data-en="day and NoIR cameras">kamera dzienna i NoIR</span></div>
             </div>
             <div class="hero-buttons">
               <a class="button button-primary" href="https://m.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" data-pl="Zobacz filmy na YouTube ↗" data-en="Watch videos on YouTube ↗">Zobacz filmy na YouTube ↗</a>
             </div>
           </article>
         </div>
+
+        <article class="system-panel">
+          <span class="eyebrow" data-pl="System i oprogramowanie" data-en="System and software">System i oprogramowanie</span>
+          <h3 data-pl="Od czujnika do decyzji — lokalnie" data-en="From sensor to decision — locally">Od czujnika do decyzji — lokalnie</h3>
+          <p data-pl="Kora nie jest samą mechaniką. Raspberry Pi 5 łączy widzenie, mowę, pamięć, planowanie i panel operatorski, a ESP32-C6 obsługuje warstwę urządzeń oraz szybką komunikację ze sprzętem." data-en="Kora is more than mechanics. Raspberry Pi 5 connects vision, speech, memory, planning and the operator panel, while ESP32-C6 handles the device layer and fast hardware communication.">Kora nie jest samą mechaniką. Raspberry Pi 5 łączy widzenie, mowę, pamięć, planowanie i panel operatorski, a ESP32-C6 obsługuje warstwę urządzeń oraz szybką komunikację ze sprzętem.</p>
+          <div class="system-flow">
+            <div class="flow-node"><strong data-pl="1. Zmysły" data-en="1. Sensing">1. Zmysły</strong><span data-pl="2 × IMX708, RPLidar A2, VL53L1X i czujniki światła" data-en="2 × IMX708, RPLidar A2, VL53L1X and light sensors">2 × IMX708, RPLidar A2, VL53L1X i czujniki światła</span></div>
+            <div class="flow-node"><strong data-pl="2. Urządzenia" data-en="2. Devices">2. Urządzenia</strong><span data-pl="ESP32-C6, GPIO, szyja, serwa i oświetlenie IR" data-en="ESP32-C6, GPIO, neck, servos and IR lighting">ESP32-C6, GPIO, szyja, serwa i oświetlenie IR</span></div>
+            <div class="flow-node"><strong data-pl="3. Mózg" data-en="3. Core">3. Mózg</strong><span data-pl="Raspberry Pi 5, Python i lokalne usługi robota" data-en="Raspberry Pi 5, Python and local robot services">Raspberry Pi 5, Python i lokalne usługi robota</span></div>
+            <div class="flow-node"><strong data-pl="4. Percepcja i mowa" data-en="4. Perception & speech">4. Percepcja i mowa</strong><span data-pl="lokalne modele, Ollama, Hailo, STT i TTS" data-en="local models, Ollama, Hailo, STT and TTS">lokalne modele, Ollama, Hailo, STT i TTS</span></div>
+            <div class="flow-node"><strong data-pl="5. Operator" data-en="5. Operator">5. Operator</strong><span data-pl="panel WWW PL/EN, status live, testy i diagnostyka" data-en="PL/EN web panel, live status, tests and diagnostics">panel WWW PL/EN, status live, testy i diagnostyka</span></div>
+          </div>
+          <div class="stack-chips" aria-label="Technology stack">
+            <span>Python</span><span>Raspberry Pi 5</span><span>ESP32-C6</span><span>Ollama</span><span>Hailo</span><span>OpenCV</span><span>STT / TTS</span><span>HTML / CSS / JavaScript</span>
+          </div>
+        </article>
 
         <div class="kora-media-row">
           <article class="kora-wave">
@@ -458,15 +492,15 @@
       <div class="shell">
         <div class="section-head">
           <div>
-            <span class="number">05 / NEXT CASE STUDIES</span>
-            <h2 data-pl="To dopiero pierwszy rozdział" data-en="This is only the first chapter">To dopiero pierwszy rozdział</h2>
-            <p data-pl="CNC i pierwszy etap Kory są już na stronie. Kolejne materiały pokażą rozwój sterowania robota, elektronikę i rozwiązania wykonywane w pracy." data-en="The CNC and the first stage of Kora are now on the site. The next materials will show the robot's control development, electronics and practical workplace improvements.">CNC i pierwszy etap Kory są już na stronie. Kolejne materiały pokażą rozwój sterowania robota, elektronikę i rozwiązania wykonywane w pracy.</p>
+            <span class="number">05 / DEVELOPMENT LOG</span>
+            <h2 data-pl="Kora — wykonane etapy" data-en="Kora — completed milestones">Kora — wykonane etapy</h2>
+            <p data-pl="Zamiast obietnic: konkretne elementy uruchomione i sprawdzone podczas rozwoju robota." data-en="No vague promises: concrete components brought online and tested during the robot's development.">Zamiast obietnic: konkretne elementy uruchomione i sprawdzone podczas rozwoju robota.</p>
           </div>
         </div>
         <div class="next-grid">
-          <article class="next-card"><span class="status" data-pl="rozwijane" data-en="in development">rozwijane</span><h3 data-pl="Kora — kolejne etapy" data-en="Kora — next stages">Kora — kolejne etapy</h3><p data-pl="Sekwencje chodu, czujniki, kamery i system zachowania rozwijane po uruchomieniu kompletnej mechaniki." data-en="Walking sequences, sensors, cameras and a behaviour system developed after bringing the complete mechanics to life.">Sekwencje chodu, czujniki, kamery i system zachowania rozwijane po uruchomieniu kompletnej mechaniki.</p></article>
-          <article class="next-card"><span class="status" data-pl="w przygotowaniu" data-en="coming next">w przygotowaniu</span><h3 data-pl="Elektronika i sterowanie" data-en="Electronics and control">Elektronika i sterowanie</h3><p data-pl="ESP32, Arduino, sterowniki silników, czujniki, zasilanie oraz układy budowane i diagnozowane praktycznie." data-en="ESP32, Arduino, motor controllers, sensors, power systems and practical diagnostics.">ESP32, Arduino, sterowniki silników, czujniki, zasilanie oraz układy budowane i diagnozowane praktycznie.</p></article>
-          <article class="next-card"><span class="status" data-pl="w przygotowaniu" data-en="coming next">w przygotowaniu</span><h3 data-pl="Usprawnienia produkcji" data-en="Production improvements">Usprawnienia produkcji</h3><p data-pl="Instrukcje, ustawienia procesów i rozwiązania, które upraszczają pracę oraz ograniczają błędy i straty materiału." data-en="Instructions, process settings and practical solutions that simplify work and reduce errors and material waste.">Instrukcje, ustawienia procesów i rozwiązania, które upraszczają pracę oraz ograniczają błędy i straty materiału.</p></article>
+          <article class="next-card"><span class="status" data-pl="lipiec 2026 · uruchomione" data-en="July 2026 · running">lipiec 2026 · uruchomione</span><h3 data-pl="Chód i bezpieczne sterowanie" data-en="Walking and safe control">Chód i bezpieczne sterowanie</h3><p data-pl="Chód do przodu, obrót w miejscu, profile prędkości oraz zabezpieczenie przed uruchomieniem kilku procesów sterujących naraz." data-en="Forward walking, in-place turning, speed profiles and protection against launching multiple control processes at once.">Chód do przodu, obrót w miejscu, profile prędkości oraz zabezpieczenie przed uruchomieniem kilku procesów sterujących naraz.</p></article>
+          <article class="next-card"><span class="status" data-pl="lipiec 2026 · sprawdzone" data-en="July 2026 · tested">lipiec 2026 · sprawdzone</span><h3 data-pl="Widzenie i orientacja" data-en="Vision and orientation">Widzenie i orientacja</h3><p data-pl="Dwie kamery IMX708, lidar 2D i pomiar ToF współpracują przy skanowaniu otoczenia, wykrywaniu przeszkód i opisie sceny." data-en="Two IMX708 cameras, 2D lidar and ToF ranging work together for environment scanning, obstacle detection and scene description.">Dwie kamery IMX708, lidar 2D i pomiar ToF współpracują przy skanowaniu otoczenia, wykrywaniu przeszkód i opisie sceny.</p></article>
+          <article class="next-card"><span class="status" data-pl="sierpień 2026 · integracja" data-en="August 2026 · integration">sierpień 2026 · integracja</span><h3 data-pl="Aluminiowa mechanika" data-en="Aluminium mechanics">Aluminiowa mechanika</h3><p data-pl="Montaż 18 serw MG996R, mapowanie kanałów kontrolera, testy zasilania i ręczne ustawianie pozycji każdej nogi." data-en="Assembly of 18 MG996R servos, controller channel mapping, power tests and manual positioning of each leg.">Montaż 18 serw MG996R, mapowanie kanałów kontrolera, testy zasilania i ręczne ustawianie pozycji każdej nogi.</p></article>
         </div>
       </div>
     </section>
