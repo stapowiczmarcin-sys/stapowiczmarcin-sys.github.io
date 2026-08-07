@@ -252,6 +252,22 @@
     .kora-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 13px; }
     .kora-gallery .gallery-card { min-height: 270px; margin: 0; }
     .kora-gallery .gallery-card:first-child { grid-column: span 2; min-height: 390px; }
+    .radio-hero { display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; align-items: stretch; }
+    .radio-main, .radio-copy, .radio-card { border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); overflow: hidden; }
+    .radio-main { margin: 0; display: flex; flex-direction: column; background: #05070a; }
+    .radio-main img { display: block; width: 100%; height: auto; max-height: 760px; object-fit: contain; }
+    .radio-main figcaption { padding: 16px 19px; color: #dfe4eb; background: rgba(8,11,16,.94); }
+    .radio-copy { padding: clamp(24px, 4vw, 42px); display: flex; flex-direction: column; justify-content: center; }
+    .radio-copy h3 { margin: 0 0 13px; font-size: clamp(1.65rem, 3.2vw, 2.55rem); letter-spacing: -.045em; line-height: 1.05; }
+    .radio-copy p { color: var(--muted); }
+    .radio-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .radio-fact { padding: 15px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.025); }
+    .radio-fact strong { display: block; font-size: 1.05rem; letter-spacing: -.03em; }
+    .radio-fact span { color: var(--muted); font-size: .83rem; }
+    .radio-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .radio-card { margin: 0; display: flex; flex-direction: column; background: #05070a; }
+    .radio-card img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: contain; }
+    .radio-card figcaption { padding: 14px 16px; color: var(--muted); font-size: .87rem; background: rgba(8,11,16,.94); }
     .next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .next-card { min-height: 260px; padding: 24px; box-shadow: none; position: relative; overflow: hidden; }
     .next-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -90px; bottom: -95px; border-radius: 50%; background: radial-gradient(circle, rgba(156,132,255,.22), transparent 68%); }
@@ -278,11 +294,12 @@
     dialog img { width: 100%; max-height: calc(100vh - 80px); object-fit: contain; }
     .dialog-close { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: white; background: rgba(8,11,16,.72); cursor: pointer; }
     @media (max-width: 920px) {
-      .hero-grid, .project-grid, .about, .kora-hero, .kora-media-row { grid-template-columns: 1fr; }
+      .hero-grid, .project-grid, .about, .kora-hero, .kora-media-row, .radio-hero { grid-template-columns: 1fr; }
       .kora-wave { position: static; }
       .hero-media { min-height: 480px; }
       .videos { grid-template-columns: repeat(2, minmax(0, 250px)); }
       .next-grid { grid-template-columns: 1fr 1fr; }
+      .radio-gallery { grid-template-columns: repeat(2, 1fr); }
       .videos .video-card:last-child { grid-column: 1 / -1; width: 250px; justify-self: center; }
       .next-card:last-child { grid-column: span 2; }
       .gallery { grid-auto-rows: 76px; }
@@ -298,7 +315,7 @@
       .facts, .next-grid { grid-template-columns: 1fr; }
       .videos { grid-template-columns: minmax(0, 250px); }
       .videos .video-card:last-child { grid-column: auto; width: 100%; }
-      .kora-facts, .kora-gallery, .system-flow, .history-grid { grid-template-columns: 1fr; }
+      .kora-facts, .kora-gallery, .system-flow, .history-grid, .radio-facts, .radio-gallery { grid-template-columns: 1fr; }
       .flow-node:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -10px; transform: translate(50%,50%); }
       .history-card--wide { grid-column: auto; }
       .history-intro { align-items: flex-start; flex-direction: column; }
@@ -549,11 +566,49 @@
       </div>
     </section>
 
+    <section id="radio">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="number">05 / EMBEDDED &amp; LED</span>
+            <h2 data-pl="Radio internetowe i wizualizacje LED" data-en="Internet radio and LED visualisations">Radio internetowe i wizualizacje LED</h2>
+            <p data-pl="Samodzielnie zbudowane i działające w Anglii radio Wi-Fi, łączące strumieniowanie dźwięku, dotykowy interfejs i duże matryce LED reagujące na muzykę." data-en="A self-built Wi-Fi radio now running in England, combining audio streaming, a touch interface and large LED matrices that react to music.">Samodzielnie zbudowane i działające w Anglii radio Wi-Fi, łączące strumieniowanie dźwięku, dotykowy interfejs i duże matryce LED reagujące na muzykę.</p>
+          </div>
+        </div>
+
+        <div class="radio-hero">
+          <figure class="radio-main">
+            <img loading="lazy" src="assets/radio/radio-interface.webp" alt="Działający interfejs radia internetowego na ekranie dotykowym">
+            <figcaption data-pl="Działający interfejs: wybrana stacja, aktualny utwór, głośność i tryb VIS." data-en="Working interface: selected station, current track, volume and VIS mode.">Działający interfejs: wybrana stacja, aktualny utwór, głośność i tryb VIS.</figcaption>
+          </figure>
+          <article class="radio-copy">
+            <span class="eyebrow" data-pl="Elektronika i firmware" data-en="Electronics and firmware">Elektronika i firmware</span>
+            <h3 data-pl="Od strumienia audio do światła" data-en="From audio stream to light">Od strumienia audio do światła</h3>
+            <p data-pl="Projekt łączy obsługę radia internetowego z własnym ekranem sterowania i wizualizacją dźwięku na matrycach LED. Z poziomu panelu można wybierać stacje, śledzić informacje o odtwarzanym materiale, regulować głośność oraz uruchamiać tryb VIS reagujący na muzykę." data-en="The project combines internet radio playback with a custom control screen and sound visualisation on LED matrices. The panel provides station selection, playback metadata, volume control and a music-reactive VIS mode.">Projekt łączy obsługę radia internetowego z własnym ekranem sterowania i wizualizacją dźwięku na matrycach LED. Z poziomu panelu można wybierać stacje, śledzić informacje o odtwarzanym materiale, regulować głośność oraz uruchamiać tryb VIS reagujący na muzykę.</p>
+            <div class="radio-facts">
+              <div class="radio-fact"><strong>ESP32-S3-N16R8</strong><span data-pl="główny kontroler systemu" data-en="main system controller">główny kontroler systemu</span></div>
+              <div class="radio-fact"><strong>2,8″ TFT · 240 × 320</strong><span data-pl="dotykowy interfejs użytkownika" data-en="touch user interface">dotykowy interfejs użytkownika</span></div>
+              <div class="radio-fact"><strong data-pl="Radio przez Wi-Fi" data-en="Wi-Fi radio">Radio przez Wi-Fi</strong><span data-pl="stacje i informacje o utworze" data-en="stations and track metadata">stacje i informacje o utworze</span></div>
+              <div class="radio-fact"><strong data-pl="Matryce LED" data-en="LED matrices">Matryce LED</strong><span data-pl="wizualizacja reagująca na dźwięk" data-en="sound-reactive visualisation">wizualizacja reagująca na dźwięk</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="radio-gallery">
+          <figure class="radio-card"><img loading="lazy" src="assets/radio/led-matrix-blue.webp" alt="Duża matryca LED wyświetlająca niebieski wzór"><figcaption data-pl="Jedna z prób wzorów na dużej matrycy LED." data-en="One of the pattern tests on the large LED matrix.">Jedna z prób wzorów na dużej matrycy LED.</figcaption></figure>
+          <figure class="radio-card"><img loading="lazy" src="assets/radio/led-matrix-white.webp" alt="Matryca LED podczas testu kolejnego wzoru"><figcaption data-pl="Test kolejnego układu punktów i animacji." data-en="Testing another dot layout and animation.">Test kolejnego układu punktów i animacji.</figcaption></figure>
+          <figure class="radio-card"><img loading="lazy" src="assets/radio/led-matrix-violet.webp" alt="Programowalna matryca LED świecąca na fioletowo"><figcaption data-pl="Kolor i układ można zmieniać programowo." data-en="Colour and layout can be changed in software.">Kolor i układ można zmieniać programowo.</figcaption></figure>
+          <figure class="radio-card"><img loading="lazy" src="assets/radio/tft-controller.webp" alt="Tylna strona modułu TFT 2,8 cala z okablowaniem"><figcaption data-pl="Moduł TFT 2,8″ 240 × 320 i prototypowe okablowanie." data-en="2.8-inch 240 × 320 TFT module and prototype wiring.">Moduł TFT 2,8″ 240 × 320 i prototypowe okablowanie.</figcaption></figure>
+          <figure class="radio-card"><img loading="lazy" src="assets/radio/esp32-s3.webp" alt="Kontroler ESP32-S3-N16R8 użyty w radiu"><figcaption data-pl="ESP32-S3-N16R8 — serce sterowania projektem." data-en="ESP32-S3-N16R8 — the control heart of the project.">ESP32-S3-N16R8 — serce sterowania projektem.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
     <section id="kolejne">
       <div class="shell">
         <div class="section-head">
           <div>
-            <span class="number">05 / DEVELOPMENT LOG</span>
+            <span class="number">06 / DEVELOPMENT LOG</span>
             <h2 data-pl="Kora — wykonane etapy" data-en="Kora — completed milestones">Kora — wykonane etapy</h2>
             <p data-pl="Zamiast obietnic: konkretne elementy uruchomione i sprawdzone podczas rozwoju robota." data-en="No vague promises: concrete components brought online and tested during the robot's development.">Zamiast obietnic: konkretne elementy uruchomione i sprawdzone podczas rozwoju robota.</p>
           </div>
