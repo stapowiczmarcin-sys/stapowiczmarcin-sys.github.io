@@ -230,6 +230,22 @@
     .flow-node span { color: var(--muted); font-size: .79rem; line-height: 1.45; }
     .stack-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
     .stack-chips span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: #dce1e8; background: rgba(255,255,255,.03); font-size: .78rem; }
+    .history-wrap { margin-top: 38px; }
+    .history-intro { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 18px; }
+    .history-intro h3 { margin: 7px 0 0; font-size: clamp(1.75rem, 3.5vw, 2.8rem); line-height: 1.02; letter-spacing: -.05em; }
+    .history-intro p { margin: 0; max-width: 600px; color: var(--muted); }
+    .history-summary { display: grid; justify-items: start; gap: 13px; }
+    .history-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; position: relative; }
+    .history-card { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); }
+    .history-card--wide { grid-column: span 2; }
+    .history-media { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: #05070a; }
+    .history-media img, .history-media video { width: 100%; height: 100%; object-fit: contain; }
+    .history-media video { display: block; }
+    .history-stage { position: absolute; top: 12px; left: 12px; z-index: 2; padding: 6px 9px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: #0a0d12; background: var(--mint); font-size: .7rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .history-copy { padding: 19px; }
+    .history-copy h4 { margin: 0 0 7px; font-size: 1.25rem; letter-spacing: -.035em; }
+    .history-copy p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .history-card--current { border-color: rgba(255,154,69,.52); background: linear-gradient(145deg, rgba(255,154,69,.1), rgba(107,224,193,.05)); }
     .kora-media-row { display: grid; grid-template-columns: .7fr 1.3fr; gap: 18px; margin-top: 18px; align-items: stretch; }
     .kora-wave { align-self: start; position: sticky; top: 86px; }
     .kora-wave video { width: 100%; min-height: 360px; aspect-ratio: 1; object-fit: cover; background: #030405; }
@@ -282,8 +298,10 @@
       .facts, .next-grid { grid-template-columns: 1fr; }
       .videos { grid-template-columns: minmax(0, 250px); }
       .videos .video-card:last-child { grid-column: auto; width: 100%; }
-      .kora-facts, .kora-gallery, .system-flow { grid-template-columns: 1fr; }
+      .kora-facts, .kora-gallery, .system-flow, .history-grid { grid-template-columns: 1fr; }
       .flow-node:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -10px; transform: translate(50%,50%); }
+      .history-card--wide { grid-column: auto; }
+      .history-intro { align-items: flex-start; flex-direction: column; }
       .kora-gallery .gallery-card:first-child { grid-column: auto; min-height: 300px; }
       .kora-main, .kora-main img { min-height: 380px; }
       .next-card:last-child { grid-column: auto; }
@@ -469,6 +487,49 @@
             <span>Python</span><span>Raspberry Pi 5</span><span>ESP32-C6</span><span>Ollama</span><span>Hailo</span><span>STT / TTS</span><span>HTML / CSS / JavaScript</span>
           </div>
         </article>
+
+        <div class="history-wrap">
+          <div class="history-intro">
+            <div>
+              <span class="number">KORA / EVOLUTION</span>
+              <h3 data-pl="Od drewna do aluminium" data-en="From wood to aluminium">Od drewna do aluminium</h3>
+            </div>
+            <div class="history-summary">
+              <p data-pl="Kora nie powstała z jednego gotowego projektu. Każda wersja zmieniała materiały, mechanikę i sposób sterowania — a błędy z poprzedniej konstrukcji stawały się planem następnej. Na YouTube zostawiłem również prawdziwe próby i wersje, które nie zadziałały." data-en="Kora did not come from one finished design. Each version changed the materials, mechanics and control approach — and the previous build's problems became the plan for the next one. I also kept the real tests and unsuccessful versions on YouTube.">Kora nie powstała z jednego gotowego projektu. Każda wersja zmieniała materiały, mechanikę i sposób sterowania — a błędy z poprzedniej konstrukcji stawały się planem następnej. Na YouTube zostawiłem również prawdziwe próby i wersje, które nie zadziałały.</p>
+              <a class="button" href="https://m.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" data-pl="Archiwalne próby Kory na YouTube ↗" data-en="Kora archive tests on YouTube ↗">Archiwalne próby Kory na YouTube ↗</a>
+            </div>
+          </div>
+          <div class="history-grid">
+            <article class="history-card history-card--wide">
+              <div class="history-media"><span class="history-stage">2023 · 01</span><img loading="lazy" src="assets/kora/history/kora-2023-wooden.webp" alt="Pierwsza drewniana Kora z elementami wyciętymi na CNC"></div>
+              <div class="history-copy"><h4 data-pl="Pierwsza Kora — drewniana" data-en="The first Kora — wooden">Pierwsza Kora — drewniana</h4><p data-pl="Korpus i nogi wycięte na mojej frezarce CNC. Mikroserwa, czujnik ultradźwiękowy i elektronika na wierzchu — od tej konstrukcji zaczęła się cała historia." data-en="Body and legs cut on my CNC router. Micro servos, an ultrasonic sensor and exposed electronics — this is where the whole story began.">Korpus i nogi wycięte na mojej frezarce CNC. Mikroserwa, czujnik ultradźwiękowy i elektronika na wierzchu — od tej konstrukcji zaczęła się cała historia.</p></div>
+            </article>
+            <article class="history-card">
+              <div class="history-media"><span class="history-stage">02</span><img loading="lazy" src="assets/kora/history/kora-red-cnc.webp" alt="Kora z czerwonym korpusem wykonanym na CNC"></div>
+              <div class="history-copy"><h4 data-pl="Czerwony korpus CNC" data-en="Red CNC body">Czerwony korpus CNC</h4><p data-pl="Kolejna własna konstrukcja wycięta na CNC: mniejszy korpus, inne rozmieszczenie serw i następna seria prób z chodem." data-en="Another self-made CNC-cut structure: a smaller body, revised servo placement and another round of walking experiments.">Kolejna własna konstrukcja wycięta na CNC: mniejszy korpus, inne rozmieszczenie serw i następna seria prób z chodem.</p></div>
+            </article>
+            <article class="history-card">
+              <div class="history-media"><span class="history-stage">03</span><img loading="lazy" src="assets/kora/history/kora-hybrid-front.webp" alt="Hybrydowa Kora z elementami metalowymi i drewnianymi"></div>
+              <div class="history-copy"><h4 data-pl="Metalowo-drewniana hybryda" data-en="Metal-and-wood hybrid">Metalowo-drewniana hybryda</h4><p data-pl="Etap przejściowy między frezowanym korpusem a bardziej modułową mechaniką. Pojawiły się metalowe mocowania oraz rozbudowana głowa z czujnikami." data-en="A transition between the machined body and more modular mechanics. Metal brackets appeared together with a more developed sensor head.">Etap przejściowy między frezowanym korpusem a bardziej modułową mechaniką. Pojawiły się metalowe mocowania oraz rozbudowana głowa z czujnikami.</p></div>
+            </article>
+            <article class="history-card">
+              <div class="history-media"><span class="history-stage">04</span><img loading="lazy" src="assets/kora/history/kora-hybrid-top.webp" alt="Plastikowa wersja Kory z drukowanymi nogami"></div>
+              <div class="history-copy"><h4 data-pl="Wersja plastikowa" data-en="Plastic version">Wersja plastikowa</h4><p data-pl="Lżejsze elementy i nogi z tworzywa pozwoliły szybciej zmieniać geometrię oraz testować kolejne ustawienia bez wycinania całej konstrukcji od początku." data-en="Lighter plastic elements made it faster to change the geometry and test new arrangements without machining the whole structure again.">Lżejsze elementy i nogi z tworzywa pozwoliły szybciej zmieniać geometrię oraz testować kolejne ustawienia bez wycinania całej konstrukcji od początku.</p></div>
+            </article>
+            <article class="history-card history-card--wide">
+              <div class="history-media"><span class="history-stage">05</span><video autoplay muted loop playsinline preload="metadata" aria-label="Kora w czarnym ubraniu podczas testów"><source src="assets/kora/history/kora-black-outfit.mp4" type="video/mp4"></video></div>
+              <div class="history-copy"><h4 data-pl="Kora incognito" data-en="Kora incognito">Kora incognito</h4><p data-pl="Czarna osłona ukryła przewody i elektronikę, a podświetlona twarz nadała jej pierwszy wyraźny charakter. Wyglądała trochę jak przestępca — ale już zdecydowanie jak Kora." data-en="A black cover hid the wiring and electronics, while the illuminated face gave her a distinct character for the first time. Slightly criminal-looking — but unmistakably Kora.">Czarna osłona ukryła przewody i elektronikę, a podświetlona twarz nadała jej pierwszy wyraźny charakter. Wyglądała trochę jak przestępca — ale już zdecydowanie jak Kora.</p></div>
+            </article>
+            <article class="history-card">
+              <div class="history-media"><span class="history-stage">06</span><img loading="lazy" src="assets/kora/history/kora-biped.webp" alt="Dwunożna wersja eksperymentalna Kory"></div>
+              <div class="history-copy"><h4 data-pl="Eksperyment na dwóch nogach" data-en="Two-legged experiment">Eksperyment na dwóch nogach</h4><p data-pl="Osobna próba z balansem, pionową sylwetką i zupełnie innym układem napędów. Nie każda droga prowadziła do hexapoda — ale każda czegoś uczyła." data-en="A separate experiment with balance, an upright body and a completely different drive layout. Not every path led to a hexapod — but every one taught something.">Osobna próba z balansem, pionową sylwetką i zupełnie innym układem napędów. Nie każda droga prowadziła do hexapoda — ale każda czegoś uczyła.</p></div>
+            </article>
+            <article class="history-card history-card--wide history-card--current">
+              <div class="history-media"><span class="history-stage">2026 · 07</span><img loading="lazy" src="assets/kora/kora-main.webp" alt="Obecna aluminiowa Kora"></div>
+              <div class="history-copy"><h4 data-pl="Aluminiowa Kora — obecnie" data-en="Aluminium Kora — current">Aluminiowa Kora — obecnie</h4><p data-pl="Sztywniejsza mechanika, 18 serw MG996R, nowy kontroler i integracja z systemem działającym na Raspberry Pi 5. To nie koniec historii — to pierwsza wersja, która spina wcześniejsze doświadczenia w jeden system." data-en="Stiffer mechanics, 18 MG996R servos, a new controller and integration with the Raspberry Pi 5 system. This is not the end of the story — it is the first version that brings the earlier lessons into one system.">Sztywniejsza mechanika, 18 serw MG996R, nowy kontroler i integracja z systemem działającym na Raspberry Pi 5. To nie koniec historii — to pierwsza wersja, która spina wcześniejsze doświadczenia w jeden system.</p></div>
+            </article>
+          </div>
+        </div>
 
         <div class="kora-media-row">
           <article class="kora-wave">
