@@ -238,6 +238,7 @@
     .history-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; position: relative; }
     .history-card { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); }
     .history-card--wide { grid-column: span 2; }
+    .history-card--full { grid-column: 1 / -1; }
     .history-media { position: relative; display: grid; place-items: center; overflow: hidden; background: #05070a; }
     .history-media img { display: block; width: auto; max-width: 100%; height: auto; max-height: 720px; object-fit: contain; }
     .history-media video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
@@ -246,6 +247,15 @@
     .history-copy h4 { margin: 0 0 7px; font-size: 1.25rem; letter-spacing: -.035em; }
     .history-copy p { margin: 0; color: var(--muted); font-size: .9rem; }
     .history-card--current { border-color: rgba(255,154,69,.52); background: linear-gradient(145deg, rgba(255,154,69,.1), rgba(107,224,193,.05)); }
+    .prototype-stage { padding: clamp(18px, 3vw, 28px); background: linear-gradient(145deg, rgba(156,132,255,.09), rgba(107,224,193,.055)); }
+    .prototype-stage-head { display: grid; grid-template-columns: .72fr 1.28fr; gap: 22px; align-items: end; margin-bottom: 18px; }
+    .prototype-stage-head .history-stage { position: static; display: inline-flex; width: max-content; margin-bottom: 12px; }
+    .prototype-stage-head h4 { margin: 0; font-size: clamp(1.45rem, 3vw, 2.35rem); line-height: 1.03; letter-spacing: -.045em; }
+    .prototype-stage-head p { margin: 0; color: var(--muted); }
+    .prototype-video-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .prototype-video { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #030405; }
+    .prototype-video video { display: block; width: 100%; aspect-ratio: 9 / 16; max-height: 650px; object-fit: contain; background: #030405; }
+    .prototype-video figcaption { padding: 11px 13px; color: #dfe4eb; background: rgba(8,11,16,.96); font-size: .81rem; }
     .kora-media-row { display: grid; grid-template-columns: .7fr 1.3fr; gap: 18px; margin-top: 18px; align-items: stretch; }
     .kora-wave { align-self: start; position: sticky; top: 86px; }
     .kora-wave video { width: 100%; min-height: 360px; aspect-ratio: 1; object-fit: cover; background: #030405; }
@@ -268,6 +278,11 @@
     .radio-card { margin: 0; display: flex; flex-direction: column; background: #05070a; }
     .radio-card img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: contain; }
     .radio-card figcaption { padding: 14px 16px; color: var(--muted); font-size: .87rem; background: rgba(8,11,16,.94); }
+    .mirror-hero { display: grid; grid-template-columns: 1fr .82fr 1fr; gap: 14px; align-items: stretch; }
+    .mirror-card { min-height: 390px; margin: 0; border-radius: var(--radius); }
+    .mirror-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 4vw, 40px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,92,92,.08), rgba(67,164,255,.08)); }
+    .mirror-copy h3 { margin: 10px 0 13px; font-size: clamp(1.55rem, 3vw, 2.3rem); line-height: 1.05; letter-spacing: -.045em; }
+    .mirror-copy p { margin: 0; color: var(--muted); }
     .next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .next-card { min-height: 260px; padding: 24px; box-shadow: none; position: relative; overflow: hidden; }
     .next-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -90px; bottom: -95px; border-radius: 50%; background: radial-gradient(circle, rgba(156,132,255,.22), transparent 68%); }
@@ -294,7 +309,9 @@
     dialog img { width: 100%; max-height: calc(100vh - 80px); object-fit: contain; }
     .dialog-close { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: white; background: rgba(8,11,16,.72); cursor: pointer; }
     @media (max-width: 920px) {
-      .hero-grid, .project-grid, .about, .kora-hero, .kora-media-row, .radio-hero { grid-template-columns: 1fr; }
+      .hero-grid, .project-grid, .about, .kora-hero, .kora-media-row, .radio-hero, .mirror-hero { grid-template-columns: 1fr; }
+      .prototype-stage-head { grid-template-columns: 1fr; align-items: start; }
+      .prototype-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .kora-wave { position: static; }
       .hero-media { min-height: 480px; }
       .videos { grid-template-columns: repeat(2, minmax(0, 250px)); }
@@ -318,6 +335,9 @@
       .kora-facts, .kora-gallery, .system-flow, .history-grid, .radio-facts, .radio-gallery { grid-template-columns: 1fr; }
       .flow-node:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -10px; transform: translate(50%,50%); }
       .history-card--wide { grid-column: auto; }
+      .history-card--full { grid-column: auto; }
+      .prototype-video-grid { grid-template-columns: 1fr; }
+      .prototype-video { width: min(100%, 380px); justify-self: center; }
       .history-intro { align-items: flex-start; flex-direction: column; }
       .kora-gallery .gallery-card:first-child { grid-column: auto; min-height: 300px; }
       .kora-main, .kora-main img { min-height: 380px; }
@@ -527,24 +547,51 @@
               <div class="history-media"><span class="history-stage">02</span><img loading="lazy" src="assets/kora/history/kora-red-cnc.webp" alt="Kora z czerwonym korpusem wykonanym na CNC"></div>
               <div class="history-copy"><h4 data-pl="Czerwony korpus CNC" data-en="Red CNC body">Czerwony korpus CNC</h4><p data-pl="Kolejna własna konstrukcja wycięta na CNC: mniejszy korpus, inne rozmieszczenie serw i następna seria prób z chodem." data-en="Another self-made CNC-cut structure: a smaller body, revised servo placement and another round of walking experiments.">Kolejna własna konstrukcja wycięta na CNC: mniejszy korpus, inne rozmieszczenie serw i następna seria prób z chodem.</p></div>
             </article>
+            <article class="history-card history-card--full prototype-stage">
+              <div class="prototype-stage-head">
+                <div>
+                  <span class="history-stage">03 · 4 LEGS</span>
+                  <h4 data-pl="Czteronożna Kora — ruch i pierwsza mimika" data-en="Four-legged Kora — movement and first expressions">Czteronożna Kora — ruch i pierwsza mimika</h4>
+                </div>
+                <p data-pl="Osobny etap rozwoju: próby mechaniki na czterech nogach, testy na stanowisku i pierwsze kroki na podłodze. W tej wersji pojawiła się także animowana twarz — oczy z rzęsami dały Korze wyraźnie więcej charakteru." data-en="A distinct development stage: four-legged mechanics, bench tests and the first steps on the floor. This version also gained an animated face — the eyes with eyelashes gave Kora a noticeably stronger character.">Osobny etap rozwoju: próby mechaniki na czterech nogach, testy na stanowisku i pierwsze kroki na podłodze. W tej wersji pojawiła się także animowana twarz — oczy z rzęsami dały Korze wyraźnie więcej charakteru.</p>
+              </div>
+              <div class="prototype-video-grid">
+                <figure class="prototype-video">
+                  <video controls muted playsinline preload="metadata" poster="assets/kora/history/quadruped/kora-quadruped-bench-poster.webp" aria-label="Czteronożna Kora podczas próby na stanowisku"><source src="assets/kora/history/quadruped/kora-quadruped-bench.mp4" type="video/mp4"></video>
+                  <figcaption data-pl="Próba na stanowisku — obserwacja pracy nóg i serw." data-en="Bench test — observing leg and servo movement.">Próba na stanowisku — obserwacja pracy nóg i serw.</figcaption>
+                </figure>
+                <figure class="prototype-video">
+                  <video controls muted playsinline preload="metadata" poster="assets/kora/history/quadruped/kora-quadruped-first-steps-poster.webp" aria-label="Pierwsze kroki czteronożnej Kory na dywanie"><source src="assets/kora/history/quadruped/kora-quadruped-first-steps.mp4" type="video/mp4"></video>
+                  <figcaption data-pl="Pierwsze kroki — krótka, prawdziwa próba na podłodze." data-en="First steps — a short, real test on the floor.">Pierwsze kroki — krótka, prawdziwa próba na podłodze.</figcaption>
+                </figure>
+                <figure class="prototype-video prototype-video--motion">
+                  <video controls muted playsinline preload="metadata" poster="assets/kora/history/quadruped/kora-quadruped-motion-poster.webp" aria-label="Test ruchu nóg czteronożnej Kory"><source src="assets/kora/history/quadruped/kora-quadruped-motion.mp4" type="video/mp4"></video>
+                  <figcaption data-pl="Test ruchu nóg — kolejne ustawienia i korekty mechaniki." data-en="Leg motion test — further adjustments and mechanical corrections.">Test ruchu nóg — kolejne ustawienia i korekty mechaniki.</figcaption>
+                </figure>
+                <figure class="prototype-video prototype-video--portrait">
+                  <video controls muted playsinline preload="metadata" poster="assets/kora/history/quadruped/kora-eyes-eyelashes-poster.webp" aria-label="Animowane oczy Kory z rzęsami"><source src="assets/kora/history/quadruped/kora-eyes-eyelashes.mp4" type="video/mp4"></video>
+                  <figcaption data-pl="Oczy z rzęsami — pierwszy mocny element osobowości Kory." data-en="Eyes with eyelashes — Kora's first strong personality cue.">Oczy z rzęsami — pierwszy mocny element osobowości Kory.</figcaption>
+                </figure>
+              </div>
+            </article>
             <article class="history-card">
-              <div class="history-media"><span class="history-stage">03</span><img loading="lazy" src="assets/kora/history/kora-hybrid-front.webp" alt="Hybrydowa Kora z elementami metalowymi i drewnianymi"></div>
+              <div class="history-media"><span class="history-stage">04</span><img loading="lazy" src="assets/kora/history/kora-hybrid-front.webp" alt="Hybrydowa Kora z elementami metalowymi i drewnianymi"></div>
               <div class="history-copy"><h4 data-pl="Metalowo-drewniana hybryda" data-en="Metal-and-wood hybrid">Metalowo-drewniana hybryda</h4><p data-pl="Etap przejściowy między frezowanym korpusem a bardziej modułową mechaniką. Pojawiły się metalowe mocowania oraz rozbudowana głowa z czujnikami." data-en="A transition between the machined body and more modular mechanics. Metal brackets appeared together with a more developed sensor head.">Etap przejściowy między frezowanym korpusem a bardziej modułową mechaniką. Pojawiły się metalowe mocowania oraz rozbudowana głowa z czujnikami.</p></div>
             </article>
             <article class="history-card">
-              <div class="history-media"><span class="history-stage">04</span><img loading="lazy" src="assets/kora/history/kora-hybrid-top.webp" alt="Plastikowa wersja Kory z drukowanymi nogami"></div>
+              <div class="history-media"><span class="history-stage">05</span><img loading="lazy" src="assets/kora/history/kora-hybrid-top.webp" alt="Plastikowa wersja Kory z drukowanymi nogami"></div>
               <div class="history-copy"><h4 data-pl="Wersja plastikowa" data-en="Plastic version">Wersja plastikowa</h4><p data-pl="Lżejsze elementy i nogi z tworzywa pozwoliły szybciej zmieniać geometrię oraz testować kolejne ustawienia bez wycinania całej konstrukcji od początku." data-en="Lighter plastic elements made it faster to change the geometry and test new arrangements without machining the whole structure again.">Lżejsze elementy i nogi z tworzywa pozwoliły szybciej zmieniać geometrię oraz testować kolejne ustawienia bez wycinania całej konstrukcji od początku.</p></div>
             </article>
             <article class="history-card history-card--wide">
-              <div class="history-media"><span class="history-stage">05</span><video autoplay muted loop playsinline preload="metadata" aria-label="Kora w czarnym ubraniu podczas testów"><source src="assets/kora/history/kora-black-outfit.mp4" type="video/mp4"></video></div>
+              <div class="history-media"><span class="history-stage">06</span><video autoplay muted loop playsinline preload="metadata" aria-label="Kora w czarnym ubraniu podczas testów"><source src="assets/kora/history/kora-black-outfit.mp4" type="video/mp4"></video></div>
               <div class="history-copy"><h4 data-pl="Kora incognito" data-en="Kora incognito">Kora incognito</h4><p data-pl="Czarna osłona ukryła przewody i elektronikę, a podświetlona twarz nadała jej pierwszy wyraźny charakter. Wyglądała trochę jak przestępca — ale już zdecydowanie jak Kora." data-en="A black cover hid the wiring and electronics, while the illuminated face gave her a distinct character for the first time. Slightly criminal-looking — but unmistakably Kora.">Czarna osłona ukryła przewody i elektronikę, a podświetlona twarz nadała jej pierwszy wyraźny charakter. Wyglądała trochę jak przestępca — ale już zdecydowanie jak Kora.</p></div>
             </article>
             <article class="history-card">
-              <div class="history-media"><span class="history-stage">06</span><img loading="lazy" src="assets/kora/history/kora-biped-restored-v1.webp" alt="Dwunożna wersja eksperymentalna Kory"></div>
+              <div class="history-media"><span class="history-stage">07</span><img loading="lazy" src="assets/kora/history/kora-biped-restored-v1.webp" alt="Dwunożna wersja eksperymentalna Kory"></div>
               <div class="history-copy"><h4 data-pl="Eksperyment na dwóch nogach" data-en="Two-legged experiment">Eksperyment na dwóch nogach</h4><p data-pl="Osobna próba z balansem, pionową sylwetką i zupełnie innym układem napędów. Nie każda droga prowadziła do hexapoda — ale każda czegoś uczyła." data-en="A separate experiment with balance, an upright body and a completely different drive layout. Not every path led to a hexapod — but every one taught something.">Osobna próba z balansem, pionową sylwetką i zupełnie innym układem napędów. Nie każda droga prowadziła do hexapoda — ale każda czegoś uczyła.</p></div>
             </article>
             <article class="history-card history-card--wide history-card--current">
-              <div class="history-media"><span class="history-stage">2026 · 07</span><img loading="lazy" src="assets/kora/kora-main.webp" alt="Obecna aluminiowa Kora"></div>
+              <div class="history-media"><span class="history-stage">2026 · 08</span><img loading="lazy" src="assets/kora/kora-main.webp" alt="Obecna aluminiowa Kora"></div>
               <div class="history-copy"><h4 data-pl="Aluminiowa Kora — obecnie" data-en="Aluminium Kora — current">Aluminiowa Kora — obecnie</h4><p data-pl="Sztywniejsza mechanika, 18 serw MG996R, nowy kontroler i integracja z systemem działającym na Raspberry Pi 5. To nie koniec historii — to pierwsza wersja, która spina wcześniejsze doświadczenia w jeden system." data-en="Stiffer mechanics, 18 MG996R servos, a new controller and integration with the Raspberry Pi 5 system. This is not the end of the story — it is the first version that brings the earlier lessons into one system.">Sztywniejsza mechanika, 18 serw MG996R, nowy kontroler i integracja z systemem działającym na Raspberry Pi 5. To nie koniec historii — to pierwsza wersja, która spina wcześniejsze doświadczenia w jeden system.</p></div>
             </article>
           </div>
@@ -602,11 +649,38 @@
       </div>
     </section>
 
+    <section id="lustro-nieskonczonosci">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="number">06 / LIGHT &amp; OPTICS</span>
+            <h2 data-pl="Lustro nieskończoności" data-en="Infinity mirror">Lustro nieskończoności</h2>
+            <p data-pl="Eksperyment z optyką, światłem i wrażeniem przestrzeni — prosty układ, który całkowicie zmienia odbiór głębi." data-en="An experiment with optics, light and spatial perception — a simple arrangement that completely changes the sense of depth.">Eksperyment z optyką, światłem i wrażeniem przestrzeni — prosty układ, który całkowicie zmienia odbiór głębi.</p>
+          </div>
+        </div>
+        <div class="mirror-hero">
+          <figure class="gallery-card mirror-card">
+            <img loading="lazy" src="assets/other/infinity-mirror/infinity-mirror-red.webp" alt="Lustro nieskończoności świecące na czerwono">
+            <figcaption data-pl="Czerwone światło podkreśla tunel powtarzających się odbić." data-en="Red light emphasises the tunnel of repeated reflections.">Czerwone światło podkreśla tunel powtarzających się odbić.</figcaption>
+          </figure>
+          <article class="mirror-copy">
+            <span class="eyebrow" data-pl="Światło i odbicia" data-en="Light and reflections">Światło i odbicia</span>
+            <h3 data-pl="Głębia zbudowana ze światła" data-en="Depth built from light">Głębia zbudowana ze światła</h3>
+            <p data-pl="Wielokrotne odbicia tworzą iluzję tunelu sięgającego daleko poza rzeczywistą głębokość obudowy. Ten sam obiekt pokazuję w dwóch kolorach, bo zmiana światła całkowicie zmienia jego charakter." data-en="Repeated reflections create the illusion of a tunnel extending far beyond the enclosure's real depth. I show the same object in two colours because changing the light completely changes its character.">Wielokrotne odbicia tworzą iluzję tunelu sięgającego daleko poza rzeczywistą głębokość obudowy. Ten sam obiekt pokazuję w dwóch kolorach, bo zmiana światła całkowicie zmienia jego charakter.</p>
+          </article>
+          <figure class="gallery-card mirror-card">
+            <img loading="lazy" src="assets/other/infinity-mirror/infinity-mirror-blue.webp" alt="Lustro nieskończoności świecące na niebiesko">
+            <figcaption data-pl="Wersja niebieska — chłodniejszy, bardziej techniczny efekt." data-en="Blue version — a cooler, more technical effect.">Wersja niebieska — chłodniejszy, bardziej techniczny efekt.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section id="radio">
       <div class="shell">
         <div class="section-head">
           <div>
-            <span class="number">06 / EMBEDDED &amp; LED</span>
+            <span class="number">07 / EMBEDDED &amp; LED</span>
             <h2 data-pl="Radio internetowe i wizualizacje LED" data-en="Internet radio and LED visualisations">Radio internetowe i wizualizacje LED</h2>
             <p data-pl="Samodzielnie zbudowane radio Wi-Fi, łączące strumieniowanie dźwięku, dotykowy interfejs i duże matryce LED reagujące na muzykę." data-en="A self-built Wi-Fi radio combining audio streaming, a touch interface and large LED matrices that react to music.">Samodzielnie zbudowane radio Wi-Fi, łączące strumieniowanie dźwięku, dotykowy interfejs i duże matryce LED reagujące na muzykę.</p>
           </div>
