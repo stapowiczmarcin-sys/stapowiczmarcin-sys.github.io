@@ -328,8 +328,45 @@
     .flow-node:not(:last-child)::after { content: "→"; position: absolute; right: -10px; top: 50%; z-index: 2; transform: translate(50%,-50%); color: var(--mint); font-weight: 900; }
     .flow-node strong { display: block; margin-bottom: 5px; font-size: .93rem; }
     .flow-node span { color: var(--muted); font-size: .79rem; line-height: 1.45; }
-    .stack-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-    .stack-chips span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: #dce1e8; background: rgba(255,255,255,.03); font-size: .78rem; }
+    .system-panel > .stack-intro { margin: 18px 0 0; color: var(--muted); font-size: .84rem; }
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .stack-chip {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #dce1e8;
+      background: rgba(255,255,255,.03);
+      font: inherit;
+      font-size: .78rem;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .stack-chip::after { content: "+"; color: var(--mint); font-weight: 900; }
+    .stack-chip:hover,
+    .stack-chip:focus-visible,
+    .stack-chip.is-active { border-color: rgba(98,243,192,.72); color: white; background: rgba(98,243,192,.1); transform: translateY(-1px); }
+    .stack-chip:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+    .stack-chip.is-active::after { content: "●"; font-size: .58rem; }
+    .stack-detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 22px;
+      margin-top: 12px;
+      padding: 18px;
+      border: 1px solid rgba(98,243,192,.25);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(98,243,192,.08), rgba(255,255,255,.025));
+    }
+    .stack-detail-kicker { display: block; margin-bottom: 5px; color: var(--mint); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .stack-detail h4 { margin: 0 0 6px; font-size: 1rem; }
+    .stack-detail p { margin: 0; max-width: 780px; color: var(--muted); font-size: .86rem; line-height: 1.6; }
+    .stack-detail-link { white-space: nowrap; }
     .history-wrap { margin-top: 38px; }
     .history-intro { display: flex; align-items: end; justify-content: space-between; gap: 22px; margin-bottom: 18px; }
     .history-intro h3 { margin: 7px 0 0; font-size: clamp(1.75rem, 3.5vw, 2.8rem); line-height: 1.02; letter-spacing: -.05em; }
@@ -483,6 +520,8 @@
       .gallery { display: grid; grid-template-columns: 1fr; grid-auto-rows: auto; }
       .gallery-card, .g1, .g2, .g3, .g4, .g5, .g6, .g7 { grid-column: auto; grid-row: auto; min-height: 260px; }
       .gallery-card.portrait { min-height: 430px; }
+      .stack-detail { grid-template-columns: 1fr; gap: 14px; }
+      .stack-detail-link { justify-self: start; white-space: normal; }
       .footer-inner { flex-direction: column; }
     }
     @media (max-width: 340px) {
@@ -677,13 +716,28 @@
           <div class="system-flow">
             <div class="flow-node"><strong data-pl="1. Zmysły" data-en="1. Sensing">1. Zmysły</strong><span data-pl="2 × IMX708, RPLidar A2, VL53L1X i czujniki światła" data-en="2 × IMX708, RPLidar A2, VL53L1X and light sensors">2 × IMX708, RPLidar A2, VL53L1X i czujniki światła</span></div>
             <div class="flow-node"><strong data-pl="2. Urządzenia" data-en="2. Devices">2. Urządzenia</strong><span data-pl="ESP32-C6, GPIO, szyja, serwa i oświetlenie IR" data-en="ESP32-C6, GPIO, neck, servos and IR lighting">ESP32-C6, GPIO, szyja, serwa i oświetlenie IR</span></div>
-            <div class="flow-node"><strong data-pl="3. Mózg" data-en="3. Core">3. Mózg</strong><span data-pl="Raspberry Pi 5, Python i lokalne usługi robota" data-en="Raspberry Pi 5, Python and local robot services">Raspberry Pi 5, Python i lokalne usługi robota</span></div>
+            <div class="flow-node"><strong data-pl="3. Mózg" data-en="3. Core">3. Mózg</strong><span data-pl="Raspberry Pi 5 i lokalne usługi systemowe tworzone w Pythonie" data-en="Raspberry Pi 5 and local system services built in Python">Raspberry Pi 5 i lokalne usługi systemowe tworzone w Pythonie</span></div>
             <div class="flow-node"><strong data-pl="4. Percepcja i mowa" data-en="4. Perception & speech">4. Percepcja i mowa</strong><span data-pl="lokalne modele, Ollama, Hailo, STT i TTS" data-en="local models, Ollama, Hailo, STT and TTS">lokalne modele, Ollama, Hailo, STT i TTS</span></div>
             <div class="flow-node"><strong data-pl="5. Operator" data-en="5. Operator">5. Operator</strong><span data-pl="panel WWW PL/EN, status live, testy i diagnostyka" data-en="PL/EN web panel, live status, tests and diagnostics">panel WWW PL/EN, status live, testy i diagnostyka</span></div>
           </div>
-          <div class="stack-chips" aria-label="Technology stack">
-            <span>Python</span><span>Raspberry Pi 5</span><span>ESP32-C6</span><span>Ollama</span><span>Hailo</span><span>STT / TTS</span><span>HTML / CSS / JavaScript</span>
+          <p class="stack-intro" data-pl="Kliknij technologię — zobacz, co naprawdę robi w projekcie i jaki jest mój udział." data-en="Select a technology to see what it really does in the project and what my role is.">Kliknij technologię — zobacz, co naprawdę robi w projekcie i jaki jest mój udział.</p>
+          <div class="stack-chips" role="group" aria-label="Technologie użyte w projektach">
+            <button class="stack-chip is-active" type="button" aria-controls="stackDetail" aria-pressed="true" data-pl="Arduino IDE / ESP32" data-en="Arduino IDE / ESP32" data-pl-title="ESP32 i Arduino IDE — praktyka, nie teoria" data-en-title="ESP32 and Arduino IDE — practical experience" data-pl-copy="Pracowałem z wieloma płytkami rodziny ESP i dobrze znam ich codzienne kaprysy: wybór właściwej płytki i portu, biblioteki, piny, zasilanie oraz komunikację. W Korze ESP32-C6 obsługuje szyję, czujniki światła, GPIO i łączność z Raspberry Pi, a radio działa na ESP32-S3." data-en-copy="I have worked with many ESP boards and know their everyday quirks: selecting the correct board and port, libraries, pins, power and communication. In Kora, the ESP32-C6 handles the neck, light sensors, GPIO and communication with Raspberry Pi, while the radio runs on an ESP32-S3." data-target="#radio" data-pl-link="Zobacz radio na ESP32-S3 ↓" data-en-link="See the ESP32-S3 radio ↓">Arduino IDE / ESP32</button>
+            <button class="stack-chip" type="button" aria-controls="stackDetail" aria-pressed="false" data-pl="Raspberry Pi 5" data-en="Raspberry Pi 5" data-pl-title="Raspberry Pi 5 — główny komputer Kory" data-en-title="Raspberry Pi 5 — Kora's main computer" data-pl-copy="Na Raspberry Pi 5 łączę kamery, lidar, czujniki, sterowanie szyją, mowę, pamięć i panel operatorski. Moja praca obejmuje dobór sprzętu, integrację, uruchamianie, pomiary oraz testy całego systemu." data-en-copy="On Raspberry Pi 5, I bring together cameras, lidar, sensors, neck control, speech, memory and the operator panel. My work covers hardware selection, integration, commissioning, measurements and testing the complete system." data-target="#kora" data-pl-link="Zobacz architekturę Kory ↑" data-en-link="See Kora's architecture ↑">Raspberry Pi 5</button>
+            <button class="stack-chip" type="button" aria-controls="stackDetail" aria-pressed="false" data-pl="Python · system Kory" data-en="Python · Kora system" data-pl-title="Python — warstwa wykonawcza systemu Kory" data-en-title="Python — Kora's system layer" data-pl-copy="Nie przedstawiam Pythona jako języka, który samodzielnie opanowałem. Kod rozwijam z pomocą narzędzi wspierających programowanie; po mojej stronie są wymagania, integracja z prawdziwym sprzętem, testy, diagnostyka i decyzje o poprawkach." data-en-copy="I do not present Python as a language I have mastered independently. I develop the code with programming-support tools; my role covers requirements, integration with real hardware, testing, diagnostics and decisions about corrections." data-target="#kolejne" data-pl-link="Zobacz uruchomione etapy ↓" data-en-link="See completed milestones ↓">Python · system Kory</button>
+            <button class="stack-chip" type="button" aria-controls="stackDetail" aria-pressed="false" data-pl="Ollama · modele lokalne" data-en="Ollama · local models" data-pl-title="Ollama — lokalne modele Kory" data-en-title="Ollama — Kora's local models" data-pl-copy="Modele działają lokalnie na moim sprzęcie i są połączone z Korą przez jej własne usługi. Testuję ich szybkość, jakość odpowiedzi, pamięć oraz podział zadań między rozmowę i widzenie." data-en-copy="Models run locally on my hardware and connect to Kora through her own services. I test their speed, response quality, memory and the division of work between conversation and vision." data-target="#kora" data-pl-link="Wróć do przepływu systemu ↑" data-en-link="Return to the system flow ↑">Ollama · modele lokalne</button>
+            <button class="stack-chip" type="button" aria-controls="stackDetail" aria-pressed="false" data-pl="Hailo · integracja" data-en="Hailo · integration" data-pl-title="Hailo — akcelerator w integracji" data-en-title="Hailo — accelerator under integration" data-pl-copy="Hailo ma przyspieszać lokalną analizę obrazu i śledzenie osób. Sprzęt jest częścią projektu, ale uczciwie oznaczam tę warstwę jako integrowaną i testowaną, a nie zakończoną." data-en-copy="Hailo is intended to accelerate local image analysis and person tracking. The hardware is part of the project, but I honestly describe this layer as being integrated and tested rather than finished." data-target="#kolejne" data-pl-link="Zobacz stan rozwoju ↓" data-en-link="See development status ↓">Hailo · integracja</button>
+            <button class="stack-chip" type="button" aria-controls="stackDetail" aria-pressed="false" data-pl="Vosk / Piper · STT / TTS" data-en="Vosk / Piper · STT / TTS" data-pl-title="Vosk i Piper — słuchanie oraz mowa" data-en-title="Vosk and Piper — listening and speech" data-pl-copy="Vosk rozpoznaje mowę po polsku i angielsku, a Piper odpowiada głosem. Te elementy są połączone z logiką Kory i jej pamięcią — nie są tylko osobnymi demonstracjami." data-en-copy="Vosk recognises Polish and English speech, while Piper provides the voice response. These components connect to Kora's logic and memory rather than operating as isolated demonstrations." data-target="#kora" data-pl-link="Zobacz system Kory ↑" data-en-link="See Kora's system ↑">Vosk / Piper · STT / TTS</button>
+            <button class="stack-chip" type="button" aria-controls="stackDetail" aria-pressed="false" data-pl="Panel WWW · HTML / CSS / JS" data-en="Web panel · HTML / CSS / JS" data-pl-title="Panel WWW i portfolio" data-en-title="Web panel and portfolio" data-pl-copy="HTML, CSS i JavaScript wykorzystuję w panelu operatorskim Kory oraz w tym portfolio. Skupiam się na funkcjach, treści, testowaniu i czytelności, korzystając ze wsparcia przy tworzeniu kodu." data-en-copy="I use HTML, CSS and JavaScript in Kora's operator panel and in this portfolio. I focus on functionality, content, testing and clarity, with support in producing the code." data-target="#kora" data-pl-link="Zobacz warstwę operatora ↑" data-en-link="See the operator layer ↑">Panel WWW · HTML / CSS / JS</button>
           </div>
+          <article class="stack-detail" id="stackDetail" aria-live="polite">
+            <div>
+              <span class="stack-detail-kicker" data-pl="Rzeczywiste zastosowanie" data-en="Real-world use">Rzeczywiste zastosowanie</span>
+              <h4 id="stackDetailTitle">ESP32 i Arduino IDE — praktyka, nie teoria</h4>
+              <p id="stackDetailCopy">Pracowałem z wieloma płytkami rodziny ESP i dobrze znam ich codzienne kaprysy: wybór właściwej płytki i portu, biblioteki, piny, zasilanie oraz komunikację. W Korze ESP32-C6 obsługuje szyję, czujniki światła, GPIO i łączność z Raspberry Pi, a radio działa na ESP32-S3.</p>
+            </div>
+            <a class="button stack-detail-link" id="stackDetailLink" href="#radio">Zobacz radio na ESP32-S3 ↓</a>
+          </article>
         </article>
 
         <div class="history-wrap" id="historia-kory">
@@ -919,7 +973,28 @@
   <script>
     const languageButton = document.getElementById('languageButton');
     const year = document.getElementById('year');
+    const stackButtons = Array.from(document.querySelectorAll('.stack-chip'));
+    const stackDetailTitle = document.getElementById('stackDetailTitle');
+    const stackDetailCopy = document.getElementById('stackDetailCopy');
+    const stackDetailLink = document.getElementById('stackDetailLink');
     let language = localStorage.getItem('portfolio-language') || 'pl';
+    let activeStackButton = stackButtons[0] || null;
+
+    function renderStackDetail(button) {
+      if (!button || !stackDetailTitle || !stackDetailCopy || !stackDetailLink) return;
+
+      activeStackButton = button;
+      stackButtons.forEach((item) => {
+        const isActive = item === button;
+        item.classList.toggle('is-active', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
+
+      stackDetailTitle.textContent = button.dataset[`${language}Title`];
+      stackDetailCopy.textContent = button.dataset[`${language}Copy`];
+      stackDetailLink.textContent = button.dataset[`${language}Link`];
+      stackDetailLink.href = button.dataset.target;
+    }
 
     function applyLanguage() {
       document.documentElement.lang = language;
@@ -931,12 +1006,17 @@
       document.title = language === 'pl'
         ? 'Marcin — konstruktor i praktyczny prototypista'
         : 'Marcin — maker and hands-on prototyper';
+      renderStackDetail(activeStackButton);
       localStorage.setItem('portfolio-language', language);
     }
 
     languageButton.addEventListener('click', () => {
       language = language === 'pl' ? 'en' : 'pl';
       applyLanguage();
+    });
+
+    stackButtons.forEach((button) => {
+      button.addEventListener('click', () => renderStackDetail(button));
     });
 
     year.textContent = new Date().getFullYear();
