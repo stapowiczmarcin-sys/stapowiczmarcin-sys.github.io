@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080" role="img" aria-labelledby="title desc">
+  <title id="title">ESP32 internet radio wiring diagram</title>
+  <desc id="desc">ESP32-WROOM connected to PCM5102A, three digital IR sensors and an addressable WS2812B RGB strip with an external 5 volt supply.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#08101b"/>
+      <stop offset="1" stop-color="#101526"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" x2="1">
+      <stop offset="0" stop-color="#123d45"/>
+      <stop offset="1" stop-color="#0d2c35"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#62c7ff"/></marker>
+    <marker id="arrowMint" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#67e5bd"/></marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ff6f6f"/></marker>
+    <style>
+      text { font-family: Inter, ui-sans-serif, system-ui, sans-serif; fill: #f5f7fa; }
+      .muted { fill: #abb6c6; }
+      .tiny { font-size: 18px; }
+      .small { font-size: 21px; }
+      .label { font-size: 24px; font-weight: 750; }
+      .heading { font-size: 34px; font-weight: 850; }
+      .title { font-size: 46px; font-weight: 900; letter-spacing: -1px; }
+      .card { fill: #111b29; stroke: #354358; stroke-width: 2; filter: url(#shadow); }
+      .pin { fill: #0a111c; stroke: #42526a; stroke-width: 1.5; }
+      .signal { fill: none; stroke: #62c7ff; stroke-width: 5; marker-end: url(#arrowBlue); }
+      .sensor { fill: none; stroke: #67e5bd; stroke-width: 5; marker-end: url(#arrowMint); }
+      .power { fill: none; stroke: #ff6f6f; stroke-width: 5; marker-end: url(#arrowRed); }
+      .ground { fill: none; stroke: #8b97a8; stroke-width: 4; stroke-dasharray: 10 8; }
+      .bus { stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1080" rx="34" fill="url(#bg)"/>
+  <text x="72" y="72" class="title">ESP32 Internet Radio · 3× IR · RGB</text>
+  <text x="74" y="110" class="small muted">Nowa wersja referencyjna — czytelny schemat połączeń przed publikacją</text>
+
+  <!-- LED strip -->
+  <rect x="70" y="170" width="420" height="270" rx="28" class="card"/>
+  <text x="100" y="220" class="heading">Pasek RGB</text>
+  <text x="100" y="254" class="small muted">WS2812B / NeoPixel · 5 V</text>
+  <circle cx="125" cy="305" r="21" fill="#ff5d6c"/><circle cx="177" cy="305" r="21" fill="#55e5a8"/><circle cx="229" cy="305" r="21" fill="#5fb7ff"/><circle cx="281" cy="305" r="21" fill="#ffb44f"/><circle cx="333" cy="305" r="21" fill="#9a7bff"/>
+  <rect x="100" y="350" width="330" height="55" rx="14" class="pin"/>
+  <text x="120" y="385" class="label">DIN · +5V · GND</text>
+
+  <rect x="90" y="465" width="400" height="70" rx="20" fill="#24161b" stroke="#a6535c" stroke-width="2"/>
+  <text x="120" y="496" class="label">Zasilacz 5 V / ok. 5 A</text>
+  <text x="120" y="522" class="tiny muted">+5V → pasek · GND → wspólna masa</text>
+
+  <!-- ESP32 -->
+  <rect x="590" y="165" width="430" height="520" rx="34" fill="url(#board)" stroke="#4e8791" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="715" y="200" width="180" height="92" rx="12" fill="#cbd3d6"/>
+  <path d="M745 225h120M745 245h120M745 265h120" stroke="#809095" stroke-width="6"/>
+  <text x="805" y="345" text-anchor="middle" class="heading">ESP32-WROOM-32</text>
+  <text x="805" y="379" text-anchor="middle" class="small" fill="#aaf4df">ESP32 Dev Module</text>
+
+  <rect x="625" y="420" width="162" height="46" rx="12" class="pin"/><text x="642" y="450" class="small">GPIO4 · RGB</text>
+  <rect x="625" y="478" width="162" height="46" rx="12" class="pin"/><text x="642" y="508" class="small">GPIO32 · ST</text>
+  <rect x="625" y="536" width="162" height="46" rx="12" class="pin"/><text x="642" y="566" class="small">GPIO33 · PWR</text>
+  <rect x="625" y="594" width="162" height="46" rx="12" class="pin"/><text x="642" y="624" class="small">GPIO14 · LED</text>
+
+  <rect x="833" y="420" width="152" height="46" rx="12" class="pin"/><text x="851" y="450" class="small">GPIO27 · BCK</text>
+  <rect x="833" y="478" width="152" height="46" rx="12" class="pin"/><text x="851" y="508" class="small">GPIO26 · LRC</text>
+  <rect x="833" y="536" width="152" height="46" rx="12" class="pin"/><text x="851" y="566" class="small">GPIO25 · DIN</text>
+  <rect x="833" y="594" width="152" height="46" rx="12" class="pin"/><text x="851" y="624" class="small">3V3 · GND</text>
+
+  <!-- PCM5102A -->
+  <rect x="1130" y="170" width="400" height="315" rx="28" class="card"/>
+  <text x="1160" y="220" class="heading">PCM5102A</text>
+  <text x="1160" y="254" class="small muted">stereofoniczny DAC I²S</text>
+  <rect x="1160" y="278" width="160" height="44" rx="12" class="pin"/><text x="1180" y="307" class="small">BCK · LCK</text>
+  <rect x="1160" y="332" width="160" height="44" rx="12" class="pin"/><text x="1180" y="361" class="small">DIN</text>
+  <rect x="1160" y="386" width="160" height="44" rx="12" class="pin"/><text x="1180" y="415" class="small">VIN* · GND</text>
+  <rect x="1350" y="290" width="145" height="108" rx="12" class="pin"/>
+  <text x="1373" y="331" class="small">OUT L</text><text x="1373" y="370" class="small">OUT R</text>
+  <text x="1160" y="458" class="tiny muted">SCK/MCLK: niepodłączony w tym wariancie</text>
+
+  <!-- Amplifier -->
+  <rect x="1215" y="535" width="315" height="150" rx="26" class="card"/>
+  <text x="1245" y="585" class="label">Wzmacniacz</text>
+  <text x="1245" y="620" class="small muted">wejście liniowe L/R</text>
+  <text x="1245" y="654" class="small">→ głośniki</text>
+
+  <!-- Three IR modules -->
+  <rect x="90" y="560" width="400" height="122" rx="25" class="card"/>
+  <text x="120" y="608" class="label">IR 1 · następna stacja</text>
+  <text x="120" y="647" class="tiny muted">OUT → GPIO32 · VCC → 3V3 · GND → GND</text>
+
+  <rect x="90" y="715" width="400" height="122" rx="25" class="card"/>
+  <text x="120" y="763" class="label">IR 2 · radio ON/OFF</text>
+  <text x="120" y="802" class="tiny muted">OUT → GPIO33 · VCC → 3V3 · GND → GND</text>
+
+  <rect x="90" y="870" width="400" height="122" rx="25" class="card"/>
+  <text x="120" y="918" class="label">IR 3 · LED ON/OFF</text>
+  <text x="120" y="957" class="tiny muted">OUT → GPIO14 · VCC → 3V3 · GND → GND</text>
+
+  <!-- Signal lines -->
+  <path d="M590 443 H520 V378 H438" class="signal bus"/>
+  <text x="505" y="350" text-anchor="middle" class="tiny" fill="#62c7ff">GPIO4 → 330–470 Ω → DIN</text>
+  <path d="M490 500 H525 V402 H438" class="power bus"/>
+
+  <path d="M1020 443 H1090 V300 H1158" class="signal bus"/>
+  <path d="M1020 501 H1110 V318 H1158" class="signal bus"/>
+  <path d="M1020 559 H1128 V354 H1158" class="signal bus"/>
+  <text x="1080" y="405" class="tiny" fill="#62c7ff">I²S</text>
+
+  <path d="M1350 420 V465 H1370 V535" class="signal bus"/>
+  <text x="1385" y="512" class="tiny" fill="#62c7ff">L/R</text>
+
+  <path d="M490 621 H540 V501 H590" class="sensor bus"/>
+  <path d="M490 776 H555 V559 H590" class="sensor bus"/>
+  <path d="M490 931 H570 V617 H590" class="sensor bus"/>
+
+  <!-- Power and ground guidance -->
+  <rect x="555" y="735" width="975" height="257" rx="30" fill="#0d1623" stroke="#3a4658" stroke-width="2"/>
+  <text x="590" y="785" class="heading">Zasilanie i trzy rzeczy, których nie wolno pominąć</text>
+  <circle cx="610" cy="840" r="8" fill="#ff6f6f"/><text x="635" y="848" class="small">Zasilacz 5 V → pasek RGB. Dla 82 LED przy pełnej bieli: maks. około 4,9 A.</text>
+  <circle cx="610" cy="887" r="8" fill="#67e5bd"/><text x="635" y="895" class="small">GND wspólne: ESP32 + 3×IR + PCM5102A + pasek + zasilacz.</text>
+  <circle cx="610" cy="934" r="8" fill="#62c7ff"/><text x="635" y="942" class="small">GPIO4 → 330–470 Ω → DIN; przy pasku kondensator około 1000 µF.</text>
+  <text x="590" y="976" class="tiny muted">PCM5102A VIN*: użyj 5 V tylko dla płytki oznaczonej VIN/5V; moduł 3V3 zasil z 3V3.</text>
+  <text x="590" y="1006" class="tiny muted">Wyjścia L/R są liniowe — potrzebują wzmacniacza. Konwerter DATA 3,3→5 V jest zalecany.</text>
+
+  <!-- legend -->
+  <path d="M1170 92h55" class="signal"/><text x="1240" y="101" class="tiny">sygnał</text>
+  <path d="M1330 92h55" class="sensor"/><text x="1400" y="101" class="tiny">IR</text>
+</svg>
