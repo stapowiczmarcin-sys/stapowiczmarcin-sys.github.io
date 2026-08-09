@@ -415,6 +415,27 @@
     .radio-card { margin: 0; display: flex; flex-direction: column; background: #05070a; }
     .radio-card img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: contain; }
     .radio-card figcaption { padding: 14px 16px; color: var(--muted); font-size: .87rem; background: rgba(8,11,16,.94); }
+    .radio-archive {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(220px, .55fr);
+      gap: 22px;
+      align-items: center;
+      margin-top: 18px;
+      padding: clamp(22px, 4vw, 38px);
+      border: 1px solid rgba(255,154,69,.3);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,154,69,.085), rgba(156,132,255,.055));
+    }
+    .radio-archive-copy h3 { margin: 12px 0 10px; font-size: clamp(1.55rem, 3vw, 2.25rem); line-height: 1.07; letter-spacing: -.045em; }
+    .radio-archive-copy p { margin: 0; max-width: 720px; color: var(--muted); }
+    .radio-archive-actions { margin-top: 20px; }
+    .radio-archive-video {
+      width: min(100%, 290px);
+      justify-self: center;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.28);
+    }
     .mirror-hero { display: grid; grid-template-columns: 1fr .82fr 1fr; gap: 14px; align-items: stretch; }
     .mirror-card { min-height: 390px; margin: 0; border-radius: var(--radius); }
     .mirror-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 4vw, 40px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,92,92,.08), rgba(67,164,255,.08)); }
@@ -481,6 +502,8 @@
     .dialog-close { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: white; background: rgba(8,11,16,.72); cursor: pointer; }
     @media (max-width: 920px) {
       .hero-grid, .project-grid, .about, .contact-panel, .kora-hero, .kora-media-row, .radio-hero, .mirror-hero { grid-template-columns: 1fr; }
+      .radio-archive { grid-template-columns: 1fr; }
+      .radio-archive-video { width: min(100%, 280px); }
       .prototype-stage-head { grid-template-columns: 1fr; align-items: start; }
       .prototype-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .kora-wave { position: static; }
@@ -905,6 +928,22 @@
           <figure class="radio-card"><img loading="eager" decoding="async" src="assets/radio/led-matrix-violet.webp" alt="Programowalna matryca LED świecąca na fioletowo"><figcaption data-pl="Kolor i układ można zmieniać programowo." data-en="Colour and layout can be changed in software.">Kolor i układ można zmieniać programowo.</figcaption></figure>
           <figure class="radio-card"><img loading="eager" decoding="async" src="assets/radio/tft-controller.webp" alt="Tylna strona modułu TFT 2,8 cala z okablowaniem"><figcaption data-pl="Moduł TFT 2,8″ 240 × 320 i prototypowe okablowanie." data-en="2.8-inch 240 × 320 TFT module and prototype wiring.">Moduł TFT 2,8″ 240 × 320 i prototypowe okablowanie.</figcaption></figure>
           <figure class="radio-card"><img loading="eager" decoding="async" src="assets/radio/esp32-s3.webp" alt="Kontroler ESP32-S3-N16R8 użyty w radiu"><figcaption data-pl="ESP32-S3-N16R8 — serce sterowania projektem." data-en="ESP32-S3-N16R8 — the control heart of the project.">ESP32-S3-N16R8 — serce sterowania projektem.</figcaption></figure>
+        </div>
+
+        <div class="radio-archive">
+          <article class="radio-archive-copy">
+            <span class="status" data-pl="Archiwum · wcześniejszy projekt" data-en="Archive · earlier project">Archiwum · wcześniejszy projekt</span>
+            <h3 data-pl="Zanim pojawił się ekran dotykowy" data-en="Before the touchscreen">Zanim pojawił się ekran dotykowy</h3>
+            <p data-pl="W tej starszej wersji fizyczne pokrętła obsługiwały zmianę stacji, włączanie i wyłączanie oraz sterowanie LED-ami. Konstrukcja jest prostsza od obecnego radia z ekranem, ale właśnie dlatego warto ją pokazać: dokumentuje drogę od surowego, działającego prototypu do bardziej kompletnego systemu." data-en="In this earlier version, physical knobs handled station changes, power and LED control. It is simpler than the current touchscreen radio, but that is exactly why it belongs here: it documents the progression from a rough working prototype to a more complete system.">W tej starszej wersji fizyczne pokrętła obsługiwały zmianę stacji, włączanie i wyłączanie oraz sterowanie LED-ami. Konstrukcja jest prostsza od obecnego radia z ekranem, ale właśnie dlatego warto ją pokazać: dokumentuje drogę od surowego, działającego prototypu do bardziej kompletnego systemu.</p>
+            <div class="radio-archive-actions">
+              <a class="button button-primary" href="https://www.youtube.com/shorts/r9urgd6wDjU" target="_blank" rel="noopener" data-pl="Zobacz wcześniejsze radio" data-en="Watch the earlier radio">Zobacz wcześniejsze radio</a>
+            </div>
+          </article>
+          <a class="youtube-preview radio-archive-video" href="https://www.youtube.com/shorts/r9urgd6wDjU" target="_blank" rel="noopener" aria-label="Zobacz wcześniejszy projekt radia na YouTube">
+            <img loading="lazy" decoding="async" src="https://i.ytimg.com/vi/r9urgd6wDjU/hqdefault.jpg" alt="Wcześniejszy projekt radia sterowanego fizycznymi pokrętłami">
+            <span class="youtube-play" aria-hidden="true"></span>
+            <span class="youtube-open" data-pl="Otwórz film na YouTube" data-en="Open video on YouTube">Otwórz film na YouTube</span>
+          </a>
         </div>
       </div>
     </section>
