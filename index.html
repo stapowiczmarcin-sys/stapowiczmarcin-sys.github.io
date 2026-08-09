@@ -428,7 +428,7 @@
     }
     .radio-archive-copy h3 { margin: 12px 0 10px; font-size: clamp(1.55rem, 3vw, 2.25rem); line-height: 1.07; letter-spacing: -.045em; }
     .radio-archive-copy p { margin: 0; max-width: 720px; color: var(--muted); }
-    .radio-archive-actions { margin-top: 20px; }
+    .radio-archive-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .radio-archive-video {
       width: min(100%, 290px);
       justify-self: center;
@@ -937,6 +937,7 @@
             <p data-pl="W tej starszej wersji radio było sterowane trzema czujnikami podczerwieni. Gesty przy czujnikach zmieniały stacje, włączały i wyłączały radio oraz sterowały oświetleniem LED. To prostsza konstrukcja niż obecne radio z ekranem, ale dobrze dokumentuje drogę od działającego prototypu do bardziej kompletnego systemu." data-en="In this earlier version, the radio was controlled by three infrared sensors. Hand gestures near the sensors changed stations, switched the radio on and off, and controlled the LED lighting. It is simpler than the current touchscreen radio, but it clearly documents the progression from a working prototype to a more complete system.">W tej starszej wersji radio było sterowane trzema czujnikami podczerwieni. Gesty przy czujnikach zmieniały stacje, włączały i wyłączały radio oraz sterowały oświetleniem LED. To prostsza konstrukcja niż obecne radio z ekranem, ale dobrze dokumentuje drogę od działającego prototypu do bardziej kompletnego systemu.</p>
             <div class="radio-archive-actions">
               <a class="button button-primary" href="https://www.youtube.com/shorts/r9urgd6wDjU" target="_blank" rel="noopener" data-pl="Zobacz wcześniejsze radio" data-en="Watch the earlier radio">Zobacz wcześniejsze radio</a>
+              <a class="button" href="projects/esp32-ir-radio/" data-pl="Schemat i kod" data-en="Wiring and code">Schemat i kod</a>
             </div>
           </article>
           <a class="youtube-preview radio-archive-video" href="https://www.youtube.com/shorts/r9urgd6wDjU" target="_blank" rel="noopener" aria-label="Zobacz wcześniejszy projekt radia na YouTube">

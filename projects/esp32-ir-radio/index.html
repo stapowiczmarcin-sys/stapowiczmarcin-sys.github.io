@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08101b">
+  <title>ESP32 Internet Radio · 3×IR · RGB — Marcin</title>
+  <style>
+    :root {
+      --bg:#07101a; --panel:#101a28; --panel2:#131f30; --text:#f5f7fa;
+      --muted:#aab6c7; --line:rgba(255,255,255,.12); --orange:#ff9c55;
+      --mint:#67e5bd; --blue:#62c7ff; --red:#ff7272; --radius:24px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-width:300px;color:var(--text);background:radial-gradient(circle at 10% 0,rgba(98,199,255,.12),transparent 30rem),radial-gradient(circle at 92% 18%,rgba(103,229,189,.1),transparent 28rem),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+    a{color:inherit}.shell{width:min(1160px,calc(100% - 28px));margin:auto}.top{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:rgba(7,16,26,.82);backdrop-filter:blur(16px)}.top-in{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font-weight:900;letter-spacing:-.02em}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);text-decoration:none;cursor:pointer;color:var(--text);font:inherit}.btn:hover{border-color:var(--mint);background:rgba(103,229,189,.08)}.btn-main{border-color:transparent;background:var(--orange);color:#07101a;font-weight:850}.btn-main:hover{background:#ffb176;border-color:transparent}
+    .hero{padding:58px 0 28px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.card{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.018));box-shadow:0 24px 70px rgba(0,0,0,.28)}.hero-copy{padding:clamp(28px,5vw,58px)}.badge{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(255,114,114,.12);color:#ffaaaa;font-size:.76rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.eyebrow{color:var(--mint);font-size:.78rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.hero h1{margin:17px 0 17px;font-size:clamp(2.4rem,6vw,5.1rem);line-height:.96;letter-spacing:-.06em}.lead{margin:0;color:var(--muted);font-size:clamp(1rem,1.7vw,1.2rem)}.hero-buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.hero-side{padding:28px;display:grid;align-content:center;gap:12px}.metric{padding:17px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.025)}.metric strong{display:block;font-size:1.15rem}.metric span{color:var(--muted);font-size:.88rem}
+    section{padding:32px 0}.head{margin-bottom:18px}.head h2{margin:7px 0 8px;font-size:clamp(1.8rem,4vw,3rem);line-height:1.03;letter-spacing:-.045em}.head p{margin:0;max-width:780px;color:var(--muted)}.diagram{padding:16px;overflow:hidden}.diagram img{display:block;width:100%;height:auto;border-radius:18px}.diagram-mobile{display:none}.notice{margin-top:14px;padding:17px 19px;border:1px solid rgba(255,156,85,.35);border-radius:18px;background:rgba(255,156,85,.08);color:#f3d3b8}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.sensor-card{padding:23px}.sensor-card .pin{display:inline-flex;margin-bottom:18px;padding:6px 9px;border-radius:999px;color:#07101a;background:var(--mint);font-size:.76rem;font-weight:900}.sensor-card h3{margin:0 0 7px;font-size:1.35rem}.sensor-card p{margin:0;color:var(--muted)}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:20px}.wiring{width:100%;border-collapse:collapse;background:rgba(255,255,255,.02)}.wiring th,.wiring td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.wiring th{color:var(--mint);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}.wiring tr:last-child td{border-bottom:0}.wiring td:nth-child(3){color:var(--muted)}
+    .steps{display:grid;grid-template-columns:1fr 1fr;gap:14px}.step{padding:23px}.step h3{margin:0 0 10px;font-size:1.25rem}.step ul,.step ol{margin:0;padding-left:20px;color:var(--muted)}.step li+li{margin-top:7px}.codebox{padding:0;overflow:hidden}.code-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 18px;border-bottom:1px solid var(--line)}pre{margin:0;padding:20px;overflow:auto;background:#050a11;color:#dce7f4;font:500 .86rem/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}.ok{color:var(--mint)}.warn{color:var(--orange)}.bad{color:var(--red)}.status-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.status{padding:18px}.status strong{display:block;margin-bottom:5px}.status span{color:var(--muted);font-size:.88rem}.sources{font-size:.9rem;color:var(--muted)}.sources a{color:var(--blue)}footer{padding:35px 0 50px;color:var(--muted)}
+    [hidden]{display:none!important}
+    @media(max-width:860px){.hero-grid,.steps{grid-template-columns:1fr}.grid3,.status-list{grid-template-columns:1fr}.top-in{align-items:flex-start;padding:11px 0;flex-direction:column}.hero{padding-top:34px}.diagram-full{display:none}.diagram-mobile{display:grid;gap:12px}}
+    @media(max-width:520px){.shell{width:min(100% - 18px,1160px)}.hero-copy,.hero-side{padding:22px}.diagram{padding:6px}.actions{width:100%}.btn{flex:1;padding-inline:10px;font-size:.85rem}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell top-in">
+      <div class="brand">Marcin · Radio ESP32</div>
+      <div class="actions">
+        <button class="btn" id="lang" type="button">PL / EN</button>
+        <a class="btn" href="../../#radio" data-pl="← Portfolio" data-en="← Portfolio">← Portfolio</a>
+        <a class="btn" href="wiring-preview.png" target="_blank" data-pl="Otwórz schemat" data-en="Open diagram">Otwórz schemat</a>
+        <a class="btn btn-main" href="esp32_radio_ir_rgb.ino" download data-pl="Pobierz kod .ino" data-en="Download .ino code">Pobierz kod .ino</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <article class="card hero-copy">
+          <span class="badge" data-pl="Odtworzony projekt · kod referencyjny" data-en="Reconstructed project · reference code">Odtworzony projekt · kod referencyjny</span>
+          <h1>ESP32 Internet Radio</h1>
+          <p class="lead" data-pl="Mały, odtworzony od zera szkic: ESP32-WROOM, trzy proste czujniki IR, internetowe strumienie MP3, przetwornik PCM5102A i adresowalny pasek RGB. Tylko potrzebne funkcje — bez budowania rakiety." data-en="A small sketch reconstructed from scratch: ESP32-WROOM, three simple IR sensors, internet MP3 streams, a PCM5102A DAC and an addressable RGB strip. Only the required functions—no rocket science.">Mały, odtworzony od zera szkic: ESP32-WROOM, trzy proste czujniki IR, internetowe strumienie MP3, przetwornik PCM5102A i adresowalny pasek RGB. Tylko potrzebne funkcje — bez budowania rakiety.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-main" href="#schemat" data-pl="Zobacz schemat" data-en="See wiring">Zobacz schemat</a>
+            <a class="btn" href="https://www.youtube.com/shorts/r9urgd6wDjU" target="_blank" rel="noopener" data-pl="Oryginalne radio na filmie" data-en="Original radio video">Oryginalne radio na filmie</a>
+          </div>
+        </article>
+        <aside class="card hero-side">
+          <span class="eyebrow" data-pl="Założenia wersji 0.1" data-en="Version 0.1 assumptions">Założenia wersji 0.1</span>
+          <div class="metric"><strong>ESP32-WROOM-32</strong><span data-pl="płytka: ESP32 Dev Module" data-en="board: ESP32 Dev Module">płytka: ESP32 Dev Module</span></div>
+          <div class="metric"><strong>3 × IR</strong><span data-pl="stacja · radio · LED" data-en="station · radio · LEDs">stacja · radio · LED</span></div>
+          <div class="metric"><strong>82 × RGB</strong><span data-pl="domyślnie WS2812B, kolejność GRB" data-en="WS2812B default, GRB byte order">domyślnie WS2812B, kolejność GRB</span></div>
+          <div class="metric"><strong>MP3 · 128 kb/s</strong><span data-pl="lżejsze strumienie dla WROOM bez PSRAM" data-en="lighter streams for WROOM without PSRAM">lżejsze strumienie dla WROOM bez PSRAM</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="schemat">
+      <div class="shell">
+        <div class="head"><span class="eyebrow">01 / WIRING</span><h2 data-pl="Schemat połączeń" data-en="Wiring diagram">Schemat połączeń</h2><p data-pl="Nowa wersja używa bezpieczniejszych GPIO32 i GPIO33 zamiast problematycznego pinu rozruchowego GPIO12. To celowa poprawa względem starych prób." data-en="The reconstructed version uses safer GPIO32 and GPIO33 instead of the problematic GPIO12 boot-strapping pin. This is a deliberate improvement over the old experiments.">Nowa wersja używa bezpieczniejszych GPIO32 i GPIO33 zamiast problematycznego pinu rozruchowego GPIO12. To celowa poprawa względem starych prób.</p></div>
+        <figure class="card diagram diagram-full"><a href="wiring-preview.png" target="_blank" aria-label="Otwórz pełny schemat połączeń"><img src="wiring-preview.png" alt="Schemat ESP32-WROOM, PCM5102A, trzech czujników IR i paska RGB"></a></figure>
+        <div class="diagram-mobile">
+          <figure class="card diagram"><a href="wiring-left.png" target="_blank" aria-label="Otwórz lewą część schematu"><img src="wiring-left.png" alt="Zasilanie, pasek RGB, trzy czujniki IR i ESP32 — lewa część schematu"></a></figure>
+          <figure class="card diagram"><a href="wiring-right.png" target="_blank" aria-label="Otwórz prawą część schematu"><img src="wiring-right.png" alt="ESP32, PCM5102A i wzmacniacz — prawa część schematu"></a></figure>
+        </div>
+        <div class="notice" data-pl="Najważniejsze: 82 diody mogą przy pełnej bieli pobrać około 4,9 A. Pasek dostaje własne stabilizowane 5 V; z ESP32 łączymy sygnał DATA i wspólną masę — nie zasilamy całego paska z płytki." data-en="Important: 82 pixels can draw about 4.9 A at full white. The strip needs its own regulated 5 V supply; connect DATA and common ground to the ESP32, and never power the whole strip from the board.">Najważniejsze: 82 diody mogą przy pełnej bieli pobrać około 4,9 A. Pasek dostaje własne stabilizowane 5 V; z ESP32 łączymy sygnał DATA i wspólną masę — nie zasilamy całego paska z płytki.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head"><span class="eyebrow">02 / IR CONTROL</span><h2 data-pl="Trzy czujniki, trzy jasne funkcje" data-en="Three sensors, three clear actions">Trzy czujniki, trzy jasne funkcje</h2></div>
+        <div class="grid3">
+          <article class="card sensor-card"><span class="pin">GPIO32</span><h3 data-pl="Następna stacja" data-en="Next station">Następna stacja</h3><p data-pl="Każdy gest przechodzi do kolejnego adresu strumienia; po ostatniej stacji wraca do pierwszej." data-en="Each gesture advances to the next stream URL; after the last station it wraps back to the first.">Każdy gest przechodzi do kolejnego adresu strumienia; po ostatniej stacji wraca do pierwszej.</p></article>
+          <article class="card sensor-card"><span class="pin">GPIO33</span><h3>Radio ON / OFF</h3><p data-pl="Zatrzymuje strumień i wycisza wyjście. Po ponownym włączeniu wraca do wybranej stacji." data-en="Stops the stream and silences the output. When switched back on it returns to the selected station.">Zatrzymuje strumień i wycisza wyjście. Po ponownym włączeniu wraca do wybranej stacji.</p></article>
+          <article class="card sensor-card"><span class="pin">GPIO14</span><h3>LED ON / OFF</h3><p data-pl="Niezależnie włącza lub wyłącza pasek. Kolor pokazuje aktualnie wybraną stację." data-en="Independently enables or disables the strip. Its colour identifies the selected station.">Niezależnie włącza lub wyłącza pasek. Kolor pokazuje aktualnie wybraną stację.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head"><span class="eyebrow">03 / PIN MAP</span><h2 data-pl="Połączenia bez zgadywania" data-en="Connections without guesswork">Połączenia bez zgadywania</h2></div>
+        <div class="table-wrap">
+          <table class="wiring">
+            <thead><tr><th>ESP32</th><th data-pl="Moduł" data-en="Module">Moduł</th><th data-pl="Uwagi" data-en="Notes">Uwagi</th></tr></thead>
+            <tbody>
+              <tr><td>GPIO27</td><td>PCM5102A BCK</td><td>I²S bit clock</td></tr>
+              <tr><td>GPIO26</td><td>PCM5102A LCK/LRCK</td><td>I²S word select</td></tr>
+              <tr><td>GPIO25</td><td>PCM5102A DIN</td><td data-pl="dane audio z ESP32" data-en="audio data from ESP32">dane audio z ESP32</td></tr>
+              <tr><td>GPIO32</td><td>IR STATION OUT</td><td data-pl="następna stacja" data-en="next station">następna stacja</td></tr>
+              <tr><td>GPIO33</td><td>IR POWER OUT</td><td>radio ON/OFF</td></tr>
+              <tr><td>GPIO14</td><td>IR LED OUT</td><td>LED ON/OFF</td></tr>
+              <tr><td>GPIO4</td><td>WS2812B DIN</td><td data-pl="przez rezystor 330–470 Ω" data-en="through a 330–470 Ω resistor">przez rezystor 330–470 Ω</td></tr>
+              <tr><td>3V3</td><td>3 × IR VCC</td><td data-pl="kod zakłada wyjście aktywne LOW; wyjścia nie mogą podawać 5 V do ESP32" data-en="the code assumes active-LOW outputs; outputs must not feed 5 V into the ESP32">kod zakłada wyjście aktywne LOW; wyjścia nie mogą podawać 5 V do ESP32</td></tr>
+              <tr><td>GND</td><td data-pl="wszystkie moduły" data-en="all modules">wszystkie moduły</td><td data-pl="obowiązkowa wspólna masa" data-en="common ground is mandatory">obowiązkowa wspólna masa</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head"><span class="eyebrow">04 / ARDUINO IDE</span><h2 data-pl="Co trzeba ustawić, żeby radio się zmieściło" data-en="Settings required for the radio to fit">Co trzeba ustawić, żeby radio się zmieściło</h2></div>
+        <div class="steps">
+          <article class="card step"><h3 data-pl="Płytka i pamięć flash" data-en="Board and flash memory">Płytka i pamięć flash</h3><ol><li><code>Tools → Board → ESP32 Dev Module</code></li><li data-pl="Flash Size zgodny z prawdziwą płytką — często 4 MB, ale należy sprawdzić oznaczenie." data-en="Set Flash Size to match the real board—often 4 MB, but verify the marking.">Flash Size zgodny z prawdziwą płytką — często 4 MB, ale należy sprawdzić oznaczenie.</li><li><code>Partition Scheme → Huge APP (3 MB No OTA / 1 MB SPIFFS)</code></li></ol><p class="warn" data-pl="Huge APP powiększa miejsce na program i dekodery kosztem aktualizacji OTA. To flash, nie dodatkowy RAM." data-en="Huge APP gives the program and decoders more flash space at the cost of OTA updates. This is flash, not extra RAM.">Huge APP powiększa miejsce na program i dekodery kosztem aktualizacji OTA. To flash, nie dodatkowy RAM.</p></article>
+          <article class="card step"><h3 data-pl="Biblioteki" data-en="Libraries">Biblioteki</h3><ul><li><strong>ESP32-audioI2S 4.0.0</strong> — schreibfaul1</li><li><strong>Adafruit NeoPixel 1.15.5</strong></li><li data-pl="Pakiet płytek ESP32 — aktualna stabilna wersja z Boards Manager." data-en="ESP32 board package—the current stable Boards Manager release.">Pakiet płytek ESP32 — aktualna stabilna wersja z Boards Manager.</li></ul><p class="bad" data-pl="Jeżeli Arduino wybierze inną bibliotekę Audio przeznaczoną dla płytek SAM, kod nie zadziała. W logu kompilacji trzeba sprawdzić ścieżkę do Audio.h." data-en="If Arduino selects another Audio library intended for SAM boards, the code will fail. Check the Audio.h path in the build log.">Jeżeli Arduino wybierze inną bibliotekę Audio przeznaczoną dla płytek SAM, kod nie zadziała. W logu kompilacji trzeba sprawdzić ścieżkę do Audio.h.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head"><span class="eyebrow">05 / CONFIG</span><h2 data-pl="Tylko trzy miejsca do zmiany" data-en="Only three things to edit">Tylko trzy miejsca do zmiany</h2><p data-pl="Użytkownik wpisuje własne Wi‑Fi, liczbę diod i — jeśli trzeba — poprawną kolejność kolorów. Reszta może zostać bez zmian." data-en="The user enters their Wi-Fi, the pixel count and—if needed—the correct colour order. Everything else can stay unchanged.">Użytkownik wpisuje własne Wi‑Fi, liczbę diod i — jeśli trzeba — poprawną kolejność kolorów. Reszta może zostać bez zmian.</p></div>
+        <article class="card codebox">
+          <div class="code-head"><strong>esp32_radio_ir_rgb.ino</strong><a class="btn" href="esp32_radio_ir_rgb.ino" download data-pl="Pobierz cały kod" data-en="Download full code">Pobierz cały kod</a></div>
+<pre><code>const char* WIFI_SSID     = "WPISZ_NAZWE_WIFI";
+const char* WIFI_PASSWORD = "WPISZ_HASLO_WIFI";
+
+constexpr uint16_t LED_COUNT = 82;
+
+// Typowy pasek WS2812B RGB:
+#define LED_PIXEL_TYPE (NEO_GRB + NEO_KHZ800)
+
+// Gdy czerwony i zielony są zamienione:
+// #define LED_PIXEL_TYPE (NEO_RGB + NEO_KHZ800)
+
+// Tylko dla paska RGBW z osobnym białym kanałem:
+// #define LED_PIXEL_TYPE (NEO_GRBW + NEO_KHZ800)</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head"><span class="eyebrow">06 / STREAMS</span><h2 data-pl="Skąd biorą się stacje" data-en="Where the stations come from">Skąd biorą się stacje</h2><p data-pl="Do kodu trafia bezpośredni adres strumienia audio, nie zwykła strona radia. W przykładzie są trzy aktualne strumienie MP3 128 kb/s SomaFM." data-en="The code needs a direct audio-stream URL, not the station's normal webpage. The example contains three current SomaFM 128 kb/s MP3 streams.">Do kodu trafia bezpośredni adres strumienia audio, nie zwykła strona radia. W przykładzie są trzy aktualne strumienie MP3 128 kb/s SomaFM.</p></div>
+        <div class="grid3">
+          <article class="card sensor-card"><h3>Groove Salad</h3><p><code>groovesalad-128-mp3</code></p></article>
+          <article class="card sensor-card"><h3>Drone Zone</h3><p><code>dronezone-128-mp3</code></p></article>
+          <article class="card sensor-card"><h3>Indie Pop Rocks!</h3><p><code>indiepop-128-mp3</code></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head"><span class="eyebrow">07 / CHECKS</span><h2 data-pl="Co jest sprawdzone, a czego jeszcze nie udajemy" data-en="What is verified—and what is not">Co jest sprawdzone, a czego jeszcze nie udajemy</h2></div>
+        <div class="status-list">
+          <article class="card status"><strong class="ok" data-pl="✓ API bibliotek" data-en="✓ Library APIs">✓ API bibliotek</strong><span data-pl="Mały kod używa tylko aktualnych metod setPinout, connecttohost, stopSong i audio.loop." data-en="The small sketch uses only the current setPinout, connecttohost, stopSong and audio.loop APIs.">Mały kod używa tylko aktualnych metod setPinout, connecttohost, stopSong i audio.loop.</span></article>
+          <article class="card status"><strong class="ok" data-pl="✓ Strumienie" data-en="✓ Streams">✓ Strumienie</strong><span data-pl="Trzy adresy odpowiedziały jako audio/mpeg podczas kontroli 9 sierpnia 2026." data-en="All three URLs responded as audio/mpeg when checked on 9 August 2026.">Trzy adresy odpowiedziały jako audio/mpeg podczas kontroli 9 sierpnia 2026.</span></article>
+          <article class="card status"><strong class="warn" data-pl="△ Sprzęt" data-en="△ Hardware">△ Sprzęt</strong><span data-pl="Nie skompilowano jeszcze na konkretnej płytce Marcina i nie wykonano testu na prawdziwym radiu." data-en="It has not yet been compiled on Marcin's exact board or tested on the physical radio.">Nie skompilowano jeszcze na konkretnej płytce Marcina i nie wykonano testu na prawdziwym radiu.</span></article>
+        </div>
+        <p class="sources">Źródła / Sources: <a href="https://github.com/schreibfaul1/ESP32-audioI2S" target="_blank" rel="noopener">ESP32-audioI2S</a> · <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/tutorials/partition_table.html" target="_blank" rel="noopener">Espressif partition tables</a> · <a href="https://github.com/adafruit/Adafruit_NeoPixel" target="_blank" rel="noopener">Adafruit NeoPixel</a> · <a href="https://somafm.com/groovesalad/directstreamlinks.html" target="_blank" rel="noopener">SomaFM direct streams</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell"><span data-pl="Projekt i dokumentacja: Marcin · " data-en="Project and documentation: Marcin · ">Projekt i dokumentacja: Marcin · </span><a href="../../#radio" data-pl="wróć do portfolio" data-en="back to portfolio">wróć do portfolio</a></div></footer>
+  <script>
+    const button=document.getElementById('lang');let language=localStorage.getItem('portfolio-language')||'pl';
+    function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-pl][data-en]').forEach(el=>el.textContent=el.dataset[language]);button.textContent=language==='pl'?'PL / EN':'EN / PL';localStorage.setItem('portfolio-language',language);}
+    button.addEventListener('click',()=>{language=language==='pl'?'en':'pl';applyLanguage();});applyLanguage();
+  </script>
+</body>
+</html>
