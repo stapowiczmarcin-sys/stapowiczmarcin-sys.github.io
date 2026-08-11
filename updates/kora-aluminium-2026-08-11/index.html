@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b10">
+  <meta name="description" content="Relacja z przygotowania aluminiowej Kory: mechanika sześciu nóg, 18 serw, trzy moduły po cztery ogniwa, przetwornica 6 V i 32-kanałowy kontroler.">
+  <link rel="canonical" href="https://stapowiczmarcin-sys.github.io/updates/kora-aluminium-2026-08-11/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:title" content="Aluminiowa Kora — przygotowanie nóg i zasilania">
+  <meta property="og:description" content="Stanowisko przed pierwszym ważnym testem: 18 serw, 32-kanałowy kontroler, trzy moduły po cztery ogniwa i przetwornica 6 V.">
+  <meta property="og:url" content="https://stapowiczmarcin-sys.github.io/updates/kora-aluminium-2026-08-11/">
+  <meta property="og:image" content="https://stapowiczmarcin-sys.github.io/updates/kora-aluminium-2026-08-11/images/kora-workbench.webp">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1152">
+  <meta property="article:published_time" content="2026-08-11">
+  <title>Aluminiowa Kora — przygotowanie nóg i zasilania</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080b10;
+      --panel: #10151d;
+      --panel-2: #151c26;
+      --text: #f4f5f7;
+      --muted: #a8b0bd;
+      --line: rgba(255,255,255,.12);
+      --orange: #ff9a45;
+      --mint: #6be0c1;
+      --violet: #9c84ff;
+      --radius: 24px;
+      --shadow: 0 28px 80px rgba(0,0,0,.34);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 300px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% -4%, rgba(156,132,255,.18), transparent 28rem),
+        radial-gradient(circle at 96% 22%, rgba(107,224,193,.11), transparent 26rem),
+        var(--bg);
+      line-height: 1.58;
+    }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+    button { font: inherit; }
+    .shell { width: min(1160px, calc(100% - 32px)); margin-inline: auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,11,16,.8);
+      backdrop-filter: blur(18px);
+    }
+    .topbar-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: -.02em;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: #080b10;
+      background: linear-gradient(135deg, var(--orange), var(--mint));
+    }
+    .actions { display: flex; gap: 9px; }
+    .button {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .button:hover { border-color: rgba(107,224,193,.66); background: rgba(107,224,193,.08); }
+    .button-primary { border-color: transparent; color: #080b10; background: var(--orange); font-weight: 850; }
+    .button-primary:hover { border-color: transparent; background: #ffad67; }
+    .hero { padding: 58px 0 34px; }
+    .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 18px; align-items: stretch; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-copy { padding: clamp(28px, 5vw, 58px); display: flex; flex-direction: column; justify-content: center; }
+    .eyebrow { color: var(--mint); font-size: .78rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 17px 0 18px; font-size: clamp(2.45rem, 6vw, 5.2rem); line-height: .96; letter-spacing: -.062em; }
+    .lead { margin: 0; color: var(--muted); font-size: clamp(1.02rem, 1.7vw, 1.22rem); }
+    .hero-buttons, .status-row { display: flex; flex-wrap: wrap; gap: 9px; }
+    .hero-buttons { margin-top: 25px; }
+    .status-row { margin-top: 20px; }
+    .status {
+      display: inline-flex;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #d9dde4;
+      background: rgba(255,255,255,.025);
+      font-size: .78rem;
+    }
+    .hero-media { margin: 0; position: relative; min-height: 590px; }
+    .hero-media img { height: 100%; object-fit: cover; }
+    .hero-media::after { content: ""; position: absolute; inset: 50% 0 0; background: linear-gradient(transparent, rgba(8,11,16,.9)); }
+    .hero-media figcaption { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 18px; color: #e3e7ed; }
+    section { padding: 38px 0; }
+    .head { margin-bottom: 18px; }
+    .head h2 { margin: 8px 0 10px; font-size: clamp(1.85rem, 4vw, 3.1rem); line-height: 1.03; letter-spacing: -.05em; }
+    .head p { margin: 0; max-width: 780px; color: var(--muted); }
+    .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .fact { padding: 24px; box-shadow: none; }
+    .fact strong { display: block; margin-bottom: 8px; font-size: 1.28rem; letter-spacing: -.035em; }
+    .fact p { margin: 0; color: var(--muted); }
+    .fact-mark { display: inline-flex; margin-bottom: 18px; padding: 6px 9px; border-radius: 999px; color: #080b10; background: var(--mint); font-size: .72rem; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .notice {
+      margin-top: 14px;
+      padding: 18px 20px;
+      border: 1px solid rgba(255,154,69,.4);
+      border-radius: 18px;
+      color: #efd7c2;
+      background: rgba(255,154,69,.08);
+    }
+    .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .photo { margin: 0; position: relative; min-height: 390px; box-shadow: none; }
+    .photo img { height: 100%; object-fit: cover; }
+    .photo::after { content: ""; position: absolute; inset: 48% 0 0; background: linear-gradient(transparent, rgba(8,11,16,.92)); }
+    .photo figcaption { position: absolute; z-index: 2; left: 17px; right: 17px; bottom: 15px; color: #e3e7ed; font-size: .9rem; }
+    .photo-wide { grid-column: span 7; }
+    .photo-narrow { grid-column: span 5; }
+    .photo-half { grid-column: span 6; }
+    .steps { display: grid; gap: 12px; counter-reset: step; }
+    .step { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; padding: 21px; box-shadow: none; }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #080b10;
+      background: var(--orange);
+      font-weight: 950;
+    }
+    .step h3 { margin: 1px 0 5px; font-size: 1.15rem; }
+    .step p { margin: 0; color: var(--muted); }
+    .next-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 24px;
+      border: 1px solid rgba(107,224,193,.34);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(107,224,193,.1), rgba(156,132,255,.07));
+    }
+    .next-box h3 { margin: 0 0 6px; font-size: 1.35rem; }
+    .next-box p { margin: 0; color: var(--muted); }
+    footer { padding: 35px 0 50px; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .footer-inner a { text-decoration: none; }
+    .footer-inner a:hover { color: var(--mint); }
+    @media (max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-media { min-height: 470px; }
+      .facts { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 20px, 1160px); }
+      .brand span:last-child { display: none; }
+      .actions .button { padding-inline: 11px; font-size: .84rem; }
+      .hero { padding-top: 28px; }
+      .hero-copy { padding: 26px 21px; }
+      .hero-media { min-height: 360px; }
+      .gallery { grid-template-columns: 1fr; }
+      .photo, .photo-wide, .photo-narrow, .photo-half { grid-column: auto; min-height: 360px; }
+      .next-box { grid-template-columns: 1fr; }
+      .next-box .button { justify-self: start; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="../../#start"><span class="brand-mark">M</span><span>Marcin / Maker Portfolio</span></a>
+      <div class="actions">
+        <button class="button" id="languageButton" type="button" aria-label="Zmień język">PL / EN</button>
+        <a class="button" href="../../#kolejne" data-pl="← Portfolio" data-en="← Portfolio">← Portfolio</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <article class="card hero-copy">
+          <span class="eyebrow" data-pl="Relacja 01 · 11 sierpnia 2026" data-en="Build log 01 · 11 August 2026">Relacja 01 · 11 sierpnia 2026</span>
+          <h1 data-pl="Aluminiowa Kora wraca na biurko" data-en="Aluminium Kora returns to the workbench">Aluminiowa Kora wraca na biurko</h1>
+          <p class="lead" data-pl="To jeszcze nie pokaz gotowego chodu. Dziś dokumentuję stan przed pierwszym ważnym testem: mechanikę sześciu nóg, 18 serw, sterownik i przygotowanie osobnego zasilania dla napędów." data-en="This is not a finished walking demonstration yet. Today I am documenting the state before the first important test: six-leg mechanics, 18 servos, the controller and preparation of a separate power system for the drives.">To jeszcze nie pokaz gotowego chodu. Dziś dokumentuję stan przed pierwszym ważnym testem: mechanikę sześciu nóg, 18 serw, sterownik i przygotowanie osobnego zasilania dla napędów.</p>
+          <div class="status-row">
+            <span class="status" data-pl="Etap: przygotowanie nóg" data-en="Stage: leg preparation">Etap: przygotowanie nóg</span>
+            <span class="status" data-pl="Ruch: jeszcze nietestowany" data-en="Motion: not tested yet">Ruch: jeszcze nietestowany</span>
+            <span class="status">18 × MG996R</span>
+          </div>
+          <div class="hero-buttons">
+            <a class="button button-primary" href="#stan" data-pl="Zobacz stan prac" data-en="See the current state">Zobacz stan prac</a>
+            <a class="button" href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" data-pl="Kora na YouTube ↗" data-en="Kora on YouTube ↗">Kora na YouTube ↗</a>
+          </div>
+        </article>
+        <figure class="card hero-media">
+          <img src="images/kora-workbench.webp" alt="Aluminiowa Kora na stole warsztatowym, a w tle moduły ogniw i elektronika">
+          <figcaption data-pl="Kora na stanowisku: konstrukcja jest złożona, ale pierwszy kontrolowany test nogi jeszcze przed nami." data-en="Kora on the bench: the structure is assembled, but the first controlled leg test is still ahead.">Kora na stanowisku: konstrukcja jest złożona, ale pierwszy kontrolowany test nogi jeszcze przed nami.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="stan">
+      <div class="shell">
+        <div class="head">
+          <span class="eyebrow">01 / CURRENT STATE</span>
+          <h2 data-pl="Co naprawdę jest już na stole" data-en="What is actually on the bench">Co naprawdę jest już na stole</h2>
+          <p data-pl="Bez dopisywania sukcesu przed testem: pokazuję elementy przygotowane do integracji oraz to, czego jeszcze nie sprawdziłem pod obciążeniem." data-en="No claiming success before the test: this shows the parts prepared for integration and what has not yet been verified under load.">Bez dopisywania sukcesu przed testem: pokazuję elementy przygotowane do integracji oraz to, czego jeszcze nie sprawdziłem pod obciążeniem.</p>
+        </div>
+        <div class="facts">
+          <article class="card fact">
+            <span class="fact-mark" data-pl="Mechanika" data-en="Mechanics">Mechanika</span>
+            <strong data-pl="6 nóg · 18 serw MG996R" data-en="6 legs · 18 MG996R servos">6 nóg · 18 serw MG996R</strong>
+            <p data-pl="Aluminiowy korpus jest złożony. Następny etap to ustawienie pozycji środkowych serw i sprawdzenie każdej nogi bez obciążania całego robota." data-en="The aluminium body is assembled. The next stage is centring the servos and checking each leg without loading the whole robot.">Aluminiowy korpus jest złożony. Następny etap to ustawienie pozycji środkowych serw i sprawdzenie każdej nogi bez obciążania całego robota.</p>
+          </article>
+          <article class="card fact">
+            <span class="fact-mark" data-pl="Sterowanie" data-en="Control">Sterowanie</span>
+            <strong data-pl="Kontroler 32-kanałowy" data-en="32-channel controller">Kontroler 32-kanałowy</strong>
+            <p data-pl="Jedna płytka obsługuje wszystkie serwa, ale kanały i kierunki ruchu będą mapowane pojedynczo. Nie uruchamiam osiemnastu napędów na ślepo." data-en="One board handles all servos, but channels and movement directions will be mapped one at a time. I am not powering eighteen drives blindly.">Jedna płytka obsługuje wszystkie serwa, ale kanały i kierunki ruchu będą mapowane pojedynczo. Nie uruchamiam osiemnastu napędów na ślepo.</p>
+          </article>
+          <article class="card fact">
+            <span class="fact-mark" data-pl="Zasilanie nóg" data-en="Leg power">Zasilanie nóg</span>
+            <strong data-pl="3 moduły po 4 ogniwa" data-en="3 modules with 4 cells each">3 moduły po 4 ogniwa</strong>
+            <p data-pl="Ładowarka 3S już dotarła. Przed połączeniem modułów sprawdzę napięcia, izolację, BMS oraz zachowanie całego toru zasilania." data-en="The 3S charger has arrived. Before joining the modules, I will check voltages, insulation, the BMS and the behaviour of the complete power path.">Ładowarka 3S już dotarła. Przed połączeniem modułów sprawdzę napięcia, izolację, BMS oraz zachowanie całego toru zasilania.</p>
+          </article>
+          <article class="card fact">
+            <span class="fact-mark" data-pl="Napięcie serw" data-en="Servo voltage">Napięcie serw</span>
+            <strong>6 V · 30 A</strong>
+            <p data-pl="Takie parametry podaje tabliczka przetwornicy. To jeszcze nie wynik testu — stabilność 6 V, temperatura i spadki napięcia zostaną sprawdzone przy stopniowo zwiększanym obciążeniu." data-en="These are the converter's nameplate ratings, not a test result. The 6 V stability, temperature and voltage drop will be checked under gradually increasing load.">Takie parametry podaje tabliczka przetwornicy. To jeszcze nie wynik testu — stabilność 6 V, temperatura i spadki napięcia zostaną sprawdzone przy stopniowo zwiększanym obciążeniu.</p>
+          </article>
+        </div>
+        <div class="notice" data-pl="Raspberry Pi pozostaje osobnym układem zasilania. Planowane są dwa moduły po dwa albo trzy ogniwa i osobny UPS; jego brak nie blokuje obecnych prac nad nogami." data-en="The Raspberry Pi remains on a separate power system. Two modules with two or three cells each and a dedicated UPS are planned; its absence does not block the current leg work.">Raspberry Pi pozostaje osobnym układem zasilania. Planowane są dwa moduły po dwa albo trzy ogniwa i osobny UPS; jego brak nie blokuje obecnych prac nad nogami.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head">
+          <span class="eyebrow">02 / WORKBENCH</span>
+          <h2 data-pl="Stanowisko przed pierwszym testem" data-en="The workbench before the first test">Stanowisko przed pierwszym testem</h2>
+          <p data-pl="To są zdjęcia robocze, nie upozowane rendery. Widać etap selekcji ogniw, odsłonięte połączenia i nieuporządkowane jeszcze wiązki — wszystko zostanie zabezpieczone przed włączeniem zasilania." data-en="These are working photographs, not staged renders. They show cell selection, exposed connections and cable looms that are not yet organised—all of them will be secured before power is applied.">To są zdjęcia robocze, nie upozowane rendery. Widać etap selekcji ogniw, odsłonięte połączenia i nieuporządkowane jeszcze wiązki — wszystko zostanie zabezpieczone przed włączeniem zasilania.</p>
+        </div>
+        <div class="gallery">
+          <figure class="card photo photo-wide">
+            <img loading="lazy" decoding="async" src="images/workbench-overview.webp" alt="Całe stanowisko warsztatowe z Korą, ogniwami, przetwornicą i narzędziami">
+            <figcaption data-pl="Pełny stan stanowiska: mechanika po prawej, moduły ogniw i tor zasilania po lewej." data-en="The complete bench state: mechanics on the right, cell modules and the power path on the left.">Pełny stan stanowiska: mechanika po prawej, moduły ogniw i tor zasilania po lewej.</figcaption>
+          </figure>
+          <figure class="card photo photo-narrow">
+            <img loading="lazy" decoding="async" src="images/battery-modules.webp" alt="Odzyskane moduły ogniw cylindrycznych przygotowane do pomiarów i selekcji">
+            <figcaption data-pl="Moduły po demontażu. Najpierw pomiary, oznaczenie wybranych bloków i izolacja odkrytych blaszek." data-en="Modules after disassembly. Measurements, marking the selected blocks and insulating exposed tabs come first.">Moduły po demontażu. Najpierw pomiary, oznaczenie wybranych bloków i izolacja odkrytych blaszek.</figcaption>
+          </figure>
+          <figure class="card photo photo-half">
+            <img loading="lazy" decoding="async" src="images/converter-6v.webp" alt="Przetwornica DC-DC z oznaczeniem wejścia 8–40 V i wyjścia 6 V 30 A">
+            <figcaption data-pl="Przetwornica 8–40 V → 6 V. Deklarowane 30 A musi jeszcze przejść próbę pod rzeczywistym obciążeniem serw." data-en="An 8–40 V to 6 V converter. The claimed 30 A still needs to be tested under real servo load.">Przetwornica 8–40 V → 6 V. Deklarowane 30 A musi jeszcze przejść próbę pod rzeczywistym obciążeniem serw.</figcaption>
+          </figure>
+          <figure class="card photo photo-half">
+            <img loading="lazy" decoding="async" src="images/servo-controller.webp" alt="32-kanałowy kontroler zamontowany w aluminiowym korpusie Kory wśród przewodów serw">
+            <figcaption data-pl="Kontroler jest już w korpusie. Kolejność kanałów i kierunki ruchu będą sprawdzane pojedynczo." data-en="The controller is already in the body. Channel order and movement directions will be checked one at a time.">Kontroler jest już w korpusie. Kolejność kanałów i kierunki ruchu będą sprawdzane pojedynczo.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="head">
+          <span class="eyebrow">03 / NEXT TESTS</span>
+          <h2 data-pl="Co wydarzy się dalej" data-en="What happens next">Co wydarzy się dalej</h2>
+          <p data-pl="Celem nie jest widowiskowe włączenie wszystkiego naraz. Celem jest znalezienie błędu wtedy, gdy dotyczy jeszcze jednego serwa lub jednej nogi." data-en="The goal is not a dramatic all-at-once power-up. The goal is to find a fault while it still affects one servo or one leg.">Celem nie jest widowiskowe włączenie wszystkiego naraz. Celem jest znalezienie błędu wtedy, gdy dotyczy jeszcze jednego serwa lub jednej nogi.</p>
+        </div>
+        <div class="steps">
+          <article class="card step"><div><h3 data-pl="Mechanika i pozycje środkowe" data-en="Mechanics and centre positions">Mechanika i pozycje środkowe</h3><p data-pl="Kontrola mocowań, ustawienie serw w pozycji neutralnej i sprawdzenie, czy cięgna nie wymuszają ruchu poza zakresem." data-en="Check the mounts, centre each servo and confirm that the linkages do not force movement outside the safe range.">Kontrola mocowań, ustawienie serw w pozycji neutralnej i sprawdzenie, czy cięgna nie wymuszają ruchu poza zakresem.</p></div></article>
+          <article class="card step"><div><h3 data-pl="Mapowanie 18 kanałów" data-en="Mapping 18 channels">Mapowanie 18 kanałów</h3><p data-pl="Każde serwo osobno: numer kanału, kierunek i bezpieczny zakres. Bez zgadywania oraz bez jednoczesnego szarpnięcia całej konstrukcji." data-en="Each servo separately: channel number, direction and safe range. No guessing and no simultaneous lurch from the whole mechanism.">Każde serwo osobno: numer kanału, kierunek i bezpieczny zakres. Bez zgadywania oraz bez jednoczesnego szarpnięcia całej konstrukcji.</p></div></article>
+          <article class="card step"><div><h3 data-pl="Test zasilania 6 V" data-en="6 V power test">Test zasilania 6 V</h3><p data-pl="BMS, przetwornica i przewody zostaną sprawdzone najpierw bez serw, a następnie przy stopniowo zwiększanym obciążeniu." data-en="The BMS, converter and wiring will be checked first without servos, then under gradually increasing load.">BMS, przetwornica i przewody zostaną sprawdzone najpierw bez serw, a następnie przy stopniowo zwiększanym obciążeniu.</p></div></article>
+          <article class="card step"><div><h3 data-pl="Jedna noga na stanowisku" data-en="One leg on the stand">Jedna noga na stanowisku</h3><p data-pl="Pierwszy filmowany test obejmie jedną nogę, podczas gdy korpus będzie podparty i nie będzie mógł ruszyć ani opaść." data-en="The first filmed test will cover one leg while the body is supported so it cannot move away or collapse.">Pierwszy filmowany test obejmie jedną nogę, podczas gdy korpus będzie podparty i nie będzie mógł ruszyć ani opaść.</p></div></article>
+          <article class="card step"><div><h3 data-pl="Dopiero później całe ciało" data-en="Only then the complete body">Dopiero później całe ciało</h3><p data-pl="Jeśli napięcie pozostanie stabilne, przetwornica nie będzie się przegrzewać, a geometria jednej nogi zadziała poprawnie, test zostanie rozszerzony." data-en="If the voltage stays stable, the converter does not overheat and one leg's geometry works correctly, the test will be expanded.">Jeśli napięcie pozostanie stabilne, przetwornica nie będzie się przegrzewać, a geometria jednej nogi zadziała poprawnie, test zostanie rozszerzony.</p></div></article>
+        </div>
+        <div class="next-box">
+          <div>
+            <h3 data-pl="Następna relacja: pierwszy kontrolowany ruch" data-en="Next build log: the first controlled movement">Następna relacja: pierwszy kontrolowany ruch</h3>
+            <p data-pl="Nie obiecuję jeszcze chodzenia. Najpierw pokażę, czy jedna aluminiowa noga wykonuje poprawny ruch i jak zasilanie zachowuje się pod obciążeniem." data-en="I am not promising walking yet. First I will show whether one aluminium leg moves correctly and how the power system behaves under load.">Nie obiecuję jeszcze chodzenia. Najpierw pokażę, czy jedna aluminiowa noga wykonuje poprawny ruch i jak zasilanie zachowuje się pod obciążeniem.</p>
+          </div>
+          <a class="button button-primary" href="../../#kora" data-pl="Wróć do projektu Kory" data-en="Return to the Kora project">Wróć do projektu Kory</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span>© <span id="year"></span> Marcin — Maker Portfolio</span>
+      <a href="../../#kontakt" data-pl="Kontakt i pozostałe projekty →" data-en="Contact and other projects →">Kontakt i pozostałe projekty →</a>
+    </div>
+  </footer>
+
+  <script>
+    const languageButton = document.getElementById('languageButton');
+    const year = document.getElementById('year');
+    let language = localStorage.getItem('portfolio-language') || 'pl';
+
+    function applyLanguage() {
+      document.documentElement.lang = language;
+      document.querySelectorAll('[data-pl][data-en]').forEach((element) => {
+        element.textContent = element.dataset[language];
+      });
+      languageButton.textContent = language === 'pl' ? 'PL / EN' : 'EN / PL';
+      languageButton.setAttribute('aria-label', language === 'pl' ? 'Zmień język na angielski' : 'Switch language to Polish');
+      document.title = language === 'pl'
+        ? 'Aluminiowa Kora — przygotowanie nóg i zasilania'
+        : 'Aluminium Kora — preparing the legs and power system';
+      localStorage.setItem('portfolio-language', language);
+    }
+
+    languageButton.addEventListener('click', () => {
+      language = language === 'pl' ? 'en' : 'pl';
+      applyLanguage();
+    });
+
+    year.textContent = new Date().getFullYear();
+    applyLanguage();
+  </script>
+</body>
+</html>
