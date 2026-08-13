@@ -441,6 +441,15 @@
     .mirror-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 4vw, 40px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,92,92,.08), rgba(67,164,255,.08)); }
     .mirror-copy h3 { margin: 10px 0 13px; font-size: clamp(1.55rem, 3vw, 2.3rem); line-height: 1.05; letter-spacing: -.045em; }
     .mirror-copy p { margin: 0; color: var(--muted); }
+    .rgb-lamp-hero { display: grid; grid-template-columns: .92fr 1.16fr .92fr; gap: 14px; align-items: stretch; }
+    .rgb-lamp-card { min-height: 620px; margin: 0; border-radius: var(--radius); }
+    .rgb-lamp-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 4vw, 40px); border: 1px solid rgba(156,132,255,.3); border-radius: var(--radius); background: linear-gradient(145deg, rgba(255,92,92,.08), rgba(67,164,255,.09)); }
+    .rgb-lamp-copy h3 { margin: 10px 0 13px; font-size: clamp(1.55rem, 3vw, 2.35rem); line-height: 1.05; letter-spacing: -.045em; }
+    .rgb-lamp-copy > p { margin: 0; color: var(--muted); }
+    .rgb-lamp-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .rgb-lamp-fact { padding: 14px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.025); }
+    .rgb-lamp-fact strong { display: block; font-size: 1.05rem; letter-spacing: -.03em; }
+    .rgb-lamp-fact span { color: var(--muted); font-size: .82rem; }
     .next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .next-card { min-height: 260px; padding: 24px; box-shadow: none; position: relative; overflow: hidden; }
     .next-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -90px; bottom: -95px; border-radius: 50%; background: radial-gradient(circle, rgba(156,132,255,.22), transparent 68%); }
@@ -522,7 +531,7 @@
     dialog img { width: 100%; max-height: calc(100vh - 80px); object-fit: contain; }
     .dialog-close { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: white; background: rgba(8,11,16,.72); cursor: pointer; }
     @media (max-width: 920px) {
-      .hero-grid, .project-grid, .about, .contact-panel, .kora-hero, .kora-media-row, .radio-hero, .mirror-hero { grid-template-columns: 1fr; }
+      .hero-grid, .project-grid, .about, .contact-panel, .kora-hero, .kora-media-row, .radio-hero, .mirror-hero, .rgb-lamp-hero { grid-template-columns: 1fr; }
       .latest-update { grid-template-columns: 1fr; }
       .latest-update-media { min-height: 360px; }
       .radio-archive { grid-template-columns: 1fr; }
@@ -607,6 +616,7 @@
             <a class="button" href="#kora" data-pl="Zobacz Korę – robota" data-en="See Kora the robot">Zobacz Korę – robota</a>
             <a class="button" href="updates/kora-aluminium-2026-08-11/" data-pl="Najnowsza relacja Kory" data-en="Latest Kora build log">Najnowsza relacja Kory</a>
             <a class="button" href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Katalog użytych części" data-en="Parts used in my projects">Katalog użytych części</a>
+            <a class="button" href="#lampa-rgb" data-pl="Zobacz lampę RGB" data-en="See the RGB lamp">Zobacz lampę RGB</a>
             <a class="button" href="#radio" data-pl="Zobacz projekt radia" data-en="See the radio project">Zobacz projekt radia</a>
             <a class="button" href="#o-mnie" data-pl="Jak pracuję" data-en="How I work">Jak pracuję</a>
             <a class="button" href="#kontakt" data-pl="Kontakt" data-en="Contact">Kontakt</a>
@@ -914,11 +924,47 @@
       </div>
     </section>
 
+    <section id="lampa-rgb">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="number">06 / LIGHT &amp; EMBEDDED</span>
+            <h2 data-pl="Ręcznie wykonana lampa RGB" data-en="Hand-built RGB lamp">Ręcznie wykonana lampa RGB</h2>
+            <p data-pl="Drewniany korpus z listewek wykonałem ręcznie. Gotowy klosz w kształcie kwiatu połączyłem z własnym sterowaniem opartym na ESP32 SuperMini." data-en="I built the wooden slatted body by hand, then combined it with a bought flower-shaped shade and my own ESP32 SuperMini-based controller.">Drewniany korpus z listewek wykonałem ręcznie. Gotowy klosz w kształcie kwiatu połączyłem z własnym sterowaniem opartym na ESP32 SuperMini.</p>
+          </div>
+        </div>
+        <div class="rgb-lamp-hero">
+          <figure class="gallery-card rgb-lamp-card">
+            <img loading="eager" decoding="async" src="assets/other/rgb-lamp/rgb-lamp-with-kora.webp" alt="Robot Kora stojący przed ręcznie wykonaną drewnianą lampą RGB">
+            <figcaption data-pl="Lampa w warsztacie — za Korą dobrze widać ręcznie zbudowany korpus z drewnianych listewek." data-en="The lamp in the workshop — its hand-built wooden slatted body is clearly visible behind Kora.">Lampa w warsztacie — za Korą dobrze widać ręcznie zbudowany korpus z drewnianych listewek.</figcaption>
+          </figure>
+          <article class="rgb-lamp-copy">
+            <span class="eyebrow" data-pl="Dwie niezależne strefy" data-en="Two independent zones">Dwie niezależne strefy</span>
+            <h3 data-pl="130 LED, dwa różne efekty" data-en="130 LEDs, two different effects">130 LED, dwa różne efekty</h3>
+            <p data-pl="Lampa ma 130 diod RGB podzielonych na dwie niezależnie sterowane strefy. Sto diod w dolnej części tworzy pionowe efekty wewnątrz drewnianej konstrukcji, a trzydzieści diod w koronie oświetla kwiat innym kolorem i animacją. Dzięki temu dół może świecić na przykład na niebiesko, a klosz jednocześnie na czerwono. Kolory i efekty zmieniam programowo." data-en="The lamp uses 130 RGB LEDs split into two independently controlled zones. One hundred LEDs in the lower section create vertical effects inside the wooden structure, while thirty LEDs in the crown illuminate the flower with a different colour and animation. This means the lower section can glow blue while the shade is red at the same time. I change the colours and effects in software.">Lampa ma 130 diod RGB podzielonych na dwie niezależnie sterowane strefy. Sto diod w dolnej części tworzy pionowe efekty wewnątrz drewnianej konstrukcji, a trzydzieści diod w koronie oświetla kwiat innym kolorem i animacją. Dzięki temu dół może świecić na przykład na niebiesko, a klosz jednocześnie na czerwono. Kolory i efekty zmieniam programowo.</p>
+            <div class="rgb-lamp-facts">
+              <div class="rgb-lamp-fact"><strong>ESP32 SuperMini</strong><span data-pl="sterownik kolorów i efektów" data-en="colour and effects controller">sterownik kolorów i efektów</span></div>
+              <div class="rgb-lamp-fact"><strong>130 LED RGB</strong><span data-pl="łącznie w całej lampie" data-en="across the complete lamp">łącznie w całej lampie</span></div>
+              <div class="rgb-lamp-fact"><strong>100 LED</strong><span data-pl="dolna część konstrukcji" data-en="lower section of the structure">dolna część konstrukcji</span></div>
+              <div class="rgb-lamp-fact"><strong>30 LED</strong><span data-pl="korona i klosz-kwiat" data-en="crown and flower shade">korona i klosz-kwiat</span></div>
+            </div>
+            <div class="hero-buttons">
+              <a class="button" href="https://www.youtube.com/shorts/bMm-yQW36P0" target="_blank" rel="noopener" data-pl="Zobacz zmianę kolorów ↗" data-en="Watch the colours change ↗">Zobacz zmianę kolorów ↗</a>
+            </div>
+          </article>
+          <figure class="gallery-card rgb-lamp-card">
+            <img loading="eager" decoding="async" src="assets/other/rgb-lamp/rgb-lamp-colours.webp" alt="Lampa RGB z niebieską dolną częścią i czerwonym kloszem w kształcie kwiatu">
+            <figcaption data-pl="Niebieski dół i czerwona korona pokazują niezależne sterowanie obiema częściami." data-en="The blue lower section and red crown demonstrate independent control of both zones.">Niebieski dół i czerwona korona pokazują niezależne sterowanie obiema częściami.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section id="lustro-nieskonczonosci">
       <div class="shell">
         <div class="section-head">
           <div>
-            <span class="number">06 / LIGHT &amp; OPTICS</span>
+            <span class="number">07 / LIGHT &amp; OPTICS</span>
             <h2 data-pl="Lustro nieskończoności" data-en="Infinity mirror">Lustro nieskończoności</h2>
             <p data-pl="Eksperyment z optyką, światłem i wrażeniem przestrzeni — prosty układ, który całkowicie zmienia odbiór głębi." data-en="An experiment with optics, light and spatial perception — a simple arrangement that completely changes the sense of depth.">Eksperyment z optyką, światłem i wrażeniem przestrzeni — prosty układ, który całkowicie zmienia odbiór głębi.</p>
           </div>
@@ -945,7 +991,7 @@
       <div class="shell">
         <div class="section-head">
           <div>
-            <span class="number">07 / EMBEDDED &amp; LED</span>
+            <span class="number">08 / EMBEDDED &amp; LED</span>
             <h2 data-pl="Radio internetowe i wizualizacje LED" data-en="Internet radio and LED visualisations">Radio internetowe i wizualizacje LED</h2>
             <p data-pl="Samodzielnie zbudowane radio Wi-Fi, łączące strumieniowanie dźwięku, dotykowy interfejs i duże matryce LED reagujące na muzykę." data-en="A self-built Wi-Fi radio combining audio streaming, a touch interface and large LED matrices that react to music.">Samodzielnie zbudowane radio Wi-Fi, łączące strumieniowanie dźwięku, dotykowy interfejs i duże matryce LED reagujące na muzykę.</p>
           </div>
