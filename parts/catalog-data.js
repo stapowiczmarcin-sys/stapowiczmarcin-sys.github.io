@@ -481,17 +481,17 @@ window.PARTS_CATALOG = [
   {
     "id": "ws2812matrix",
     "name": "Matryca WS2812B 16×16",
-    "short": "256 adresowalnych diod RGB",
+    "short": "Matryca używana do efektów świetlnych radia IR",
     "category": "Światło",
     "supplier": "AliExpress",
-    "project": "Kora / VEGA",
+    "project": "Radio IR",
     "status": "Używam",
     "price": "£5.40 / szt.",
     "accent": "blue",
     "spec": "256 pikseli • RGB • 5 V • indywidualne sterowanie",
     "url": "https://www.aliexpress.com/item/1005008565110209.html",
-    "youtubePl": "Animacje twarzy wyświetla matryca 16×16 z 256 indywidualnie sterowanymi diodami WS2812B.",
-    "youtubeEn": "Face animations are displayed on a 16×16 matrix with 256 individually addressable WS2812B LEDs."
+    "youtubePl": "Efekty świetlne radia wyświetla matryca WS2812B 16×16 z 256 indywidualnie sterowanymi diodami RGB.",
+    "youtubeEn": "The radio's lighting effects are displayed on a 16×16 WS2812B matrix with 256 individually addressable RGB LEDs."
   },
   {
     "id": "led-ring16",
