@@ -53,7 +53,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .primary > span:last-child { color: var(--acid); font-size: 21px; }
 .primary .primary-label { color: white; font-size: inherit; }
 .privacy-note { font-family: var(--font-geist-mono), monospace; color: var(--muted); font-size: 11px; max-width: 250px; line-height: 1.5; }
-.stats { margin-top: 82px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); }
+.supplier-proof { max-width: 920px; margin: 28px 0 0; padding: 15px 17px; border-left: 3px solid var(--acid); color: #4f504c; background: rgba(255,255,255,.52); font-size: 13px; line-height: 1.65; }
+.stats { margin-top: 50px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); }
 .stats div { padding: 22px 10px 24px 0; display: flex; align-items: baseline; gap: 9px; border-right: 1px solid var(--line); }
 .stats div + div { padding-left: 24px; }
 .stats strong { font-size: 30px; letter-spacing: -.04em; }

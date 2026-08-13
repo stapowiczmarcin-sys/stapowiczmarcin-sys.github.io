@@ -16,18 +16,18 @@ window.PARTS_CATALOG = [
   },
   {
     "id": "ai-hat-2",
-    "name": "Raspberry Pi AI HAT+ 2",
-    "short": "Lokalne przetwarzanie modeli",
+    "name": "Raspberry Pi AI HAT+ 2 — Hailo",
+    "short": "Akcelerator Hailo do lokalnego przetwarzania modeli",
     "category": "Komputery",
     "supplier": "Pi Hut",
     "project": "Kora / VEGA",
     "status": "W drodze",
     "price": "£130.20*",
     "accent": "violet",
-    "spec": "Akcelerator do obliczeń lokalnych • zestaw z taśmą MIPI 300 mm",
+    "spec": "Akcelerator Hailo do obliczeń lokalnych • zestaw z taśmą MIPI 300 mm",
     "url": "https://thepihut.com/search?q=Raspberry%20Pi%20AI%20HAT%2B%202",
-    "youtubePl": "Do lokalnego przetwarzania wykorzystuję Raspberry Pi AI HAT+ 2.",
-    "youtubeEn": "I use the Raspberry Pi AI HAT+ 2 for local model processing."
+    "youtubePl": "Do lokalnego przetwarzania wykorzystuję Raspberry Pi AI HAT+ 2 z akceleratorem Hailo.",
+    "youtubeEn": "I use the Raspberry Pi AI HAT+ 2 with a Hailo accelerator for local model processing."
   },
   {
     "id": "xvf3800",

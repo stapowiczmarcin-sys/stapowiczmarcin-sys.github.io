@@ -13,7 +13,7 @@ window.CATALOG_I18N = {
   statuses: { "Wszystkie statusy": "All statuses", "Używam": "In use", "Mam": "Owned", "W drodze": "In transit" },
   parts: {
     "rpi5-16": { name: "Raspberry Pi 5 — 16 GB", short: "Kora's main computer", spec: "16 GB RAM • quad-core CPU • PCIe • 2× MIPI" },
-    "ai-hat-2": { name: "Raspberry Pi AI HAT+ 2", short: "Local model processing", spec: "Accelerator for local inference • kit with 300 mm MIPI cable" },
+    "ai-hat-2": { name: "Raspberry Pi AI HAT+ 2 — Hailo", short: "Hailo accelerator for local model processing", spec: "Hailo accelerator for local inference • kit with 300 mm MIPI cable" },
     "xvf3800": { name: "ReSpeaker XVF3800 4-Mic Array", short: "Four microphones and directional audio", spec: "4 microphones • XMOS XVF3800 • echo and noise reduction" },
     "cam3": { name: "Raspberry Pi Camera Module 3", short: "Day camera with autofocus", spec: "12 MP • autofocus • standard field of view" },
     "cam3-noir": { name: "Raspberry Pi Camera Module 3 Wide NoIR", short: "Wide-angle night camera without an IR filter", spec: "Sony IMX708 • 12 MP • autofocus • wide field of view • infrared sensitivity" },
