@@ -32,6 +32,7 @@ window.CATALOG_I18N = {
     "esp32c3": { name: "ESP32-C3 SuperMini", short: "Tiny board for quick prototypes", spec: "RISC-V 160 MHz • 2.4 GHz Wi-Fi • Bluetooth 5 LE • USB-C • 4 MB Flash" },
     "huskylens": { name: "DFRobot HUSKYLENS — SEN0305", short: "Vision and object recognition in an earlier Kora", spec: "Kendryte K210 • 2-inch IPS screen • faces, objects, colours, lines and codes • I²C / UART" },
     "dfrobot-voice": { name: "DFRobot DF2301Q — SEN0539", short: "Offline voice-command recognition", spec: "121 built-in commands • 17 custom commands • I²C / UART • microphones and voice prompts" },
+    "dfrobot-tts": { name: "DFRobot Gravity: Text to Speech — DFR0760", short: "A module that reads supplied text through its built-in speaker", spec: "English and Chinese text-to-speech • I²C / UART • built-in speaker • 3.3–5 V" },
     "rplidar-c1": { name: "SLAMTEC RPLIDAR C1", short: "Compact lidar owned for testing", spec: "360° • ToF ranging • up to 12 m • separate from the RPLIDAR A2 currently used in Kora" },
     "vl53l1x": { name: "VL53L1X Time-of-Flight", short: "Laser distance measurement", spec: "ToF • I²C • range up to 4 m" },
     "bmi160": { name: "BMI160 — 6DoF IMU", short: "Accelerometer and gyroscope", spec: "6 axes • accelerometer • gyroscope • I²C / SPI" },
