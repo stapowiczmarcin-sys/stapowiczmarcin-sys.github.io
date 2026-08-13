@@ -16,7 +16,7 @@ window.PART_IMAGES = Object.assign(window.PART_IMAGES || {}, {
   "mg90s": "https://agelektronik.de/21559-large_default/sg90s-metall-getriebe-digital-9g-servo-.jpg",
   "gx16": "https://i.bosity.com/product_img/268/68010093/68010093_7_image.jpg",
   "hcsr04": "https://www.ad-electronic.hr/image/cache/catalog/products/340165-1000x1000.jpg",
-  "xl4015": "https://www.tinytronics.nl/image/cache/catalog/products/product-003615/dc-dc-adjustable-step-down-buck-converter-xl4015-4a-upside-1500x1500.jpg",
+  "xl4015": "https://harishprojects.com/cdn/shop/files/XL40155AStepDownDC-DCBuckConverterModulewithHeatsinkAdjustableStepDownPowerSupplyforArduino_LED_DIYProjectsharishprojects_1_567b8742-e058-4aac-b63f-31dca3c616e0.webp?v=1776065123&width=1445",
   "lm2596": "https://zaitronics.com.au/cdn/shop/files/LM2596-Step-Down-Module-DC-to-DC-Adjustable-Buck-Converter-Voltage-Regulator-Conversion-Power-Supply-Module.jpg__2.webp?v=1712208061&width=800",
   "hc05": "https://cdn.quickbutik.com/images/7394y/products/6963fffb0e08f.jpeg",
   "ssr-relay": "https://www.hellasdigital.gr/images/detailed/30/71YghNsrzbL._SL1000_.jpg",
