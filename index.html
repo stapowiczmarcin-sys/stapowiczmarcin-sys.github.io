@@ -481,6 +481,18 @@
     .code-action { padding: 9px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--text); background: rgba(255,255,255,.04); font: inherit; font-size: .8rem; text-decoration: none; cursor: pointer; }
     .code-action:hover { border-color: var(--mint); color: var(--mint); }
     .code-panel pre { flex: 1; margin: 0; padding: 22px; overflow: auto; color: #dce8e5; background: #05070a; font: 500 .82rem/1.6 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; tab-size: 2; }
+    .income-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .income-card { min-height: 100%; }
+    .income-card h3 { margin: 14px 0 9px; font-size: clamp(1.35rem, 2.4vw, 1.8rem); letter-spacing: -.04em; }
+    .income-card p { margin: 0; color: var(--muted); }
+    .income-card .income-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 19px; }
+    .income-note { margin-top: 13px !important; font-size: .85rem; }
+    .youtube-template { margin-top: 18px; border: 1px solid var(--line); border-radius: 17px; background: rgba(0,0,0,.2); overflow: hidden; }
+    .youtube-template summary { padding: 13px 15px; cursor: pointer; color: var(--mint); font-weight: 800; }
+    .youtube-template pre { margin: 0; padding: 16px; overflow: auto; white-space: pre-wrap; color: #dce8e5; background: #05070a; font: 500 .78rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .support-card { border-color: rgba(107,224,193,.34); background: linear-gradient(145deg, rgba(107,224,193,.07), rgba(156,132,255,.05)); }
+    .button[aria-disabled="true"] { opacity: .58; cursor: not-allowed; }
+    @media (max-width: 700px) { .income-grid { grid-template-columns: 1fr; } }
     .next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .next-card { min-height: 260px; padding: 24px; box-shadow: none; position: relative; overflow: hidden; }
     .next-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -90px; bottom: -95px; border-radius: 50%; background: radial-gradient(circle, rgba(156,132,255,.22), transparent 68%); }
@@ -650,6 +662,7 @@
             <a class="button" href="#lampa-rgb" data-pl="Zobacz lampę RGB" data-en="See the RGB lamp">Zobacz lampę RGB</a>
             <a class="button" href="#radio" data-pl="Zobacz projekt radia" data-en="See the radio project">Zobacz projekt radia</a>
             <a class="button" href="#o-mnie" data-pl="Jak pracuję" data-en="How I work">Jak pracuję</a>
+            <a class="button" href="#materialy-wsparcie" data-pl="Materiały, CNC i wsparcie" data-en="Materials, CNC &amp; support">Materiały, CNC i wsparcie</a>
             <a class="button" href="#kontakt" data-pl="Kontakt" data-en="Contact">Kontakt</a>
           </div>
           <div class="chips" aria-label="Skróty do obszarów pracy">
@@ -1205,6 +1218,74 @@ void loop() {
       </div>
     </section>
 
+    <section id="materialy-wsparcie">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="number">09 / MATERIALS, CNC &amp; SUPPORT</span>
+            <h2 data-pl="Jak projekt może zacząć na siebie zarabiać" data-en="How the project can start funding itself">Jak projekt może zacząć na siebie zarabiać</h2>
+            <p data-pl="Kora pozostaje osobistym projektem i nie jest na sprzedaż. Zarabiać mogą natomiast sprawdzone materiały techniczne, praca CNC i dobrowolne wsparcie — bez obiecywania rzeczy, które jeszcze nie są gotowe." data-en="Kora remains a personal project and is not for sale. Verified technical materials, CNC work and voluntary support can help fund the work — without promising things that are not ready yet.">Kora pozostaje osobistym projektem i nie jest na sprzedaż. Zarabiać mogą natomiast sprawdzone materiały techniczne, praca CNC i dobrowolne wsparcie — bez obiecywania rzeczy, które jeszcze nie są gotowe.</p>
+          </div>
+        </div>
+
+        <div class="income-grid">
+          <article class="panel income-card">
+            <span class="status" data-pl="02 · W przygotowaniu" data-en="02 · In preparation">02 · W przygotowaniu</span>
+            <h3 data-pl="Materiały cyfrowe" data-en="Digital materials">Materiały cyfrowe</h3>
+            <p data-pl="Powstaną wyłącznie z rozwiązań, które naprawdę zbudowałem, zmierzyłem i opisałem. Pierwszy planowany materiał to dwujęzyczny PDF o bezpiecznym zasilaniu robota wieloserwowego — cena pojawi się dopiero po ukończeniu dokumentu i pomiarach." data-en="They will be based only on solutions I have actually built, measured and documented. The first planned item is a bilingual PDF about safely powering a multi-servo robot — pricing will appear only after the document and measurements are complete.">Powstaną wyłącznie z rozwiązań, które naprawdę zbudowałem, zmierzyłem i opisałem. Pierwszy planowany materiał to dwujęzyczny PDF o bezpiecznym zasilaniu robota wieloserwowego — cena pojawi się dopiero po ukończeniu dokumentu i pomiarach.</p>
+            <div class="income-actions">
+              <a class="button" href="mailto:stapowiczmarcin@gmail.com?subject=Materia%C5%82y%20cyfrowe%20-%20powiadom%20mnie" data-pl="Zapytaj o materiały" data-en="Ask about the materials">Zapytaj o materiały</a>
+            </div>
+          </article>
+
+          <article class="panel income-card">
+            <span class="status" data-pl="03 · Zapytania otwarte" data-en="03 · Enquiries open">03 · Zapytania otwarte</span>
+            <h3 data-pl="Proste prace CNC" data-en="Simple CNC work">Proste prace CNC</h3>
+            <p data-pl="Możesz zapytać o wykonanie prostego detalu, tabliczki lub płaskorzeźby podobnej do prac pokazanych w portfolio. W wiadomości podaj wymiary, materiał, liczbę sztuk i dołącz szkic albo plik. Najpierw sprawdzę wykonalność, dopiero potem podam indywidualną wycenę." data-en="You can enquire about a simple part, sign or relief similar to the work shown in this portfolio. Include dimensions, material, quantity and a sketch or file. I will check feasibility first and only then provide an individual quote.">Możesz zapytać o wykonanie prostego detalu, tabliczki lub płaskorzeźby podobnej do prac pokazanych w portfolio. W wiadomości podaj wymiary, materiał, liczbę sztuk i dołącz szkic albo plik. Najpierw sprawdzę wykonalność, dopiero potem podam indywidualną wycenę.</p>
+            <div class="income-actions">
+              <a class="button button-primary" href="mailto:stapowiczmarcin@gmail.com?subject=Zapytanie%20CNC&amp;body=Wymiary%3A%0AMateria%C5%82%3A%0ALiczba%20sztuk%3A%0ATermin%3A%0AOpis%3A" data-pl="Wyślij zapytanie CNC" data-en="Send a CNC enquiry">Wyślij zapytanie CNC</a>
+              <a class="button" href="#wideo" data-pl="Zobacz wykonane detale" data-en="See finished work">Zobacz wykonane detale</a>
+            </div>
+          </article>
+
+          <article class="panel income-card">
+            <span class="status" data-pl="04 · Pokaz procesu" data-en="04 · Process showcase">04 · Pokaz procesu</span>
+            <h3>YouTube</h3>
+            <p data-pl="Filmy pokazują prawdziwe etapy, testy, poprawki i gotowe detale. Kanał nie udaje reklamy gotowego produktu — prowadzi widza do portfolio i katalogu części użytych w projektach." data-en="The videos show real stages, tests, corrections and finished work. The channel does not pretend to advertise a finished product — it points viewers to the portfolio and the catalogue of parts used in the projects.">Filmy pokazują prawdziwe etapy, testy, poprawki i gotowe detale. Kanał nie udaje reklamy gotowego produktu — prowadzi widza do portfolio i katalogu części użytych w projektach.</p>
+            <div class="income-actions">
+              <a class="button button-youtube" href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Otwórz kanał" data-en="Open channel">Otwórz kanał</span></a>
+              <a class="button" href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Katalog części" data-en="Parts catalogue">Katalog części</a>
+            </div>
+            <details class="youtube-template">
+              <summary data-pl="Gotowy stały fragment opisu filmu" data-en="Reusable video-description block">Gotowy stały fragment opisu filmu</summary>
+              <pre id="youtubeDescriptionTemplate">Więcej o moich projektach / More about my projects:
+https://stapowiczmarcin-sys.github.io/
+
+Części, których używam / Parts I use:
+https://stapowiczmarcin-sys.github.io/parts/
+
+YouTube: https://www.youtube.com/@kreatywnymorrcin
+
+#KoraRobot #CNC #ESP32 #RaspberryPi #DIY</pre>
+              <div class="income-actions" style="padding: 0 16px 16px;">
+                <button class="button" id="copyYoutubeDescription" type="button" data-pl="Kopiuj fragment" data-en="Copy block">Kopiuj fragment</button>
+              </div>
+            </details>
+          </article>
+
+          <article class="panel income-card support-card" id="wsparcie">
+            <span class="status" data-pl="05 · Rejestracja w toku" data-en="05 · Registration in progress">05 · Rejestracja w toku</span>
+            <h3 data-pl="Dobrowolne wsparcie przez Ko-fi" data-en="Voluntary support through Ko-fi">Dobrowolne wsparcie przez Ko-fi</h3>
+            <p data-pl="Kora nie jest na sprzedaż. Dobrowolny napiwek pomoże kupować części, materiały warsztatowe i przygotowywać dokumentację, ale nie tworzy abonamentu ani obietnicy świadczenia w zamian." data-en="Kora is not for sale. A voluntary tip can help fund parts, workshop materials and documentation, but it does not create a subscription or a promise of something in return.">Kora nie jest na sprzedaż. Dobrowolny napiwek pomoże kupować części, materiały warsztatowe i przygotowywać dokumentację, ale nie tworzy abonamentu ani obietnicy świadczenia w zamian.</p>
+            <div class="income-actions">
+              <span class="button button-primary" aria-disabled="true" data-pl="Ko-fi — link pojawi się po rejestracji" data-en="Ko-fi — link will appear after registration">Ko-fi — link pojawi się po rejestracji</span>
+            </div>
+            <p class="income-note" data-pl="Po zakończeniu rejestracji wyślij mi dokładny adres profilu Ko-fi. Podłączę go tutaj, w górnej części strony i w stopce." data-en="Once registration is complete, send me the exact Ko-fi profile URL. I will connect it here, at the top of the site and in the footer.">Po zakończeniu rejestracji wyślij mi dokładny adres profilu Ko-fi. Podłączę go tutaj, w górnej części strony i w stopce.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="kontakt">
       <div class="shell contact-panel">
         <div class="contact-copy">
@@ -1240,6 +1321,7 @@ void loop() {
         <a href="mailto:stapowiczmarcin@gmail.com">E-mail</a>
         <a href="https://github.com/stapowiczmarcin-sys" target="_blank" rel="noopener me">GitHub</a>
         <a href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener me">YouTube</a>
+        <a href="#materialy-wsparcie" data-pl="Materiały i wsparcie" data-en="Materials &amp; support">Materiały i wsparcie</a>
         <a href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Katalog części" data-en="Parts catalogue">Katalog części</a>
       </nav>
     </div>
@@ -1259,6 +1341,8 @@ void loop() {
     const stackDetailLink = document.getElementById('stackDetailLink');
     const copyLampCodeButton = document.getElementById('copyLampCode');
     const lampCode = document.getElementById('lampCode');
+    const copyYoutubeDescriptionButton = document.getElementById('copyYoutubeDescription');
+    const youtubeDescriptionTemplate = document.getElementById('youtubeDescriptionTemplate');
     let language = localStorage.getItem('portfolio-language') || 'pl';
     let activeStackButton = stackButtons[0] || null;
 
@@ -1311,6 +1395,20 @@ void loop() {
           }, 1800);
         } catch (error) {
           copyLampCodeButton.textContent = language === 'pl' ? 'Zaznacz kod ręcznie' : 'Select the code manually';
+        }
+      });
+    }
+
+    if (copyYoutubeDescriptionButton && youtubeDescriptionTemplate) {
+      copyYoutubeDescriptionButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(youtubeDescriptionTemplate.textContent.trim());
+          copyYoutubeDescriptionButton.textContent = language === 'pl' ? 'Skopiowano ✓' : 'Copied ✓';
+          window.setTimeout(() => {
+            copyYoutubeDescriptionButton.textContent = copyYoutubeDescriptionButton.dataset[language];
+          }, 1800);
+        } catch (error) {
+          copyYoutubeDescriptionButton.textContent = language === 'pl' ? 'Zaznacz tekst ręcznie' : 'Select the text manually';
         }
       });
     }
