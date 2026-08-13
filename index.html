@@ -403,6 +403,7 @@
     .prototype-stage-head .history-stage { position: static; display: inline-flex; width: max-content; margin-bottom: 12px; }
     .prototype-stage-head h4 { margin: 0; font-size: clamp(1.45rem, 3vw, 2.35rem); line-height: 1.03; letter-spacing: -.045em; }
     .prototype-stage-head p { margin: 0; color: var(--muted); }
+    .prototype-hardware-status { margin-top: 18px; }
     .prototype-video-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
     .prototype-video { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: #030405; }
     .prototype-video video { display: block; width: 100%; aspect-ratio: 9 / 16; max-height: 650px; object-fit: contain; background: #030405; }
@@ -883,7 +884,7 @@
                   <span class="history-stage" data-pl="Etap 03 · 4 nogi" data-en="Stage 03 · 4 legs">Etap 03 · 4 nogi</span>
                   <h4 data-pl="Czteronożna Kora — ruch i pierwsza mimika" data-en="Four-legged Kora — movement and first expressions">Czteronożna Kora — ruch i pierwsza mimika</h4>
                 </div>
-                <p data-pl="Osobny etap rozwoju: próby mechaniki na czterech nogach, testy na stanowisku i pierwsze kroki na podłodze. W tej wersji pojawiła się także animowana twarz — oczy z rzęsami dały Korze wyraźnie więcej charakteru." data-en="A distinct development stage: four-legged mechanics, bench tests and the first steps on the floor. This version also gained an animated face — the eyes with eyelashes gave Kora a noticeably stronger character.">Osobny etap rozwoju: próby mechaniki na czterech nogach, testy na stanowisku i pierwsze kroki na podłodze. W tej wersji pojawiła się także animowana twarz — oczy z rzęsami dały Korze wyraźnie więcej charakteru.</p>
+                <p data-pl="Osobny etap rozwoju: próby mechaniki na czterech nogach, testy na stanowisku i pierwsze kroki na podłodze. Ruch nie był jeszcze idealny — właśnie te próby pokazały, co trzeba poprawić. W tej wersji pojawiła się także animowana twarz z oczami i rzęsami." data-en="A distinct development stage: four-legged mechanics, bench tests and the first steps on the floor. Movement was not yet perfect — these tests showed exactly what needed improving. This version also gained an animated face with eyes and eyelashes.">Osobny etap rozwoju: próby mechaniki na czterech nogach, testy na stanowisku i pierwsze kroki na podłodze. Ruch nie był jeszcze idealny — właśnie te próby pokazały, co trzeba poprawić. W tej wersji pojawiła się także animowana twarz z oczami i rzęsami.</p>
               </div>
               <div class="prototype-video-grid">
                 <figure class="prototype-video">
@@ -902,6 +903,15 @@
                   <video autoplay muted loop playsinline preload="metadata" poster="assets/kora/history/quadruped/kora-eyes-eyelashes-poster.webp" aria-label="Animowane oczy Kory z rzęsami"><source src="assets/kora/history/quadruped/kora-eyes-eyelashes.mp4" type="video/mp4"></video>
                   <figcaption data-pl="Oczy z rzęsami — pierwszy mocny element osobowości Kory." data-en="Eyes with eyelashes — Kora's first strong personality cue.">Oczy z rzęsami — pierwszy mocny element osobowości Kory.</figcaption>
                 </figure>
+              </div>
+              <div class="hardware-status prototype-hardware-status">
+                <article><strong data-pl="Napęd" data-en="Actuation">Napęd</strong><span data-pl="Serwa RDS3115MG w tej wcześniejszej, czteronożnej wersji." data-en="RDS3115MG servos in this earlier, four-legged version.">Serwa RDS3115MG w tej wcześniejszej, czteronożnej wersji.</span></article>
+                <article><strong data-pl="Sterowanie" data-en="Control">Sterowanie</strong><span data-pl="ESP32-WROOM oraz 16-kanałowy sterownik PCA9685PW." data-en="ESP32-WROOM with a 16-channel PCA9685PW controller.">ESP32-WROOM oraz 16-kanałowy sterownik PCA9685PW.</span></article>
+                <article><strong data-pl="Akumulator testowy" data-en="Test battery">Akumulator testowy</strong><span data-pl="Zeee LiPo 3S 8000 mAh, 11,1 V, 100C." data-en="Zeee 3S 8000 mAh, 11.1 V, 100C LiPo.">Zeee LiPo 3S 8000 mAh, 11,1 V, 100C.</span></article>
+                <article><strong data-pl="Przetwornica użyta w próbach" data-en="Converter used in tests">Przetwornica użyta w próbach</strong><span data-pl="DC-DC 5,5–30 V → 0,5–30 V, 4 A / 35 W." data-en="DC-DC 5.5–30 V → 0.5–30 V, 4 A / 35 W.">DC-DC 5,5–30 V → 0,5–30 V, 4 A / 35 W.</span></article>
+              </div>
+              <div class="radio-archive-actions">
+                <a class="button button-primary" href="https://www.youtube.com/shorts/G93rAZ9nJHU?t=4&amp;feature=share" target="_blank" rel="noopener" data-pl="Zobacz prawdziwą próbę ruchu ↗" data-en="Watch the real movement test ↗">Zobacz prawdziwą próbę ruchu ↗</a>
               </div>
             </article>
             <article class="history-card">
@@ -925,6 +935,29 @@
               <div class="history-copy"><h4 data-pl="Aluminiowa Kora — obecnie" data-en="Aluminium Kora — current">Aluminiowa Kora — obecnie</h4><p data-pl="Sztywniejsza mechanika, 18 serw MG996R, 32-kanałowy sterownik serw oraz UPS SupTronics X1203 dla Raspberry Pi 5. To nie koniec historii — to pierwsza wersja, która spina wcześniejsze doświadczenia w jeden system." data-en="Stiffer mechanics, 18 MG996R servos, a 32-channel servo controller and a SupTronics X1203 UPS for the Raspberry Pi 5. This is not the end of the story — it is the first version that brings the earlier lessons into one system.">Sztywniejsza mechanika, 18 serw MG996R, 32-kanałowy sterownik serw oraz UPS SupTronics X1203 dla Raspberry Pi 5. To nie koniec historii — to pierwsza wersja, która spina wcześniejsze doświadczenia w jeden system.</p></div>
             </article>
           </div>
+
+          <article class="system-panel">
+            <span class="eyebrow" data-pl="Potwierdzone testy archiwalne" data-en="Verified archive tests">Potwierdzone testy archiwalne</span>
+            <h3 data-pl="Funkcje sprawdzone we wcześniejszych wersjach" data-en="Functions tested in earlier versions">Funkcje sprawdzone we wcześniejszych wersjach</h3>
+            <p data-pl="To są udokumentowane próby z rozwoju Kory. Nie opisują automatycznie obecnego zestawu sprzętu aluminiowej wersji." data-en="These are documented tests from Kora's development. They do not automatically describe the current aluminium version's hardware.">To są udokumentowane próby z rozwoju Kory. Nie opisują automatycznie obecnego zestawu sprzętu aluminiowej wersji.</p>
+            <div class="next-grid">
+              <article class="panel next-card">
+                <span class="status" data-pl="Wcześniejsza Kora" data-en="Earlier Kora">Wcześniejsza Kora</span>
+                <h3>HuskyLens</h3>
+                <p data-pl="HuskyLens pracował jako samodzielny czujnik wizyjny w jednej z wcześniejszych wersji Kory. Nie łączę tego testu z obecną kamerą Raspberry Pi ani z Ollamą." data-en="HuskyLens worked as a standalone vision sensor in one of Kora's earlier versions. This test is not presented as using the current Raspberry Pi camera or Ollama.">HuskyLens pracował jako samodzielny czujnik wizyjny w jednej z wcześniejszych wersji Kory. Nie łączę tego testu z obecną kamerą Raspberry Pi ani z Ollamą.</p>
+              </article>
+              <article class="panel next-card">
+                <span class="status" data-pl="Test stabilizacji" data-en="Stabilisation test">Test stabilizacji</span>
+                <h3>MPU6050 + ESP32</h3>
+                <p data-pl="Podczas poruszania korpusem głowa utrzymywała poziom. Próba wykorzystywała czujnik MPU6050, ESP32 i dwa serwa." data-en="While the body was moved, the head stayed level. The test used an MPU6050 sensor, an ESP32 and two servos.">Podczas poruszania korpusem głowa utrzymywała poziom. Próba wykorzystywała czujnik MPU6050, ESP32 i dwa serwa.</p>
+              </article>
+              <article class="panel next-card">
+                <span class="status" data-pl="Próby ruchu" data-en="Movement tests">Próby ruchu</span>
+                <h3 data-pl="Krok po kroku" data-en="Step by step">Krok po kroku</h3>
+                <p data-pl="Pierwsze ruchy i skręty czteronożnej Kory były testami rozwojowymi, a nie gotowym chodem. Pokazuję je bez ukrywania niedoskonałości." data-en="The four-legged Kora's first movements and turns were development tests, not a finished gait. They are shown without hiding the imperfections.">Pierwsze ruchy i skręty czteronożnej Kory były testami rozwojowymi, a nie gotowym chodem. Pokazuję je bez ukrywania niedoskonałości.</p>
+              </article>
+            </div>
+          </article>
         </div>
 
         <div class="kora-media-row">
@@ -1140,7 +1173,7 @@ void loop() {
           <article class="radio-archive-copy">
             <span class="status" data-pl="Archiwum · wcześniejszy projekt" data-en="Archive · earlier project">Archiwum · wcześniejszy projekt</span>
             <h3 data-pl="Sterowanie trzema czujnikami IR" data-en="Control with three IR sensors">Sterowanie trzema czujnikami IR</h3>
-            <p data-pl="W tej starszej wersji radio było sterowane trzema czujnikami podczerwieni. Gesty przy czujnikach zmieniały stacje, włączały i wyłączały radio oraz sterowały oświetleniem LED. To prostsza konstrukcja niż obecne radio z ekranem, ale dobrze dokumentuje drogę od działającego prototypu do bardziej kompletnego systemu." data-en="In this earlier version, the radio was controlled by three infrared sensors. Hand gestures near the sensors changed stations, switched the radio on and off, and controlled the LED lighting. It is simpler than the current touchscreen radio, but it clearly documents the progression from a working prototype to a more complete system.">W tej starszej wersji radio było sterowane trzema czujnikami podczerwieni. Gesty przy czujnikach zmieniały stacje, włączały i wyłączały radio oraz sterowały oświetleniem LED. To prostsza konstrukcja niż obecne radio z ekranem, ale dobrze dokumentuje drogę od działającego prototypu do bardziej kompletnego systemu.</p>
+            <p data-pl="Ta starsza wersja korzystała z ESP32-WROOM, trzech czujników podczerwieni i adresowalnego paska RGB. Gesty przy czujnikach zmieniały stacje, włączały i wyłączały radio oraz sterowały oświetleniem LED. To osobny, prostszy projekt niż obecne radio z ekranem na ESP32-S3." data-en="This earlier version used an ESP32-WROOM, three infrared sensors and an addressable RGB strip. Hand gestures changed stations, switched the radio on and off, and controlled the LED lighting. It is a separate, simpler project from the current ESP32-S3 touchscreen radio.">Ta starsza wersja korzystała z ESP32-WROOM, trzech czujników podczerwieni i adresowalnego paska RGB. Gesty przy czujnikach zmieniały stacje, włączały i wyłączały radio oraz sterowały oświetleniem LED. To osobny, prostszy projekt niż obecne radio z ekranem na ESP32-S3.</p>
             <div class="radio-archive-actions">
               <a class="button button-primary" href="https://www.youtube.com/shorts/r9urgd6wDjU" target="_blank" rel="noopener" data-pl="Zobacz wcześniejsze radio" data-en="Watch the earlier radio">Zobacz wcześniejsze radio</a>
               <a class="button" href="projects/esp32-ir-radio/" data-pl="Schemat i kod" data-en="Wiring and code">Schemat i kod</a>
