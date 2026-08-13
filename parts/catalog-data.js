@@ -291,6 +291,20 @@ window.PARTS_CATALOG = [
     "youtubeEn": "Voice commands can be recognised locally by the DFRobot DF2301Q module without an internet connection."
   },
   {
+    "id": "dfrobot-tts",
+    "name": "DFRobot Gravity: Text to Speech — DFR0760",
+    "short": "Moduł odczytujący przesłany tekst przez wbudowany głośnik",
+    "category": "Audio",
+    "supplier": "DFRobot",
+    "project": "Kora / VEGA",
+    "status": "Mam",
+    "accent": "pink",
+    "spec": "Synteza tekstu na mowę po angielsku i chińsku • I²C / UART • wbudowany głośnik • 3,3–5 V",
+    "url": "https://www.dfrobot.com/product-2234.html",
+    "youtubePl": "Do syntezy mowy używam modułu DFRobot DFR0760: wysyłam tekst przez I²C lub UART, a moduł odczytuje go przez wbudowany głośnik.",
+    "youtubeEn": "For speech synthesis I use the DFRobot DFR0760: I send text over I²C or UART, and the module reads it through its built-in speaker."
+  },
+  {
     "id": "rplidar-c1",
     "name": "SLAMTEC RPLIDAR C1",
     "short": "Kompaktowy lidar posiadany do testów",
