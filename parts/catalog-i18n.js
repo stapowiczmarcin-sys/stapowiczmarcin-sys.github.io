@@ -8,7 +8,7 @@ window.CATALOG_I18N = {
   },
   projects: {
     "Wszystkie projekty": "All projects", "Kora / VEGA": "Kora / VEGA", "Warsztat": "Workshop",
-    "Uniwersalne": "General purpose", "Roboty mobilne": "Mobile robots", "Audio": "Audio", "Frezarka CNC": "CNC router", "Fontanna": "Fountain", "Druk 3D": "3D printing", "Radio IR": "IR radio"
+    "Uniwersalne": "General purpose", "Roboty mobilne": "Mobile robots", "Audio": "Audio", "Frezarka CNC": "CNC router", "Fontanna": "Fountain", "Druk 3D": "3D printing", "Radio IR": "IR radio", "Lampa i zegar": "Lamp and clock"
   },
   statuses: { "Wszystkie statusy": "All statuses", "Używam": "In use", "Mam": "Owned", "W drodze": "In transit", "Używałem": "Used before", "Archiwum": "Archive" },
   parts: {
@@ -47,7 +47,7 @@ window.CATALOG_I18N = {
     "dcwide": { name: "12–90 V to 5 V DC-DC converter", short: "Wide input-voltage range", spec: "12–90 V input • 5 V output • seller-rated 10 A" },
     "ws2812matrix": { name: "WS2812B 16×16 matrix", short: "Matrix used for the IR radio lighting effects", spec: "256 pixels • RGB • 5 V • individual control" },
     "led-ring16": { name: "16-LED RGB ring", short: "Kora status indication and light animations", spec: "16 addressable RGB LEDs • 5 V supply • serial control" },
-    "rgb-strip": { name: "RGB LED strip", short: "Strip used in the radio controlled by three IR sensors", spec: "RGB LEDs • R/G/B channels • flexible strip • lighting effects" },
+    "rgb-strip": { name: "RGB LED strip", short: "Strip used in the lamp and clock project", spec: "RGB LEDs • R/G/B channels • flexible strip • lighting effects" },
     "pcm5102": { name: "PCM5102A — I²S DAC", short: "Digital audio for Raspberry Pi and ESP32", spec: "I²S • analogue stereo output • 32-bit DAC" },
     "inmp441": { name: "INMP441 — I²S microphone", short: "Digital MEMS microphone", spec: "MEMS • I²S • for ESP32 • low power consumption" },
     "ili9341": { name: "2.8-inch ILI9341 TFT display", short: "Colour SPI touchscreen", spec: "240×320 px • SPI • touch panel" },
