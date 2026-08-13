@@ -60,8 +60,22 @@ window.PARTS_CATALOG = [
     "youtubeEn": "Daytime vision is provided by a Raspberry Pi Camera Module 3 with autofocus."
   },
   {
+    "id": "cam3-noir",
+    "name": "Raspberry Pi Camera Module 3 Wide NoIR",
+    "short": "Szerokokątna kamera nocna bez filtra IR",
+    "category": "Sensory",
+    "supplier": "Pi Hut",
+    "project": "Kora / VEGA",
+    "status": "Używam",
+    "accent": "cyan",
+    "spec": "Sony IMX708 • 12 MP • autofocus • szerokie pole widzenia • czułość na podczerwień",
+    "url": "https://thepihut.com/search?q=Raspberry%20Pi%20Camera%20Module%203%20Wide%20NoIR",
+    "youtubePl": "Obraz nocny Kory zapewnia szerokokątna kamera Raspberry Pi Camera Module 3 NoIR z sensorem IMX708.",
+    "youtubeEn": "Kora's night vision uses a wide-angle Raspberry Pi Camera Module 3 NoIR with an IMX708 sensor."
+  },
+  {
     "id": "x1203",
-    "name": "SupTronics X1203 UPS",
+    "name": "SupTronics X1203 V1.0 UPS",
     "short": "Awaryjne zasilanie Raspberry Pi 5",
     "category": "Zasilanie",
     "supplier": "Pi Hut",
@@ -191,6 +205,20 @@ window.PARTS_CATALOG = [
     "youtubeEn": "The servos are controlled by 16-channel PCA9685 modules over I²C."
   },
   {
+    "id": "servo-controller-32ch",
+    "name": "USB — 32-kanałowy sterownik serw",
+    "short": "Jedna płytka dla 18 serw nóg Kory",
+    "category": "Sterowanie",
+    "supplier": "AliExpress",
+    "project": "Kora / VEGA",
+    "status": "Mam",
+    "accent": "green",
+    "spec": "32 kanały PWM • sterowanie przez USB • osobne zasilanie serw",
+    "url": "https://www.aliexpress.com/w/wholesale-32-channel-usb-servo-controller.html",
+    "youtubePl": "Osiemnastoma serwami nóg Kory steruje jedna 32-kanałowa płytka podłączana przez USB.",
+    "youtubeEn": "Kora's 18 leg servos are controlled by one 32-channel board connected over USB."
+  },
+  {
     "id": "esp32c6",
     "name": "ESP32-C6 SuperMini",
     "short": "Mały kontroler Wi-Fi i Bluetooth",
@@ -265,16 +293,16 @@ window.PARTS_CATALOG = [
   {
     "id": "rplidar-c1",
     "name": "SLAMTEC RPLIDAR C1",
-    "short": "Skanowanie otoczenia w 360°",
+    "short": "Kompaktowy lidar posiadany do testów",
     "category": "Sensory",
     "supplier": "AliExpress",
     "project": "Kora / VEGA",
-    "status": "Używam",
+    "status": "Mam",
     "accent": "cyan",
-    "spec": "360° • pomiar ToF • zasięg do 12 m • mapowanie i nawigacja",
+    "spec": "360° • pomiar ToF • zasięg do 12 m • osobny od RPLIDAR A2 używanego obecnie w Korze",
     "url": "https://www.aliexpress.com/item/1005006190309082.html",
-    "youtubePl": "Otoczenie w 360 stopniach skanuje lidar SLAMTEC RPLIDAR C1 o zasięgu do 12 metrów.",
-    "youtubeEn": "A SLAMTEC RPLIDAR C1 scans the surroundings in 360 degrees at distances up to 12 metres."
+    "youtubePl": "Do testów mam również kompaktowy lidar SLAMTEC RPLIDAR C1; obecna Kora korzysta z modelu RPLIDAR A2.",
+    "youtubeEn": "I also own a compact SLAMTEC RPLIDAR C1 for testing; the current Kora system uses an RPLIDAR A2."
   },
   {
     "id": "vl53l1x",
@@ -366,16 +394,16 @@ window.PARTS_CATALOG = [
   {
     "id": "rds3115",
     "name": "RDS3115MG — serwo 17 kg",
-    "short": "Dwuosiowe serwo do ramion",
+    "short": "Serwo z wcześniejszej czteronożnej Kory",
     "category": "Napędy",
     "supplier": "AliExpress",
     "project": "Kora / VEGA",
-    "status": "Używam",
+    "status": "Mam",
     "accent": "red",
     "spec": "180° / 270° • metalowe przekładnie • podwójny wał",
     "url": "https://www.aliexpress.com/item/1005005471524950.html",
-    "youtubePl": "Ramiona robota napędzają dwuosiowe serwa RDS3115MG z metalowymi przekładniami.",
-    "youtubeEn": "The robot arms are driven by RDS3115MG dual-shaft servos with metal gears."
+    "youtubePl": "We wcześniejszej czteronożnej wersji Kory używałem dwuosiowych serw RDS3115MG z metalowymi przekładniami.",
+    "youtubeEn": "An earlier four-legged version of Kora used RDS3115MG dual-shaft servos with metal gears."
   },
   {
     "id": "sg90",
@@ -408,6 +436,20 @@ window.PARTS_CATALOG = [
     "youtubeEn": "A DC-DC converter steps the 12–24 V supply down to 5 V for the control electronics."
   },
   {
+    "id": "dc-stepdown-10a",
+    "name": "Przetwornica DC-DC 11,1 V → 5 V / 10 A",
+    "short": "Osobny tor 5 V dla komputera i elektroniki",
+    "category": "Zasilanie",
+    "supplier": "AliExpress",
+    "project": "Kora / VEGA",
+    "status": "Mam",
+    "accent": "amber",
+    "spec": "Wejście z pakietu 3S 11,1 V • wyjście 5 V • deklarowane 10 A • nie zasila szyny serw 6 V",
+    "url": "https://www.aliexpress.com/w/wholesale-12v-to-5v-10a-dc-converter.html",
+    "youtubePl": "Elektronika Kory ma osobny tor 5 V zasilany z pakietu 11,1 V przez przetwornicę DC-DC 10 A; serwa korzystają z oddzielnej szyny około 6 V.",
+    "youtubeEn": "Kora's electronics use a separate 5 V rail supplied from the 11.1 V pack through a 10 A DC-DC converter; the servos use a separate rail at about 6 V."
+  },
+  {
     "id": "dcwide",
     "name": "Przetwornica DC-DC 12–90 V → 5 V",
     "short": "Szeroki zakres napięcia wejściowego",
@@ -436,6 +478,20 @@ window.PARTS_CATALOG = [
     "url": "https://www.aliexpress.com/item/1005008565110209.html",
     "youtubePl": "Animacje twarzy wyświetla matryca 16×16 z 256 indywidualnie sterowanymi diodami WS2812B.",
     "youtubeEn": "Face animations are displayed on a 16×16 matrix with 256 individually addressable WS2812B LEDs."
+  },
+  {
+    "id": "led-ring16",
+    "name": "Pierścień LED RGB — 16 diod",
+    "short": "Sygnalizacja stanu i animacje świetlne Kory",
+    "category": "Światło",
+    "supplier": "AliExpress",
+    "project": "Kora / VEGA",
+    "status": "Mam",
+    "accent": "blue",
+    "spec": "16 adresowalnych diod RGB • zasilanie 5 V • sterowanie szeregowe",
+    "url": "https://www.aliexpress.com/w/wholesale-16-led-rgb-ring.html",
+    "youtubePl": "Stan i reakcje Kory może sygnalizować pierścień z 16 adresowalnymi diodami RGB.",
+    "youtubeEn": "Kora's state and reactions can be indicated by a ring of 16 individually addressable RGB LEDs."
   },
   {
     "id": "rgb-strip",
