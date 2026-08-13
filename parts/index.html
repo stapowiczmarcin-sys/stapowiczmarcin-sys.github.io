@@ -12,39 +12,42 @@
   <script src="image-data-3.js" defer></script>
   <script src="image-data-4.js" defer></script>
   <script src="catalog-data.js" defer></script>
+  <script src="catalog-i18n.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="../" aria-label="Wróć do portfolio Marcina"><span class="brand-mark">M</span><span>Marcin<span class="brand-muted"> / części projektowe</span></span></a>
-    <a class="top-link" href="../">Wróć do portfolio <span>↗</span></a>
+    <a class="brand" href="../" aria-label="Wróć do portfolio Marcina"><span class="brand-mark">M</span><span>Marcin<span class="brand-muted" data-pl=" / części projektowe" data-en=" / project parts"> / części projektowe</span></span></a>
+    <div class="top-actions"><button class="language-button" id="catalogLanguage" type="button" aria-label="Zmień język na angielski">PL / EN</button><a class="top-link" href="../"><span data-pl="Wróć do portfolio" data-en="Back to portfolio">Wróć do portfolio</span> <span>↗</span></a></div>
   </header>
 
   <main>
     <section class="hero" id="top">
       <div class="eyebrow"><span class="pulse"></span> WORKSHOP INDEX 01</div>
-      <h1>Wszystko, z czego<br><em>buduję.</em></h1>
-      <p class="hero-copy">Elektronika, sensory, napędy, zasilanie i narzędzia CNC używane w Korze oraz pozostałych projektach — zebrane w jednym miejscu, bez przekopywania historii zakupów.</p>
-      <div class="hero-actions"><a class="primary" href="#catalog">Przeglądaj części <span>↘</span></a><span class="privacy-note">Bez numerów zamówień i prywatnych zakupów. Wiadomo.</span></div>
+      <h1><span data-pl="Wszystko, z czego" data-en="Everything I">Wszystko, z czego</span><br><em data-pl="buduję." data-en="build with.">buduję.</em></h1>
+      <p class="hero-copy" data-pl="Elektronika, sensory, napędy, zasilanie i narzędzia CNC używane w Korze oraz pozostałych projektach — zebrane w jednym miejscu, bez przekopywania historii zakupów." data-en="Electronics, sensors, drives, power components and CNC tools used in Kora and my other projects — collected in one place without digging through purchase history.">Elektronika, sensory, napędy, zasilanie i narzędzia CNC używane w Korze oraz pozostałych projektach — zebrane w jednym miejscu, bez przekopywania historii zakupów.</p>
+      <div class="hero-actions"><a class="primary" href="#catalog"><span class="primary-label" data-pl="Przeglądaj części" data-en="Browse parts">Przeglądaj części</span> <span>↘</span></a><span class="privacy-note" data-pl="Bez numerów zamówień i prywatnych zakupów. Wiadomo." data-en="No order numbers or private purchase details. Obviously.">Bez numerów zamówień i prywatnych zakupów. Wiadomo.</span></div>
       <div class="stats" id="stats" aria-label="Podsumowanie katalogu"></div>
     </section>
 
     <section class="catalog" id="catalog">
-      <div class="section-heading"><div><span class="section-index">01 / KATALOG</span><h2>Regał z częściami</h2></div><p>Kliknij „Opis na YouTube”, aby skopiować gotowy tekst po polsku i angielsku razem z linkiem do produktu.</p></div>
+      <div class="section-heading"><div><span class="section-index" data-pl="01 / KATALOG" data-en="01 / CATALOGUE">01 / KATALOG</span><h2 data-pl="Regał z częściami" data-en="Parts shelf">Regał z częściami</h2></div><p data-pl="Kliknij „Opis na YouTube”, aby skopiować gotowy tekst po polsku i angielsku razem z linkiem do produktu." data-en="Click “YouTube copy” to copy a ready-made Polish and English description together with the product link.">Kliknij „Opis na YouTube”, aby skopiować gotowy tekst po polsku i angielsku razem z linkiem do produktu.</p></div>
       <div class="filters">
         <label class="search-wrap"><span>⌕</span><input id="search" placeholder="Szukaj: lidar, ESP32, audio…" aria-label="Szukaj części"><button id="clearSearch" type="button" aria-label="Wyczyść wyszukiwanie" hidden>×</button></label>
         <div class="select-wrap"><select id="projectFilter" aria-label="Filtruj według projektu"></select></div>
         <div class="select-wrap"><select id="supplierFilter" aria-label="Filtruj według sklepu"></select></div>
+        <div class="select-wrap"><select id="statusFilter" aria-label="Filtruj według statusu"></select></div>
       </div>
       <div class="category-tabs" id="categoryTabs" role="list" aria-label="Kategorie"></div>
-      <div class="results-line"><span id="resultCount">00 WYNIKÓW</span><span>AKTUALIZACJA: 13.08.2026</span></div>
+      <div class="budget-summary" id="budgetSummary" aria-live="polite"></div>
+      <div class="results-line"><span id="resultCount">00 WYNIKÓW</span><span data-pl="AKTUALIZACJA: 13.08.2026" data-en="UPDATED: 13 AUG 2026">AKTUALIZACJA: 13.08.2026</span></div>
       <div class="parts-grid" id="partsGrid"></div>
-      <div class="empty" id="emptyState" hidden><strong>Nic tu nie leży.</strong><span>Zmień filtr albo wpisz inną nazwę elementu.</span></div>
+      <div class="empty" id="emptyState" hidden><strong data-pl="Nic tu nie leży." data-en="Nothing here.">Nic tu nie leży.</strong><span data-pl="Zmień filtr albo wpisz inną nazwę elementu." data-en="Change a filter or search for a different component.">Zmień filtr albo wpisz inną nazwę elementu.</span></div>
     </section>
 
-    <section class="how-it-works"><span class="section-index">02 / JAK TO DZIAŁA</span><div class="how-grid"><h2>Jedna część.<br>Trzy zastosowania.</h2><ol><li><span>01</span><div><strong>Dokumentacja</strong><p>Wiadomo, co dokładnie zostało użyte w projekcie.</p></div></li><li><span>02</span><div><strong>Zakupy</strong><p>Link prowadzi do produktu lub wyszukiwania w sklepie.</p></div></li><li><span>03</span><div><strong>YouTube</strong><p>Gotowy opis PL/EN trafia do schowka jednym kliknięciem.</p></div></li></ol></div></section>
+    <section class="how-it-works"><span class="section-index" data-pl="02 / JAK TO DZIAŁA" data-en="02 / HOW IT WORKS">02 / JAK TO DZIAŁA</span><div class="how-grid"><h2><span data-pl="Jedna część." data-en="One component.">Jedna część.</span><br><span data-pl="Trzy zastosowania." data-en="Three uses.">Trzy zastosowania.</span></h2><ol><li><span>01</span><div><strong data-pl="Dokumentacja" data-en="Documentation">Dokumentacja</strong><p data-pl="Wiadomo, co dokładnie zostało użyte w projekcie." data-en="A clear record of exactly what was used in each project.">Wiadomo, co dokładnie zostało użyte w projekcie.</p></div></li><li><span>02</span><div><strong data-pl="Zakupy" data-en="Purchasing">Zakupy</strong><p data-pl="Link prowadzi do produktu lub wyszukiwania w sklepie." data-en="The link opens the product or a store search.">Link prowadzi do produktu lub wyszukiwania w sklepie.</p></div></li><li><span>03</span><div><strong>YouTube</strong><p data-pl="Gotowy opis PL/EN trafia do schowka jednym kliknięciem." data-en="A ready-made PL/EN description is copied with one click.">Gotowy opis PL/EN trafia do schowka jednym kliknięciem.</p></div></li></ol></div></section>
   </main>
 
-  <footer><div><span class="brand-mark">M</span><strong>Marcin / Project Parts</strong></div><p>Ceny są historyczne i mogą się zmienić. Zdjęcia producentów i sprzedawców służą identyfikacji części.</p><a href="../">Portfolio ↑</a></footer>
+  <footer><div><span class="brand-mark">M</span><strong>Marcin / Project Parts</strong></div><p data-pl="Ceny są historyczne i mogą się zmienić. Zdjęcia producentów i sprzedawców służą identyfikacji części." data-en="Prices are historical and may change. Manufacturer and seller images are used to identify parts.">Ceny są historyczne i mogą się zmienić. Zdjęcia producentów i sprzedawców służą identyfikacji części.</p><a href="../">Portfolio ↑</a></footer>
 </body>
 </html>

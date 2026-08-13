@@ -320,6 +320,11 @@
     .kora-fact { padding: 15px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.025); }
     .kora-fact strong { display: block; font-size: 1.15rem; letter-spacing: -.03em; }
     .kora-fact span { color: var(--muted); font-size: .83rem; }
+    .verified-update { display: inline-flex; align-items: center; gap: 7px; margin: 0 0 14px; padding: 7px 10px; border: 1px solid rgba(98,243,192,.35); border-radius: 999px; color: var(--mint); background: rgba(98,243,192,.07); font-size: .75rem; font-weight: 800; }
+    .hardware-status { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0 0 24px; }
+    .hardware-status article { padding: 14px 15px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.025); }
+    .hardware-status strong { display: block; margin-bottom: 5px; color: #f4f6f8; font-size: .82rem; }
+    .hardware-status span { display: block; color: var(--muted); font-size: .78rem; line-height: 1.45; }
     .system-panel { margin-top: 18px; padding: clamp(24px, 4vw, 42px); border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(135deg, rgba(107,224,193,.07), rgba(156,132,255,.06)); }
     .system-panel h3 { margin: 0 0 10px; font-size: clamp(1.55rem, 3vw, 2.35rem); letter-spacing: -.045em; }
     .system-panel > p { margin: 0; max-width: 850px; color: var(--muted); }
@@ -328,6 +333,15 @@
     .flow-node:not(:last-child)::after { content: "→"; position: absolute; right: -10px; top: 50%; z-index: 2; transform: translate(50%,-50%); color: var(--mint); font-weight: 900; }
     .flow-node strong { display: block; margin-bottom: 5px; font-size: .93rem; }
     .flow-node span { color: var(--muted); font-size: .79rem; line-height: 1.45; }
+    .architecture-diagram { margin-top: 18px; padding: 14px; border: 1px solid var(--line); border-radius: 20px; background: rgba(8,11,16,.34); overflow-x: auto; }
+    .architecture-diagram svg { display: block; width: 100%; min-width: 780px; height: auto; }
+    .architecture-diagram .node { fill: #101720; stroke: rgba(255,255,255,.2); stroke-width: 2; }
+    .architecture-diagram .node-core { fill: #12362f; stroke: #62f3c0; }
+    .architecture-diagram .node-accent { fill: #241f3f; stroke: #9c84ff; }
+    .architecture-diagram .line { fill: none; stroke: #62f3c0; stroke-width: 3; marker-end: url(#arrow); }
+    .architecture-diagram text { fill: #f1f4f7; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 800; text-anchor: middle; }
+    .architecture-diagram .sub { fill: #9ba4ae; font-size: 11px; font-weight: 500; }
+    .architecture-caption { margin: 10px 3px 0; color: var(--muted); font-size: .76rem; line-height: 1.5; }
     .system-panel > .stack-intro { margin: 18px 0 0; color: var(--muted); font-size: .84rem; }
     .stack-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .stack-chip {
@@ -562,7 +576,7 @@
       .facts, .next-grid { grid-template-columns: 1fr; }
       .videos { grid-template-columns: minmax(0, 250px); }
       .videos .video-card:last-child { grid-column: auto; width: 100%; }
-      .kora-facts, .kora-gallery, .system-flow, .history-grid, .radio-facts, .radio-gallery { grid-template-columns: 1fr; }
+      .kora-facts, .hardware-status, .kora-gallery, .system-flow, .history-grid, .radio-facts, .radio-gallery { grid-template-columns: 1fr; }
       .flow-node:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -10px; transform: translate(50%,50%); }
       .history-card--wide { grid-column: auto; }
       .history-card--full { grid-column: auto; }
@@ -768,6 +782,13 @@
               <div class="kora-fact"><strong data-pl="RPLidar A2" data-en="RPLidar A2">RPLidar A2</strong><span data-pl="skanowanie otoczenia 2D" data-en="2D environment scanning">skanowanie otoczenia 2D</span></div>
               <div class="kora-fact"><strong data-pl="2 × IMX708" data-en="2 × IMX708">2 × IMX708</strong><span data-pl="kamera dzienna i NoIR" data-en="day and NoIR cameras">kamera dzienna i NoIR</span></div>
             </div>
+            <span class="verified-update" data-pl="Stan potwierdzony · 13.08.2026" data-en="Verified status · 13 Aug 2026">Stan potwierdzony · 13.08.2026</span>
+            <div class="hardware-status" aria-label="Potwierdzony status sprzętu Kory">
+              <article><strong data-pl="Obecna Kora" data-en="Current Kora">Obecna Kora</strong><span data-pl="18 × MG996R, RPLIDAR A2 oraz dwie kamery IMX708: dzienna i szerokokątna NoIR." data-en="18 × MG996R, RPLIDAR A2 and two IMX708 cameras: daytime and wide-angle NoIR.">18 × MG996R, RPLIDAR A2 oraz dwie kamery IMX708: dzienna i szerokokątna NoIR.</span></article>
+              <article><strong data-pl="Mam / testuję" data-en="Owned / testing">Mam / testuję</strong><span data-pl="X1203 UPS; RPLIDAR C1 jest osobnym lidarem do testów, nie zamiennikiem A2 w obecnej Korze." data-en="X1203 UPS; the RPLIDAR C1 is a separate test lidar, not a replacement for the A2 in the current Kora.">X1203 UPS; RPLIDAR C1 jest osobnym lidarem do testów, nie zamiennikiem A2 w obecnej Korze.</span></article>
+              <article><strong data-pl="W drodze" data-en="In transit">W drodze</strong><span data-pl="Raspberry Pi AI HAT+ 2, ReSpeaker XVF3800 i czujnik dotyku MPR121." data-en="Raspberry Pi AI HAT+ 2, ReSpeaker XVF3800 and the MPR121 touch sensor.">Raspberry Pi AI HAT+ 2, ReSpeaker XVF3800 i czujnik dotyku MPR121.</span></article>
+              <article><strong data-pl="Wcześniejsze wersje" data-en="Earlier versions">Wcześniejsze wersje</strong><span data-pl="RDS3115MG pracowały we wcześniejszej czteronożnej Korze. RDS5180 to osobne serwo dużej mocy — nie zastępuje obecnych 18 × MG996R." data-en="RDS3115MG servos were used in an earlier four-legged Kora. The RDS5180 is a separate high-torque servo — it does not replace the current 18 × MG996R.">RDS3115MG pracowały we wcześniejszej czteronożnej Korze. RDS5180 to osobne serwo dużej mocy — nie zastępuje obecnych 18 × MG996R.</span></article>
+            </div>
             <div class="hero-buttons">
               <a class="button button-primary" href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" data-pl="Zobacz filmy na YouTube ↗" data-en="Watch videos on YouTube ↗">Zobacz filmy na YouTube ↗</a>
               <a class="button" href="https://stapowiczmarcin-sys.github.io/parts/?project=Kora%20%2F%20VEGA#catalog" target="_blank" rel="noopener" data-pl="Części użyte w Korze ↗" data-en="Parts used in Kora ↗">Części użyte w Korze ↗</a>
@@ -785,6 +806,20 @@
             <div class="flow-node"><strong data-pl="3. Mózg" data-en="3. Core">3. Mózg</strong><span data-pl="Raspberry Pi 5 i lokalne usługi systemowe tworzone w Pythonie" data-en="Raspberry Pi 5 and local system services built in Python">Raspberry Pi 5 i lokalne usługi systemowe tworzone w Pythonie</span></div>
             <div class="flow-node"><strong data-pl="4. Percepcja i mowa" data-en="4. Perception & speech">4. Percepcja i mowa</strong><span data-pl="lokalne modele, Ollama, Hailo, STT i TTS" data-en="local models, Ollama, Hailo, STT and TTS">lokalne modele, Ollama, Hailo, STT i TTS</span></div>
             <div class="flow-node"><strong data-pl="5. Operator" data-en="5. Operator">5. Operator</strong><span data-pl="panel WWW PL/EN, status live, testy i diagnostyka" data-en="PL/EN web panel, live status, tests and diagnostics">panel WWW PL/EN, status live, testy i diagnostyka</span></div>
+          </div>
+          <div class="architecture-diagram" role="img" aria-label="Schemat architektury Kory">
+            <svg viewBox="0 0 1000 430" xmlns="http://www.w3.org/2000/svg">
+              <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#62f3c0"/></marker></defs>
+              <path class="line" d="M210 145 H365"/><path class="line" d="M545 145 H690"/><path class="line" d="M850 145 H930"/>
+              <path class="line" d="M455 205 V280"/><path class="line" d="M455 205 C455 250 725 245 725 280"/>
+              <rect class="node" x="30" y="75" width="180" height="140" rx="18"/><text x="120" y="112" data-pl="Zmysły" data-en="Sensing">Zmysły</text><text class="sub" x="120" y="140">IMX708 DAY + NoIR</text><text class="sub" x="120" y="160">RPLIDAR A2</text><text class="sub" x="120" y="180">VL53L1X</text>
+              <rect class="node node-core" x="365" y="85" width="180" height="120" rx="18"/><text x="455" y="130">Raspberry Pi 5</text><text class="sub" x="455" y="155" data-pl="mózg i usługi lokalne" data-en="core and local services">mózg i usługi lokalne</text><text class="sub" x="455" y="175">VISION · STT · TTS</text>
+              <rect class="node" x="690" y="85" width="160" height="120" rx="18"/><text x="770" y="130">ESP32-C6</text><text class="sub" x="770" y="155" data-pl="warstwa urządzeń" data-en="device layer">warstwa urządzeń</text><text class="sub" x="770" y="175">GPIO · SENSORS</text>
+              <rect class="node" x="880" y="85" width="100" height="120" rx="18"/><text x="930" y="128" data-pl="Ruch" data-en="Motion">Ruch</text><text class="sub" x="930" y="153">18 ×</text><text class="sub" x="930" y="173">MG996R</text>
+              <rect class="node node-accent" x="350" y="280" width="210" height="100" rx="18"/><text x="455" y="320" data-pl="Hailo · integracja" data-en="Hailo · integration">Hailo · integracja</text><text class="sub" x="455" y="345" data-pl="lokalna analiza obrazu" data-en="local vision processing">lokalna analiza obrazu</text>
+              <rect class="node" x="620" y="280" width="210" height="100" rx="18"/><text x="725" y="320" data-pl="Panel operatorski" data-en="Operator panel">Panel operatorski</text><text class="sub" x="725" y="345" data-pl="status · testy · diagnostyka" data-en="status · tests · diagnostics">status · testy · diagnostyka</text>
+            </svg>
+            <p class="architecture-caption" data-pl="Schemat pokazuje potwierdzony podział systemu. Hailo pozostaje warstwą integrowaną i testowaną; panel operatorski nie udostępnia tu prywatnego adresu." data-en="The diagram shows the verified system split. Hailo remains an integration and testing layer; the private operator-panel address is not published here.">Schemat pokazuje potwierdzony podział systemu. Hailo pozostaje warstwą integrowaną i testowaną; panel operatorski nie udostępnia tu prywatnego adresu.</p>
           </div>
           <p class="stack-intro" data-pl="Kliknij technologię — zobacz, co naprawdę robi w projekcie i jaki jest mój udział." data-en="Select a technology to see what it really does in the project and what my role is.">Kliknij technologię — zobacz, co naprawdę robi w projekcie i jaki jest mój udział.</p>
           <div class="stack-chips" role="group" aria-label="Technologie użyte w projektach">
