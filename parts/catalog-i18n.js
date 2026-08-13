@@ -45,7 +45,7 @@ window.CATALOG_I18N = {
     "dc5v15a": { name: "5 V / 15 A DC-DC converter", short: "Electronics supply from 12–24 V", spec: "12–24 V input • 5 V output • seller-rated 15 A" },
     "dc-stepdown-10a": { name: "11.1 V to 5 V / 10 A DC-DC converter", short: "Separate 5 V rail for the computer and electronics", spec: "11.1 V 3S-pack input • 5 V output • seller-rated 10 A • does not power the 6 V servo rail" },
     "dcwide": { name: "12–90 V to 5 V DC-DC converter", short: "Wide input-voltage range", spec: "12–90 V input • 5 V output • seller-rated 10 A" },
-    "ws2812matrix": { name: "WS2812B 16×16 matrix", short: "256 addressable RGB LEDs", spec: "256 pixels • RGB • 5 V • individual control" },
+    "ws2812matrix": { name: "WS2812B 16×16 matrix", short: "Matrix used for the IR radio lighting effects", spec: "256 pixels • RGB • 5 V • individual control" },
     "led-ring16": { name: "16-LED RGB ring", short: "Kora status indication and light animations", spec: "16 addressable RGB LEDs • 5 V supply • serial control" },
     "rgb-strip": { name: "RGB LED strip", short: "Strip used in the radio controlled by three IR sensors", spec: "RGB LEDs • R/G/B channels • flexible strip • lighting effects" },
     "pcm5102": { name: "PCM5102A — I²S DAC", short: "Digital audio for Raspberry Pi and ESP32", spec: "I²S • analogue stereo output • 32-bit DAC" },
