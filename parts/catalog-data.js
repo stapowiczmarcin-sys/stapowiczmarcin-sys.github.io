@@ -510,16 +510,16 @@ window.PARTS_CATALOG = [
   {
     "id": "rgb-strip",
     "name": "Pasek LED RGB",
-    "short": "Pasek używany w radiu sterowanym trzema czujnikami IR",
+    "short": "Pasek używany w projekcie lampy i zegara",
     "category": "Światło",
     "supplier": "AliExpress",
-    "project": "Radio IR",
+    "project": "Lampa i zegar",
     "status": "Używam",
     "accent": "blue",
     "spec": "Diody RGB • kanały R/G/B • elastyczna taśma • efekty świetlne",
     "url": "https://www.aliexpress.com/w/wholesale-rgb-led-strip.html",
-    "youtubePl": "Efekty świetlne radia realizuje elastyczny pasek LED RGB sterowany razem z funkcjami radia przez ESP32-WROOM i trzy czujniki podczerwieni.",
-    "youtubeEn": "The radio's lighting effects are produced by a flexible RGB LED strip controlled together with the radio functions by an ESP32-WROOM and three infrared sensors."
+    "youtubePl": "Efekty świetlne lampy i zegara realizuje elastyczny pasek LED RGB.",
+    "youtubeEn": "The lamp and clock lighting effects are produced by a flexible RGB LED strip."
   },
   {
     "id": "pcm5102",
