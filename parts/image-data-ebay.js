@@ -1,0 +1,33 @@
+"use strict";
+
+window.PART_IMAGES = Object.assign(window.PART_IMAGES || {}, {
+  "relay-5v": "https://img.pccomponentes.com/articles/1042/10429399/6294-ociodual-placa-modulo-de-reles-optoacoplados-4-canales-5v-10a-para-arduino-opiniones.jpg",
+  "esp32s3-expansion": "https://down-id.img.susercontent.com/file/id-11134275-7ra0h-mcrmlgz0irss33",
+  "tp4056": "https://www.tecneu.com/cdn/shop/files/modulo-cargador-de-bateria-litio-lipo-tp4056-con-proteccion-conector-micro-ubs-220261.jpg?v=1750204520&width=720",
+  "sunlu-resin": "https://i.ebayimg.com/images/g/iIsAAOSwofZnG0nb/s-l1200.jpg",
+  "liion-charger-2slot": "https://img.drz.lazcdn.com/static/bd/p/6d24a6626d6e16db8482c4312dc49aa3.jpg_720x720q80.jpg",
+  "a4988": "https://www.carrod.mx/cdn/shop/products/z1_jpg_grande.jpg?v=1743196319",
+  "esp32-wroom-usbc": "https://bizweb.dktcdn.net/thumb/1024x1024/100/301/098/products/esp32-wroom-32-type-c-38pin-cp2102-kit-phat-trien-ho-esp32-dai-dien-3-png-v-1765715899253.png?v=1768291836743",
+  "esp32-nodemcu-38": "https://roboman.in/wp-content/uploads/2025/07/ESP-32-38-Pin-scaled.jpg-e1753539726628.webp",
+  "ir-torch-850": "https://kupcochcesz.pl/environment/cache/images/500_500_productGfx_mini_latarka_make_the_one_ir-850-3w-aa_850nm_noktowizor_widok_z_przodu.webp",
+  "pc-speakers-rgb": "https://i5.walmartimages.com/asr/03c5d888-80be-4632-8b9c-af346836da42.92264a95e10fa401accb6cc724012fe1.jpeg?odnBg=FFFFFF&odnHeight=612&odnWidth=612",
+  "ttp223": "https://dke.vn/image/cache/catalog/product/1687/2-550x550.jpg.webp",
+  "dfplayer-mini": "https://www.elecrow.com/media/catalog/product/m/i/mini_mp3_player_2.jpg",
+  "mg90s": "https://agelektronik.de/21559-large_default/sg90s-metall-getriebe-digital-9g-servo-.jpg",
+  "gx16": "https://i.bosity.com/product_img/268/68010093/68010093_7_image.jpg",
+  "hcsr04": "https://www.ad-electronic.hr/image/cache/catalog/products/340165-1000x1000.jpg",
+  "xl4015": "https://www.tinytronics.nl/image/cache/catalog/products/product-003615/dc-dc-adjustable-step-down-buck-converter-xl4015-4a-upside-1500x1500.jpg",
+  "lm2596": "https://zaitronics.com.au/cdn/shop/files/LM2596-Step-Down-Module-DC-to-DC-Adjustable-Buck-Converter-Voltage-Regulator-Conversion-Power-Supply-Module.jpg__2.webp?v=1712208061&width=800",
+  "hc05": "https://cdn.quickbutik.com/images/7394y/products/6963fffb0e08f.jpeg",
+  "ssr-relay": "https://www.hellasdigital.gr/images/detailed/30/71YghNsrzbL._SL1000_.jpg",
+  "lcd1602": "https://zaitronics.com.au/cdn/shop/files/LCD1602-Screen-with-Backlight-LCD-Display-Module-Board-2-x-16-Characters-1602-5v-for-Ar_jpg.png?v=1732144161&width=1500",
+  "switch-ip67": "https://www.furneauxriddall.com/cdn/shop/products/19mm-Push-Switch-Red_70a031f3-486f-4da2-aaae-0153ad21f0ee_1200x.jpg?v=1673612275",
+  "drag-chain": "https://www.ato.com/content/images/thumbs/0009116_cable-drag-chain-10-x-20mm_550.jpeg",
+  "endstop-led": "https://core-electronics.com.au/media/catalog/product/cache/d5cf359726a1656c2b36f3682d3bbc67/0/1/018-ramps1.4-endstop2.jpg",
+  "laser-650": "https://ae01.alicdn.com/kf/HTB1La4.AyCYBuNkHFCcq6AHtVXag.jpg",
+  "tr8x8-600": "https://static5.gleanntronics.ie/hpeciai/f692d61e65cb3c4347ca9d7e8565996a/eng_pl_T8-8mm-x-600mm-Trapezoidal-Lead-Screw-THSL-600-8D-Bronze-Nut-921_4.jpg",
+  "sanding-belts": "https://i.ebayimg.com/images/g/Z5gAAOSw3EhoKlQP/s-l500.jpg",
+  "vbit-60": "https://ak1.ostkcdn.com/images/products/is/images/direct/0473b512038411e5342b9c59dae579c1e9ad03af/Router-Bit-6mm-Shank-32mm-Dia-60-Degree-V-Groove-End-Mill-Tungsten-Steel-for-CNC.jpg?impolicy=medium",
+  "anycubic-mono2": "https://www.anycubic.es/cdn/shop/products/PhotonMono2_5_1400x.jpg?v=1684829771",
+  "anycubic-resin": "https://fr.anycubic.com/cdn/shop/files/Plant-Based-UV-Resin_2.0_-_Black.jpg?v=1775038702&width=1600"
+});
