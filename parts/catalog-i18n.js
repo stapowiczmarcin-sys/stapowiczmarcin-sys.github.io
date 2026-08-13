@@ -4,13 +4,13 @@ window.CATALOG_I18N = {
   categories: {
     "Wszystkie": "All categories", "Komputery": "Computing", "Audio": "Audio", "Sensory": "Sensors",
     "Zasilanie": "Power", "Połączenia": "Connections", "Sterowanie": "Control", "Napędy": "Motion",
-    "Światło": "Lighting", "Wyświetlacze": "Displays", "CNC": "CNC"
+    "Światło": "Lighting", "Wyświetlacze": "Displays", "CNC": "CNC", "Druk 3D": "3D printing"
   },
   projects: {
     "Wszystkie projekty": "All projects", "Kora / VEGA": "Kora / VEGA", "Warsztat": "Workshop",
-    "Uniwersalne": "General purpose", "Roboty mobilne": "Mobile robots", "Audio": "Audio", "Frezarka CNC": "CNC router"
+    "Uniwersalne": "General purpose", "Roboty mobilne": "Mobile robots", "Audio": "Audio", "Frezarka CNC": "CNC router", "Fontanna": "Fountain", "Druk 3D": "3D printing"
   },
-  statuses: { "Wszystkie statusy": "All statuses", "Używam": "In use", "Mam": "Owned", "W drodze": "In transit" },
+  statuses: { "Wszystkie statusy": "All statuses", "Używam": "In use", "Mam": "Owned", "W drodze": "In transit", "Używałem": "Used before", "Archiwum": "Archive" },
   parts: {
     "rpi5-16": { name: "Raspberry Pi 5 — 16 GB", short: "Kora's main computer", spec: "16 GB RAM • quad-core CPU • PCIe • 2× MIPI" },
     "ai-hat-2": { name: "Raspberry Pi AI HAT+ 2 — Hailo", short: "Hailo accelerator for local model processing", spec: "Hailo accelerator for local inference • kit with 300 mm MIPI cable" },
@@ -73,6 +73,35 @@ window.CATALOG_I18N = {
     "cnc-c3018-upgrade": { name: "CNC 3018 linear-motion kit — SCV12VUU / T8", short: "Bearings and lead screw for an axis upgrade", spec: "SCV12VUU bearings • 10 / 12 mm shafts • T8 lead screw • 4 mm lead" },
     "cnc-mks-dlc32": { name: "MKS DLC32 V2.1 + TS24-R", short: "Offline GRBL controller with a small display", spec: "ESP32 • GRBL • Wi-Fi • microSD card • TS24-R screen • offline control" },
     "cnc-spindle-clamp": { name: "52 / 65 / 80 mm aluminium spindle clamp", short: "Rigid motor mounting on the Z axis", spec: "Aluminium • 52 / 65 / 80 mm diameters • split clamp • four bolts" },
-    "cnc-z-axis52": { name: "52 mm aluminium CNC 3018 Z-axis module", short: "Complete axis with rails and lead screw", spec: "52 mm spindle mount • NEMA17 motor • linear guides • aluminium slide table" }
+    "cnc-z-axis52": { name: "52 mm aluminium CNC 3018 Z-axis module", short: "Complete axis with rails and lead screw", spec: "52 mm spindle mount • NEMA17 motor • linear guides • aluminium slide table" },
+    "relay-5v": { name: "5 V relay modules — 2 / 4 channels", short: "Switching several loads from a microcontroller", spec: "5 V • 2- and 4-channel variants • control from Arduino, ESP32 or Raspberry Pi" },
+    "esp32s3-expansion": { name: "ESP32-S3 44-pin expansion board", short: "Clear pin breakout for prototyping", spec: "44 pins • matching pin layout • expansion board for ESP32-S3" },
+    "tp4056": { name: "TP4056 — 1 A protected Li-ion charger", short: "Charging a single 3.7 V cell", spec: "Micro USB • 1 A • single 3.7 V Li-ion cell • protection circuit" },
+    "sunlu-resin": { name: "SUNLU 405 nm resin — 1 kg", short: "ABS-like materials for resin printing", spec: "405 nm • orange ABS-like • white water-washable ABS-like • 1 kg bottles" },
+    "liion-charger-2slot": { name: "Dual-slot USB Li-ion charger", short: "Simple charging for two 3.7 V cells", spec: "USB • 2 slots • 3.7 V Li-ion cells" },
+    "a4988": { name: "A4988 stepper-motor driver", short: "Axis driver module for CNC and 3D printers", spec: "Bipolar-motor driver • current adjustment • microstepping • compatible with popular CNC shields" },
+    "esp32-wroom-usbc": { name: "ESP32-WROOM-32 USB-C board", short: "Classic Wi-Fi and Bluetooth development board", spec: "ESP32-WROOM-32 • USB-C • dual core • Wi-Fi • Bluetooth" },
+    "esp32-nodemcu-38": { name: "ESP32 NodeMCU — 38 pins", short: "Development boards for larger prototypes", spec: "38 pins • Wi-Fi • Bluetooth • set of 2 boards" },
+    "ir-torch-850": { name: "850 nm infrared torch — 3 W", short: "Illumination for a night camera", spec: "850 nm • 3 W • invisible to the eye • for IR-sensitive cameras" },
+    "pc-speakers-rgb": { name: "Mini RGB stereo speakers — USB / 3.5 mm", short: "Compact sound and lighting for the workbench", spec: "Stereo • 3.5 mm audio input • USB power • RGB lighting" },
+    "ttp223": { name: "TTP223 capacitive touch button", short: "Small touch sensor for simple interfaces", spec: "2 modules • capacitive touch • momentary or latching mode" },
+    "dfplayer-mini": { name: "DFPlayer Mini — MP3-TF-16P", short: "Playing sounds and prompts from a card", spec: "MP3 module • TF / microSD card slot • microcontroller control" },
+    "mg90s": { name: "MG90S 9 g metal-gear micro servo", short: "Small servo for lightweight mechanisms", spec: "9 g • metal gears • 6 pieces • robotics and RC use" },
+    "gx16": { name: "GX16 aviation connectors — 2–8 pins", short: "Metal detachable connections in the CNC machine", spec: "GX16 • 2 / 3 / 4 / 5 / 6 / 8 pins • cable plug and panel socket • metal housing" },
+    "hcsr04": { name: "HC-SR04 ultrasonic sensor", short: "Simple distance measurement and obstacle detection", spec: "Ultrasonic transmitter and receiver • VCC / TRIG / ECHO / GND pins" },
+    "xl4015": { name: "XL4015 adjustable step-down converter", short: "Powering prototypes from a higher voltage", spec: "DC-DC step-down • adjustable output • seller-rated 5 A / 75 W" },
+    "lm2596": { name: "LM2596 adjustable buck converter", short: "Small module for stepping voltage down", spec: "DC-DC step-down • adjustable output voltage • LM2596 module" },
+    "hc05": { name: "HC-05 / HC-06 Bluetooth UART", short: "Wireless serial connection to a microcontroller", spec: "Bluetooth • UART interface • 4-pin board" },
+    "ssr-relay": { name: "5 V SSR modules — 1 / 2 / 4 / 8 channels", short: "Silent pump switching in an earlier fountain", spec: "Solid-state relays • 5 V control • 1 / 2 / 4 / 8-channel variants" },
+    "lcd1602": { name: "Blue 16×2 I²C LCD 1602", short: "One of my first character displays", spec: "16×2 characters • blue backlight • I²C interface" },
+    "switch-ip67": { name: "18 mm IP67 steel LED button", short: "Illuminated panel switch for enclosures", spec: "18 mm • 12 / 24 V • IP67 • red LED • chrome body • ON/OFF" },
+    "drag-chain": { name: "CNC cable drag chain", short: "Protecting wiring that moves with the axes", spec: "Cable chain • size family from 7×7 to 15×30 mm • moving-axis cable routing" },
+    "endstop-led": { name: "Mechanical endstop with LED", short: "CNC axis travel-limit sensor", spec: "Mechanical microswitch • LED indicator • module for CNC and 3D printers" },
+    "laser-650": { name: "650 nm red laser module — 5 mW", short: "Line, dot or crosshair for positioning", spec: "650 nm • seller-rated 5 mW • 5 V • adjustable lens • line / dot / crosshair" },
+    "tr8x8-600": { name: "TR8×8 lead screw — 600 mm", short: "Linear axis drive with a brass nut", spec: "8 mm diameter • 2 mm thread pitch • 8 mm lead • 600 mm length • flanged brass nut" },
+    "sanding-belts": { name: "50 × 686 mm sanding belts — P120 / P180", short: "Belt-sander consumables", spec: "50 × 686 mm • 5× P120 • 5× P180" },
+    "vbit-60": { name: "60° V-bit — 6 mm shank", short: "Grooves, chamfering and engraving in wood", spec: "6 mm shank • 32 mm cutting diameter • 60° angle" },
+    "anycubic-mono2": { name: "ANYCUBIC Photon Mono 2 resin printer", short: "Archived 4K+ printer, currently broken", spec: "4K+ monochrome screen • 165 × 89 × 143 mm build volume • currently broken" },
+    "anycubic-resin": { name: "ANYCUBIC black plant-based resin — 2 kg", short: "Material used for earlier resin prints", spec: "Plant-based resin • black • 2 kg set • SLA / LCD printing" }
   }
 };
