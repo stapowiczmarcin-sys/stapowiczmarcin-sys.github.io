@@ -464,6 +464,22 @@
     .rgb-lamp-fact { padding: 14px; border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.025); }
     .rgb-lamp-fact strong { display: block; font-size: 1.05rem; letter-spacing: -.03em; }
     .rgb-lamp-fact span { color: var(--muted); font-size: .82rem; }
+    .rgb-lamp-code { display: grid; grid-template-columns: .72fr 1.28fr; gap: 14px; margin-top: 18px; align-items: stretch; }
+    .code-guide, .code-panel { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018)); }
+    .code-guide { padding: clamp(24px, 4vw, 38px); }
+    .code-guide h3 { margin: 10px 0 12px; font-size: clamp(1.45rem, 2.8vw, 2.15rem); line-height: 1.06; letter-spacing: -.04em; }
+    .code-guide > p { margin: 0; color: var(--muted); }
+    .wiring-list { display: grid; gap: 9px; margin: 20px 0 0; padding: 0; list-style: none; }
+    .wiring-list li { display: grid; grid-template-columns: 92px 1fr; gap: 10px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.025); }
+    .wiring-list span { color: var(--muted); font-size: .87rem; }
+    .power-warning { margin-top: 18px; padding: 15px 16px; border: 1px solid rgba(255,154,69,.45); border-radius: 15px; color: #f6ddc5; background: rgba(255,154,69,.08); font-size: .88rem; }
+    .code-panel { display: flex; min-width: 0; flex-direction: column; background: #05070a; }
+    .code-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 18px; border-bottom: 1px solid var(--line); }
+    .code-toolbar strong { font-size: .94rem; }
+    .code-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .code-action { padding: 9px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--text); background: rgba(255,255,255,.04); font: inherit; font-size: .8rem; text-decoration: none; cursor: pointer; }
+    .code-action:hover { border-color: var(--mint); color: var(--mint); }
+    .code-panel pre { flex: 1; margin: 0; padding: 22px; overflow: auto; color: #dce8e5; background: #05070a; font: 500 .82rem/1.6 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; tab-size: 2; }
     .next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .next-card { min-height: 260px; padding: 24px; box-shadow: none; position: relative; overflow: hidden; }
     .next-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -90px; bottom: -95px; border-radius: 50%; background: radial-gradient(circle, rgba(156,132,255,.22), transparent 68%); }
@@ -545,7 +561,7 @@
     dialog img { width: 100%; max-height: calc(100vh - 80px); object-fit: contain; }
     .dialog-close { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: white; background: rgba(8,11,16,.72); cursor: pointer; }
     @media (max-width: 920px) {
-      .hero-grid, .project-grid, .about, .contact-panel, .kora-hero, .kora-media-row, .radio-hero, .mirror-hero, .rgb-lamp-hero { grid-template-columns: 1fr; }
+      .hero-grid, .project-grid, .about, .contact-panel, .kora-hero, .kora-media-row, .radio-hero, .mirror-hero, .rgb-lamp-hero, .rgb-lamp-code { grid-template-columns: 1fr; }
       .latest-update { grid-template-columns: 1fr; }
       .latest-update-media { min-height: 360px; }
       .radio-archive { grid-template-columns: 1fr; }
@@ -965,7 +981,7 @@
           <div>
             <span class="number">06 / LIGHT &amp; EMBEDDED</span>
             <h2 data-pl="Ręcznie wykonana lampa RGB" data-en="Hand-built RGB lamp">Ręcznie wykonana lampa RGB</h2>
-            <p data-pl="Drewniany korpus z listewek wykonałem ręcznie. Gotowy klosz w kształcie kwiatu połączyłem z własnym sterowaniem opartym na ESP32 SuperMini." data-en="I built the wooden slatted body by hand, then combined it with a bought flower-shaped shade and my own ESP32 SuperMini-based controller.">Drewniany korpus z listewek wykonałem ręcznie. Gotowy klosz w kształcie kwiatu połączyłem z własnym sterowaniem opartym na ESP32 SuperMini.</p>
+            <p data-pl="Drewniany korpus z listewek wykonałem ręcznie. Gotowy klosz w kształcie kwiatu połączyłem z własnym sterowaniem opartym na ESP32-C3 SuperMini." data-en="I built the wooden slatted body by hand, then combined it with a bought flower-shaped shade and my own ESP32-C3 SuperMini-based controller.">Drewniany korpus z listewek wykonałem ręcznie. Gotowy klosz w kształcie kwiatu połączyłem z własnym sterowaniem opartym na ESP32-C3 SuperMini.</p>
           </div>
         </div>
         <div class="rgb-lamp-hero">
@@ -978,7 +994,7 @@
             <h3 data-pl="130 LED, dwa różne efekty" data-en="130 LEDs, two different effects">130 LED, dwa różne efekty</h3>
             <p data-pl="Lampa ma 130 diod RGB podzielonych na dwie niezależnie sterowane strefy. Sto diod w dolnej części tworzy pionowe efekty wewnątrz drewnianej konstrukcji, a trzydzieści diod w koronie oświetla kwiat innym kolorem i animacją. Dzięki temu dół może świecić na przykład na niebiesko, a klosz jednocześnie na czerwono. Kolory i efekty zmieniam programowo." data-en="The lamp uses 130 RGB LEDs split into two independently controlled zones. One hundred LEDs in the lower section create vertical effects inside the wooden structure, while thirty LEDs in the crown illuminate the flower with a different colour and animation. This means the lower section can glow blue while the shade is red at the same time. I change the colours and effects in software.">Lampa ma 130 diod RGB podzielonych na dwie niezależnie sterowane strefy. Sto diod w dolnej części tworzy pionowe efekty wewnątrz drewnianej konstrukcji, a trzydzieści diod w koronie oświetla kwiat innym kolorem i animacją. Dzięki temu dół może świecić na przykład na niebiesko, a klosz jednocześnie na czerwono. Kolory i efekty zmieniam programowo.</p>
             <div class="rgb-lamp-facts">
-              <div class="rgb-lamp-fact"><strong>ESP32 SuperMini</strong><span data-pl="sterownik kolorów i efektów" data-en="colour and effects controller">sterownik kolorów i efektów</span></div>
+              <div class="rgb-lamp-fact"><strong>ESP32-C3 SuperMini</strong><span data-pl="sterownik kolorów i efektów" data-en="colour and effects controller">sterownik kolorów i efektów</span></div>
               <div class="rgb-lamp-fact"><strong>130 LED RGB</strong><span data-pl="łącznie w całej lampie" data-en="across the complete lamp">łącznie w całej lampie</span></div>
               <div class="rgb-lamp-fact"><strong>100 LED</strong><span data-pl="dolna część konstrukcji" data-en="lower section of the structure">dolna część konstrukcji</span></div>
               <div class="rgb-lamp-fact"><strong>30 LED</strong><span data-pl="korona i klosz-kwiat" data-en="crown and flower shade">korona i klosz-kwiat</span></div>
@@ -991,6 +1007,66 @@
             <img loading="eager" decoding="async" src="assets/other/rgb-lamp/rgb-lamp-colours.webp" alt="Lampa RGB z niebieską dolną częścią i czerwonym kloszem w kształcie kwiatu">
             <figcaption data-pl="Niebieski dół i czerwona korona pokazują niezależne sterowanie obiema częściami." data-en="The blue lower section and red crown demonstrate independent control of both zones.">Niebieski dół i czerwona korona pokazują niezależne sterowanie obiema częściami.</figcaption>
           </figure>
+        </div>
+        <div class="rgb-lamp-code">
+          <article class="code-guide">
+            <span class="eyebrow" data-pl="Przykład dla początkujących" data-en="Beginner-friendly example">Przykład dla początkujących</span>
+            <h3 data-pl="ESP32 i dwie strefy LED" data-en="ESP32 and two LED zones">ESP32 i dwie strefy LED</h3>
+            <p data-pl="To gotowy przykład dla popularnych taśm WS2812B, wykorzystujący bibliotekę FastLED. Dolne 100 diod wyświetla przesuwającą się tęczę, a 30 diod w koronie niezależnie zmienia kolor i łagodnie pulsuje. Numery GPIO są przykładowe — przed wgraniem trzeba dopasować je do własnego podłączenia." data-en="This is a ready-to-use example for popular WS2812B strips using the FastLED library. The lower 100 LEDs display a moving rainbow, while the 30 LEDs in the crown independently change colour and gently pulse. The GPIO numbers are examples and must be adjusted to match your own wiring before uploading.">To gotowy przykład dla popularnych taśm WS2812B, wykorzystujący bibliotekę FastLED. Dolne 100 diod wyświetla przesuwającą się tęczę, a 30 diod w koronie niezależnie zmienia kolor i łagodnie pulsuje. Numery GPIO są przykładowe — przed wgraniem trzeba dopasować je do własnego podłączenia.</p>
+            <ul class="wiring-list">
+              <li><strong>GPIO 4</strong><span data-pl="sygnał dla 100 LED w dolnej części" data-en="data signal for the 100 lower LEDs">sygnał dla 100 LED w dolnej części</span></li>
+              <li><strong>GPIO 5</strong><span data-pl="sygnał dla 30 LED w koronie" data-en="data signal for the 30 crown LEDs">sygnał dla 30 LED w koronie</span></li>
+              <li><strong>GND</strong><span data-pl="wspólna masa ESP32 i zasilacza LED" data-en="common ground for the ESP32 and LED power supply">wspólna masa ESP32 i zasilacza LED</span></li>
+              <li><strong>FastLED</strong><span data-pl="biblioteka instalowana w Arduino IDE" data-en="library installed through the Arduino IDE">biblioteka instalowana w Arduino IDE</span></li>
+            </ul>
+            <div class="power-warning" data-pl="Ważne: 130 diod nie może być zasilanych z pinu płytki ESP32. Taśmy wymagają osobnego, odpowiednio dobranego zasilacza, wspólnej masy i zabezpieczenia. Przy 5 V teoretyczne maksimum dla 130 LED może dochodzić do około 7,8 A przy pełnej bieli. Na linii danych warto użyć rezystora 330–470 Ω; przy niestabilnym sterowaniu także konwertera poziomów 3,3 V → 5 V." data-en="Important: 130 LEDs must not be powered from an ESP32 board pin. The strips require a separate, correctly sized power supply, a common ground and protection. At 5 V, the theoretical maximum for 130 LEDs can approach 7.8 A at full white. A 330–470 Ω resistor is recommended on the data line; if control is unreliable, also use a 3.3 V to 5 V logic-level shifter.">Ważne: 130 diod nie może być zasilanych z pinu płytki ESP32. Taśmy wymagają osobnego, odpowiednio dobranego zasilacza, wspólnej masy i zabezpieczenia. Przy 5 V teoretyczne maksimum dla 130 LED może dochodzić do około 7,8 A przy pełnej bieli. Na linii danych warto użyć rezystora 330–470 Ω; przy niestabilnym sterowaniu także konwertera poziomów 3,3 V → 5 V.</div>
+          </article>
+          <article class="code-panel">
+            <div class="code-toolbar">
+              <strong>rgb_lamp_2_zones.ino</strong>
+              <div class="code-actions">
+                <button class="code-action" id="copyLampCode" type="button" data-pl="Kopiuj kod" data-en="Copy code">Kopiuj kod</button>
+                <a class="code-action" href="code/rgb-lamp-esp32-supermini/rgb_lamp_2_zones.ino" download data-pl="Pobierz .ino" data-en="Download .ino">Pobierz .ino</a>
+              </div>
+            </div>
+            <pre><code id="lampCode">#include &lt;FastLED.h&gt;
+
+#define BOTTOM_PIN 4
+#define CROWN_PIN 5
+#define BOTTOM_LED_COUNT 100
+#define CROWN_LED_COUNT 30
+#define BRIGHTNESS 80
+
+CRGB bottomLeds[BOTTOM_LED_COUNT];
+CRGB crownLeds[CROWN_LED_COUNT];
+uint8_t hue = 0;
+
+void setup() {
+  FastLED.addLeds&lt;WS2812B, BOTTOM_PIN, GRB&gt;(
+    bottomLeds, BOTTOM_LED_COUNT
+  );
+  FastLED.addLeds&lt;WS2812B, CROWN_PIN, GRB&gt;(
+    crownLeds, CROWN_LED_COUNT
+  );
+  FastLED.setBrightness(BRIGHTNESS);
+  FastLED.clear(true);
+}
+
+void loop() {
+  fill_rainbow(bottomLeds, BOTTOM_LED_COUNT, hue, 3);
+
+  uint8_t pulse = beatsin8(20, 70, 255);
+  fill_solid(
+    crownLeds,
+    CROWN_LED_COUNT,
+    CHSV(hue + 128, 255, pulse)
+  );
+
+  FastLED.show();
+  hue++;
+  delay(30);
+}</code></pre>
+          </article>
         </div>
       </div>
     </section>
@@ -1148,6 +1224,8 @@
     const stackDetailTitle = document.getElementById('stackDetailTitle');
     const stackDetailCopy = document.getElementById('stackDetailCopy');
     const stackDetailLink = document.getElementById('stackDetailLink');
+    const copyLampCodeButton = document.getElementById('copyLampCode');
+    const lampCode = document.getElementById('lampCode');
     let language = localStorage.getItem('portfolio-language') || 'pl';
     let activeStackButton = stackButtons[0] || null;
 
@@ -1189,6 +1267,20 @@
     stackButtons.forEach((button) => {
       button.addEventListener('click', () => renderStackDetail(button));
     });
+
+    if (copyLampCodeButton && lampCode) {
+      copyLampCodeButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(lampCode.textContent);
+          copyLampCodeButton.textContent = language === 'pl' ? 'Skopiowano ✓' : 'Copied ✓';
+          window.setTimeout(() => {
+            copyLampCodeButton.textContent = copyLampCodeButton.dataset[language];
+          }, 1800);
+        } catch (error) {
+          copyLampCodeButton.textContent = language === 'pl' ? 'Zaznacz kod ręcznie' : 'Select the code manually';
+        }
+      });
+    }
 
     year.textContent = new Date().getFullYear();
     applyLanguage();
