@@ -93,7 +93,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .part-card:hover .part-visual img { transform: scale(1.035); }
 .card-number { position: absolute; top: 14px; left: 15px; font-family: var(--font-geist-mono), monospace; font-size: 11px; z-index: 3; background: var(--ink); color: white; padding: 6px 7px; }
 .status { position: absolute; right: 12px; top: 12px; z-index: 3; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; background: white; padding: 7px 9px; border: 1px solid rgba(0,0,0,.15); }
-.status[data-status="Używam"]::before { content: "• "; color: #59a500; }.status[data-status="W drodze"]::before { content: "→ "; color: #aa7800; }
+.status[data-status="Używam"]::before { content: "• "; color: #59a500; }.status[data-status="W drodze"]::before { content: "→ "; color: #aa7800; }.status[data-status="Używałem"]::before { content: "◌ "; color: #6d6a62; }.status[data-status="Archiwum"]::before { content: "□ "; color: #6d6a62; }
 .part-body { padding: 20px; }
 .meta-row { display: flex; justify-content: space-between; font-family: var(--font-geist-mono), monospace; text-transform: uppercase; font-size: 9px; letter-spacing: .12em; color: var(--muted); }
 .part-body h3 { font-size: 23px; line-height: 1.08; letter-spacing: -.035em; margin: 16px 0 7px; min-height: 50px; }
