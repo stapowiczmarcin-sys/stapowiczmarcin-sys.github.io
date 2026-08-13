@@ -6,7 +6,7 @@ window.PARTS_CATALOG = [
     "category": "Komputery",
     "supplier": "Pi Hut",
     "project": "Kora / VEGA",
-    "status": "W drodze",
+    "status": "Mam",
     "price": "£182.90",
     "accent": "violet",
     "spec": "16 GB RAM • czterordzeniowy CPU • PCIe • 2× MIPI",
@@ -21,7 +21,7 @@ window.PARTS_CATALOG = [
     "category": "Komputery",
     "supplier": "Pi Hut",
     "project": "Kora / VEGA",
-    "status": "W drodze",
+    "status": "Mam",
     "price": "£130.20*",
     "accent": "violet",
     "spec": "Akcelerator Hailo do obliczeń lokalnych • zestaw z taśmą MIPI 300 mm",
@@ -510,16 +510,16 @@ window.PARTS_CATALOG = [
   {
     "id": "rgb-strip",
     "name": "Pasek LED RGB",
-    "short": "Kolorowe oświetlenie projektów i radia",
+    "short": "Pasek używany w radiu sterowanym trzema czujnikami IR",
     "category": "Światło",
     "supplier": "AliExpress",
-    "project": "Audio",
+    "project": "Radio IR",
     "status": "Używam",
     "accent": "blue",
     "spec": "Diody RGB • kanały R/G/B • elastyczna taśma • efekty świetlne",
     "url": "https://www.aliexpress.com/w/wholesale-rgb-led-strip.html",
-    "youtubePl": "Efekty świetlne radia realizuje elastyczny pasek LED RGB sterowany z układu elektronicznego.",
-    "youtubeEn": "The radio's lighting effects are produced by a flexible RGB LED strip controlled by the electronics."
+    "youtubePl": "Efekty świetlne radia realizuje elastyczny pasek LED RGB sterowany razem z funkcjami radia przez ESP32-WROOM i trzy czujniki podczerwieni.",
+    "youtubeEn": "The radio's lighting effects are produced by a flexible RGB LED strip controlled together with the radio functions by an ESP32-WROOM and three infrared sensors."
   },
   {
     "id": "pcm5102",
