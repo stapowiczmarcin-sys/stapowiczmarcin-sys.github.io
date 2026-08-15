@@ -1,0 +1,181 @@
+name: Add Kora brain progress page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-kora-brain-link.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add one small link to each page and create Kora brain page
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if 'kora-brain/' in text:
+                  print(f'{path}: link already present')
+                  return
+              if old not in text:
+                  raise SystemExit(f'Marker not found in {path}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+              print(f'{path}: link added')
+
+          # Main portfolio: add one button in the existing top bar.
+          old = '''        <a class="button" href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Katalog części" data-en="Parts catalogue">Katalog części</a>'''
+          new = old + '''\n        <a class="button" href="kora-brain/" data-pl="Mózg Kory — teraz" data-en="Kora brain — now">Mózg Kory — teraz</a>'''
+          replace_once('index.html', old, new)
+
+          # Parts catalogue: keep the current layout and add only a small top link.
+          old = '''<a class="top-link" href="../"><span data-pl="Wróć do portfolio" data-en="Back to portfolio">Wróć do portfolio</span> <span>↗</span></a>'''
+          new = '''<a class="top-link" href="../kora-brain/"><span data-pl="Mózg Kory — teraz" data-en="Kora brain — now">Mózg Kory — teraz</span> <span>↗</span></a>''' + old
+          replace_once('parts/index.html', old, new)
+
+          # ESP32 radio project page.
+          old = '''        <a class="btn" href="../../#radio" data-pl="← Portfolio" data-en="← Portfolio">← Portfolio</a>'''
+          new = old + '''\n        <a class="btn" href="../../kora-brain/" data-pl="Mózg Kory — teraz" data-en="Kora brain — now">Mózg Kory — teraz</a>'''
+          replace_once('projects/esp32-ir-radio/index.html', old, new)
+
+          # Current aluminium Kora build log.
+          old = '''        <a class="button" href="../../#kolejne" data-pl="← Portfolio" data-en="← Portfolio">← Portfolio</a>'''
+          new = old + '''\n        <a class="button" href="../../kora-brain/" data-pl="Mózg Kory — teraz" data-en="Kora brain — now">Mózg Kory — teraz</a>'''
+          replace_once('updates/kora-aluminium-2026-08-11/index.html', old, new)
+
+          Path('kora-brain').mkdir(exist_ok=True)
+          page = r'''<!doctype html>
+          <html lang="pl">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="theme-color" content="#080b10">
+            <meta name="description" content="Aktualny etap pracy nad mózgiem Kory: naturalizacja odpowiedzi lokalnego modelu, język polski i angielski, kontekst, godziny, pamięć i charakter.">
+            <title>Mózg Kory — aktualny etap</title>
+            <style>
+              :root{color-scheme:dark;--bg:#080b10;--panel:#10151d;--text:#f4f5f7;--muted:#a8b0bd;--line:rgba(255,255,255,.12);--orange:#ff9a45;--mint:#6be0c1;--violet:#9c84ff;--radius:24px}
+              *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:300px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 8% -4%,rgba(156,132,255,.18),transparent 28rem),radial-gradient(circle at 96% 22%,rgba(107,224,193,.11),transparent 26rem),var(--bg);line-height:1.58}a{color:inherit}.shell{width:min(1080px,calc(100% - 32px));margin-inline:auto}.topbar{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:rgba(8,11,16,.82);backdrop-filter:blur(18px)}.topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:850;text-decoration:none}.actions{display:flex;gap:9px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 15px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);text-decoration:none;color:var(--text);cursor:pointer;font:inherit}.button:hover{border-color:rgba(107,224,193,.65);background:rgba(107,224,193,.08)}.button-primary{color:#080b10;border-color:transparent;background:var(--orange);font-weight:850}.hero{padding:72px 0 30px}.eyebrow{color:var(--mint);font-size:.8rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:900px;margin:17px 0 18px;font-size:clamp(2.55rem,6vw,5.6rem);line-height:.96;letter-spacing:-.06em}.lead{max-width:820px;margin:0;color:var(--muted);font-size:clamp(1.04rem,1.8vw,1.25rem)}.status{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.pill{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:#dce2e9;background:rgba(255,255,255,.03);font-size:.84rem}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:28px 0}.card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.018))}.card h2,.card h3{margin:0 0 9px;letter-spacing:-.035em}.card p{margin:0;color:var(--muted)}.tag{display:inline-flex;margin-bottom:15px;padding:6px 9px;border-radius:999px;background:var(--mint);color:#080b10;font-size:.72rem;font-weight:950;letter-spacing:.06em;text-transform:uppercase}.example{margin-top:16px;padding:18px;border:1px solid rgba(255,154,69,.35);border-radius:18px;background:rgba(255,154,69,.07)}.example strong{display:block;margin-bottom:9px}.bad{color:#ff9b9b}.good{color:var(--mint)}.wide{grid-column:1/-1}.note{margin:14px 0 42px;padding:20px;border:1px solid rgba(156,132,255,.35);border-radius:20px;background:rgba(156,132,255,.08);color:#d8d2ff}.footer{padding:24px 0 48px;border-top:1px solid var(--line);color:var(--muted)}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer a{text-decoration:none}.footer a:hover{color:var(--mint)}
+              @media(max-width:720px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.hero{padding-top:42px}.actions{width:100%}.button{flex:1;padding-inline:10px;font-size:.86rem}}
+            </style>
+          </head>
+          <body>
+            <header class="topbar">
+              <div class="shell topbar-inner">
+                <a class="brand" href="../">Marcin / Maker Portfolio</a>
+                <div class="actions">
+                  <button class="button" id="lang" type="button">PL / EN</button>
+                  <a class="button" href="../" data-pl="← Portfolio" data-en="← Portfolio">← Portfolio</a>
+                  <a class="button" href="../parts/#catalog" data-pl="Katalog części" data-en="Parts catalogue">Katalog części</a>
+                </div>
+              </div>
+            </header>
+
+            <main>
+              <section class="hero">
+                <div class="shell">
+                  <span class="eyebrow" data-pl="KORA / BRAIN DEVELOPMENT · 15.08.2026" data-en="KORA / BRAIN DEVELOPMENT · 15 AUG 2026">KORA / BRAIN DEVELOPMENT · 15.08.2026</span>
+                  <h1 data-pl="Mózg działa. Teraz uczę Korę mówić bardziej jak człowiek." data-en="The brain works. Now I am making Kora speak more like a person.">Mózg działa. Teraz uczę Korę mówić bardziej jak człowiek.</h1>
+                  <p class="lead" data-pl="Kora potrafi już słuchać, odpowiadać i korzystać z lokalnych modeli uruchamianych przez Ollama. Obecny etap to nie dokładanie kolejnej efektownej funkcji, tylko dopracowanie języka, kontekstu i charakteru odpowiedzi — tak, żeby rozmowa nie brzmiała jak komunikat z kalkulatora." data-en="Kora can already listen, respond and use local models running through Ollama. The current stage is not about adding another flashy feature; it is about improving language, context and personality so conversation does not sound like output from a calculator.">Kora potrafi już słuchać, odpowiadać i korzystać z lokalnych modeli uruchamianych przez Ollama. Obecny etap to nie dokładanie kolejnej efektownej funkcji, tylko dopracowanie języka, kontekstu i charakteru odpowiedzi — tak, żeby rozmowa nie brzmiała jak komunikat z kalkulatora.</p>
+                  <div class="status">
+                    <span class="pill" data-pl="Lokalne modele" data-en="Local models">Lokalne modele</span>
+                    <span class="pill">Ollama</span>
+                    <span class="pill">PL / EN</span>
+                    <span class="pill" data-pl="Naturalizacja odpowiedzi" data-en="Natural response shaping">Naturalizacja odpowiedzi</span>
+                    <span class="pill" data-pl="Testy rozmowy" data-en="Conversation tests">Testy rozmowy</span>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <div class="shell grid">
+                  <article class="card wide">
+                    <span class="tag" data-pl="Przykład z dzisiejszych testów" data-en="Example from today's tests">Przykład z dzisiejszych testów</span>
+                    <h2 data-pl="13:24 ma brzmieć jak godzina, nie jak dwa numery" data-en="13:24 should sound like a time, not two numbers">13:24 ma brzmieć jak godzina, nie jak dwa numery</h2>
+                    <p data-pl="To drobiazg, ale właśnie takie drobiazgi zdradzają maszynowy sposób mówienia. Pracuję nad warstwą, która uwzględnia znaczenie danych przed wypowiedzeniem ich głosem." data-en="It is a small detail, but details like this reveal machine-like speech. I am working on a layer that considers what the data means before it is spoken aloud.">To drobiazg, ale właśnie takie drobiazgi zdradzają maszynowy sposób mówienia. Pracuję nad warstwą, która uwzględnia znaczenie danych przed wypowiedzeniem ich głosem.</p>
+                    <div class="example">
+                      <strong>13:24</strong>
+                      <div class="bad" data-pl="✕ „trzynaście dwadzieścia cztery”" data-en="✕ “thirteen twenty-four” as two unrelated numbers">✕ „trzynaście dwadzieścia cztery”</div>
+                      <div class="good" data-pl="✓ „trzynasta dwadzieścia cztery”" data-en="✓ a natural spoken-time form">✓ „trzynasta dwadzieścia cztery”</div>
+                    </div>
+                  </article>
+
+                  <article class="card">
+                    <span class="tag" data-pl="Język" data-en="Language">Język</span>
+                    <h3 data-pl="Kontekst zamiast surowych danych" data-en="Context instead of raw data">Kontekst zamiast surowych danych</h3>
+                    <p data-pl="Godziny, daty, liczby i jednostki powinny być wypowiadane zgodnie z ich znaczeniem. Ta sama liczba może wymagać innej formy zależnie od tego, czy jest godziną, temperaturą, odległością czy zwykłą wartością." data-en="Times, dates, numbers and units should be spoken according to their meaning. The same number may need a different form depending on whether it represents time, temperature, distance or a plain value.">Godziny, daty, liczby i jednostki powinny być wypowiadane zgodnie z ich znaczeniem. Ta sama liczba może wymagać innej formy zależnie od tego, czy jest godziną, temperaturą, odległością czy zwykłą wartością.</p>
+                  </article>
+
+                  <article class="card">
+                    <span class="tag" data-pl="Rozmowa" data-en="Conversation">Rozmowa</span>
+                    <h3 data-pl="Krócej i naturalniej" data-en="Shorter and more natural">Krócej i naturalniej</h3>
+                    <p data-pl="Odpowiedź ma pasować do pytania. Na proste pytanie Kora nie potrzebuje przemowy na trzy akapity. Testuję krótsze odpowiedzi, normalne zwroty i mniej książkowe konstrukcje." data-en="The reply should fit the question. Kora does not need a three-paragraph speech for a simple question. I am testing shorter answers, ordinary phrasing and less textbook-like constructions.">Odpowiedź ma pasować do pytania. Na proste pytanie Kora nie potrzebuje przemowy na trzy akapity. Testuję krótsze odpowiedzi, normalne zwroty i mniej książkowe konstrukcje.</p>
+                  </article>
+
+                  <article class="card">
+                    <span class="tag" data-pl="Pamięć i powtórzenia" data-en="Memory & repetition">Pamięć i powtórzenia</span>
+                    <h3 data-pl="Wie, że właśnie pytałem o to samo" data-en="Knowing I just asked the same thing">Wie, że właśnie pytałem o to samo</h3>
+                    <p data-pl="Kolejne identyczne pytanie nie powinno zawsze generować identycznej, oderwanej od historii odpowiedzi. Testuję wykorzystanie krótkiego kontekstu rozmowy i reakcji na powtórzenia." data-en="Repeating the same question should not always produce the same history-free reply. I am testing short conversational context and reactions to repetition.">Kolejne identyczne pytanie nie powinno zawsze generować identycznej, oderwanej od historii odpowiedzi. Testuję wykorzystanie krótkiego kontekstu rozmowy i reakcji na powtórzenia.</p>
+                  </article>
+
+                  <article class="card">
+                    <span class="tag" data-pl="Charakter" data-en="Personality">Charakter</span>
+                    <h3 data-pl="Sarkazm, ale nie automat do obrażania" data-en="Sarcasm, not an insult generator">Sarkazm, ale nie automat do obrażania</h3>
+                    <p data-pl="Kora ma mieć własny styl: czasem zgryźliwy, czasem zabawny, czasem całkiem normalny. Jeżeli każda odpowiedź byłaby żartem, po pięciu minutach przestałoby to być zabawne." data-en="Kora should have her own style: sometimes dry, sometimes funny and sometimes completely normal. If every reply were a joke, it would stop being funny after five minutes.">Kora ma mieć własny styl: czasem zgryźliwy, czasem zabawny, czasem całkiem normalny. Jeżeli każda odpowiedź byłaby żartem, po pięciu minutach przestałoby to być zabawne.</p>
+                  </article>
+
+                  <article class="card wide">
+                    <span class="tag" data-pl="Co to technicznie znaczy" data-en="What this means technically">Co to technicznie znaczy</span>
+                    <h3 data-pl="Nie trenuję modelu od zera" data-en="I am not training a foundation model from scratch">Nie trenuję modelu od zera</h3>
+                    <p data-pl="„Uczę Korę” to skrót myślowy. Pracuję nad lokalnymi modelami uruchamianymi przez Ollama oraz nad otaczającą je logiką: instrukcjami, kontekstem, pamięcią, normalizacją danych przed TTS i testami odpowiedzi. Celem jest zachowanie, które jest przewidywalne technicznie, ale nie brzmi mechanicznie." data-en="When I say I am 'teaching Kora', that is shorthand. I work with local models running through Ollama and the surrounding logic: instructions, context, memory, data normalisation before TTS and response testing. The goal is behaviour that is technically predictable without sounding mechanical.">„Uczę Korę” to skrót myślowy. Pracuję nad lokalnymi modelami uruchamianymi przez Ollama oraz nad otaczającą je logiką: instrukcjami, kontekstem, pamięcią, normalizacją danych przed TTS i testami odpowiedzi. Celem jest zachowanie, które jest przewidywalne technicznie, ale nie brzmi mechanicznie.</p>
+                  </article>
+                </div>
+
+                <div class="shell">
+                  <div class="note" data-pl="Aktualny cel: Kora ma nie tylko podać poprawną informację. Ma ją powiedzieć w sposób, który pasuje do sytuacji, języka i poprzednich kilku zdań rozmowy. To właśnie teraz dopracowuję." data-en="Current goal: Kora should not only return the correct information. She should say it in a way that fits the situation, the language and the previous few lines of conversation. That is the layer I am refining now.">Aktualny cel: Kora ma nie tylko podać poprawną informację. Ma ją powiedzieć w sposób, który pasuje do sytuacji, języka i poprzednich kilku zdań rozmowy. To właśnie teraz dopracowuję.</div>
+                </div>
+              </section>
+            </main>
+
+            <footer class="footer">
+              <div class="shell footer-inner">
+                <span>© 2026 Marcin — Maker Portfolio</span>
+                <a href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" data-pl="Kora na YouTube ↗" data-en="Kora on YouTube ↗">Kora na YouTube ↗</a>
+              </div>
+            </footer>
+
+            <script>
+              const langButton=document.getElementById('lang');
+              let language=localStorage.getItem('portfolio-language')||'pl';
+              function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-pl][data-en]').forEach(el=>{el.textContent=el.dataset[language]});langButton.textContent=language==='pl'?'PL / EN':'EN / PL';document.title=language==='pl'?'Mózg Kory — aktualny etap':'Kora brain — current stage';localStorage.setItem('portfolio-language',language)}
+              langButton.addEventListener('click',()=>{language=language==='pl'?'en':'pl';applyLanguage()});
+              applyLanguage();
+            </script>
+          </body>
+          </html>
+          '''
+          Path('kora-brain/index.html').write_text(page.strip() + '\n', encoding='utf-8')
+          print('kora-brain/index.html: created')
+          PY
+
+      - name: Commit only these small site changes
+        shell: bash
+        run: |
+          rm -f .github/workflows/add-kora-brain-link.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git status --short
+          git commit -m "Add Kora brain progress page and site links"
+          git push origin HEAD:main
