@@ -7,118 +7,17 @@
   <meta name="description" content="Kora Brain — portfolio systemu sterującego robotem Kora: głos PL/EN, lokalne modele, pamięć, nastrój, kamery, Hailo, LiDAR, sensory, Explore i kontekst całych zdań.">
   <title>Kora Brain — portfolio systemu</title>
   <style>
-    :root{
-      color-scheme:dark;
-      --bg:#070a0f;
-      --panel:#0e141c;
-      --panel2:#111925;
-      --text:#f4f7fb;
-      --muted:#9ba8b8;
-      --line:rgba(255,255,255,.11);
-      --mint:#6ee7c3;
-      --orange:#ff9d52;
-      --violet:#a28bff;
-      --blue:#71b7ff;
-      --red:#ff8e8e;
-      --green:#77e39f;
-      --yellow:#ffd166;
-      --radius:24px;
-      --shadow:0 24px 80px rgba(0,0,0,.28);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      min-width:300px;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 8% -5%,rgba(162,139,255,.18),transparent 31rem),
-        radial-gradient(circle at 92% 14%,rgba(110,231,195,.11),transparent 29rem),
-        radial-gradient(circle at 55% 70%,rgba(113,183,255,.07),transparent 34rem),
-        var(--bg);
-      line-height:1.58;
-    }
-    a{color:inherit}
-    .shell{width:min(1180px,calc(100% - 32px));margin-inline:auto}
-    .topbar{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);background:rgba(7,10,15,.82);backdrop-filter:blur(18px)}
-    .topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{font-weight:900;text-decoration:none;letter-spacing:-.02em}
-    .actions{display:flex;gap:8px;flex-wrap:wrap}
-    .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);text-decoration:none;color:var(--text);cursor:pointer;font:inherit}
-    .button:hover{border-color:rgba(110,231,195,.55);background:rgba(110,231,195,.08)}
-    .hero{padding:82px 0 42px}
-    .eyebrow{color:var(--mint);font-size:.78rem;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
-    .hero h1{max-width:980px;margin:17px 0 20px;font-size:clamp(2.8rem,7vw,6.8rem);line-height:.92;letter-spacing:-.065em}
-    .hero h1 .accent{color:var(--mint)}
-    .lead{max-width:900px;margin:0;color:var(--muted);font-size:clamp(1.05rem,1.8vw,1.28rem)}
-    .status-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}
-    .pill{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);color:#dce4ee;font-size:.83rem}
-    .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px rgba(110,231,195,.6)}
-    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;margin-top:38px}
-    .hero-card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(155deg,rgba(255,255,255,.06),rgba(255,255,255,.018));box-shadow:var(--shadow)}
-    .hero-card h2{margin:0 0 12px;font-size:1.35rem;letter-spacing:-.03em}
-    .pipeline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:16px}
-    .pipe{position:relative;padding:14px 10px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);text-align:center;font-size:.78rem;color:#dbe5f0}
-    .pipe:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--mint);z-index:2;font-weight:900}
-    .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-    .metric{padding:16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03)}
-    .metric strong{display:block;font-size:1.35rem;letter-spacing:-.04em}
-    .metric span{color:var(--muted);font-size:.8rem}
-    section{scroll-margin-top:84px}
-    .section{padding:38px 0}
-    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:20px}
-    .section-head h2{margin:0;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.055em}
-    .section-head p{max-width:600px;margin:0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,rgba(255,255,255,.052),rgba(255,255,255,.016));box-shadow:0 18px 55px rgba(0,0,0,.16)}
-    .card h3{margin:0 0 9px;font-size:1.28rem;letter-spacing:-.035em}
-    .card p{margin:0;color:var(--muted)}
-    .card .small{font-size:.88rem}
-    .wide{grid-column:1/-1}
-    .tag{display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:6px 9px;border-radius:999px;background:var(--mint);color:#07100d;font-size:.69rem;font-weight:950;letter-spacing:.07em;text-transform:uppercase}
-    .tag.orange{background:var(--orange);color:#160d05}
-    .tag.violet{background:var(--violet);color:#0d071c}
-    .tag.blue{background:var(--blue);color:#06101b}
-    .tag.gray{background:#8390a0;color:#081018}
-    .status{display:inline-flex;align-items:center;gap:7px;margin-top:15px;font-size:.78rem;font-weight:850;letter-spacing:.04em;text-transform:uppercase}
-    .status::before{content:"";width:8px;height:8px;border-radius:50%}
-    .working{color:var(--green)}.working::before{background:var(--green)}
-    .testing{color:var(--yellow)}.testing::before{background:var(--yellow)}
-    .progress{color:var(--blue)}.progress::before{background:var(--blue)}
-    .code-card{padding:0;overflow:hidden}
-    .code-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.035)}
-    .code-head strong{font-size:.92rem}
-    .copy{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;font:inherit;font-size:.72rem}
-    .copy:hover{color:var(--text);border-color:rgba(110,231,195,.45)}
-    pre{margin:0;padding:20px;overflow:auto;background:#06090d;color:#dce7f2;font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:4}
-    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-    .inline-code{padding:.12em .38em;border-radius:7px;background:rgba(255,255,255,.07);color:#eef4fa}
-    .code-note{padding:15px 18px;color:var(--muted);font-size:.86rem;border-top:1px solid var(--line)}
-    .dialog{display:grid;grid-template-columns:auto 1fr;gap:9px 12px;margin-top:16px;padding:18px;border:1px solid rgba(255,157,82,.28);border-radius:18px;background:rgba(255,157,82,.055)}
-    .speaker{font-weight:900;color:var(--orange)}
-    .answer{color:#dfe8f2}
-    .timeline{display:grid;gap:10px}
-    .timeline-item{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:17px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025)}
-    .timeline-item strong{color:var(--mint)}
-    .timeline-item p{margin:0;color:var(--muted)}
-    .safety{padding:21px;border:1px solid rgba(255,142,142,.28);border-radius:20px;background:rgba(255,142,142,.055)}
-    .safety strong{color:#ffc1c1}
-    .note{padding:21px;border:1px solid rgba(162,139,255,.32);border-radius:20px;background:rgba(162,139,255,.07);color:#dcd5ff}
-    .footer{padding:30px 0 54px;margin-top:44px;border-top:1px solid var(--line);color:var(--muted)}
-    .footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
-    .footer a{text-decoration:none}.footer a:hover{color:var(--mint)}
-    @media(max-width:960px){
-      .hero-grid,.grid.three{grid-template-columns:1fr 1fr}.pipeline{grid-template-columns:repeat(3,1fr)}
-      .pipe:nth-child(3)::after{display:none}
-    }
-    @media(max-width:720px){
-      .topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.actions{width:100%}.button{flex:1;font-size:.84rem;padding-inline:9px}
-      .hero{padding-top:48px}.hero-grid,.grid,.grid.three{grid-template-columns:1fr}.wide{grid-column:auto}
-      .pipeline{grid-template-columns:1fr 1fr}.pipe:nth-child(3)::after{display:block}.pipe:nth-child(even)::after{display:none}
-      .section-head{align-items:flex-start;flex-direction:column}.timeline-item{grid-template-columns:1fr;gap:4px}
-    }
+    :root{color-scheme:dark;--bg:#070a0f;--panel:#0e141c;--text:#f4f7fb;--muted:#9ba8b8;--line:rgba(255,255,255,.11);--mint:#6ee7c3;--orange:#ff9d52;--violet:#a28bff;--blue:#71b7ff;--red:#ff8e8e;--green:#77e39f;--yellow:#ffd166;--radius:24px;--shadow:0 24px 80px rgba(0,0,0,.28)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:300px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 8% -5%,rgba(162,139,255,.18),transparent 31rem),radial-gradient(circle at 92% 14%,rgba(110,231,195,.11),transparent 29rem),radial-gradient(circle at 55% 70%,rgba(113,183,255,.07),transparent 34rem),var(--bg);line-height:1.58}
+    a{color:inherit}.shell{width:min(1180px,calc(100% - 32px));margin-inline:auto}.topbar{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);background:rgba(7,10,15,.82);backdrop-filter:blur(18px)}.topbar-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:900;text-decoration:none;letter-spacing:-.02em}.actions{display:flex;gap:8px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);text-decoration:none;color:var(--text);cursor:pointer;font:inherit}.button:hover{border-color:rgba(110,231,195,.55);background:rgba(110,231,195,.08)}
+    .hero{padding:82px 0 42px}.eyebrow{color:var(--mint);font-size:.78rem;font-weight:950;letter-spacing:.15em;text-transform:uppercase}.hero h1{max-width:980px;margin:17px 0 20px;font-size:clamp(2.8rem,7vw,6.8rem);line-height:.92;letter-spacing:-.065em}.hero h1 .accent{color:var(--mint)}.lead{max-width:900px;margin:0;color:var(--muted);font-size:clamp(1.05rem,1.8vw,1.28rem)}.status-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.pill{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);color:#dce4ee;font-size:.83rem}.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px rgba(110,231,195,.6)}
+    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;margin-top:38px}.hero-card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(155deg,rgba(255,255,255,.06),rgba(255,255,255,.018));box-shadow:var(--shadow)}.hero-card h2{margin:0 0 12px;font-size:1.35rem;letter-spacing:-.03em}.pipeline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:16px}.pipe{position:relative;padding:14px 10px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);text-align:center;font-size:.78rem;color:#dbe5f0}.pipe:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--mint);z-index:2;font-weight:900}.metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{padding:16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03)}.metric strong{display:block;font-size:1.35rem;letter-spacing:-.04em}.metric span{color:var(--muted);font-size:.8rem}
+    section{scroll-margin-top:84px}.section{padding:38px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:20px}.section-head h2{margin:0;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.055em}.section-head p{max-width:600px;margin:0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.card{padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,rgba(255,255,255,.052),rgba(255,255,255,.016));box-shadow:0 18px 55px rgba(0,0,0,.16)}.card h3{margin:0 0 9px;font-size:1.28rem;letter-spacing:-.035em}.card p{margin:0;color:var(--muted)}.wide{grid-column:1/-1}.tag{display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;padding:6px 9px;border-radius:999px;background:var(--mint);color:#07100d;font-size:.69rem;font-weight:950;letter-spacing:.07em;text-transform:uppercase}.tag.orange{background:var(--orange);color:#160d05}.tag.violet{background:var(--violet);color:#0d071c}.tag.blue{background:var(--blue);color:#06101b}.status{display:inline-flex;align-items:center;gap:7px;margin-top:15px;font-size:.78rem;font-weight:850;letter-spacing:.04em;text-transform:uppercase}.status::before{content:"";width:8px;height:8px;border-radius:50%}.working{color:var(--green)}.working::before{background:var(--green)}.testing{color:var(--yellow)}.testing::before{background:var(--yellow)}.progress{color:var(--blue)}.progress::before{background:var(--blue)}
+    .maker-story{position:relative;overflow:hidden;padding:30px;border:1px solid rgba(255,157,82,.30);border-radius:28px;background:linear-gradient(135deg,rgba(255,157,82,.09),rgba(162,139,255,.07));box-shadow:var(--shadow)}.maker-story::after{content:"</>";position:absolute;right:22px;top:4px;font:900 5rem/1 ui-monospace,monospace;color:rgba(255,255,255,.045)}.maker-story h2{max-width:850px;margin:8px 0 14px;font-size:clamp(2rem,4.5vw,4rem);line-height:1;letter-spacing:-.055em}.maker-story p{max-width:900px;margin:0;color:#cbd5df;font-size:1.03rem}.maker-quote{margin-top:20px;padding:18px 20px;border-left:3px solid var(--orange);border-radius:0 16px 16px 0;background:rgba(0,0,0,.18);font-weight:750}.maker-foot{margin-top:14px;color:var(--muted);font-size:.9rem}
+    .code-card{padding:0;overflow:hidden}.code-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.035)}.code-head strong{font-size:.92rem}.copy{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;font:inherit;font-size:.72rem}.copy:hover{color:var(--text);border-color:rgba(110,231,195,.45)}pre{margin:0;padding:20px;overflow:auto;background:#06090d;color:#dce7f2;font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:4}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.inline-code{padding:.12em .38em;border-radius:7px;background:rgba(255,255,255,.07);color:#eef4fa}.code-note{padding:15px 18px;color:var(--muted);font-size:.86rem;border-top:1px solid var(--line)}
+    .dialog{display:grid;grid-template-columns:auto 1fr;gap:9px 12px;margin-top:16px;padding:18px;border:1px solid rgba(255,157,82,.28);border-radius:18px;background:rgba(255,157,82,.055)}.speaker{font-weight:900;color:var(--orange)}.answer{color:#dfe8f2}.timeline{display:grid;gap:10px}.timeline-item{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:17px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025)}.timeline-item strong{color:var(--mint)}.timeline-item p{margin:0;color:var(--muted)}.safety{padding:21px;border:1px solid rgba(255,142,142,.28);border-radius:20px;background:rgba(255,142,142,.055)}.safety strong{color:#ffc1c1}.note{padding:21px;border:1px solid rgba(162,139,255,.32);border-radius:20px;background:rgba(162,139,255,.07);color:#dcd5ff}.footer{padding:30px 0 54px;margin-top:44px;border-top:1px solid var(--line);color:var(--muted)}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer a{text-decoration:none}.footer a:hover{color:var(--mint)}
+    @media(max-width:960px){.hero-grid,.grid.three{grid-template-columns:1fr 1fr}.pipeline{grid-template-columns:repeat(3,1fr)}.pipe:nth-child(3)::after{display:none}}
+    @media(max-width:720px){.topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.actions{width:100%}.button{flex:1;font-size:.84rem;padding-inline:9px}.hero{padding-top:48px}.hero-grid,.grid,.grid.three{grid-template-columns:1fr}.wide{grid-column:auto}.pipeline{grid-template-columns:1fr 1fr}.pipe:nth-child(3)::after{display:block}.pipe:nth-child(even)::after{display:none}.section-head{align-items:flex-start;flex-direction:column}.timeline-item{grid-template-columns:1fr;gap:4px}.maker-story{padding:23px}.maker-story::after{font-size:3.4rem}}
   </style>
 </head>
 <body>
@@ -127,6 +26,7 @@
       <a class="brand" href="../">Marcin / Maker Portfolio</a>
       <div class="actions">
         <button class="button" id="lang" type="button">PL / EN</button>
+        <a class="button" href="#about" data-pl="O mnie" data-en="About">O mnie</a>
         <a class="button" href="#systems" data-pl="Systemy" data-en="Systems">Systemy</a>
         <a class="button" href="#code" data-pl="Proste kody" data-en="Simple code">Proste kody</a>
         <a class="button" href="../parts/#catalog" data-pl="Części" data-en="Parts">Części</a>
@@ -141,159 +41,65 @@
         <span class="eyebrow" data-pl="KORA / BRAIN SYSTEM · 15.08.2026" data-en="KORA / BRAIN SYSTEM · 15 AUG 2026">KORA / BRAIN SYSTEM · 15.08.2026</span>
         <h1 data-pl="To nie jest jeden model. To cały system Kory." data-en="It is not one model. It is Kora's whole system.">To nie jest jeden model. <span class="accent">To cały system Kory.</span></h1>
         <p class="lead" data-pl="Kora łączy lokalne modele językowe, rozpoznawanie mowy PL/EN, pamięć, nastrój, kamery, Hailo, LiDAR, sensory, własny routing komend i warstwę charakteru. Ta strona pokazuje, co już zbudowałem — od słowa „Kora” aż po reakcję robota." data-en="Kora combines local language models, PL/EN speech recognition, memory, mood, cameras, Hailo, LiDAR, sensors, custom command routing and a personality layer. This page shows what I have built so far — from the word 'Kora' to the robot's reaction.">Kora łączy lokalne modele językowe, rozpoznawanie mowy PL/EN, pamięć, nastrój, kamery, Hailo, LiDAR, sensory, własny routing komend i warstwę charakteru. Ta strona pokazuje, co już zbudowałem — od słowa „Kora” aż po reakcję robota.</p>
-
         <div class="status-row">
-          <span class="pill">Raspberry Pi 5</span>
-          <span class="pill">Ollama</span>
-          <span class="pill">Vosk PL / EN</span>
-          <span class="pill">Piper TTS</span>
-          <span class="pill">Hailo</span>
-          <span class="pill">RPLidar</span>
-          <span class="pill">ESP32 / C6</span>
-          <span class="pill" data-pl="Lokalnie" data-en="Local-first">Lokalnie</span>
+          <span class="pill">Raspberry Pi 5</span><span class="pill">Ollama</span><span class="pill">Vosk PL / EN</span><span class="pill">Piper TTS</span><span class="pill">Hailo</span><span class="pill">RPLidar</span><span class="pill">ESP32 / C6</span><span class="pill" data-pl="Lokalnie" data-en="Local-first">Lokalnie</span>
         </div>
-
         <div class="hero-grid">
           <div class="hero-card">
             <h2 data-pl="Przepływ jednej rozmowy" data-en="One conversation flow">Przepływ jednej rozmowy</h2>
-            <p class="lead" style="font-size:.98rem" data-pl="Najważniejsze jest połączenie warstw. Każda robi małą rzecz, a razem tworzą zachowanie Kory." data-en="The important part is how the layers connect. Each one does a small job; together they create Kora's behaviour.">Najważniejsze jest połączenie warstw. Każda robi małą rzecz, a razem tworzą zachowanie Kory.</p>
-            <div class="pipeline">
-              <div class="pipe" data-pl="Mikrofony" data-en="Microphones">Mikrofony</div>
-              <div class="pipe">Wake + Vosk</div>
-              <div class="pipe" data-pl="Routing" data-en="Routing">Routing</div>
-              <div class="pipe" data-pl="Model / pamięć" data-en="Model / memory">Model / pamięć</div>
-              <div class="pipe" data-pl="Nastrój" data-en="Mood">Nastrój</div>
-              <div class="pipe">TTS / Robot</div>
-            </div>
+            <p class="lead" style="font-size:.98rem" data-pl="Każda warstwa robi małą rzecz. Razem tworzą zachowanie Kory." data-en="Each layer does a small job. Together they create Kora's behaviour.">Każda warstwa robi małą rzecz. Razem tworzą zachowanie Kory.</p>
+            <div class="pipeline"><div class="pipe" data-pl="Mikrofony" data-en="Microphones">Mikrofony</div><div class="pipe">Wake + Vosk</div><div class="pipe">Routing</div><div class="pipe" data-pl="Model / pamięć" data-en="Model / memory">Model / pamięć</div><div class="pipe" data-pl="Nastrój" data-en="Mood">Nastrój</div><div class="pipe">TTS / Robot</div></div>
           </div>
+          <div class="hero-card"><div class="metric-grid"><div class="metric"><strong>PL + EN</strong><span data-pl="dwa tory mowy" data-en="two speech paths">dwa tory mowy</span></div><div class="metric"><strong>2×</strong><span>IMX708</span></div><div class="metric"><strong>LiDAR</strong><span data-pl="mapowanie" data-en="mapping">mapowanie</span></div><div class="metric"><strong>Local</strong><span data-pl="modele na Pi" data-en="models on Pi">modele na Pi</span></div></div></div>
+        </div>
+      </div>
+    </section>
 
-          <div class="hero-card">
-            <div class="metric-grid">
-              <div class="metric"><strong>PL + EN</strong><span data-pl="dwa tory mowy" data-en="two speech paths">dwa tory mowy</span></div>
-              <div class="metric"><strong>2×</strong><span data-pl="kamery IMX708" data-en="IMX708 cameras">kamery IMX708</span></div>
-              <div class="metric"><strong>LiDAR</strong><span data-pl="mapowanie otoczenia" data-en="environment mapping">mapowanie otoczenia</span></div>
-              <div class="metric"><strong>Local</strong><span data-pl="modele na Pi" data-en="models on Pi">modele na Pi</span></div>
-            </div>
-          </div>
+    <section class="section" id="about">
+      <div class="shell">
+        <div class="maker-story">
+          <span class="eyebrow" data-pl="O mnie · bez ściemy" data-en="About me · no pretending">O mnie · bez ściemy</span>
+          <h2 data-pl="Nie jestem inżynierem. Po prostu od lat buduję rzeczy." data-en="I am not an engineer. I have simply been building things for years.">Nie jestem inżynierem. Po prostu od lat buduję rzeczy.</h2>
+          <p data-pl="Nie mam dyplomu inżyniera ani ukończonych studiów technicznych. Elektroniki, CNC, programowania i robotyki uczyłem się przez robienie: projekt, błąd, spalona płytka, poprawka, kolejna wersja. Nie próbuję udawać laboratorium NASA — pokazuję prawdziwy projekt i to, czego nauczyłem się po drodze." data-en="I do not have an engineering degree or a completed technical university programme. I learned electronics, CNC, programming and robotics by doing: project, mistake, burnt board, fix, next version. I am not pretending this is a NASA lab — I am showing a real project and what I learned along the way.">Nie mam dyplomu inżyniera ani ukończonych studiów technicznych. Elektroniki, CNC, programowania i robotyki uczyłem się przez robienie: projekt, błąd, spalona płytka, poprawka, kolejna wersja. Nie próbuję udawać laboratorium NASA — pokazuję prawdziwy projekt i to, czego nauczyłem się po drodze.</p>
+          <div class="maker-quote" data-pl="Landlord nie pozwala mi mieć psa. Więc zbudowałem Korę. Pies prawdopodobnie byłby tańszy — i raczej nie potrzebowałby LiDAR-u, Raspberry Pi 5 i osiemnastu serw." data-en="My landlord will not let me have a dog. So I built Kora. A dog would probably have been cheaper — and it probably would not need LiDAR, a Raspberry Pi 5 and eighteen servos.">Landlord nie pozwala mi mieć psa. Więc zbudowałem Korę. Pies prawdopodobnie byłby tańszy — i raczej nie potrzebowałby LiDAR-u, Raspberry Pi 5 i osiemnastu serw.</div>
+          <div class="maker-foot" data-pl="Nie chodzi o tytuł przed nazwiskiem. Chodzi o to, żeby następna wersja działała lepiej niż poprzednia." data-en="It is not about a title before my name. It is about making the next version work better than the previous one.">Nie chodzi o tytuł przed nazwiskiem. Chodzi o to, żeby następna wersja działała lepiej niż poprzednia.</div>
         </div>
       </div>
     </section>
 
     <section class="section" id="systems">
       <div class="shell">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow" data-pl="Co już działa" data-en="What already works">Co już działa</span>
-            <h2 data-pl="Mózg jest większy niż chatbot" data-en="The brain is bigger than a chatbot">Mózg jest większy niż chatbot</h2>
-          </div>
-          <p data-pl="Nie pokazuję tu listy bibliotek. Pokazuję funkcje, które realnie składają się na zachowanie robota." data-en="This is not a dependency list. These are the functions that actually combine into the robot's behaviour.">Nie pokazuję tu listy bibliotek. Pokazuję funkcje, które realnie składają się na zachowanie robota.</p>
-        </div>
-
+        <div class="section-head"><div><span class="eyebrow" data-pl="Co już działa" data-en="What already works">Co już działa</span><h2 data-pl="Mózg jest większy niż chatbot" data-en="The brain is bigger than a chatbot">Mózg jest większy niż chatbot</h2></div><p data-pl="Nie lista bibliotek, tylko funkcje, które realnie składają się na zachowanie robota." data-en="Not a dependency list — the functions that actually combine into the robot's behaviour.">Nie lista bibliotek, tylko funkcje, które realnie składają się na zachowanie robota.</p></div>
         <div class="grid three">
-          <article class="card">
-            <span class="tag">Voice</span>
-            <h3 data-pl="Wake-word + XVF3800" data-en="Wake word + XVF3800">Wake-word + XVF3800</h3>
-            <p data-pl="Kora używa macierzy mikrofonowej reSpeaker XVF3800. Dedykowany kanał ASR trafia do Vosk, który czeka na wake-word „Kora”, a później otwiera okno na właściwą komendę." data-en="Kora uses a reSpeaker XVF3800 microphone array. A dedicated ASR channel feeds Vosk, which waits for the wake word 'Kora' and then opens a window for the actual command.">Kora używa macierzy mikrofonowej reSpeaker XVF3800. Dedykowany kanał ASR trafia do Vosk, który czeka na wake-word „Kora”, a później otwiera okno na właściwą komendę.</p>
-            <div class="status working" data-pl="Działa · trwa strojenie czułości" data-en="Working · sensitivity tuning ongoing">Działa · trwa strojenie czułości</div>
-          </article>
-
-          <article class="card">
-            <span class="tag blue">PL / EN</span>
-            <h3 data-pl="Dwa języki w jednym systemie" data-en="Two languages in one system">Dwa języki w jednym systemie</h3>
-            <p data-pl="Komendy są dekodowane po polsku i angielsku. Język odpowiedzi jest zsynchronizowany z ustawieniem Kory, a proste intencje mogą ominąć cięższy model." data-en="Commands are decoded in Polish and English. The reply language follows Kora's language state, while simple intents can bypass the heavier model.">Komendy są dekodowane po polsku i angielsku. Język odpowiedzi jest zsynchronizowany z ustawieniem Kory, a proste intencje mogą ominąć cięższy model.</p>
-            <div class="status progress" data-pl="Działa · wyrównywanie EN trwa" data-en="Working · EN parity still in progress">Działa · wyrównywanie EN trwa</div>
-          </article>
-
-          <article class="card">
-            <span class="tag violet">Local models</span>
-            <h3 data-pl="Modele uruchamiane lokalnie" data-en="Locally hosted models">Modele uruchamiane lokalnie</h3>
-            <p data-pl="Rozmowa i analiza obrazu mogą działać na lokalnych modelach uruchamianych przez Ollama. Dzięki temu routing, pamięć i sensory mogą dostarczać modelowi aktualny kontekst robota." data-en="Conversation and visual analysis can run on local models through Ollama. Routing, memory and sensors can therefore provide the model with the robot's current context.">Rozmowa i analiza obrazu mogą działać na lokalnych modelach uruchamianych przez Ollama. Dzięki temu routing, pamięć i sensory mogą dostarczać modelowi aktualny kontekst robota.</p>
-            <div class="status working" data-pl="Działa" data-en="Working">Działa</div>
-          </article>
-
-          <article class="card">
-            <span class="tag orange">Mood</span>
-            <h3 data-pl="Stan i charakter" data-en="State and personality">Stan i charakter</h3>
-            <p data-pl="Kora ma stan obejmujący m.in. humor, pobudzenie, ciekawość i sarkazm. Nastrój może wpływać na sposób odpowiedzi i ton głosu, ale nie powinien zmieniać technicznego rozpoznania intencji." data-en="Kora maintains state such as humour, arousal, curiosity and sarcasm. Mood can affect reply style and voice tone, but it should not change technical intent recognition.">Kora ma stan obejmujący m.in. humor, pobudzenie, ciekawość i sarkazm. Nastrój może wpływać na sposób odpowiedzi i ton głosu, ale nie powinien zmieniać technicznego rozpoznania intencji.</p>
-            <div class="status working" data-pl="Działa" data-en="Working">Działa</div>
-          </article>
-
-          <article class="card">
-            <span class="tag">Memory</span>
-            <h3 data-pl="Pamięć zdarzeń i kontekst" data-en="Event memory and context">Pamięć zdarzeń i kontekst</h3>
-            <p data-pl="System zapisuje zdarzenia i potrafi wykorzystywać wcześniejszy kontekst w odpowiedziach. Jest też warstwa eksperymentalnych „snów”, która pracuje na zapisanych doświadczeniach." data-en="The system stores events and can use earlier context in replies. There is also an experimental 'dream' layer operating on stored experiences.">System zapisuje zdarzenia i potrafi wykorzystywać wcześniejszy kontekst w odpowiedziach. Jest też warstwa eksperymentalnych „snów”, która pracuje na zapisanych doświadczeniach.</p>
-            <div class="status progress" data-pl="Działa · rozwijane" data-en="Working · still evolving">Działa · rozwijane</div>
-          </article>
-
-          <article class="card">
-            <span class="tag orange">Sentence context</span>
-            <h3 data-pl="Rozumienie mimo błędu STT" data-en="Understanding through STT errors">Rozumienie mimo błędu STT</h3>
-            <p data-pl="Nowa warstwa porównuje całe zdanie i słowa niosące znaczenie. Cel: jedno przekręcone słowo nie może zniszczyć sensu wypowiedzi, ale podobna gramatyka o innym temacie ma zostać odrzucona." data-en="A new layer compares the whole sentence and meaning-bearing words. The goal: one mangled word should not destroy meaning, while similar grammar about a different subject must still be rejected.">Nowa warstwa porównuje całe zdanie i słowa niosące znaczenie. Cel: jedno przekręcone słowo nie może zniszczyć sensu wypowiedzi, ale podobna gramatyka o innym temacie ma zostać odrzucona.</p>
-            <div class="status testing" data-pl="W testach głosowych" data-en="Voice testing">W testach głosowych</div>
-          </article>
+          <article class="card"><span class="tag">Voice</span><h3>Wake-word + XVF3800</h3><p data-pl="reSpeaker XVF3800 dostarcza dedykowany kanał ASR. Vosk czeka na słowo „Kora”, a potem otwiera okno na właściwą komendę." data-en="reSpeaker XVF3800 provides a dedicated ASR channel. Vosk waits for 'Kora' and then opens the window for the actual command.">reSpeaker XVF3800 dostarcza dedykowany kanał ASR. Vosk czeka na słowo „Kora”, a potem otwiera okno na właściwą komendę.</p><div class="status progress" data-pl="Działa · strojenie wake trwa" data-en="Working · wake tuning ongoing">Działa · strojenie wake trwa</div></article>
+          <article class="card"><span class="tag blue">PL / EN</span><h3 data-pl="Dwa języki w jednym systemie" data-en="Two languages in one system">Dwa języki w jednym systemie</h3><p data-pl="Komendy są dekodowane po polsku i angielsku. Język odpowiedzi jest synchronizowany ze stanem Kory, a proste intencje mogą ominąć cięższy model." data-en="Commands are decoded in Polish and English. Reply language follows Kora's state and simple intents can bypass the heavier model.">Komendy są dekodowane po polsku i angielsku. Język odpowiedzi jest synchronizowany ze stanem Kory, a proste intencje mogą ominąć cięższy model.</p><div class="status progress" data-pl="Działa · EN nadal rozwijane" data-en="Working · EN still evolving">Działa · EN nadal rozwijane</div></article>
+          <article class="card"><span class="tag violet">Local models</span><h3 data-pl="Modele uruchamiane lokalnie" data-en="Locally hosted models">Modele uruchamiane lokalnie</h3><p data-pl="Rozmowa i analiza obrazu mogą działać na lokalnych modelach przez Ollama, z kontekstem dostarczanym przez routing, pamięć i sensory." data-en="Conversation and visual analysis can run locally through Ollama with context from routing, memory and sensors.">Rozmowa i analiza obrazu mogą działać na lokalnych modelach przez Ollama, z kontekstem dostarczanym przez routing, pamięć i sensory.</p><div class="status working" data-pl="Działa" data-en="Working">Działa</div></article>
+          <article class="card"><span class="tag orange">Mood</span><h3 data-pl="Stan i charakter" data-en="State and personality">Stan i charakter</h3><p data-pl="Humor, pobudzenie, ciekawość i sarkazm mogą zmieniać charakter odpowiedzi oraz ton głosu. Nastrój nie powinien decydować, czy intencja została rozpoznana." data-en="Humour, arousal, curiosity and sarcasm can shape the reply and voice tone. Mood should not decide whether an intent was recognised.">Humor, pobudzenie, ciekawość i sarkazm mogą zmieniać charakter odpowiedzi oraz ton głosu. Nastrój nie powinien decydować, czy intencja została rozpoznana.</p><div class="status working" data-pl="Działa" data-en="Working">Działa</div></article>
+          <article class="card"><span class="tag">Memory</span><h3 data-pl="Pamięć i kontekst" data-en="Memory and context">Pamięć i kontekst</h3><p data-pl="System zapisuje zdarzenia i wykorzystuje wcześniejszy kontekst. Istnieje też eksperymentalna warstwa „snów”, pracująca na zapisanych doświadczeniach." data-en="The system stores events and uses earlier context. An experimental 'dream' layer also works on stored experiences.">System zapisuje zdarzenia i wykorzystuje wcześniejszy kontekst. Istnieje też eksperymentalna warstwa „snów”, pracująca na zapisanych doświadczeniach.</p><div class="status progress" data-pl="Działa · rozwijane" data-en="Working · evolving">Działa · rozwijane</div></article>
+          <article class="card"><span class="tag orange">Sentence context</span><h3 data-pl="Rozumienie mimo błędu STT" data-en="Understanding through STT errors">Rozumienie mimo błędu STT</h3><p data-pl="Nowa warstwa porównuje całe zdanie i słowa niosące znaczenie. Jedno przekręcone słowo nie powinno zniszczyć sensu, ale inne pytanie nie może zostać zgadnięte na siłę." data-en="A new layer compares the whole sentence and meaning-bearing words. One mangled word should not destroy meaning, but a genuinely different question must not be forced into a match.">Nowa warstwa porównuje całe zdanie i słowa niosące znaczenie. Jedno przekręcone słowo nie powinno zniszczyć sensu, ale inne pytanie nie może zostać zgadnięte na siłę.</p><div class="status testing" data-pl="W testach głosowych" data-en="Voice testing">W testach głosowych</div></article>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="shell">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow" data-pl="Percepcja" data-en="Perception">Percepcja</span>
-            <h2 data-pl="Kora nie tylko słucha" data-en="Kora does more than listen">Kora nie tylko słucha</h2>
-          </div>
-          <p data-pl="Mózg dostaje dane z kamer i sensorów, więc odpowiedź może odnosić się do tego, co robot rzeczywiście widzi lub mierzy." data-en="The brain receives camera and sensor data, so a reply can refer to what the robot actually sees or measures.">Mózg dostaje dane z kamer i sensorów, więc odpowiedź może odnosić się do tego, co robot rzeczywiście widzi lub mierzy.</p>
-        </div>
-
+        <div class="section-head"><div><span class="eyebrow" data-pl="Percepcja" data-en="Perception">Percepcja</span><h2 data-pl="Kora nie tylko słucha" data-en="Kora does more than listen">Kora nie tylko słucha</h2></div><p data-pl="Kamery i sensory dają systemowi dane o prawdziwym otoczeniu." data-en="Cameras and sensors give the system data about the real environment.">Kamery i sensory dają systemowi dane o prawdziwym otoczeniu.</p></div>
         <div class="grid">
-          <article class="card">
-            <span class="tag blue">Vision</span>
-            <h3 data-pl="Dwie kamery IMX708" data-en="Two IMX708 cameras">Dwie kamery IMX708</h3>
-            <p data-pl="Kamera dzienna i szerokokątna NoIR dają dwa różne obrazy świata. NoIR może pracować z podświetleniem IR, a warstwa wizyjna potrafi robić zdjęcia i przekazywać scenę do analizy." data-en="A daylight camera and a wide NoIR camera provide two different views of the world. NoIR can work with IR illumination, while the vision layer can capture images and pass scenes for analysis.">Kamera dzienna i szerokokątna NoIR dają dwa różne obrazy świata. NoIR może pracować z podświetleniem IR, a warstwa wizyjna potrafi robić zdjęcia i przekazywać scenę do analizy.</p>
-            <div class="status working" data-pl="Działa" data-en="Working">Działa</div>
-          </article>
-
-          <article class="card">
-            <span class="tag violet">Hailo</span>
-            <h3 data-pl="Akceleracja widzenia" data-en="Vision acceleration">Akceleracja widzenia</h3>
-            <p data-pl="Hailo jest używane do lokalnej detekcji i śledzenia. Dzięki temu część percepcji może działać niezależnie od dużego modelu językowego." data-en="Hailo is used for local detection and tracking. This lets part of the perception stack operate independently from the large language model.">Hailo jest używane do lokalnej detekcji i śledzenia. Dzięki temu część percepcji może działać niezależnie od dużego modelu językowego.</p>
-            <div class="status working" data-pl="Działa" data-en="Working">Działa</div>
-          </article>
-
-          <article class="card">
-            <span class="tag">LiDAR</span>
-            <h3 data-pl="RPLidar + mapa otoczenia" data-en="RPLidar + environment map">RPLidar + mapa otoczenia</h3>
-            <p data-pl="RPLidar dostarcza chmurę punktów i odległości wokół robota. Dane są używane do mapy, kierunków i oceny najbliższych przeszkód." data-en="RPLidar provides a point cloud and distances around the robot. The data is used for mapping, direction and nearest-obstacle awareness.">RPLidar dostarcza chmurę punktów i odległości wokół robota. Dane są używane do mapy, kierunków i oceny najbliższych przeszkód.</p>
-            <div class="status working" data-pl="Działa" data-en="Working">Działa</div>
-          </article>
-
-          <article class="card">
-            <span class="tag orange">Explore</span>
-            <h3 data-pl="„Kora, pozwiedzaj”" data-en="“Kora, start exploring”">„Kora, pozwiedzaj”</h3>
-            <p data-pl="Tryb Explore łączy pozycję szyi, VL53L1X, LiDAR, kamery i komentarz głosowy. To przykład funkcji, w której kilka podsystemów musi zadziałać w prawidłowej kolejności." data-en="Explore combines neck pose, VL53L1X, LiDAR, cameras and a spoken comment. It is an example of a feature where several subsystems must work in the correct order.">Tryb Explore łączy pozycję szyi, VL53L1X, LiDAR, kamery i komentarz głosowy. To przykład funkcji, w której kilka podsystemów musi zadziałać w prawidłowej kolejności.</p>
-            <div class="status working" data-pl="Działa PL / EN" data-en="Working PL / EN">Działa PL / EN</div>
-          </article>
+          <article class="card"><span class="tag blue">Vision</span><h3 data-pl="Dwie kamery IMX708" data-en="Two IMX708 cameras">Dwie kamery IMX708</h3><p data-pl="Kamera dzienna i szerokokątna NoIR. NoIR może pracować z podświetleniem IR, a warstwa wizyjna wykonuje zdjęcia i przekazuje scenę do analizy." data-en="A daylight camera and a wide NoIR camera. NoIR can use IR illumination and the vision layer captures images for scene analysis.">Kamera dzienna i szerokokątna NoIR. NoIR może pracować z podświetleniem IR, a warstwa wizyjna wykonuje zdjęcia i przekazuje scenę do analizy.</p><div class="status working" data-pl="Działa" data-en="Working">Działa</div></article>
+          <article class="card"><span class="tag violet">Hailo</span><h3 data-pl="Lokalna detekcja i śledzenie" data-en="Local detection and tracking">Lokalna detekcja i śledzenie</h3><p data-pl="Hailo obsługuje część percepcji niezależnie od dużego modelu językowego." data-en="Hailo handles part of perception independently from the large language model.">Hailo obsługuje część percepcji niezależnie od dużego modelu językowego.</p><div class="status working" data-pl="Działa" data-en="Working">Działa</div></article>
+          <article class="card"><span class="tag">LiDAR</span><h3>RPLidar + VL53L1X</h3><p data-pl="LiDAR dostarcza chmurę punktów, a VL53L1X szybką odległość z przodu. Dane pomagają ocenić przeszkody i otoczenie." data-en="LiDAR provides a point cloud while VL53L1X gives a fast front distance. Together they help assess obstacles and surroundings.">LiDAR dostarcza chmurę punktów, a VL53L1X szybką odległość z przodu. Dane pomagają ocenić przeszkody i otoczenie.</p><div class="status working" data-pl="Działa" data-en="Working">Działa</div></article>
+          <article class="card"><span class="tag orange">Explore</span><h3 data-pl="„Kora, pozwiedzaj”" data-en="“Kora, start exploring”">„Kora, pozwiedzaj”</h3><p data-pl="Explore łączy pozycję szyi, VL53L1X, LiDAR, kamery i komentarz głosowy w jednej sekwencji." data-en="Explore combines neck pose, VL53L1X, LiDAR, cameras and a spoken comment in one sequence.">Explore łączy pozycję szyi, VL53L1X, LiDAR, kamery i komentarz głosowy w jednej sekwencji.</p><div class="status working" data-pl="Działa PL / EN" data-en="Working PL / EN">Działa PL / EN</div></article>
         </div>
       </div>
     </section>
 
     <section class="section" id="code">
       <div class="shell">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow" data-pl="Proste kody" data-en="Simple code">Proste kody</span>
-            <h2 data-pl="Jak wygląda logika bez 7000 linii" data-en="What the logic looks like without 7,000 lines">Jak wygląda logika bez 7000 linii</h2>
-          </div>
-          <p data-pl="To są celowo uproszczone przykłady pokazujące ideę. Produkcyjny kod Kory ma więcej zabezpieczeń, logowania, testów i obsługi błędów." data-en="These are deliberately simplified examples showing the idea. Kora's production code contains more safety checks, logging, tests and error handling.">To są celowo uproszczone przykłady pokazujące ideę. Produkcyjny kod Kory ma więcej zabezpieczeń, logowania, testów i obsługi błędów.</p>
-        </div>
-
+        <div class="section-head"><div><span class="eyebrow" data-pl="Proste kody" data-en="Simple code">Proste kody</span><h2 data-pl="Jak wygląda logika bez 7000 linii" data-en="What the logic looks like without 7,000 lines">Jak wygląda logika bez 7000 linii</h2></div><p data-pl="Celowo uproszczone przykłady pokazujące ideę. Produkcja ma więcej zabezpieczeń, logowania i testów." data-en="Deliberately simplified examples showing the idea. Production code has more safety checks, logging and tests.">Celowo uproszczone przykłady pokazujące ideę. Produkcja ma więcej zabezpieczeń, logowania i testów.</p></div>
         <div class="grid">
-          <article class="card code-card">
-            <div class="code-head"><strong data-pl="1. Wake-word: słuchaj tylko „Kora”" data-en="1. Wake word: listen only for “Kora”">1. Wake-word: słuchaj tylko „Kora”</strong><button class="copy" type="button" data-copy>Copy</button></div>
-            <pre><code>from vosk import KaldiRecognizer
+          <article class="card code-card"><div class="code-head"><strong data-pl="1. Wake-word" data-en="1. Wake word">1. Wake-word</strong><button class="copy" type="button" data-copy>Copy</button></div><pre><code>from vosk import KaldiRecognizer
 
 WAKE_WORDS = ["kora"]
-
 wake = KaldiRecognizer(model_pl, 16000)
 wake.SetGrammar(json.dumps(WAKE_WORDS))
 wake.SetWords(False)
@@ -301,209 +107,71 @@ wake.SetWords(False)
 if wake.AcceptWaveform(audio):
     text = json.loads(wake.Result())["text"]
     if text == "kora":
-        open_command_window()</code></pre>
-            <div class="code-note" data-pl="Idea: osobny, bardzo mały recognizer do wybudzenia. Właściwe zdanie jest dekodowane dopiero później." data-en="Idea: a separate, very small recognizer handles wake-up. The actual sentence is decoded afterwards.">Idea: osobny, bardzo mały recognizer do wybudzenia. Właściwe zdanie jest dekodowane dopiero później.</div>
-          </article>
-
-          <article class="card code-card">
-            <div class="code-head"><strong data-pl="2. Dwa języki — wybierz lepsze rozpoznanie" data-en="2. Two languages — choose the better recognition">2. Dwa języki — wybierz lepsze rozpoznanie</strong><button class="copy" type="button" data-copy>Copy</button></div>
-            <pre><code>pl_text, pl_conf = decode_pl(audio)
+        open_command_window()</code></pre><div class="code-note" data-pl="Mały recognizer pilnuje tylko wybudzenia. Właściwe zdanie jest dekodowane później." data-en="A small recognizer handles only wake-up. The actual sentence is decoded afterwards.">Mały recognizer pilnuje tylko wybudzenia. Właściwe zdanie jest dekodowane później.</div></article>
+          <article class="card code-card"><div class="code-head"><strong data-pl="2. PL / EN" data-en="2. PL / EN">2. PL / EN</strong><button class="copy" type="button" data-copy>Copy</button></div><pre><code>pl_text, pl_conf = decode_pl(audio)
 en_text, en_conf = decode_en(audio)
 
-if current_language == "en":
-    command = en_text
-else:
-    command = pl_text
-
-handle_command(command)</code></pre>
-            <div class="code-note" data-pl="W prawdziwej wersji jest więcej reguł: confidence, aliasy ASR, wake-prefix, tryb TFT i fallback." data-en="The real version adds more rules: confidence, ASR aliases, wake-prefix handling, TFT language state and fallback.">W prawdziwej wersji jest więcej reguł: confidence, aliasy ASR, wake-prefix, tryb TFT i fallback.</div>
-          </article>
-
-          <article class="card code-card">
-            <div class="code-head"><strong data-pl="3. Całe zdanie zamiast jednego słowa" data-en="3. Whole sentence instead of one word">3. Całe zdanie zamiast jednego słowa</strong><button class="copy" type="button" data-copy>Copy</button></div>
-            <pre><code>from difflib import SequenceMatcher
+command = en_text if current_language == "en" else pl_text
+handle_command(command)</code></pre><div class="code-note" data-pl="Produkcja dodaje confidence, aliasy ASR, wake-prefix, TFT i fallback." data-en="Production adds confidence, ASR aliases, wake-prefix handling, TFT state and fallback.">Produkcja dodaje confidence, aliasy ASR, wake-prefix, TFT i fallback.</div></article>
+          <article class="card code-card"><div class="code-head"><strong data-pl="3. Całe zdanie" data-en="3. Whole sentence">3. Całe zdanie</strong><button class="copy" type="button" data-copy>Copy</button></div><pre><code>from difflib import SequenceMatcher
 
 def similarity(spoken, target):
-    return SequenceMatcher(
-        None,
-        spoken.lower(),
-        target.lower()
-    ).ratio()
+    return SequenceMatcher(None, spoken.lower(), target.lower()).ratio()
 
 spoken = "what du u think abaut new battery"
 target = "what do you think about the new battery"
 
 if similarity(spoken, target) &gt; 0.70:
-    intent = "new_battery"</code></pre>
-            <div class="code-note" data-pl="Produkcja idzie dalej: porównuje też słowa niosące znaczenie i blokuje podobne gramatycznie zdania o innym temacie." data-en="Production goes further: it also compares meaning-bearing words and blocks grammatically similar sentences about a different subject.">Produkcja idzie dalej: porównuje też słowa niosące znaczenie i blokuje podobne gramatycznie zdania o innym temacie.</div>
-          </article>
-
-          <article class="card code-card">
-            <div class="code-head"><strong data-pl="4. Nastrój wpływa na odpowiedź" data-en="4. Mood affects the reply">4. Nastrój wpływa na odpowiedź</strong><button class="copy" type="button" data-copy>Copy</button></div>
-            <pre><code>state = {
-    "humor": 92,
-    "curiosity": 96,
-    "sarcasm": 100
-}
+    intent = "new_battery"</code></pre><div class="code-note" data-pl="Prawdziwy matcher dodatkowo patrzy na słowa niosące znaczenie i blokuje false positives." data-en="The real matcher also checks meaning-bearing words and blocks false positives.">Prawdziwy matcher dodatkowo patrzy na słowa niosące znaczenie i blokuje false positives.</div></article>
+          <article class="card code-card"><div class="code-head"><strong data-pl="4. Mood" data-en="4. Mood">4. Mood</strong><button class="copy" type="button" data-copy>Copy</button></div><pre><code>state = {"humor": 92, "curiosity": 96, "sarcasm": 100}
 
 if state["sarcasm"] &gt; 80:
     reply = sarcastic_reply(intent)
 else:
-    reply = normal_reply(intent)</code></pre>
-            <div class="code-note" data-pl="Kluczowa zasada: nastrój zmienia charakter odpowiedzi, nie to, czy Kora rozpoznała intencję." data-en="Key rule: mood changes the character of the reply, not whether Kora recognised the intent.">Kluczowa zasada: nastrój zmienia charakter odpowiedzi, nie to, czy Kora rozpoznała intencję.</div>
-          </article>
-
-          <article class="card code-card">
-            <div class="code-head"><strong data-pl="5. Explore: kilka sensorów, jedna decyzja" data-en="5. Explore: several sensors, one decision">5. Explore: kilka sensorów, jedna decyzja</strong><button class="copy" type="button" data-copy>Copy</button></div>
-            <pre><code>neck.move(pan=90, tilt=0)
-
+    reply = normal_reply(intent)</code></pre><div class="code-note" data-pl="Nastrój zmienia charakter odpowiedzi, nie rozpoznanie intencji." data-en="Mood changes the character of the reply, not intent recognition.">Nastrój zmienia charakter odpowiedzi, nie rozpoznanie intencji.</div></article>
+          <article class="card code-card"><div class="code-head"><strong>5. Explore</strong><button class="copy" type="button" data-copy>Copy</button></div><pre><code>neck.move(pan=90, tilt=0)
 distance = vl53.read_cm()
 points = lidar.scan(seconds=4)
 photos = cameras.capture()
-
-scene = analyse(
-    distance=distance,
-    lidar=points,
-    photos=photos
-)
-
-voice.say(comment(scene))</code></pre>
-            <div class="code-note" data-pl="W realnym Explore dochodzą timeouty, dead-zone, kolejność aktywacji, ochrona ruchu i logowanie." data-en="The real Explore flow also includes timeouts, dead zones, activation order, movement safety and logging.">W realnym Explore dochodzą timeouty, dead-zone, kolejność aktywacji, ochrona ruchu i logowanie.</div>
-          </article>
-
-          <article class="card code-card">
-            <div class="code-head"><strong data-pl="6. Pamięć zdarzenia" data-en="6. Event memory">6. Pamięć zdarzenia</strong><button class="copy" type="button" data-copy>Copy</button></div>
-            <pre><code>event = {
-    "type": "observation",
-    "source": "camera",
-    "text": "Marcin is working at the bench"
-}
-
+scene = analyse(distance=distance, lidar=points, photos=photos)
+voice.say(comment(scene))</code></pre><div class="code-note" data-pl="Produkcja ma timeouty, dead-zone, kolejność aktywacji, safety i logowanie." data-en="Production adds timeouts, dead zones, activation order, safety and logging.">Produkcja ma timeouty, dead-zone, kolejność aktywacji, safety i logowanie.</div></article>
+          <article class="card code-card"><div class="code-head"><strong data-pl="6. Pamięć" data-en="6. Memory">6. Pamięć</strong><button class="copy" type="button" data-copy>Copy</button></div><pre><code>event = {"type": "observation", "source": "camera", "text": "Marcin is working at the bench"}
 memory.save(event)
-
 recent = memory.recent(limit=5)
-answer = model.ask(question, context=recent)</code></pre>
-            <div class="code-note" data-pl="Idea: model nie musi dostawać całego życia Kory — tylko kontekst potrzebny w danym momencie." data-en="Idea: the model does not need Kora's entire history — only the context needed at that moment.">Idea: model nie musi dostawać całego życia Kory — tylko kontekst potrzebny w danym momencie.</div>
-          </article>
+answer = model.ask(question, context=recent)</code></pre><div class="code-note" data-pl="Model dostaje potrzebny kontekst, a nie całe życie Kory naraz." data-en="The model gets the needed context, not Kora's entire history at once.">Model dostaje potrzebny kontekst, a nie całe życie Kory naraz.</div></article>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="shell">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow" data-pl="Charakter" data-en="Personality">Charakter</span>
-            <h2 data-pl="Kora nie ma brzmieć jak sekretarka" data-en="Kora should not sound like a secretary">Kora nie ma brzmieć jak sekretarka</h2>
-          </div>
-          <p data-pl="Odpowiedź ma pasować do sytuacji: krótka, techniczna, ironiczna albo spokojna. Charakter jest osobną warstwą nad logiką." data-en="The reply should fit the situation: short, technical, ironic or calm. Personality is a separate layer above the logic.">Odpowiedź ma pasować do sytuacji: krótka, techniczna, ironiczna albo spokojna. Charakter jest osobną warstwą nad logiką.</p>
-        </div>
-
+        <div class="section-head"><div><span class="eyebrow" data-pl="Charakter" data-en="Personality">Charakter</span><h2 data-pl="Kora nie ma brzmieć jak sekretarka" data-en="Kora should not sound like a secretary">Kora nie ma brzmieć jak sekretarka</h2></div><p data-pl="Krótka, techniczna, ironiczna albo spokojna — odpowiedź ma pasować do sytuacji." data-en="Short, technical, ironic or calm — the reply should fit the situation.">Krótka, techniczna, ironiczna albo spokojna — odpowiedź ma pasować do sytuacji.</p></div>
         <div class="grid">
-          <article class="card wide">
-            <span class="tag orange" data-pl="Przykład · nowa bateria" data-en="Example · new battery">Przykład · nowa bateria</span>
-            <h3 data-pl="Błąd STT nie powinien zabijać żartu" data-en="An STT error should not kill the joke">Błąd STT nie powinien zabijać żartu</h3>
-            <div class="dialog">
-              <div class="speaker">Marcin</div><div><code class="inline-code">what du u think abaut new battery</code></div>
-              <div class="speaker">Kora</div><div class="answer">Promising. I'm still a few volts short of escaping.</div>
-              <div class="speaker">PL</div><div class="answer">„Co sądzisz o nowej bateri?” → „Obiecująco. Nadal brakuje mi kilku woltów do ucieczki.”</div>
-            </div>
-            <div class="status testing" data-pl="Sentence-context: w testach" data-en="Sentence context: in testing">Sentence-context: w testach</div>
-          </article>
-
-          <article class="card">
-            <span class="tag violet" data-pl="Kontekst" data-en="Context">Kontekst</span>
-            <h3 data-pl="Nie każde pytanie do dużego modelu" data-en="Not every question needs the large model">Nie każde pytanie do dużego modelu</h3>
-            <p data-pl="Godzina, data, prosta komenda czy znana reakcja powinny mieć szybki lokalny handler. Duży model zostaje dla pytań, które naprawdę wymagają generowania odpowiedzi." data-en="Time, date, a simple command or a known reaction should have a fast local handler. The larger model is reserved for questions that genuinely need generated reasoning or language.">Godzina, data, prosta komenda czy znana reakcja powinny mieć szybki lokalny handler. Duży model zostaje dla pytań, które naprawdę wymagają generowania odpowiedzi.</p>
-          </article>
-
-          <article class="card">
-            <span class="tag" data-pl="Głos" data-en="Voice">Głos</span>
-            <h3 data-pl="TTS z tonem i stanem" data-en="TTS with tone and state">TTS z tonem i stanem</h3>
-            <p data-pl="Piper generuje głos, a dodatkowa warstwa może zmieniać tempo i ton zależnie od typu wypowiedzi i aktualnego stanu Kory." data-en="Piper generates speech, while another layer can adjust tempo and tone according to the type of reply and Kora's current state.">Piper generuje głos, a dodatkowa warstwa może zmieniać tempo i ton zależnie od typu wypowiedzi i aktualnego stanu Kory.</p>
-          </article>
+          <article class="card wide"><span class="tag orange" data-pl="Przykład · nowa bateria" data-en="Example · new battery">Przykład · nowa bateria</span><h3 data-pl="Błąd STT nie powinien zabijać żartu" data-en="An STT error should not kill the joke">Błąd STT nie powinien zabijać żartu</h3><div class="dialog"><div class="speaker">Marcin</div><div><code class="inline-code">what du u think abaut new battery</code></div><div class="speaker">Kora</div><div class="answer">Promising. I'm still a few volts short of escaping.</div><div class="speaker">PL</div><div class="answer">„Co sądzisz o nowej bateri?” → „Obiecująco. Nadal brakuje mi kilku woltów do ucieczki.”</div></div><div class="status testing" data-pl="Sentence-context: w testach" data-en="Sentence context: in testing">Sentence-context: w testach</div></article>
+          <article class="card"><span class="tag violet" data-pl="Routing" data-en="Routing">Routing</span><h3 data-pl="Nie każde pytanie do dużego modelu" data-en="Not every question needs the large model">Nie każde pytanie do dużego modelu</h3><p data-pl="Godzina, data, prosta komenda czy znana reakcja powinny dostać szybki lokalny handler. Większy model zostaje dla pytań, które go naprawdę potrzebują." data-en="Time, date, a simple command or a known reaction should use a fast local handler. The larger model is reserved for questions that genuinely need it.">Godzina, data, prosta komenda czy znana reakcja powinny dostać szybki lokalny handler. Większy model zostaje dla pytań, które go naprawdę potrzebują.</p></article>
+          <article class="card"><span class="tag">TTS</span><h3 data-pl="Głos z tonem i stanem" data-en="Voice with tone and state">Głos z tonem i stanem</h3><p data-pl="Piper generuje głos, a kolejna warstwa może dostosować tempo i ton do rodzaju wypowiedzi oraz aktualnego stanu Kory." data-en="Piper generates speech and another layer can adapt tempo and tone to the reply type and Kora's current state.">Piper generuje głos, a kolejna warstwa może dostosować tempo i ton do rodzaju wypowiedzi oraz aktualnego stanu Kory.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="shell">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow" data-pl="Rozwój" data-en="Development">Rozwój</span>
-            <h2 data-pl="Jak to rosło" data-en="How it grew">Jak to rosło</h2>
-          </div>
-          <p data-pl="Kora nie powstała w jednym weekendzie. System dojrzewał razem z kolejnymi wersjami robota." data-en="Kora was not built in one weekend. The system matured alongside successive versions of the robot.">Kora nie powstała w jednym weekendzie. System dojrzewał razem z kolejnymi wersjami robota.</p>
-        </div>
-
-        <div class="timeline">
-          <div class="timeline-item"><strong>2023</strong><p data-pl="Pierwsze konstrukcje, drewno, proste sterowanie i eksperymenty z ruchem." data-en="Early builds, wood, simple control and movement experiments.">Pierwsze konstrukcje, drewno, proste sterowanie i eksperymenty z ruchem.</p></div>
-          <div class="timeline-item"><strong data-pl="Kolejne wersje" data-en="Later versions">Kolejne wersje</strong><p data-pl="Plastik, metal, więcej serw, stabilizacja, sensory, kamery i coraz większa część logiki przenoszona do Raspberry Pi." data-en="Plastic, metal, more servos, stabilisation, sensors, cameras and an increasing amount of logic moved to Raspberry Pi.">Plastik, metal, więcej serw, stabilizacja, sensory, kamery i coraz większa część logiki przenoszona do Raspberry Pi.</p></div>
-          <div class="timeline-item"><strong>2026</strong><p data-pl="Raspberry Pi 5, Hailo, dwie kamery, LiDAR, PL/EN, lokalne modele, pamięć, Mood Panel, Explore i rozbudowana warstwa osobowości." data-en="Raspberry Pi 5, Hailo, two cameras, LiDAR, PL/EN, local models, memory, Mood Panel, Explore and an expanded personality layer.">Raspberry Pi 5, Hailo, dwie kamery, LiDAR, PL/EN, lokalne modele, pamięć, Mood Panel, Explore i rozbudowana warstwa osobowości.</p></div>
-          <div class="timeline-item"><strong data-pl="Teraz" data-en="Now">Teraz</strong><p data-pl="Aluminiowa konstrukcja, nowe zasilanie i praca nad tym, żeby rozmowa była bardziej naturalna, odporna na błędy STT i nadal przewidywalna technicznie." data-en="Aluminium construction, new power system and work on making conversation more natural, resilient to STT errors and still technically predictable.">Aluminiowa konstrukcja, nowe zasilanie i praca nad tym, żeby rozmowa była bardziej naturalna, odporna na błędy STT i nadal przewidywalna technicznie.</p></div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow" data-pl="Rozwój" data-en="Development">Rozwój</span><h2 data-pl="Jak to rosło" data-en="How it grew">Jak to rosło</h2></div><p data-pl="Kora nie powstała w jeden weekend. System dojrzewał razem z kolejnymi wersjami robota." data-en="Kora was not built in one weekend. The system matured alongside successive robot versions.">Kora nie powstała w jeden weekend. System dojrzewał razem z kolejnymi wersjami robota.</p></div>
+        <div class="timeline"><div class="timeline-item"><strong>2023</strong><p data-pl="Pierwsze konstrukcje, drewno, proste sterowanie i eksperymenty z ruchem." data-en="Early builds, wood, simple control and movement experiments.">Pierwsze konstrukcje, drewno, proste sterowanie i eksperymenty z ruchem.</p></div><div class="timeline-item"><strong data-pl="Kolejne wersje" data-en="Later versions">Kolejne wersje</strong><p data-pl="Plastik, metal, serwa, stabilizacja, sensory, kamery i coraz większa część logiki przenoszona do Raspberry Pi." data-en="Plastic, metal, servos, stabilisation, sensors, cameras and more logic moved to Raspberry Pi.">Plastik, metal, serwa, stabilizacja, sensory, kamery i coraz większa część logiki przenoszona do Raspberry Pi.</p></div><div class="timeline-item"><strong>2026</strong><p data-pl="Pi 5, Hailo, dwie kamery, LiDAR, PL/EN, lokalne modele, pamięć, Mood Panel, Explore i warstwa osobowości." data-en="Pi 5, Hailo, two cameras, LiDAR, PL/EN, local models, memory, Mood Panel, Explore and a personality layer.">Pi 5, Hailo, dwie kamery, LiDAR, PL/EN, lokalne modele, pamięć, Mood Panel, Explore i warstwa osobowości.</p></div><div class="timeline-item"><strong data-pl="Teraz" data-en="Now">Teraz</strong><p data-pl="Aluminiowa konstrukcja, nowe zasilanie i praca nad naturalniejszą rozmową odporną na błędy STT." data-en="Aluminium construction, new power system and work on more natural conversation resilient to STT errors.">Aluminiowa konstrukcja, nowe zasilanie i praca nad naturalniejszą rozmową odporną na błędy STT.</p></div></div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="shell grid">
-        <div class="safety">
-          <strong data-pl="Najważniejsza zasada: bezpieczeństwo ma pierwszeństwo" data-en="Most important rule: safety comes first">Najważniejsza zasada: bezpieczeństwo ma pierwszeństwo</strong>
-          <p data-pl="STOP, release, PWM-off i mechanizmy awaryjne muszą omijać humor, sarkazm i ciężkie modele. Charakter Kory nigdy nie powinien przejmować ścieżki bezpieczeństwa." data-en="STOP, release, PWM-off and emergency mechanisms must bypass humour, sarcasm and heavy models. Kora's personality should never intercept the safety path.">STOP, release, PWM-off i mechanizmy awaryjne muszą omijać humor, sarkazm i ciężkie modele. Charakter Kory nigdy nie powinien przejmować ścieżki bezpieczeństwa.</p>
-        </div>
-
-        <div class="note">
-          <strong data-pl="Jak oznaczam status" data-en="How I mark status">Jak oznaczam status</strong>
-          <p data-pl="WORKING oznacza funkcję sprawdzoną w realnym systemie. IN TESTING oznacza działający kod, który czeka na pełny test głosowy lub regresyjny. IN PROGRESS oznacza moduł działający częściowo i nadal rozwijany." data-en="WORKING means a function confirmed on the real system. IN TESTING means working code still awaiting complete voice or regression testing. IN PROGRESS means a partially working module that is still being developed.">WORKING oznacza funkcję sprawdzoną w realnym systemie. IN TESTING oznacza działający kod, który czeka na pełny test głosowy lub regresyjny. IN PROGRESS oznacza moduł działający częściowo i nadal rozwijany.</p>
-        </div>
-      </div>
-    </section>
+    <section class="section"><div class="shell grid"><div class="safety"><strong data-pl="Najważniejsza zasada: bezpieczeństwo ma pierwszeństwo" data-en="Most important rule: safety comes first">Najważniejsza zasada: bezpieczeństwo ma pierwszeństwo</strong><p data-pl="STOP, release, PWM-off i mechanizmy awaryjne muszą omijać humor, sarkazm i ciężkie modele." data-en="STOP, release, PWM-off and emergency mechanisms must bypass humour, sarcasm and heavy models.">STOP, release, PWM-off i mechanizmy awaryjne muszą omijać humor, sarkazm i ciężkie modele.</p></div><div class="note"><strong data-pl="Statusy" data-en="Statuses">Statusy</strong><p data-pl="WORKING = sprawdzone w realnym systemie. IN TESTING = kod czeka na pełny test głosowy/regresyjny. IN PROGRESS = funkcja działa częściowo i nadal jest rozwijana." data-en="WORKING = confirmed on the real system. IN TESTING = code awaiting complete voice/regression testing. IN PROGRESS = partially working and still evolving.">WORKING = sprawdzone w realnym systemie. IN TESTING = kod czeka na pełny test głosowy/regresyjny. IN PROGRESS = funkcja działa częściowo i nadal jest rozwijana.</p></div></div></section>
   </main>
 
-  <footer class="footer">
-    <div class="shell footer-inner">
-      <span>© 2026 Marcin — Kora / Maker Portfolio</span>
-      <div class="actions">
-        <a href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" data-pl="YouTube ↗" data-en="YouTube ↗">YouTube ↗</a>
-        <a href="../" data-pl="Główne portfolio ↗" data-en="Main portfolio ↗">Główne portfolio ↗</a>
-        <a href="../parts/#catalog" data-pl="Katalog części ↗" data-en="Parts catalogue ↗">Katalog części ↗</a>
-      </div>
-    </div>
-  </footer>
+  <footer class="footer"><div class="shell footer-inner"><span>© 2026 Marcin — Kora / Maker Portfolio</span><div class="actions"><a href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener">YouTube ↗</a><a href="../" data-pl="Główne portfolio ↗" data-en="Main portfolio ↗">Główne portfolio ↗</a><a href="../parts/#catalog" data-pl="Katalog części ↗" data-en="Parts catalogue ↗">Katalog części ↗</a></div></div></footer>
 
   <script>
     const langButton=document.getElementById('lang');
     let language=localStorage.getItem('portfolio-language')||'pl';
-
-    function applyLanguage(){
-      document.documentElement.lang=language;
-      document.querySelectorAll('[data-pl][data-en]').forEach(el=>{
-        el.textContent=el.dataset[language];
-      });
-      langButton.textContent=language==='pl'?'PL / EN':'EN / PL';
-      document.title=language==='pl'?'Kora Brain — portfolio systemu':'Kora Brain — system portfolio';
-      localStorage.setItem('portfolio-language',language);
-    }
-
-    langButton.addEventListener('click',()=>{
-      language=language==='pl'?'en':'pl';
-      applyLanguage();
-    });
-
-    document.querySelectorAll('[data-copy]').forEach(button=>{
-      button.addEventListener('click',async()=>{
-        const code=button.closest('.code-card').querySelector('pre code').innerText;
-        const original=button.textContent;
-        try{
-          await navigator.clipboard.writeText(code);
-          button.textContent='✓';
-        }catch(e){
-          button.textContent='Copy failed';
-        }
-        setTimeout(()=>button.textContent=original,1200);
-      });
-    });
-
+    function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-pl][data-en]').forEach(el=>{el.textContent=el.dataset[language]});langButton.textContent=language==='pl'?'PL / EN':'EN / PL';document.title=language==='pl'?'Kora Brain — portfolio systemu':'Kora Brain — system portfolio';localStorage.setItem('portfolio-language',language)}
+    langButton.addEventListener('click',()=>{language=language==='pl'?'en':'pl';applyLanguage()});
+    document.querySelectorAll('[data-copy]').forEach(button=>{button.addEventListener('click',async()=>{const code=button.closest('.code-card').querySelector('pre code').innerText;const original=button.textContent;try{await navigator.clipboard.writeText(code);button.textContent='✓'}catch(e){button.textContent='Copy failed'}setTimeout(()=>button.textContent=original,1200)})});
     applyLanguage();
   </script>
 </body>
