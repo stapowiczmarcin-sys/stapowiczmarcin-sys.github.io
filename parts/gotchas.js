@@ -9,33 +9,65 @@
   const copy = {
     pl: {
       tab: "🤬 NA CO SIĘ WKURZYŁEM",
-      index: "MARCINEK ODKRYŁ / #01",
+      index: "MARCINEK ODKRYŁ / PUŁAPKI SPRZĘTOWE",
       title: "Czego sprzedający i konstruktorzy nie przewidzieli.",
       lead: "Nie katalogowa teoria. Rzeczy, które wychodzą dopiero wtedy, kiedy naprawdę próbujesz to złożyć, przykręcić i uruchomić.",
-      issueKicker: "NA PAPIERZE: PASUJE. NA STOLE: AHA, JASNE.",
-      issueTitle: "UPS X1203 + Raspberry Pi + HAT / Hailo — mechanika mówi: nie tak szybko.",
-      issueBody: "Sam UPS z Raspberry Pi da się złożyć sensownie. Problem zaczyna się przy dokładaniu HAT-a: standardowe dystanse nie rozwiązują całego stacka tak elegancko, jak sugerowałaby kompatybilność na papierze. M3 nie pasuje do mocowania UPS-a. M2 / M2.5 trzeba dobrać i potwierdzić gwint przed skręceniem — bez wciskania czegokolwiek na siłę.",
-      discovery: "Odkrycie Marcinka",
-      discoveryText: "Kompatybilność elektryczna ≠ kompatybilność mechaniczna. Zanim kupisz HAT, UPS i obudowę, sprawdź także wysokość stacka, dostęp do śrub i gwint dystansów.",
-      workaround: "Obejście",
-      workaroundText: "Dłuższe dystanse i osobny zestaw M2.5 są teraz w magazynie. Najpierw test gwintu, potem skręcanie. Młotek nie jest standardem Raspberry Pi.",
-      link: "Zobacz zestaw dystansów M2.5 →",
-      note: "Ta sekcja będzie rosła. Każda rzecz, która wygląda dobrze w opisie produktu, a potem robi niespodziankę na stole, trafia właśnie tutaj."
+      cards: [
+        {
+          kicker: "NA PAPIERZE: PASUJE. NA STOLE: AHA, JASNE.",
+          title: "UPS X1203 + Raspberry Pi + HAT / Hailo — mechanika mówi: nie tak szybko.",
+          body: "Sam UPS z Raspberry Pi da się złożyć sensownie. Problem zaczyna się przy dokładaniu HAT-a: standardowe dystanse nie rozwiązują całego stacka tak elegancko, jak sugerowałaby kompatybilność na papierze. M3 nie pasuje do mocowania UPS-a. M2 / M2.5 trzeba dobrać i potwierdzić gwint przed skręceniem — bez wciskania czegokolwiek na siłę.",
+          discovery: "Odkrycie Marcinka",
+          discoveryText: "Kompatybilność elektryczna ≠ kompatybilność mechaniczna. Zanim kupisz HAT, UPS i obudowę, sprawdź także wysokość stacka, dostęp do śrub i gwint dystansów.",
+          workaround: "Obejście",
+          workaroundText: "Dłuższe dystanse i osobny zestaw M2.5 są teraz w magazynie. Najpierw test gwintu, potem skręcanie. Młotek nie jest standardem Raspberry Pi.",
+          link: "Zobacz zestaw dystansów M2.5 →",
+          url: "https://amzn.eu/d/0ftWKzE5"
+        },
+        {
+          kicker: "HEXAPOD FREENOVE — ZESTAW, KTÓRY NAJLEPIEJ SKŁADA SIĘ NA ZDJĘCIU PRODUKTOWYM.",
+          title: "18 serw, kruche plastiki, niedopasowane elementy i zasilanie, przy którym zaczynasz liczyć minuty.",
+          body: "Moje doświadczenie z hexapodem Freenove jest po prostu złe. Dystanse i mechanika nie zostały dopracowane tak, żeby robot dawał się bezproblemowo złożyć. Część plastikowych elementów jest na tyle krucha, że potrafi pęknąć już podczas normalnego montażu. Do tego dochodzą śruby i dystanse, których długości nie tworzą sensownego stacka. Efekt? Zamiast składać robota, zaczynasz projektować poprawki do zestawu, który miał być gotowy do złożenia.",
+          discovery: "Lista absurdów",
+          discoveryText: "Hailo nie da się po prostu elegancko dołożyć do całego układu. Masz 18 serw, a fabryczna koncepcja zasilania opiera się na zaledwie 2× 18650 dla części napędowej oraz kolejnych ogniwach dla Raspberry Pi. Przy robocie tej wielkości brzmi to bardziej jak demonstracja niż zasilanie do poważnego chodzenia.",
+          workaround: "Werdykt Marcinka",
+          workaroundText: "W praktyce przebudowa mechaniki, własne dystanse i osobny, wydajny tor zasilania serw są rozsądniejsze niż ślepe trzymanie się zestawu. A „może dwie minuty chodzenia” zostawiam jako żart, nie pomiar — ale sam fakt, że taki żart przychodzi do głowy, mówi sporo o projekcie.",
+          link: "",
+          url: ""
+        }
+      ],
+      note: "Ta sekcja będzie rosła. Każda rzecz, która wygląda dobrze w opisie produktu, a potem robi niespodziankę na stole, trafia właśnie tutaj. Bez pudrowania."
     },
     en: {
       tab: "🤬 WHAT ANNOYED ME",
-      index: "MARCIN FOUND IT / #01",
+      index: "MARCIN FOUND IT / HARDWARE GOTCHAS",
       title: "What sellers and designers did not account for.",
       lead: "Not catalogue theory. These are the problems that only appear when you actually try to assemble, bolt together and run the hardware.",
-      issueKicker: "ON PAPER: COMPATIBLE. ON THE BENCH: YEAH, RIGHT.",
-      issueTitle: "X1203 UPS + Raspberry Pi + HAT / Hailo — the mechanics say: not so fast.",
-      issueBody: "The UPS and Raspberry Pi can be assembled neatly on their own. The problem starts when a HAT is added: standard standoffs do not solve the whole stack as elegantly as the compatibility list suggests. M3 does not fit the UPS mounting points. M2 / M2.5 hardware needs to be selected and the thread confirmed before tightening — never force it.",
-      discovery: "Marcin's finding",
-      discoveryText: "Electrical compatibility ≠ mechanical compatibility. Before buying a HAT, UPS and enclosure, also check stack height, screw access and standoff thread size.",
-      workaround: "Workaround",
-      workaroundText: "Longer standoffs and a separate M2.5 assortment are now in the parts store. Test the thread first, tighten second. A hammer is not part of the Raspberry Pi standard.",
-      link: "See the M2.5 standoff kit →",
-      note: "This section will grow. Anything that looks perfect in the product listing but produces a surprise on the workbench ends up here."
+      cards: [
+        {
+          kicker: "ON PAPER: COMPATIBLE. ON THE BENCH: YEAH, RIGHT.",
+          title: "X1203 UPS + Raspberry Pi + HAT / Hailo — the mechanics say: not so fast.",
+          body: "The UPS and Raspberry Pi can be assembled neatly on their own. The problem starts when a HAT is added: standard standoffs do not solve the whole stack as elegantly as the compatibility list suggests. M3 does not fit the UPS mounting points. M2 / M2.5 hardware needs to be selected and the thread confirmed before tightening — never force it.",
+          discovery: "Marcin's finding",
+          discoveryText: "Electrical compatibility ≠ mechanical compatibility. Before buying a HAT, UPS and enclosure, also check stack height, screw access and standoff thread size.",
+          workaround: "Workaround",
+          workaroundText: "Longer standoffs and a separate M2.5 assortment are now in the parts store. Test the thread first, tighten second. A hammer is not part of the Raspberry Pi standard.",
+          link: "See the M2.5 standoff kit →",
+          url: "https://amzn.eu/d/0ftWKzE5"
+        },
+        {
+          kicker: "FREENOVE HEXAPOD — A KIT THAT ASSEMBLES BEST IN THE PRODUCT PHOTO.",
+          title: "18 servos, brittle plastic, mismatched hardware and a power concept that makes you count minutes.",
+          body: "My experience with the Freenove hexapod has been poor. The standoffs and mechanics are not refined enough for the robot to go together cleanly. Some plastic parts are brittle enough to crack during normal assembly. Screw and standoff lengths also fail to create a sensible stack. Instead of assembling the robot, you end up redesigning the kit that was supposed to be ready to build.",
+          discovery: "The absurdity list",
+          discoveryText: "Hailo cannot simply be added neatly to the complete stack. There are 18 servos, while the stock power concept relies on only 2× 18650 cells for the drive side plus additional cells for the Raspberry Pi. For a robot of this size, that feels more like a demonstration setup than serious walking power.",
+          workaround: "Marcin's verdict",
+          workaroundText: "In practice, rebuilding the mechanics, using your own standoffs and giving the servos a separate high-current power rail makes more sense than blindly following the kit. And the 'maybe two minutes of walking' line stays a joke, not a measured runtime — but the fact that the joke feels plausible says enough.",
+          link: "",
+          url: ""
+        }
+      ],
+      note: "This section will grow. Anything that looks perfect in the product listing but produces a surprise on the workbench ends up here. No polishing the story."
     }
   };
 
@@ -57,6 +89,25 @@
     return panel;
   }
 
+  function cardHtml(card) {
+    const link = card.url && card.link
+      ? `<a class="gotcha-link" href="${card.url}" target="_blank" rel="noreferrer">${card.link}</a>`
+      : "";
+    return `
+      <article class="gotcha-card">
+        <div class="gotcha-stripe">⚠ ${card.kicker}</div>
+        <div class="gotcha-card-body">
+          <h4>${card.title}</h4>
+          <p class="gotcha-main">${card.body}</p>
+          <div class="gotcha-grid">
+            <div><span>${card.discovery}</span><strong>${card.discoveryText}</strong></div>
+            <div><span>${card.workaround}</span><strong>${card.workaroundText}</strong></div>
+          </div>
+          ${link}
+        </div>
+      </article>`;
+  }
+
   function renderPanel() {
     const t = copy[language()];
     const panel = ensurePanel();
@@ -66,18 +117,7 @@
         <h3>${t.title}</h3>
         <p>${t.lead}</p>
       </div>
-      <article class="gotcha-card">
-        <div class="gotcha-stripe">⚠ ${t.issueKicker}</div>
-        <div class="gotcha-card-body">
-          <h4>${t.issueTitle}</h4>
-          <p class="gotcha-main">${t.issueBody}</p>
-          <div class="gotcha-grid">
-            <div><span>${t.discovery}</span><strong>${t.discoveryText}</strong></div>
-            <div><span>${t.workaround}</span><strong>${t.workaroundText}</strong></div>
-          </div>
-          <a class="gotcha-link" href="https://amzn.eu/d/0ftWKzE5" target="_blank" rel="noreferrer">${t.link}</a>
-        </div>
-      </article>
+      ${t.cards.map(cardHtml).join("")}
       <p class="gotcha-note">${t.note}</p>`;
   }
 
