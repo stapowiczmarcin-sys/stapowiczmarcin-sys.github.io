@@ -1,11 +1,39 @@
 {
   "schema": "kora.source_of_truth.v1",
-  "updated": "2026-08-16T10:56:00+01:00",
+  "updated": "2026-08-16T14:21:00+01:00",
   "project": "Kora",
   "rule": {
     "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
     "en": "Every significant change, test, failure, rollback, new module, new part and project decision is documented on the web. Chat memory is not the source of truth.",
     "secrets_excluded": true
+  },
+  "mandatory_www_targets": [
+    {
+      "name": "Public Source of Truth",
+      "url": "https://stapowiczmarcin-sys.github.io/kora-status/",
+      "role": "Durable public history and project state"
+    },
+    {
+      "name": "Kora Master Panel",
+      "url": "https://vega-pi.tailfd0c05.ts.net/",
+      "role": "Primary Pi-side project state, modules and changelog"
+    },
+    {
+      "name": "Kora Live",
+      "url": "https://vega-pi.tailfd0c05.ts.net/live",
+      "role": "Live runtime view; must also expose a concise current-work summary"
+    },
+    {
+      "name": "Kora Live JSON",
+      "url": "https://vega-pi.tailfd0c05.ts.net/api/live.json",
+      "role": "Machine-readable live runtime; must also expose a concise documentation/current-work field"
+    }
+  ],
+  "documentation_sync_rule": {
+    "required": true,
+    "pl": "Po kazdej istotnej pracy aktualizujemy publiczny Source of Truth, Master Panel, Live i Live JSON. Na WWW publikujemy opis i status, bez wklejania kodu.",
+    "en": "After every significant work item, update the public Source of Truth, Master Panel, Live and Live JSON. Publish summaries and status on the web, not source code.",
+    "tailnet_live_integration_status": "PENDING_SAFE_DATA_PATH"
   },
   "status_policy": {
     "WORKING": "Only after a successful real functional/voice test.",
@@ -47,7 +75,9 @@
     "service": "vega.service",
     "spontaneous_chat": "/home/marcin/vega_robot/kora_spontaneous_chat.py",
     "brain_router": "/home/marcin/vega_robot/kora_brain_router.py",
-    "local_dialogue_target": "/home/marcin/vega_robot/kora_system/kora_local_dialogue.py"
+    "local_dialogue_target": "/home/marcin/vega_robot/kora_system/kora_local_dialogue.py",
+    "master_panel_data": "/home/marcin/vega_robot/kora_system/master_panel/data",
+    "master_panel_updater": "/home/marcin/vega_robot/kora_system/kora_doc_update.py"
   },
   "safety": {
     "rule": "STOP/release/PWM-off and core listening must take priority over personality, local dialogue and model routing.",
@@ -58,6 +88,7 @@
     "Confirm vega.service is active.",
     "Confirm wake/listening works with a single spoken 'Kora'.",
     "Confirm ring returns to normal listening state.",
-    "Do not modify personality/router until wake/audio are confirmed restored."
+    "Do not modify personality/router until wake/audio are confirmed restored.",
+    "After rollback is confirmed, add a safe read-only documentation field to Live/Live JSON without changing robot runtime behaviour."
   ]
 }
