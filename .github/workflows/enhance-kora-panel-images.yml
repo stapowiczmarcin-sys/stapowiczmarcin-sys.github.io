@@ -29,6 +29,8 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          from io import BytesIO
+          import base64
           from PIL import Image, ImageEnhance, ImageFilter
 
           root = Path('kora-brain/panels/2026-08-16')
@@ -36,9 +38,29 @@ jobs:
           if not files:
               raise SystemExit('No panel screenshots found')
 
+          def load_real_image(path: Path):
+              raw = path.read_bytes()
+              if raw.startswith(b'\xff\xd8') or raw.startswith(b'\x89PNG\r\n\x1a\n'):
+                  return Image.open(BytesIO(raw)).convert('RGB')
+
+              # Some older portfolio screenshots were stored as base64 text
+              # despite the .jpg extension. Decode them without altering content.
+              try:
+                  text = raw.decode('ascii').strip()
+              except UnicodeDecodeError:
+                  text = ''
+
+              compact = ''.join(text.split())
+              if compact.startswith('/9j/') or compact.startswith('iVBOR'):
+                  decoded = base64.b64decode(compact, validate=False)
+                  if decoded.startswith(b'\xff\xd8') or decoded.startswith(b'\x89PNG\r\n\x1a\n'):
+                      return Image.open(BytesIO(decoded)).convert('RGB')
+
+              print(f'Cannot decode {path}; first bytes={raw[:100]!r}')
+              raise SystemExit(f'Unsupported stored image format: {path}')
+
           for path in files:
-              with Image.open(path) as src:
-                  img = src.convert('RGB')
+              img = load_real_image(path)
 
               # Preserve the real screenshot exactly; improve only sampling,
               # local contrast and edge definition. No generated/fake UI.
