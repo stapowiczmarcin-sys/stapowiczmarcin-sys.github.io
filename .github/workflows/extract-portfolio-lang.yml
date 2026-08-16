@@ -1,0 +1,30 @@
+name: Extract portfolio language strings
+on:
+  push:
+    paths:
+      - '.github/workflows/extract-portfolio-lang.yml'
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract English strings
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, json, html
+          s = Path('index.html').read_text(encoding='utf-8')
+          vals = []
+          for m in re.finditer(r'\bdata-en(?:-[a-zA-Z0-9_-]+)?="([^"]*)"', s):
+              v = html.unescape(m.group(1))
+              if v not in vals:
+                  vals.append(v)
+          Path('portfolio-en-strings.json').write_text(json.dumps(vals, ensure_ascii=False, indent=2), encoding='utf-8')
+          PY
+          git config user.name 'Morrcin'
+          git config user.email 'stapowiczmarcin@gmail.com'
+          git add portfolio-en-strings.json
+          git commit -m 'chore: add temporary portfolio language strings'
+          git push
