@@ -1,0 +1,63 @@
+{
+  "schema": "kora.source_of_truth.v1",
+  "updated": "2026-08-16T10:56:00+01:00",
+  "project": "Kora",
+  "rule": {
+    "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
+    "en": "Every significant change, test, failure, rollback, new module, new part and project decision is documented on the web. Chat memory is not the source of truth.",
+    "secrets_excluded": true
+  },
+  "status_policy": {
+    "WORKING": "Only after a successful real functional/voice test.",
+    "CODE_OK": "Code compiles or passes static checks, but real test is still pending.",
+    "TESTING": "Installed or prepared and currently under real-world testing.",
+    "FAILED": "Real test failed or caused a regression.",
+    "ROLLED_BACK": "The failed change was reverted to the previous known state."
+  },
+  "current_priority": {
+    "title": "Restore listening after failed local-dialogue deployment",
+    "status": "ROLLBACK_REQUIRED",
+    "details_pl": "Po ostatnim wdrozeniu local dialogue ring zapalil sie na czerwono i Kora przestala slyszec. Najpierw cofamy zmiane, sprawdzamy wake/audio/ring, dopiero potem projektujemy kolejna wersje.",
+    "details_en": "After the latest local-dialogue deployment the ring turned red and Kora stopped hearing. First restore the previous state and validate wake/audio/ring; only then design the next version."
+  },
+  "active_issues": [
+    {
+      "id": "local_dialogue_regression_2026_08_16",
+      "status": "FAILED",
+      "summary": "Local dialogue deployment caused red ring and loss of listening; rollback requested."
+    },
+    {
+      "id": "en_secretary_guard",
+      "status": "OPEN",
+      "summary": "English spontaneous answers can fall into laptop_ollama_en_lang_guard and repeat generic secretary-like wording."
+    },
+    {
+      "id": "en_time_routing",
+      "status": "OPEN",
+      "summary": "English time questions must be handled locally and must not fall through to generic conversation/model routing."
+    },
+    {
+      "id": "wake_false_positive_marzena",
+      "status": "OPEN_OR_RETEST",
+      "summary": "The wake recognizer has previously reacted to 'Marzena'; false wake handling needs measured retest after rollback."
+    }
+  ],
+  "paths": {
+    "main_runtime": "/home/marcin/vega_robot/vega_genius.py",
+    "service": "vega.service",
+    "spontaneous_chat": "/home/marcin/vega_robot/kora_spontaneous_chat.py",
+    "brain_router": "/home/marcin/vega_robot/kora_brain_router.py",
+    "local_dialogue_target": "/home/marcin/vega_robot/kora_system/kora_local_dialogue.py"
+  },
+  "safety": {
+    "rule": "STOP/release/PWM-off and core listening must take priority over personality, local dialogue and model routing.",
+    "do_not_publish": ["API keys", "passwords", "tokens", "private credentials", "personal private data"]
+  },
+  "next_test": [
+    "Rollback the failed local-dialogue change.",
+    "Confirm vega.service is active.",
+    "Confirm wake/listening works with a single spoken 'Kora'.",
+    "Confirm ring returns to normal listening state.",
+    "Do not modify personality/router until wake/audio are confirmed restored."
+  ]
+}
