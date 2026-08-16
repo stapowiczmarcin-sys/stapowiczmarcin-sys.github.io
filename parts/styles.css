@@ -36,6 +36,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .brand-muted { color: var(--muted); font-weight: 500; }
 .top-link { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 .top-link span { display: inline-block; margin-left: 8px; }
+.youtube-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; background: #ff0033; color: #fff; border: 1px solid #ff0033; border-radius: 3px; font-size: 12px; font-weight: 950; text-transform: uppercase; letter-spacing: .08em; box-shadow: 0 7px 18px rgba(255,0,51,.22); transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+.youtube-link:hover { background: #d9002b; border-color: #d9002b; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(255,0,51,.32); }
+.youtube-icon { font-size: 13px; line-height: 1; }
 .top-actions { display: flex; align-items: center; gap: 18px; }
 .language-button { border: 1px solid var(--ink); background: transparent; color: var(--ink); padding: 10px 12px; font-size: 11px; font-weight: 900; letter-spacing: .08em; cursor: pointer; }
 .language-button:hover { background: var(--ink); color: var(--acid); }
