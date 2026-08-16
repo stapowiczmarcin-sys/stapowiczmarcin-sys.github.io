@@ -1,0 +1,71 @@
+name: Enhance Kora Brain panel images
+
+on:
+  push:
+    paths:
+      - '.github/workflows/enhance-kora-panel-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  enhance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+
+      - name: Upscale and clean panel screenshots
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageEnhance, ImageFilter
+
+          root = Path('kora-brain/panels/2026-08-16')
+          files = sorted(root.glob('*.jpg'))
+          if not files:
+              raise SystemExit('No panel screenshots found')
+
+          for path in files:
+              with Image.open(path) as src:
+                  img = src.convert('RGB')
+
+              # Preserve the real screenshot exactly; improve only sampling,
+              # local contrast and edge definition. No generated/fake UI.
+              scale = 4 if max(img.size) <= 800 else 2
+              target = (img.width * scale, img.height * scale)
+              img = img.resize(target, Image.Resampling.LANCZOS)
+              img = ImageEnhance.Contrast(img).enhance(1.045)
+              img = ImageEnhance.Color(img).enhance(1.025)
+              img = img.filter(ImageFilter.UnsharpMask(radius=1.25, percent=125, threshold=2))
+              img.save(path, 'JPEG', quality=96, subsampling=0, optimize=True, progressive=True)
+              print(f'{path}: {target[0]}x{target[1]}')
+
+          page = Path('kora-brain/index.html')
+          text = page.read_text(encoding='utf-8')
+          old = '.live-shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}.live-shot:first-child img{aspect-ratio:16/8;object-position:center}'
+          new = '.live-shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#04070a;image-rendering:auto;filter:contrast(1.04) saturate(1.04);transition:transform .22s ease,filter .22s ease}.live-shot a:hover img{transform:scale(1.008);filter:contrast(1.06) saturate(1.06)}.live-shot:first-child img{aspect-ratio:16/9;object-fit:contain;object-position:center;background:#04070a}'
+          if old not in text:
+              raise SystemExit('Expected live-shot CSS block not found; refusing unsafe patch')
+          page.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Commit improved images
+        run: |
+          if git diff --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add kora-brain/index.html kora-brain/panels/2026-08-16/*.jpg
+          git commit -m 'Improve Kora Brain panel image quality'
+          git push
