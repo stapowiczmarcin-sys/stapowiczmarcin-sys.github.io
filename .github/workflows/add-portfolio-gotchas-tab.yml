@@ -76,3 +76,5 @@ jobs:
           git add index.html
           git commit -m "Add Why I got annoyed tab to portfolio"
           git push
+
+# trigger: 2026-08-16
