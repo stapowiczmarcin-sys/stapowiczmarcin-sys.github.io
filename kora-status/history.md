@@ -4,6 +4,17 @@
 > Każda istotna zmiana, test, awaria, rollback, nowy moduł, nowa część i decyzja projektowa trafia na WWW. Nie polegamy na pamięci czatu.  
 > Every significant change, test, failure, rollback, new module, new part and project decision goes to the web. Chat memory is not the source of truth.
 
+## Mandatory WWW mirrors
+
+Po każdej istotnej pracy aktualizujemy opis i prawdziwy status — bez publikowania kodu — w następujących miejscach:
+
+- Public Source of Truth: https://stapowiczmarcin-sys.github.io/kora-status/
+- Kora Master Panel: https://vega-pi.tailfd0c05.ts.net/
+- Kora Live: https://vega-pi.tailfd0c05.ts.net/live
+- Kora Live JSON: https://vega-pi.tailfd0c05.ts.net/api/live.json
+
+Master Panel ma już trwałe dane projektu w `state.json`, `modules.json` i `changelog.jsonl`. Live/Live JSON są generowane cyklicznie z `live_state.json`; dlatego trwałe dodanie historii prac do Live wymaga bezpiecznej, read-only integracji dokumentacji z generatorem Live, a nie ręcznego dopisywania do pliku, które zostałoby nadpisane.
+
 ## Status policy
 
 - **WORKING** — only after a successful real functional or voice test.
@@ -13,6 +24,12 @@
 - **ROLLED_BACK** — failed change reverted to the previous known state.
 
 ---
+
+## 2026-08-16 — Documentation mirror rule expanded
+
+**Status: RULE ACTIVE / LIVE INTEGRATION PENDING**
+
+The permanent project-memory rule now explicitly includes the Pi-side Master Panel, Kora Live and Live JSON endpoints in addition to the public Source of Truth. Every significant change must be summarized on those WWW surfaces without publishing source code, secrets or private credentials. The Master Panel is already data-driven. Live/Live JSON still need a safe read-only documentation field after the current audio/wake rollback is confirmed.
 
 ## 2026-08-16 — Local dialogue regression
 
