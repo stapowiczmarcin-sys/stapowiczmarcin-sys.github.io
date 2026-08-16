@@ -177,4 +177,7 @@
 
   ensureTab();
   renderPanel();
+  if (location.hash === "#gotchas" || new URLSearchParams(location.search).get("view") === "gotchas") {
+    showGotchas();
+  }
 })();
