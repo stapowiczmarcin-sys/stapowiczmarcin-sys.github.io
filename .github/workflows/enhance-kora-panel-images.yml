@@ -17,6 +17,11 @@ jobs:
         with:
           lfs: true
 
+      - name: Install image tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg imagemagick
+
       - name: Upscale and clean panel screenshots
         shell: bash
         run: |
@@ -32,7 +37,7 @@ jobs:
             tmp="${f%.jpg}.enhanced.jpg"
             echo "Enhancing $f"
 
-            if ffmpeg -hide_banner -loglevel error -y -i "$f" \
+            if ffmpeg -hide_banner -loglevel error -err_detect ignore_err -y -i "$f" \
               -vf "scale=iw*4:ih*4:flags=lanczos,eq=contrast=1.045:saturation=1.025,unsharp=5:5:0.55:5:5:0.0" \
               -q:v 2 "$tmp"; then
               mv "$tmp" "$f"
@@ -45,8 +50,13 @@ jobs:
               mv "$tmp" "$f"
               continue
             fi
+            if command -v convert >/dev/null 2>&1; then
+              convert "$f" -resize 400% -contrast-stretch 0.2%x0.2% -unsharp 0x1+0.65+0.02 -quality 96 "$tmp"
+              mv "$tmp" "$f"
+              continue
+            fi
 
-            echo "Could not decode $f with ffmpeg and ImageMagick is unavailable"
+            echo "Could not decode $f"
             exit 1
           done
 
