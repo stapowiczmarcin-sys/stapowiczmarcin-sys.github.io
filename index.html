@@ -72,7 +72,7 @@
       background: linear-gradient(135deg, var(--orange), var(--mint));
       box-shadow: 0 12px 34px rgba(255,154,69,.22);
     }
-    .top-actions { display: flex; align-items: center; gap: 9px; }
+    .top-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
     .button {
       display: inline-flex;
       align-items: center;
@@ -582,6 +582,18 @@
     dialog::backdrop { background: rgba(0,0,0,.82); backdrop-filter: blur(8px); }
     dialog img { width: 100%; max-height: calc(100vh - 80px); object-fit: contain; }
     .dialog-close { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; color: white; background: rgba(8,11,16,.72); cursor: pointer; }
+    @media (max-width: 1080px) {
+      .topbar-inner { padding: 10px 0; align-items: flex-start; flex-direction: column; gap: 9px; }
+      .brand { min-height: 42px; }
+      .top-actions { width: 100%; justify-content: flex-start; gap: 7px; }
+      .top-actions .button { min-height: 38px; padding: 7px 12px; font-size: .8rem; }
+    }
+    @media (max-width: 720px) {
+      .topbar { position: relative; }
+      .top-actions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); width: 100%; }
+      .top-actions .button { width: 100%; min-width: 0; white-space: normal; line-height: 1.15; text-align: center; }
+      .top-actions .button-youtube { justify-content: center; }
+    }
     @media (max-width: 920px) {
       .hero-grid, .project-grid, .about, .contact-panel, .kora-hero, .kora-media-row, .radio-hero, .mirror-hero, .rgb-lamp-hero, .rgb-lamp-code { grid-template-columns: 1fr; }
       .latest-update { grid-template-columns: 1fr; }
@@ -651,9 +663,9 @@
         <a class="button" href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Katalog części" data-en="Parts catalogue">Katalog części</a>
         <a class="button button-gotchas" href="https://stapowiczmarcin-sys.github.io/parts/#gotchas" target="_blank" rel="noopener" data-pl="🤬 DLACZEGO SIĘ WKURZYŁEM" data-en="🤬 WHY I GOT ANNOYED">🤬 DLACZEGO SIĘ WKURZYŁEM</a>
         <a class="button" href="kora-brain/" data-pl="Mózg Kory — teraz" data-en="Kora brain — now">Mózg Kory — teraz</a>
-        <a class="button button-youtube" href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" aria-label="YouTube — Kreatywny Morrcin" title="YouTube — Kreatywny Morrcin"><span class="youtube-mark" aria-hidden="true"></span><span class="youtube-label-full" data-pl="Mój kanał YouTube" data-en="My YouTube channel">Mój kanał YouTube</span><span class="youtube-label-short" data-pl="Mój kanał" data-en="My channel">Mój kanał</span></a>
+        <a class="button button-youtube" href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" aria-label="YouTube — Kreatywny Morrcin" title="YouTube — Kreatywny Morrcin"><span class="youtube-mark" aria-hidden="true"></span><span class="youtube-label-full" data-pl="YouTube" data-en="YouTube">YouTube</span><span class="youtube-label-short" data-pl="Mój kanał" data-en="My channel">Mój kanał</span></a>
         <button class="button" id="languageButton" type="button" aria-label="Zmień język"><span>PL / EN</span></button>
-        <button class="button button-print" type="button" onclick="window.print()"><span>⎙</span><span class="button-label" data-pl="Drukuj / PDF" data-en="Print / PDF">Drukuj / PDF</span></button>
+        <button class="button button-print" type="button" onclick="window.print()"><span>⎙</span><span class="button-label" data-pl="PDF" data-en="PDF">PDF</span></button>
       </div>
     </div>
   </header>
