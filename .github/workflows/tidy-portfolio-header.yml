@@ -1,0 +1,65 @@
+name: Tidy portfolio header
+on:
+  push:
+    paths:
+      - '.github/workflows/tidy-portfolio-header.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tidy navigation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          replacements = {
+            'data-pl="Katalog części" data-en="Parts catalogue">Katalog części</a>': 'data-pl="Części" data-en="Parts">Części</a>',
+            'data-pl="🤬 DLACZEGO SIĘ WKURZYŁEM" data-en="🤬 WHY I GOT ANNOYED">🤬 DLACZEGO SIĘ WKURZYŁEM</a>': 'data-pl="🤬 Pułapki części" data-en="🤬 Part traps">🤬 Pułapki części</a>',
+            'data-pl="Mózg Kory — teraz" data-en="Kora brain — now">Mózg Kory — teraz</a>': 'data-pl="Mózg Kory" data-en="Kora brain">Mózg Kory</a>',
+            '<span class="youtube-label-full" data-pl="Mój kanał YouTube" data-en="My YouTube channel">Mój kanał YouTube</span>': '<span class="youtube-label-full" data-pl="YouTube" data-en="YouTube">YouTube</span>',
+            '<span class="button-label" data-pl="Drukuj / PDF" data-en="Print / PDF">Drukuj / PDF</span>': '<span class="button-label" data-pl="PDF" data-en="PDF">PDF</span>',
+          }
+          for old, new in replacements.items():
+              if old not in s:
+                  print('Warning: text not found:', old[:70])
+              s = s.replace(old, new, 1)
+
+          old_css = '.top-actions { display: flex; align-items: center; gap: 9px; }'
+          new_css = '.top-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }'
+          if old_css not in s:
+              raise SystemExit('top-actions CSS anchor not found')
+          s = s.replace(old_css, new_css, 1)
+
+          anchor = '    @media (max-width: 920px) {'
+          responsive = '''    @media (max-width: 1080px) {
+      .topbar-inner { padding: 10px 0; align-items: flex-start; flex-direction: column; gap: 9px; }
+      .brand { min-height: 42px; }
+      .top-actions { width: 100%; justify-content: flex-start; gap: 7px; }
+      .top-actions .button { min-height: 38px; padding: 7px 12px; font-size: .8rem; }
+    }
+    @media (max-width: 720px) {
+      .topbar { position: relative; }
+      .top-actions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); width: 100%; }
+      .top-actions .button { width: 100%; min-width: 0; white-space: normal; line-height: 1.15; text-align: center; }
+      .top-actions .button-youtube { justify-content: center; }
+    }
+'''
+          if anchor not in s:
+              raise SystemExit('media anchor not found')
+          s = s.replace(anchor, responsive + anchor, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit and clean up
+        run: |
+          git config user.name 'Morrcin'
+          git config user.email 'stapowiczmarcin@gmail.com'
+          git add index.html
+          git commit -m 'Tidy portfolio header navigation' || true
+          git rm .github/workflows/tidy-portfolio-header.yml
+          git commit -m 'Remove temporary header workflow'
+          git push
