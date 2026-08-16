@@ -1,0 +1,51 @@
+name: Add highlighted YouTube link to parts header
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-parts-youtube-link.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add YouTube link and styling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index = Path('parts/index.html')
+          html = index.read_text(encoding='utf-8')
+          old = '<div class="top-actions"><button class="language-button" id="catalogLanguage" type="button" aria-label="Zmień język na angielski">PL / EN</button><a class="top-link" href="../sprawdzone/">'
+          new = '<div class="top-actions"><button class="language-button" id="catalogLanguage" type="button" aria-label="Zmień język na angielski">PL / EN</button><a class="youtube-link" href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" aria-label="Kanał YouTube Marcina"><span class="youtube-icon">▶</span><span>YouTube</span></a><a class="top-link" href="../sprawdzone/">'
+          if old not in html:
+              raise SystemExit('Expected top-actions block not found; refusing unsafe patch')
+          index.write_text(html.replace(old, new, 1), encoding='utf-8')
+
+          css_path = Path('parts/styles.css')
+          css = css_path.read_text(encoding='utf-8')
+          anchor = '.top-link { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }\n.top-link span { display: inline-block; margin-left: 8px; }\n'
+          addition = anchor + '.youtube-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; background: #ff0033; color: #fff; border: 1px solid #ff0033; border-radius: 3px; font-size: 12px; font-weight: 950; text-transform: uppercase; letter-spacing: .08em; box-shadow: 0 7px 18px rgba(255,0,51,.22); transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }\n.youtube-link:hover { background: #d9002b; border-color: #d9002b; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(255,0,51,.32); }\n.youtube-icon { font-size: 13px; line-height: 1; }\n'
+          if anchor not in css:
+              raise SystemExit('Expected top-link CSS block not found; refusing unsafe patch')
+          css_path.write_text(css.replace(anchor, addition, 1), encoding='utf-8')
+          PY
+
+      - name: Commit and clean up
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/add-parts-youtube-link.yml
+          git add parts/index.html parts/styles.css
+          git commit -m 'Add highlighted YouTube link to parts header'
+          git push
