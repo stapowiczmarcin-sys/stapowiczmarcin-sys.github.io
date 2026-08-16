@@ -8,7 +8,7 @@
 
   const copy = {
     pl: {
-      tab: "🤬 NA CO SIĘ WKURZYŁEM",
+      tab: "🤬 DLACZEGO SIĘ WKURZYŁEM",
       index: "MARCINEK ODKRYŁ / PUŁAPKI SPRZĘTOWE",
       title: "Czego sprzedający i konstruktorzy nie przewidzieli.",
       lead: "Nie katalogowa teoria. Rzeczy, które wychodzą dopiero wtedy, kiedy naprawdę próbujesz to złożyć, przykręcić i uruchomić.",
@@ -39,7 +39,7 @@
       note: "Ta sekcja będzie rosła. Każda rzecz, która wygląda dobrze w opisie produktu, a potem robi niespodziankę na stole, trafia właśnie tutaj. Bez pudrowania."
     },
     en: {
-      tab: "🤬 WHAT ANNOYED ME",
+      tab: "🤬 WHY I GOT ANNOYED",
       index: "MARCIN FOUND IT / HARDWARE GOTCHAS",
       title: "What sellers and designers did not account for.",
       lead: "Not catalogue theory. These are the problems that only appear when you actually try to assemble, bolt together and run the hardware.",
