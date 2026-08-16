@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en" class="lang-loading">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0a0d12">
-  <meta name="description" content="Portfolio Marcina — samodzielnie budowane maszyny CNC, robotyka, elektronika i prototypowanie.">
-  <title>Marcin — konstruktor i praktyczny prototypista</title>
+  <meta name="description" content="Marcin’s maker portfolio — self-built CNC machines, robotics, electronics and practical prototyping.">
+  <title>Marcin — maker and hands-on prototyper</title>
   <style>
     :root {
       color-scheme: dark;
@@ -88,6 +88,31 @@
       cursor: pointer;
     }
     .button:hover { border-color: rgba(255,154,69,.65); background: rgba(255,154,69,.09); }
+    .lang-loading body { visibility: hidden; }
+    .language-picker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 42px;
+      padding: 0 9px 0 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+    }
+    .language-picker:hover { border-color: rgba(107,224,193,.6); background: rgba(107,224,193,.08); }
+    .language-globe { font-size: .9rem; opacity: .9; }
+    .language-picker select {
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      font: inherit;
+      font-size: .78rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .language-picker option { color: #111; background: #fff; }
     .button-primary { color: #0b0e12; border-color: transparent; background: var(--orange); font-weight: 800; }
     .button-primary:hover { background: #ffad67; }
     .button-gotchas {
@@ -592,6 +617,7 @@
       .topbar { position: relative; }
       .top-actions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); width: 100%; }
       .top-actions .button { width: 100%; min-width: 0; white-space: normal; line-height: 1.15; text-align: center; }
+      .top-actions .language-picker { width: 100%; min-height: 38px; justify-content: center; }
       .top-actions .button-youtube { justify-content: center; }
     }
     @media (max-width: 920px) {
@@ -664,7 +690,7 @@
         <a class="button button-gotchas" href="https://stapowiczmarcin-sys.github.io/parts/#gotchas" target="_blank" rel="noopener" data-pl="&#129324; Pu&#322;apki cz&#281;&#347;ci" data-en="&#129324; Part traps">&#129324; Pu&#322;apki cz&#281;&#347;ci</a>
         <a class="button" href="kora-brain/" data-pl="M&#243;zg Kory" data-en="Kora brain">M&#243;zg Kory</a>
         <a class="button button-youtube" href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener" aria-label="YouTube — Kreatywny Morrcin" title="YouTube — Kreatywny Morrcin"><span class="youtube-mark" aria-hidden="true"></span><span class="youtube-label-full" data-pl="YouTube" data-en="YouTube">YouTube</span><span class="youtube-label-short" data-pl="Mój kanał" data-en="My channel">Mój kanał</span></a>
-        <button class="button" id="languageButton" type="button" aria-label="Zmień język"><span>PL / EN</span></button>
+        <label class="language-picker" aria-label="Language"><span class="language-globe" aria-hidden="true">🌐</span><select id="languageSelect" aria-label="Language"><option value="en">EN</option><option value="pl">PL</option><option value="de">DE</option></select></label>
         <button class="button button-print" type="button" onclick="window.print()"><span>⎙</span><span class="button-label" data-pl="PDF" data-en="PDF">PDF</span></button>
       </div>
     </div>
@@ -1362,8 +1388,9 @@ https://ko-fi.com/marcinstapowicz
     <img id="lightboxImage" alt="Powiększone zdjęcie projektu">
   </dialog>
 
+  <script src="portfolio-de.js"></script>
   <script>
-    const languageButton = document.getElementById('languageButton');
+    const languageSelect = document.getElementById('languageSelect');
     const year = document.getElementById('year');
     const stackButtons = Array.from(document.querySelectorAll('.stack-chip'));
     const stackDetailTitle = document.getElementById('stackDetailTitle');
@@ -1373,8 +1400,15 @@ https://ko-fi.com/marcinstapowicz
     const lampCode = document.getElementById('lampCode');
     const copyYoutubeDescriptionButton = document.getElementById('copyYoutubeDescription');
     const youtubeDescriptionTemplate = document.getElementById('youtubeDescriptionTemplate');
-    let language = localStorage.getItem('portfolio-language') || 'pl';
+    let language = 'en';
     let activeStackButton = stackButtons[0] || null;
+
+    const deTranslations = window.PORTFOLIO_DE || {};
+
+    function translated(enText, plText) {
+      if (language === 'de') return deTranslations[enText] || enText || '';
+      return language === 'pl' ? (plText || enText || '') : (enText || plText || '');
+    }
 
     function renderStackDetail(button) {
       if (!button || !stackDetailTitle || !stackDetailCopy || !stackDetailLink) return;
@@ -1386,28 +1420,29 @@ https://ko-fi.com/marcinstapowicz
         item.setAttribute('aria-pressed', String(isActive));
       });
 
-      stackDetailTitle.textContent = button.dataset[`${language}Title`];
-      stackDetailCopy.textContent = button.dataset[`${language}Copy`];
-      stackDetailLink.textContent = button.dataset[`${language}Link`];
+      stackDetailTitle.textContent = translated(button.dataset.enTitle, button.dataset.plTitle);
+      stackDetailCopy.textContent = translated(button.dataset.enCopy, button.dataset.plCopy);
+      stackDetailLink.textContent = translated(button.dataset.enLink, button.dataset.plLink);
       stackDetailLink.href = button.dataset.target;
     }
 
     function applyLanguage() {
       document.documentElement.lang = language;
       document.querySelectorAll('[data-pl][data-en]').forEach((element) => {
-        element.textContent = element.dataset[language];
+        element.textContent = translated(element.dataset.en, element.dataset.pl);
       });
-      languageButton.textContent = language === 'pl' ? 'PL / EN' : 'EN / PL';
-      languageButton.setAttribute('aria-label', language === 'pl' ? 'Zmień język na angielski' : 'Switch language to Polish');
+      languageSelect.value = language;
       document.title = language === 'pl'
         ? 'Marcin — konstruktor i praktyczny prototypista'
-        : 'Marcin — maker and hands-on prototyper';
+        : language === 'de'
+          ? 'Marcin — Konstrukteur und praxisorientierter Prototypenbauer'
+          : 'Marcin — maker and hands-on prototyper';
       renderStackDetail(activeStackButton);
-      localStorage.setItem('portfolio-language', language);
+      document.documentElement.classList.remove('lang-loading');
     }
 
-    languageButton.addEventListener('click', () => {
-      language = language === 'pl' ? 'en' : 'pl';
+    languageSelect.addEventListener('change', () => {
+      language = languageSelect.value;
       applyLanguage();
     });
 
@@ -1419,12 +1454,12 @@ https://ko-fi.com/marcinstapowicz
       copyLampCodeButton.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(lampCode.textContent);
-          copyLampCodeButton.textContent = language === 'pl' ? 'Skopiowano ✓' : 'Copied ✓';
+          copyLampCodeButton.textContent = language === 'pl' ? 'Skopiowano ✓' : language === 'de' ? 'Kopiert ✓' : 'Copied ✓';
           window.setTimeout(() => {
-            copyLampCodeButton.textContent = copyLampCodeButton.dataset[language];
+            copyLampCodeButton.textContent = translated(copyLampCodeButton.dataset.en, copyLampCodeButton.dataset.pl);
           }, 1800);
         } catch (error) {
-          copyLampCodeButton.textContent = language === 'pl' ? 'Zaznacz kod ręcznie' : 'Select the code manually';
+          copyLampCodeButton.textContent = language === 'pl' ? 'Zaznacz kod ręcznie' : language === 'de' ? 'Code manuell auswählen' : 'Select the code manually';
         }
       });
     }
@@ -1433,12 +1468,12 @@ https://ko-fi.com/marcinstapowicz
       copyYoutubeDescriptionButton.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(youtubeDescriptionTemplate.textContent.trim());
-          copyYoutubeDescriptionButton.textContent = language === 'pl' ? 'Skopiowano ✓' : 'Copied ✓';
+          copyYoutubeDescriptionButton.textContent = language === 'pl' ? 'Skopiowano ✓' : language === 'de' ? 'Kopiert ✓' : 'Copied ✓';
           window.setTimeout(() => {
-            copyYoutubeDescriptionButton.textContent = copyYoutubeDescriptionButton.dataset[language];
+            copyYoutubeDescriptionButton.textContent = translated(copyYoutubeDescriptionButton.dataset.en, copyYoutubeDescriptionButton.dataset.pl);
           }, 1800);
         } catch (error) {
-          copyYoutubeDescriptionButton.textContent = language === 'pl' ? 'Zaznacz tekst ręcznie' : 'Select the text manually';
+          copyYoutubeDescriptionButton.textContent = language === 'pl' ? 'Zaznacz tekst ręcznie' : language === 'de' ? 'Text manuell auswählen' : 'Select the text manually';
         }
       });
     }
