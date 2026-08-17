@@ -28,6 +28,13 @@
           kicker: "HEXAPOD FREENOVE — ZESTAW, KTÓRY NAJLEPIEJ SKŁADA SIĘ NA ZDJĘCIU PRODUKTOWYM.",
           title: "18 serw, kruche plastiki, niedopasowane elementy i zasilanie, przy którym zaczynasz liczyć minuty.",
           body: "Moje doświadczenie z hexapodem Freenove jest po prostu złe. Dystanse i mechanika nie zostały dopracowane tak, żeby robot dawał się bezproblemowo złożyć. Część plastikowych elementów jest na tyle krucha, że potrafi pęknąć już podczas normalnego montażu. Do tego dochodzą śruby i dystanse, których długości nie tworzą sensownego stacka. Efekt? Zamiast składać robota, zaczynasz projektować poprawki do zestawu, który miał być gotowy do złożenia.",
+          images: [
+            { src: "assets/gotchas/freenove-hexapod-gotcha-01.jpg", alt: "Freenove hexapod — warstwy elektroniki i okablowanie nad Raspberry Pi", caption: "Stack elektroniki: Raspberry Pi, płytki sterujące, przewody i coraz mniej miejsca." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-02.jpg", alt: "Freenove hexapod — Raspberry Pi z radiatorem i płytkami rozszerzeń", caption: "Raspberry Pi i kolejne moduły — kompatybilność na papierze nie rozwiązuje mechaniki." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-03.webp", alt: "Freenove hexapod — mały prześwit pomiędzy piętrami konstrukcji", caption: "Między płytami każdy milimetr zaczyna mieć znaczenie." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-04.webp", alt: "Freenove hexapod — całe podwozie z serwami i wielopoziomową elektroniką", caption: "18 serw i wielopoziomowa elektronika. Tu teoria spotyka stół montażowy." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-05.webp", alt: "Freenove hexapod — mocowanie serwa i śruba M2 x 16", caption: "Mocowanie serwa i M2×16 — kolejny detal, przy którym zaczyna się kombinowanie." }
+          ],
           discovery: "Lista absurdów",
           discoveryText: "Hailo nie da się po prostu elegancko dołożyć do całego układu. Masz 18 serw, a fabryczna koncepcja zasilania opiera się na zaledwie 2× 18650 dla części napędowej oraz kolejnych ogniwach dla Raspberry Pi. Przy robocie tej wielkości brzmi to bardziej jak demonstracja niż zasilanie do poważnego chodzenia.",
           workaround: "Werdykt Marcinka",
@@ -59,6 +66,13 @@
           kicker: "FREENOVE HEXAPOD — A KIT THAT ASSEMBLES BEST IN THE PRODUCT PHOTO.",
           title: "18 servos, brittle plastic, mismatched hardware and a power concept that makes you count minutes.",
           body: "My experience with the Freenove hexapod has been poor. The standoffs and mechanics are not refined enough for the robot to go together cleanly. Some plastic parts are brittle enough to crack during normal assembly. Screw and standoff lengths also fail to create a sensible stack. Instead of assembling the robot, you end up redesigning the kit that was supposed to be ready to build.",
+          images: [
+            { src: "assets/gotchas/freenove-hexapod-gotcha-01.jpg", alt: "Freenove hexapod — stacked electronics and wiring above the Raspberry Pi", caption: "The electronics stack: Raspberry Pi, controller boards, wiring and less room with every layer." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-02.jpg", alt: "Freenove hexapod — Raspberry Pi heatsink and expansion boards", caption: "Raspberry Pi plus more modules — compatibility on paper does not solve the mechanics." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-03.webp", alt: "Freenove hexapod — tight clearance between chassis layers", caption: "Between the plates, every millimetre starts to matter." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-04.webp", alt: "Freenove hexapod — complete chassis with servos and multi-level electronics", caption: "18 servos and multi-level electronics. This is where the brochure meets the workbench." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-05.webp", alt: "Freenove hexapod — servo mounting and M2 x 16 screw", caption: "Servo mounting and M2×16 — another small detail that turns into redesign work." }
+          ],
           discovery: "The absurdity list",
           discoveryText: "Hailo cannot simply be added neatly to the complete stack. There are 18 servos, while the stock power concept relies on only 2× 18650 cells for the drive side plus additional cells for the Raspberry Pi. For a robot of this size, that feels more like a demonstration setup than serious walking power.",
           workaround: "Marcin's verdict",
@@ -90,6 +104,15 @@
   }
 
   function cardHtml(card) {
+    const gallery = Array.isArray(card.images) && card.images.length
+      ? `<div class="gotcha-gallery">${card.images.map((image, index) => `
+          <figure class="gotcha-photo${index === 0 ? " gotcha-photo--lead" : ""}">
+            <a href="${image.src}" target="_blank" rel="noreferrer">
+              <img src="${image.src}" alt="${image.alt}" loading="lazy" decoding="async">
+            </a>
+            <figcaption>${image.caption}</figcaption>
+          </figure>`).join("")}</div>`
+      : "";
     const link = card.url && card.link
       ? `<a class="gotcha-link" href="${card.url}" target="_blank" rel="noreferrer">${card.link}</a>`
       : "";
@@ -99,6 +122,7 @@
         <div class="gotcha-card-body">
           <h4>${card.title}</h4>
           <p class="gotcha-main">${card.body}</p>
+          ${gallery}
           <div class="gotcha-grid">
             <div><span>${card.discovery}</span><strong>${card.discoveryText}</strong></div>
             <div><span>${card.workaround}</span><strong>${card.workaroundText}</strong></div>

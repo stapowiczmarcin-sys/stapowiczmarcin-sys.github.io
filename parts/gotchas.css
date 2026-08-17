@@ -105,6 +105,51 @@
   line-height: 1.7;
 }
 
+.gotcha-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.gotcha-photo {
+  margin: 0;
+  border: 2px solid #101112;
+  background: #101112;
+  overflow: hidden;
+}
+
+.gotcha-photo--lead { grid-column: 1 / -1; }
+
+.gotcha-photo a {
+  display: block;
+  background: #101112;
+}
+
+.gotcha-photo img {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 32vw, 390px);
+  object-fit: cover;
+  transition: transform .2s ease;
+}
+
+.gotcha-photo--lead img {
+  height: clamp(300px, 45vw, 560px);
+}
+
+.gotcha-photo a:hover img { transform: scale(1.015); }
+
+.gotcha-photo figcaption {
+  padding: 10px 12px;
+  background: #101112;
+  color: #fff;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 800;
+}
+
 .gotcha-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -169,6 +214,10 @@
     padding: 13px 14px;
   }
   .gotcha-panel { margin-top: 18px; box-shadow: 6px 6px 0 #101112; }
+  .gotcha-gallery { grid-template-columns: 1fr; }
+  .gotcha-photo--lead { grid-column: auto; }
+  .gotcha-photo img,
+  .gotcha-photo--lead img { height: auto; }
   .gotcha-grid { grid-template-columns: 1fr; }
   .gotcha-card { margin: 14px; }
 }
