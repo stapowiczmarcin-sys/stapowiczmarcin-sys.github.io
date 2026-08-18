@@ -35,3 +35,23 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "bgtxingi-m25-standoff-kit-
     "youtubeEn": "For secure Raspberry Pi, UPS and Hailo mounting I use a 280-piece M2.5 kit with brass standoffs and stainless-steel screws and nuts."
   });
 }
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "neewer-lm2")) {
+  window.PARTS_CATALOG.push({
+    "id": "neewer-lm2",
+    "name": "NEEWER LM2 — mikrofon krawatowy USB",
+    "short": "Sprawdzony mikrofon do nagrywania głosu i filmów",
+    "category": "Audio",
+    "supplier": "Amazon",
+    "project": "Audio",
+    "status": "Używam",
+    "accent": "pink",
+    "spec": "USB-A • mikrofon dookólny • przewód 2 m • odsłuch 3.5 mm • plug & play",
+    "url": "https://amzn.to/4ghbkDX",
+    "youtubePl": "Do nagrywania głosu i filmów używam mikrofonu krawatowego NEEWER LM2 USB. U mnie sprawdził się dobrze — jest prosty, przewodowy i działa bez kombinowania.",
+    "youtubeEn": "For voice and video recording I use the NEEWER LM2 USB lavalier microphone. It has worked well for me — simple, wired and plug-and-play."
+  });
+}
+
+window.PART_IMAGES = window.PART_IMAGES || {};
+window.PART_IMAGES["neewer-lm2"] = "https://de.neewer.com/cdn/shop/files/1_42e1f1da-e75d-44cc-be2b-aa2225eb4d2a.jpg?v=1746761338&width=1600";
