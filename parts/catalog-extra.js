@@ -30,7 +30,7 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "bgtxingi-m25-standoff-kit-
     "status": "Mam",
     "accent": "slate",
     "spec": "280 elementów • gwint M2.5 • mosiężne dystanse male-female i female-female • śruby i nakrętki ze stali nierdzewnej",
-    "url": "https://amzn.eu/d/0ftWKzE5",
+    "url": "https://amzn.to/4xKNzvh",
     "youtubePl": "Do pewnego montażu Raspberry Pi, UPS-a i Hailo używam zestawu 280 elementów M2.5 z mosiężnymi dystansami oraz stalowymi śrubami i nakrętkami.",
     "youtubeEn": "For secure Raspberry Pi, UPS and Hailo mounting I use a 280-piece M2.5 kit with brass standoffs and stainless-steel screws and nuts."
   });
