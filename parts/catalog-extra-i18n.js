@@ -19,5 +19,10 @@ Object.assign(window.CATALOG_I18N.parts, {
     name: "BGTXINGI — M2.5 standoff kit, 280 pieces",
     short: "Brass standoffs, screws and nuts for mounting Raspberry Pi, UPS and Hailo",
     spec: "280 pieces • M2.5 thread • brass male-female and female-female standoffs • stainless-steel screws and nuts"
+  },
+  "neewer-lm2": {
+    name: "NEEWER LM2 — USB lavalier microphone",
+    short: "Tested microphone for voice and video recording",
+    spec: "USB-A • omnidirectional microphone • 2 m cable • 3.5 mm monitoring jack • plug & play"
   }
 });
