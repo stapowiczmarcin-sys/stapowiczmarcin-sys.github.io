@@ -2,9 +2,8 @@
 
 const parts = window.PARTS_CATALOG || [];
 const i18n = window.CATALOG_I18N || { categories: {}, projects: {}, statuses: {}, parts: {} };
-const storedLanguage = localStorage.getItem("catalog-language");
 const state = {
-  language: storedLanguage === "en" || storedLanguage === "pl" ? storedLanguage : (navigator.language.toLowerCase().startsWith("pl") ? "pl" : "en"),
+  language: "en",
   query: "",
   category: new URLSearchParams(location.search).get("category") || "Wszystkie",
   supplier: new URLSearchParams(location.search).get("supplier") || "Wszystkie sklepy",
@@ -175,7 +174,6 @@ function translateStatic() {
   $("#categoryTabs").setAttribute("aria-label", ui[state.language].categoriesLabel);
   document.title = ui[state.language].pageTitle;
   document.querySelector('meta[name="description"]').content = ui[state.language].pageDescription;
-  localStorage.setItem("catalog-language", state.language);
 }
 
 function render() {
