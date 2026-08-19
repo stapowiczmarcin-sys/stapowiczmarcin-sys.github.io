@@ -47,7 +47,7 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "neewer-lm2")) {
     "status": "Używam",
     "accent": "pink",
     "spec": "USB-A • mikrofon dookólny • przewód 2 m • odsłuch 3.5 mm • plug & play",
-    "url": "https://amzn.to/4ghbkDX",
+    "url": "https://amzn.to/4qr6Z5K",
     "youtubePl": "Do nagrywania głosu i filmów używam mikrofonu krawatowego NEEWER LM2 USB. U mnie sprawdził się dobrze — jest prosty, przewodowy i działa bez kombinowania.",
     "youtubeEn": "For voice and video recording I use the NEEWER LM2 USB lavalier microphone. It has worked well for me — simple, wired and plug-and-play."
   });
