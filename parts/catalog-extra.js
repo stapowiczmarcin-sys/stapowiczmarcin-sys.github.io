@@ -53,5 +53,22 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "neewer-lm2")) {
   });
 }
 
+if (!window.PARTS_CATALOG.some((part) => part.id === "bms-13s-48v-mnine")) {
+  window.PARTS_CATALOG.push({
+    "id": "bms-13s-48v-mnine",
+    "name": "BMS 13S / 48 V — rower elektryczny",
+    "short": "Sprawdzony BMS do pakietu 13S użyty w M-Nine",
+    "category": "Zasilanie",
+    "supplier": "Amazon",
+    "project": "M-Nine e-bike",
+    "status": "Używam",
+    "accent": "amber",
+    "spec": "13S • 48 V nominalnie • balansowanie ogniw • B− / P− / C−",
+    "url": "https://amzn.to/4g9cS4m",
+    "youtubePl": "W akumulatorze roweru M-Nine używam sprawdzonego BMS-a 13S / 48 V. Przy montażu najważniejsze jest poprawne rozróżnienie B−, P− i C− oraz kolejności przewodów balansujących.",
+    "youtubeEn": "In the M-Nine e-bike battery I use a tested 13S / 48 V BMS. Correct identification of B−, P− and C− and the balance-wire order is critical during installation."
+  });
+}
+
 window.PART_IMAGES = window.PART_IMAGES || {};
 window.PART_IMAGES["neewer-lm2"] = "https://de.neewer.com/cdn/shop/files/1_42e1f1da-e75d-44cc-be2b-aa2225eb4d2a.jpg?v=1746761338&width=1600";
