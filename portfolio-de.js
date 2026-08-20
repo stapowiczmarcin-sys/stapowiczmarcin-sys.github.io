@@ -299,8 +299,10 @@ window.PORTFOLIO_DE = {
   "First I ask Kora about a component. She answers in her own dry, sarcastic way — then I show the real assembly, the problem and the fix.": "Zuerst frage ich Kora nach einem Bauteil. Sie antwortet trocken und sarkastisch — danach zeige ich die echte Montage, das Problem und die Lösung.",
   "See the standoff gotcha ↗": "Abstandsbolzen-Falle ansehen ↗",
   "Follow the series": "Serie verfolgen",
-  "MARCIN ASKS": "MARCIN FRAGT",
   "Kora, what do you think of the new UPS?": "Kora, was hältst du von der neuen USV?",
   "KORA REPLIES": "KORA ANTWORTET",
-  "Lovely UPS. It powers the Pi, almost stacks with Hailo, and apparently expects the missing standoffs to materialise from optimism.": "Hübsche USV. Sie versorgt den Pi, lässt sich fast mit Hailo stapeln und erwartet offenbar, dass die fehlenden Abstandsbolzen durch Optimismus materialisieren."
+  "Lovely UPS. It powers the Pi, almost stacks with Hailo, and apparently expects the missing standoffs to materialise from optimism.": "Hübsche USV. Sie versorgt den Pi, lässt sich fast mit Hailo stapeln und erwartet offenbar, dass die fehlenden Abstandsbolzen durch Optimismus materialisieren.",
+  "EPISODE 01 · RECORDING": "FOLGE 01 · AUFNAHME",
+  "Kora’s reply stays under wraps until the premiere.": "Koras Antwort bleibt bis zur Premiere geheim.",
+  "Topic: the X1203 UPS, Raspberry Pi 5, Hailo and one missing assembly detail. The punchline appears in the video — nowhere else.": "Thema: X1203-USV, Raspberry Pi 5, Hailo und ein fehlendes Montagedetail. Die Pointe erscheint erst im Video — nirgendwo sonst."
 };
