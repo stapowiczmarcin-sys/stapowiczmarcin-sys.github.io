@@ -31,7 +31,7 @@ const ui = {
     open: "Open product", knownVisible: "Visible — known prices", knownPrices: "known prices", search: "Search: lidar, ESP32, audio…",
     searchLabel: "Search parts", clearLabel: "Clear search", projectLabel: "Filter by project", supplierLabel: "Filter by store",
     statusLabel: "Filter by status", categoriesLabel: "Categories", languageLabel: "Switch language to Polish",
-    pageTitle: "Marcin — project parts catalogue", pageDescription: "Parts used by Marcin in Kora, CNC, robotics, electronics and audio projects."
+    pageTitle: "Marcin — project parts catalogue", pageDescription: "Tested project parts used in Kora, CNC, robotics and electronics — with real build notes and hardware gotchas."
   }
 };
 

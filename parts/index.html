@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f2f0e9">
-  <meta name="description" content="Katalog części używanych przez Marcina w projektach CNC, Kora, robotyce, elektronice i audio.">
-  <title>Marcin — katalog części projektowych</title>
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Tested project parts used in Kora, CNC, robotics and electronics — with real build notes and hardware gotchas.">
+  <title>Marcin — project parts catalogue</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="gotchas.css?v=20260816-1">
   <script src="image-data-1.js" defer></script>
@@ -20,6 +21,14 @@
   <script src="catalog-extra-i18n.js?v=20260815-1" defer></script>
   <script src="app.js?v=20260814-1" defer></script>
   <script src="gotchas.js?v=20260816-2" defer></script>
+
+  <link rel="canonical" href="https://stapowiczmarcin-sys.github.io/parts/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Marcin — project parts catalogue">
+  <meta property="og:description" content="Tested project parts used in Kora, CNC, robotics and electronics — with real build notes and hardware gotchas.">
+  <meta property="og:url" content="https://stapowiczmarcin-sys.github.io/parts/">
+  <meta property="og:image" content="https://stapowiczmarcin-sys.github.io/assets/kora/kora-main.webp">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
   <header class="topbar">
@@ -37,6 +46,17 @@
       <div class="stats" id="stats" aria-label="Podsumowanie katalogu"></div>
     </section>
 
+
+    <section class="build-note" id="ups-hailo-note">
+      <div class="build-note-media"><img src="../assets/kora/suptronics-x1203-front.webp" alt="SupTronics X1203 UPS for Raspberry Pi 5" loading="lazy"></div>
+      <div class="build-note-copy">
+        <span class="section-index" data-pl="NOWE · PUŁAPKA WARSZTATOWA" data-en="NEW · WORKBENCH GOTCHA">NEW · WORKBENCH GOTCHA</span>
+        <h2 data-pl="Pi 5 + UPS + Hailo: brakuje dystansów." data-en="Pi 5 + UPS + Hailo: the standoffs are missing.">Pi 5 + UPS + Hailo: the standoffs are missing.</h2>
+        <p data-pl="Sam UPS pasuje do Raspberry Pi 5. Kiedy dokładasz Hailo AI HAT+, fabryczny zestaw nie daje dystansów potrzebnych do poprawnego złożenia całego stosu. Bez dodatkowych M2.5 montaż po prostu się nie zamknie." data-en="The UPS fits the Raspberry Pi 5 on its own. Add the Hailo AI HAT+ and the supplied hardware does not include the standoffs needed for the full stack. Without extra M2.5 standoffs, the assembly simply will not go together.">The UPS fits the Raspberry Pi 5 on its own. Add the Hailo AI HAT+ and the supplied hardware does not include the standoffs needed for the full stack. Without extra M2.5 standoffs, the assembly simply will not go together.</p>
+        <div class="build-note-actions"><a class="primary" href="#gotchas"><span class="primary-label" data-pl="Zobacz całą pułapkę" data-en="See the full gotcha">See the full gotcha</span> <span>↓</span></a><a class="text-link" href="?project=Kora%20%2F%20VEGA#catalog" data-pl="Pokaż części Kory →" data-en="Show Kora parts →">Show Kora parts →</a></div>
+      </div>
+    </section>
+
     <section class="catalog" id="catalog">
       <div class="section-heading"><div><span class="section-index" data-pl="01 / KATALOG" data-en="01 / CATALOGUE">01 / KATALOG</span><h2 data-pl="Regał z częściami" data-en="Parts shelf">Regał z częściami</h2></div><p data-pl="Kliknij „Opis na YouTube”, aby skopiować gotowy tekst po polsku i angielsku razem z linkiem do produktu." data-en="Click “YouTube copy” to copy a ready-made Polish and English description together with the product link.">Kliknij „Opis na YouTube”, aby skopiować gotowy tekst po polsku i angielsku razem z linkiem do produktu.</p></div>
       <div class="filters">
@@ -47,7 +67,7 @@
       </div>
       <div class="category-tabs" id="categoryTabs" role="list" aria-label="Kategorie"></div>
       <div class="budget-summary" id="budgetSummary" aria-live="polite"></div>
-      <div class="results-line"><span id="resultCount">00 WYNIKÓW</span><span data-pl="AKTUALIZACJA: 16.08.2026" data-en="UPDATED: 16 AUG 2026">AKTUALIZACJA: 16.08.2026</span></div>
+      <div class="results-line"><span id="resultCount">00 WYNIKÓW</span><span data-pl="UPDATED: 20 AUG 2026" data-en="UPDATED: 16 AUG 2026">AKTUALIZACJA: 16.08.2026</span></div>
       <div class="parts-grid" id="partsGrid"></div>
       <div class="empty" id="emptyState" hidden><strong data-pl="Nic tu nie leży." data-en="Nothing here.">Nic tu nie leży.</strong><span data-pl="Zmień filtr albo wpisz inną nazwę elementu." data-en="Change a filter or search for a different component.">Zmień filtr albo wpisz inną nazwę elementu.</span></div>
     </section>

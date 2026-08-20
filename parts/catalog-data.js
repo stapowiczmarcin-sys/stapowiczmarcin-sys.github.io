@@ -83,10 +83,10 @@ window.PARTS_CATALOG = [
     "status": "Mam",
     "price": "£39.70",
     "accent": "amber",
-    "spec": "5.1 V / 5 A • ogniwa 18650 poza płytką • montaż na pogo pinach",
+    "spec": "5.1 V / 5 A • ogniwa 18650 poza płytką • pogo piny • Pi 5 + Hailo wymaga dodatkowych dystansów M2.5",
     "url": "https://thepihut.com/search?q=SupTronics%20X1203%20UPS%20Raspberry%20Pi%205",
-    "youtubePl": "Raspberry Pi 5 jest podtrzymywane przez UPS SupTronics X1203 o wydajności 5,1 V / 5 A.",
-    "youtubeEn": "The Raspberry Pi 5 is backed by a SupTronics X1203 UPS rated at 5.1 V / 5 A."
+    "youtubePl": "UPS SupTronics X1203 pasuje do Raspberry Pi 5, ale przy montażu razem z Hailo AI HAT+ trzeba dołożyć dystanse M2.5 — nie ma ich w zestawie.",
+    "youtubeEn": "The SupTronics X1203 fits the Raspberry Pi 5, but stacking it with the Hailo AI HAT+ requires extra M2.5 standoffs — they are not included."
   },
   {
     "id": "psu45",

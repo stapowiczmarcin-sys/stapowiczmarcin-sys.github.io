@@ -292,5 +292,15 @@ window.PORTFOLIO_DE = {
   "Have a question, an idea or a collaboration proposal?": "Hast du eine Frage, eine Idee oder einen Vorschlag zur Zusammenarbeit?",
   "Email is the easiest way to reach me. I publish code and project progress on GitHub and YouTube — without pretending that a prototype always works on the first attempt.": "E-Mail ist der einfachste Weg, mich zu erreichen. Code und Projektfortschritte veröffentliche ich auf GitHub und YouTube — ohne so zu tun, als würde ein Prototyp immer beim ersten Versuch funktionieren.",
   "Materials & support": "Materialien & Unterstützung",
-  "Ko-fi — buy me a coffee": "Ko-fi — spendier mir einen Kaffee"
+  "Ko-fi — buy me a coffee": "Ko-fi — spendier mir einen Kaffee",
+  "Kora Says": "Kora spricht",
+  "NEW SERIES · EPISODE 01": "NEUE SERIE · FOLGE 01",
+  "What Will Kora Say?": "Was wird Kora sagen?",
+  "First I ask Kora about a component. She answers in her own dry, sarcastic way — then I show the real assembly, the problem and the fix.": "Zuerst frage ich Kora nach einem Bauteil. Sie antwortet trocken und sarkastisch — danach zeige ich die echte Montage, das Problem und die Lösung.",
+  "See the standoff gotcha ↗": "Abstandsbolzen-Falle ansehen ↗",
+  "Follow the series": "Serie verfolgen",
+  "MARCIN ASKS": "MARCIN FRAGT",
+  "Kora, what do you think of the new UPS?": "Kora, was hältst du von der neuen USV?",
+  "KORA REPLIES": "KORA ANTWORTET",
+  "Lovely UPS. It powers the Pi, almost stacks with Hailo, and apparently expects the missing standoffs to materialise from optimism.": "Hübsche USV. Sie versorgt den Pi, lässt sich fast mit Hailo stapeln und erwartet offenbar, dass die fehlenden Abstandsbolzen durch Optimismus materialisieren."
 };

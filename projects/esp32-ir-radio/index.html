@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08101b">
   <title>ESP32 Internet Radio · 3×IR · RGB — Marcin</title>
+  <meta name="description" content="A hand-built ESP32 internet radio with three IR controls, RGB lighting and a TFT display.">
   <style>
     :root {
       --bg:#07101a; --panel:#101a28; --panel2:#131f30; --text:#f5f7fa;
@@ -22,6 +23,14 @@
     @media(max-width:860px){.hero-grid,.steps{grid-template-columns:1fr}.grid3,.status-list{grid-template-columns:1fr}.top-in{align-items:flex-start;padding:11px 0;flex-direction:column}.hero{padding-top:34px}.diagram-full{display:none}.diagram-mobile{display:grid;gap:12px}}
     @media(max-width:520px){.shell{width:min(100% - 18px,1160px)}.hero-copy,.hero-side{padding:22px}.diagram{padding:6px}.actions{width:100%}.btn{flex:1;padding-inline:10px;font-size:.85rem}}
   </style>
+
+  <link rel="canonical" href="https://stapowiczmarcin-sys.github.io/projects/esp32-ir-radio/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ESP32 Internet Radio · 3×IR · RGB — Marcin">
+  <meta property="og:description" content="A hand-built ESP32 internet radio with three IR controls, RGB lighting and a TFT display.">
+  <meta property="og:url" content="https://stapowiczmarcin-sys.github.io/projects/esp32-ir-radio/">
+  <meta property="og:image" content="https://stapowiczmarcin-sys.github.io/assets/kora/kora-main.webp">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
   <header class="top">
@@ -31,7 +40,7 @@
         <button class="btn" id="lang" type="button">PL / EN</button>
         <a class="btn" href="../../#radio" data-pl="← Portfolio" data-en="← Portfolio">← Portfolio</a>
         <a class="btn" href="../../kora-brain/" data-pl="Mózg Kory — teraz" data-en="Kora brain — now">Mózg Kory — teraz</a>
-        <a class="btn" href="wiring-preview.png" target="_blank" data-pl="Otwórz schemat" data-en="Open diagram">Otwórz schemat</a>
+        <a class="btn" href="wiring-preview.png" target="_blank" rel="noopener noreferrer" data-pl="Otwórz schemat" data-en="Open diagram">Otwórz schemat</a>
         <a class="btn btn-main" href="esp32_radio_ir_rgb.ino" download data-pl="Pobierz kod .ino" data-en="Download .ino code">Pobierz kod .ino</a>
       </div>
     </div>
@@ -62,10 +71,10 @@
     <section id="schemat">
       <div class="shell">
         <div class="head"><span class="eyebrow">01 / WIRING</span><h2 data-pl="Schemat połączeń" data-en="Wiring diagram">Schemat połączeń</h2><p data-pl="Nowa wersja używa bezpieczniejszych GPIO32 i GPIO33 zamiast problematycznego pinu rozruchowego GPIO12. To celowa poprawa względem starych prób." data-en="The reconstructed version uses safer GPIO32 and GPIO33 instead of the problematic GPIO12 boot-strapping pin. This is a deliberate improvement over the old experiments.">Nowa wersja używa bezpieczniejszych GPIO32 i GPIO33 zamiast problematycznego pinu rozruchowego GPIO12. To celowa poprawa względem starych prób.</p></div>
-        <figure class="card diagram diagram-full"><a href="wiring-preview.png" target="_blank" aria-label="Otwórz pełny schemat połączeń"><img src="wiring-preview.png" alt="Schemat ESP32-WROOM, PCM5102A, trzech czujników IR i paska RGB"></a></figure>
+        <figure class="card diagram diagram-full"><a href="wiring-preview.png" target="_blank" rel="noopener noreferrer" aria-label="Otwórz pełny schemat połączeń"><img loading="lazy" src="wiring-preview.png" alt="Schemat ESP32-WROOM, PCM5102A, trzech czujników IR i paska RGB"></a></figure>
         <div class="diagram-mobile">
-          <figure class="card diagram"><a href="wiring-left.png" target="_blank" aria-label="Otwórz lewą część schematu"><img src="wiring-left.png" alt="Zasilanie, pasek RGB, trzy czujniki IR i ESP32 — lewa część schematu"></a></figure>
-          <figure class="card diagram"><a href="wiring-right.png" target="_blank" aria-label="Otwórz prawą część schematu"><img src="wiring-right.png" alt="ESP32, PCM5102A i wzmacniacz — prawa część schematu"></a></figure>
+          <figure class="card diagram"><a href="wiring-left.png" target="_blank" rel="noopener noreferrer" aria-label="Otwórz lewą część schematu"><img loading="lazy" src="wiring-left.png" alt="Zasilanie, pasek RGB, trzy czujniki IR i ESP32 — lewa część schematu"></a></figure>
+          <figure class="card diagram"><a href="wiring-right.png" target="_blank" rel="noopener noreferrer" aria-label="Otwórz prawą część schematu"><img loading="lazy" src="wiring-right.png" alt="ESP32, PCM5102A i wzmacniacz — prawa część schematu"></a></figure>
         </div>
         <div class="notice" data-pl="Najważniejsze: 82 diody mogą przy pełnej bieli pobrać około 4,9 A. Pasek dostaje własne stabilizowane 5 V; z ESP32 łączymy sygnał DATA i wspólną masę — nie zasilamy całego paska z płytki." data-en="Important: 82 pixels can draw about 4.9 A at full white. The strip needs its own regulated 5 V supply; connect DATA and common ground to the ESP32, and never power the whole strip from the board.">Najważniejsze: 82 diody mogą przy pełnej bieli pobrać około 4,9 A. Pasek dostaje własne stabilizowane 5 V; z ESP32 łączymy sygnał DATA i wspólną masę — nie zasilamy całego paska z płytki.</div>
       </div>

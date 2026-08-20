@@ -16,7 +16,7 @@
         {
           kicker: "NA PAPIERZE: PASUJE. NA STOLE: AHA, JASNE.",
           title: "UPS X1203 + Raspberry Pi + HAT / Hailo — mechanika mówi: nie tak szybko.",
-          body: "Sam UPS z Raspberry Pi da się złożyć sensownie. Problem zaczyna się przy dokładaniu HAT-a: standardowe dystanse nie rozwiązują całego stacka tak elegancko, jak sugerowałaby kompatybilność na papierze. M3 nie pasuje do mocowania UPS-a. M2 / M2.5 trzeba dobrać i potwierdzić gwint przed skręceniem — bez wciskania czegokolwiek na siłę.",
+          body: "Sam UPS z Raspberry Pi da się złożyć sensownie. Problem zaczyna się przy dokładaniu HAT-a: w zestawie brakuje dodatkowych dystansów potrzebnych do złożenia pełnego stacka. M3 nie pasuje do mocowania UPS-a. M2 / M2.5 trzeba dobrać i potwierdzić gwint przed skręceniem — bez wciskania czegokolwiek na siłę.",
           discovery: "Odkrycie Marcinka",
           discoveryText: "Kompatybilność elektryczna ≠ kompatybilność mechaniczna. Zanim kupisz HAT, UPS i obudowę, sprawdź także wysokość stacka, dostęp do śrub i gwint dystansów.",
           workaround: "Obejście",
