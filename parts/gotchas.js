@@ -16,11 +16,11 @@
         {
           kicker: "NA PAPIERZE: PASUJE. NA STOLE: AHA, JASNE.",
           title: "UPS X1203 + Raspberry Pi + HAT / Hailo — mechanika mówi: nie tak szybko.",
-          body: "Sam UPS z Raspberry Pi da się złożyć sensownie. Problem zaczyna się przy dokładaniu HAT-a: w zestawie brakuje dodatkowych dystansów potrzebnych do złożenia pełnego stacka. M3 nie pasuje do mocowania UPS-a. M2 / M2.5 trzeba dobrać i potwierdzić gwint przed skręceniem — bez wciskania czegokolwiek na siłę.",
+          body: "Sam UPS z Raspberry Pi da się złożyć sensownie. Problem zaczyna się przy dokładaniu Hailo AI HAT+: pełny stack potrzebuje dodatkowych dystansów M2.5 oraz wysokiego złącza GPIO 2×20. Standardowe piny nie sięgają przez wszystkie warstwy, a bez dodatkowego prześwitu płytki nie układają się poprawnie.",
           discovery: "Odkrycie Marcinka",
           discoveryText: "Kompatybilność elektryczna ≠ kompatybilność mechaniczna. Zanim kupisz HAT, UPS i obudowę, sprawdź także wysokość stacka, dostęp do śrub i gwint dystansów.",
           workaround: "Obejście",
-          workaroundText: "Dłuższe dystanse i osobny zestaw M2.5 są teraz w magazynie. Najpierw test gwintu, potem skręcanie. Młotek nie jest standardem Raspberry Pi.",
+          workaroundText: "Zastosowałem dodatkowe dystanse M2.5 oraz 40-pinowy, wysoki header 2×20 z zestawu Pi Hut. Specjalne cztery piny PoE nie były potrzebne. Najpierw przymierz warstwy, potem dokręcaj — młotek nadal nie jest standardem Raspberry Pi.",
           link: "Zobacz zestaw dystansów M2.5 →",
           url: "https://amzn.eu/d/0ftWKzE5"
         },
@@ -54,11 +54,11 @@
         {
           kicker: "ON PAPER: COMPATIBLE. ON THE BENCH: YEAH, RIGHT.",
           title: "X1203 UPS + Raspberry Pi + HAT / Hailo — the mechanics say: not so fast.",
-          body: "The UPS and Raspberry Pi can be assembled neatly on their own. The problem starts when a HAT is added: standard standoffs do not solve the whole stack as elegantly as the compatibility list suggests. M3 does not fit the UPS mounting points. M2 / M2.5 hardware needs to be selected and the thread confirmed before tightening — never force it.",
+          body: "The UPS and Raspberry Pi can be assembled neatly on their own. The problem starts when the Hailo AI HAT+ is added: the full stack needs extra M2.5 standoffs and a 2×20 extra-tall GPIO header. Standard pins do not reach through every layer, and without extra clearance the boards cannot sit correctly.",
           discovery: "Marcin's finding",
           discoveryText: "Electrical compatibility ≠ mechanical compatibility. Before buying a HAT, UPS and enclosure, also check stack height, screw access and standoff thread size.",
           workaround: "Workaround",
-          workaroundText: "Longer standoffs and a separate M2.5 assortment are now in the parts store. Test the thread first, tighten second. A hammer is not part of the Raspberry Pi standard.",
+          workaroundText: "I used extra M2.5 standoffs and the 40-pin, 2×20 extra-tall header from the Pi Hut kit. The special four PoE pins were not required. Dry-fit every layer before tightening — a hammer is still not part of the Raspberry Pi standard.",
           link: "See the M2.5 standoff kit →",
           url: "https://amzn.eu/d/0ftWKzE5"
         },
