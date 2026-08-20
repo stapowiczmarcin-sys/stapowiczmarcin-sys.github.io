@@ -76,17 +76,17 @@ window.PARTS_CATALOG = [
   {
     "id": "x1203",
     "name": "SupTronics X1203 V1.0 UPS",
-    "short": "Awaryjne zasilanie Raspberry Pi 5",
+    "short": "UPS Raspberry Pi 5 — pełny stack wymaga dodatkowej mechaniki",
     "category": "Zasilanie",
     "supplier": "Pi Hut",
     "project": "Kora / VEGA",
     "status": "Mam",
     "price": "£39.70",
     "accent": "amber",
-    "spec": "5.1 V / 5 A • ogniwa 18650 poza płytką • pogo piny • Pi 5 + Hailo wymaga dodatkowych dystansów M2.5",
+    "spec": "5.1 V / 5 A • ogniwa 18650 poza płytką • pogo piny • Pi 5 + Hailo: dodatkowe dystanse M2.5 i wysoki header GPIO 2×20",
     "url": "https://thepihut.com/search?q=SupTronics%20X1203%20UPS%20Raspberry%20Pi%205",
-    "youtubePl": "UPS SupTronics X1203 pasuje do Raspberry Pi 5, ale przy montażu razem z Hailo AI HAT+ trzeba dołożyć dystanse M2.5 — nie ma ich w zestawie.",
-    "youtubeEn": "The SupTronics X1203 fits the Raspberry Pi 5, but stacking it with the Hailo AI HAT+ requires extra M2.5 standoffs — they are not included."
+    "youtubePl": "UPS SupTronics X1203 pasuje do Raspberry Pi 5, ale pełny stack z Hailo AI HAT+ wymaga dodatkowych dystansów M2.5 oraz wysokiego złącza GPIO 2×20 — standardowy zestaw nie zapewnia potrzebnego prześwitu.",
+    "youtubeEn": "The SupTronics X1203 fits the Raspberry Pi 5, but the full stack with the Hailo AI HAT+ needs extra M2.5 standoffs and a 2×20 extra-tall GPIO header — the standard hardware does not provide enough clearance."
   },
   {
     "id": "psu45",
@@ -177,17 +177,17 @@ window.PARTS_CATALOG = [
   },
   {
     "id": "poe-header",
-    "name": "PoE+ HAT Extra Tall Header Kit",
-    "short": "Wyższe złącze GPIO pod nakładki",
+    "name": "PoE+ HAT Extra Tall Header Kit — 2×20 / 23.2 mm",
+    "short": "40-pinowy przedłużacz użyty w stacku UPS + Pi 5 + Hailo",
     "category": "Połączenia",
     "supplier": "Pi Hut",
-    "project": "Warsztat",
-    "status": "Mam",
+    "project": "Kora / VEGA",
+    "status": "Używam",
     "accent": "slate",
-    "spec": "Podwyższone GPIO • montaż wciskany • do PoE+ HAT",
-    "url": "https://thepihut.com/search?q=PoE%2B%20HAT%20Push-Fit%20Extra%20Tall%20Header%20Kit",
-    "youtubePl": "Wyższe złącze GPIO pozwala zachować dostęp do pinów podczas używania nakładki PoE+ HAT.",
-    "youtubeEn": "An extra-tall GPIO header keeps the pins accessible while using a PoE+ HAT."
+    "spec": "2×20 / 40 pinów • wysokość 23.2 mm • raster 2.54 mm • montaż wciskany • w Korze użyta część 40-pinowa",
+    "url": "https://thepihut.com/products/poe-hat-push-fit-extra-tall-header-kit",
+    "youtubePl": "W stacku UPS + Raspberry Pi 5 + Hailo wykorzystałem 40-pinową część wysokiego headera z zestawu Pi Hut. Specjalne cztery piny PoE nie były w tym montażu potrzebne.",
+    "youtubeEn": "In the UPS + Raspberry Pi 5 + Hailo stack I used the 40-pin extra-tall header from the Pi Hut kit. The special four PoE pins were not needed for this build."
   },
   {
     "id": "pca9685",
