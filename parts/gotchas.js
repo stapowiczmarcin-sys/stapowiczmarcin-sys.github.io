@@ -21,8 +21,13 @@
           discoveryText: "Kompatybilność elektryczna ≠ kompatybilność mechaniczna. Zanim kupisz HAT, UPS i obudowę, sprawdź także wysokość stacka, dostęp do śrub i gwint dystansów.",
           workaround: "Obejście",
           workaroundText: "Zastosowałem dodatkowe dystanse M2.5 oraz 40-pinowy, wysoki header 2×20 z zestawu Pi Hut. Specjalne cztery piny PoE nie były potrzebne. Najpierw przymierz warstwy, potem dokręcaj — młotek nadal nie jest standardem Raspberry Pi.",
-          link: "Zobacz zestaw dystansów M2.5 →",
-          url: "https://amzn.eu/d/0ftWKzE5",
+          products: [
+            { name: "Dystanse M2.5 — zestaw 280 elementów", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://www.amazon.co.uk/dp/B07FMV5RMG", cta: "Sklep →" },
+            { name: "Przedłużka GPIO 2×20 — extra-tall", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Sklep →" },
+            { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Sklep →" },
+            { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Sklep →" },
+            { name: "Raspberry Pi 5", imageId: "rpi5-16", url: "https://thepihut.com/products/raspberry-pi-5", cta: "Sklep →" }
+          ],
           videoId: "2q_VNgvxkWU",
           videoTitle: "Kora komentuje problem z UPS X1203",
           videoLabel: "Obejrzyj Short: UPS, Hailo i brakujące dystanse →"
@@ -62,8 +67,13 @@
           discoveryText: "Electrical compatibility ≠ mechanical compatibility. Before buying a HAT, UPS and enclosure, also check stack height, screw access and standoff thread size.",
           workaround: "Workaround",
           workaroundText: "I used extra M2.5 standoffs and the 40-pin, 2×20 extra-tall header from the Pi Hut kit. The special four PoE pins were not required. Dry-fit every layer before tightening — a hammer is still not part of the Raspberry Pi standard.",
-          link: "See the M2.5 standoff kit →",
-          url: "https://amzn.eu/d/0ftWKzE5",
+          products: [
+            { name: "M2.5 standoffs — 280-piece kit", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://www.amazon.co.uk/dp/B07FMV5RMG", cta: "Shop →" },
+            { name: "2×20 extra-tall GPIO header", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Shop →" },
+            { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Shop →" },
+            { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Shop →" },
+            { name: "Raspberry Pi 5", imageId: "rpi5-16", url: "https://thepihut.com/products/raspberry-pi-5", cta: "Shop →" }
+          ],
           videoId: "2q_VNgvxkWU",
           videoTitle: "Kora comments on the X1203 UPS problem",
           videoLabel: "Watch the Short: UPS, Hailo and missing standoffs →"
@@ -122,6 +132,20 @@
     const link = card.url && card.link
       ? `<a class="gotcha-link" href="${card.url}" target="_blank" rel="noreferrer">${card.link}</a>`
       : "";
+    const products = Array.isArray(card.products) && card.products.length
+      ? `<div class="gotcha-products">${card.products.map((product) => {
+          const image = product.image || (window.PART_IMAGES && window.PART_IMAGES[product.imageId]) || "";
+          return `<article class="gotcha-product">
+            <a class="gotcha-product-image" href="${product.url}" target="_blank" rel="noreferrer">
+              <img src="${image}" alt="${product.name}" loading="lazy" decoding="async">
+            </a>
+            <div class="gotcha-product-copy">
+              <strong>${product.name}</strong>
+              <a href="${product.url}" target="_blank" rel="noreferrer">${product.cta}</a>
+            </div>
+          </article>`;
+        }).join("")}</div>`
+      : "";
     const video = card.videoId
       ? `<div class="gotcha-video">
           <iframe src="https://www.youtube-nocookie.com/embed/${card.videoId}" title="${card.videoTitle}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -134,6 +158,7 @@
         <div class="gotcha-card-body">
           <h4>${card.title}</h4>
           <p class="gotcha-main">${card.body}</p>
+          ${products}
           ${video}
           ${gallery}
           <div class="gotcha-grid">
