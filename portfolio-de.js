@@ -81,10 +81,23 @@ try {
   const style = document.createElement('style');
   style.textContent = `
     #kora-says .series-episodes{display:grid;gap:14px;align-content:start;min-width:0}
-    #kora-says .series-dialogue--latest{border-color:var(--acid);box-shadow:inset 0 0 0 1px var(--acid)}
+    #kora-says .series-card{color:#fff!important;background:#101112!important}
+    #kora-says .series-copy h2{color:#fff!important}
+    #kora-says .series-copy p{color:#c8c9c4!important}
+    #kora-says .series-kicker,#kora-says .series-label{color:#d9ff57!important}
+    #kora-says .series-dialogue{color:#fff!important;background:#191a1b!important;border-color:#4a4b47!important}
+    #kora-says .series-dialogue p{color:#c8c9c4!important}
+    #kora-says .series-dialogue blockquote{color:#fff!important;border-left-color:#d9ff57!important}
+    #kora-says .series-dialogue--latest{border-color:#d9ff57!important;box-shadow:inset 0 0 0 1px #d9ff57}
     #kora-says .series-parts{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
-    #kora-says .series-parts span{display:inline-flex;padding:6px 8px;border:1px solid #55564f;color:#d9ff57;background:#111;font:800 .64rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.05em}
-    #kora-says .series-episode-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    #kora-says .series-parts span{display:inline-flex;padding:6px 8px;border:1px solid #66675f;color:#d9ff57!important;background:#111!important;font:800 .64rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.05em}
+    #kora-says .series-actions,#kora-says .series-episode-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    #kora-says .button{color:#fff!important;border-color:#76776f!important;background:transparent!important}
+    #kora-says .button:hover,#kora-says .button:focus-visible{color:#101112!important;border-color:#d9ff57!important;background:#d9ff57!important}
+    #kora-says .button-primary{color:#101112!important;border-color:#d9ff57!important;background:#d9ff57!important}
+    #kora-says .button-primary:hover,#kora-says .button-primary:focus-visible{color:#101112!important;background:#fff!important;border-color:#fff!important}
+    #kora-says .button-youtube{color:#fff!important;border-color:#d00028!important;background:#d00028!important}
+    #kora-says .button-youtube:hover,#kora-says .button-youtube:focus-visible{color:#101112!important;border-color:#d9ff57!important;background:#d9ff57!important}
     @media(max-width:900px){#kora-says .series-card{grid-template-columns:1fr}#kora-says .series-episodes{margin-top:8px}}
   `;
   document.head.appendChild(style);
