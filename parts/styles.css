@@ -147,6 +147,8 @@ footer p { margin: 0; color: #a7a7a0; font-size: 11px; line-height: 1.5; } foote
 .build-note-copy p { max-width:740px; color:#c9c8c3; font-size:clamp(1rem,1.5vw,1.18rem); line-height:1.65; }
 .build-note-actions { display:flex; align-items:center; flex-wrap:wrap; gap:18px; margin-top:26px; }
 .build-note .primary { background:var(--acid); color:var(--ink); }
+.build-note .primary .primary-label,
+.build-note .primary > span:last-child { color:var(--ink); }
 .text-link { color:var(--acid); font-weight:900; text-transform:uppercase; letter-spacing:.06em; font-size:.78rem; }
 @media(max-width:800px){ .build-note{grid-template-columns:1fr;margin-inline:18px}.build-note-media{min-height:260px} }
 @media(prefers-reduced-motion:reduce){.part-card{transition:none}}
