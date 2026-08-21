@@ -22,7 +22,10 @@
           workaround: "Obejście",
           workaroundText: "Zastosowałem dodatkowe dystanse M2.5 oraz 40-pinowy, wysoki header 2×20 z zestawu Pi Hut. Specjalne cztery piny PoE nie były potrzebne. Najpierw przymierz warstwy, potem dokręcaj — młotek nadal nie jest standardem Raspberry Pi.",
           link: "Zobacz zestaw dystansów M2.5 →",
-          url: "https://amzn.eu/d/0ftWKzE5"
+          url: "https://amzn.eu/d/0ftWKzE5",
+          videoId: "2q_VNgvxkWU",
+          videoTitle: "Kora komentuje problem z UPS X1203",
+          videoLabel: "Obejrzyj Short: UPS, Hailo i brakujące dystanse →"
         },
         {
           kicker: "HEXAPOD FREENOVE — ZESTAW, KTÓRY NAJLEPIEJ SKŁADA SIĘ NA ZDJĘCIU PRODUKTOWYM.",
@@ -60,7 +63,10 @@
           workaround: "Workaround",
           workaroundText: "I used extra M2.5 standoffs and the 40-pin, 2×20 extra-tall header from the Pi Hut kit. The special four PoE pins were not required. Dry-fit every layer before tightening — a hammer is still not part of the Raspberry Pi standard.",
           link: "See the M2.5 standoff kit →",
-          url: "https://amzn.eu/d/0ftWKzE5"
+          url: "https://amzn.eu/d/0ftWKzE5",
+          videoId: "2q_VNgvxkWU",
+          videoTitle: "Kora comments on the X1203 UPS problem",
+          videoLabel: "Watch the Short: UPS, Hailo and missing standoffs →"
         },
         {
           kicker: "FREENOVE HEXAPOD — A KIT THAT ASSEMBLES BEST IN THE PRODUCT PHOTO.",
@@ -116,12 +122,19 @@
     const link = card.url && card.link
       ? `<a class="gotcha-link" href="${card.url}" target="_blank" rel="noreferrer">${card.link}</a>`
       : "";
+    const video = card.videoId
+      ? `<div class="gotcha-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/${card.videoId}" title="${card.videoTitle}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <a class="gotcha-video-link" href="https://youtube.com/shorts/${card.videoId}" target="_blank" rel="noreferrer">${card.videoLabel}</a>
+        </div>`
+      : "";
     return `
       <article class="gotcha-card">
         <div class="gotcha-stripe">⚠ ${card.kicker}</div>
         <div class="gotcha-card-body">
           <h4>${card.title}</h4>
           <p class="gotcha-main">${card.body}</p>
+          ${video}
           ${gallery}
           <div class="gotcha-grid">
             <div><span>${card.discovery}</span><strong>${card.discoveryText}</strong></div>
