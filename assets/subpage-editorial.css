@@ -485,3 +485,116 @@ figcaption * { color: #fff !important; }
 footer,
 footer * { color: #b9bab4 !important; }
 footer a { color: #fff !important; }
+
+/* The alternating dark-section selectors are intentionally very specific.
+   Repeat the light-surface context here so card copy cannot inherit from them. */
+main > section:nth-of-type(4n + 3) :is(
+  .card,
+  .tested-card,
+  .statusbox,
+  .block,
+  .metric,
+  .fact,
+  .step,
+  .item,
+  .pipe,
+  .note,
+  .safety,
+  .maker-quote,
+  .maker-foot,
+  .rule,
+  .notice,
+  .warning,
+  .motto,
+  .proofline,
+  .verdict,
+  .example,
+  .affiliate,
+  .model,
+  .danger,
+  .checklist,
+  .table-wrap,
+  .timeline-item
+) { color: var(--ink) !important; }
+
+main > section:nth-of-type(4n + 3) :is(
+  .card,
+  .tested-card,
+  .statusbox,
+  .block,
+  .metric,
+  .fact,
+  .step,
+  .item,
+  .pipe,
+  .note,
+  .safety,
+  .maker-quote,
+  .maker-foot,
+  .rule,
+  .notice,
+  .warning,
+  .motto,
+  .proofline,
+  .verdict,
+  .example,
+  .affiliate,
+  .model,
+  .danger,
+  .checklist,
+  .table-wrap,
+  .timeline-item
+) :is(h1,h2,h3,h4,h5,h6,strong,b,em,a) { color: var(--ink) !important; }
+
+main > section:nth-of-type(4n + 3) :is(
+  .card,
+  .tested-card,
+  .statusbox,
+  .block,
+  .metric,
+  .fact,
+  .step,
+  .item,
+  .pipe,
+  .note,
+  .safety,
+  .maker-quote,
+  .maker-foot,
+  .rule,
+  .notice,
+  .warning,
+  .motto,
+  .proofline,
+  .verdict,
+  .example,
+  .affiliate,
+  .model,
+  .danger,
+  .checklist,
+  .table-wrap,
+  .timeline-item
+) :is(p,span,li,small,label,.answer) { color: #5f605b !important; }
+
+/* Explicit dark surfaces and controls stay light after the card correction. */
+.card .code-head,
+.card .code-head *,
+.card .code-toolbar,
+.card .code-toolbar *,
+.codebox .code-head,
+.codebox .code-head *,
+.code-panel .code-toolbar,
+.code-panel .code-toolbar * { color: #fff !important; }
+.card pre,
+.card pre *,
+.codebox pre,
+.codebox pre * { color: #dce8e5 !important; }
+.card figcaption,
+.card figcaption *,
+figure figcaption,
+figure figcaption * { color: #fff !important; }
+.card .answer,
+.dialog .answer { color: var(--ink) !important; }
+.bad,
+.card .bad { color: #611919 !important; border-color: #bc3939 !important; background: #f4c7c3 !important; }
+.btn.btn-main,
+.button.button-primary { color: var(--ink) !important; }
