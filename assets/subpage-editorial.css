@@ -609,3 +609,7 @@ figure figcaption * { color: #fff !important; }
 .card p.bad.bad,
 .card .bad.bad { color: #611919 !important; border-color: #bc3939 !important; background: #f4c7c3 !important; }
 main > section:nth-of-type(4n + 3) .card .rule.rule span { color: #5f605b !important; }
+main > section:nth-of-type(4n + 3) .card .tag.tag,
+main > section:nth-of-type(4n + 3) .card .tag.tag * { color: var(--ink) !important; }
+main > section:nth-of-type(4n + 3) .card .status.status.failed,
+main > section:nth-of-type(4n + 3) .card .status.status.failed * { color: #fff !important; }
