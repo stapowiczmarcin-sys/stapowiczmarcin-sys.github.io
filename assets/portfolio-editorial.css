@@ -512,3 +512,23 @@ footer { padding: 34px 0; color: #b9bab4; background: var(--ink); }
 .code-toolbar * { color: #f4f5f7 !important; }
 .status,
 .verified-update { color: var(--ink) !important; }
+
+/* Restore the intended contrast inside genuinely dark alternating panels. */
+main > section:nth-of-type(4n + 3) :is(.panel,.gallery-card,.video-card,.next-card) {
+  color: #fff !important;
+}
+main > section:nth-of-type(4n + 3) :is(.panel,.gallery-card,.video-card,.next-card) :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,li) {
+  color: #fff !important;
+}
+main > section:nth-of-type(4n + 3) :is(.panel,.gallery-card,.video-card,.next-card) :is(p,span,small) {
+  color: #b9bab4 !important;
+}
+.button.button-primary { color: #fff !important; }
+.button.button-primary:hover,
+.button.button-primary:focus-visible { color: var(--ink) !important; }
+.code-panel .code-toolbar,
+.code-panel .code-toolbar *,
+.code-panel pre,
+.code-panel pre * { color: #f4f5f7 !important; }
+figcaption,
+figcaption * { color: #fff !important; }
