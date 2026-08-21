@@ -597,4 +597,15 @@ figure figcaption * { color: #fff !important; }
 .bad,
 .card .bad { color: #611919 !important; border-color: #bc3939 !important; background: #f4c7c3 !important; }
 .btn.btn-main,
-.button.button-primary { color: var(--ink) !important; }
+.button.button-primary { color: #fff !important; }
+.btn.btn-main:hover,
+.btn.btn-main:focus-visible,
+.button.button-primary:hover,
+.button.button-primary:focus-visible { color: var(--ink) !important; }
+.tag.tag,
+.tag.tag * { color: var(--ink) !important; }
+.status.status.failed,
+.status.status.failed * { color: #fff !important; }
+.card p.bad.bad,
+.card .bad.bad { color: #611919 !important; border-color: #bc3939 !important; background: #f4c7c3 !important; }
+main > section:nth-of-type(4n + 3) .card .rule.rule span { color: #5f605b !important; }
