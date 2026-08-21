@@ -533,3 +533,9 @@ main > section:nth-of-type(4n + 3) :is(.panel,.gallery-card,.video-card,.next-ca
 figcaption,
 figcaption * { color: #fff !important; }
 .nav-youtube { color: #fff !important; border-color: #d00028 !important; background: #d00028 !important; }
+.architecture-caption { color: #b9bab4 !important; }
+.about .panel:first-child .number { color: var(--acid) !important; }
+.series-card .button-youtube { color: #fff !important; }
+.series-card .button-youtube:hover,
+.series-card .button-youtube:focus-visible { color: var(--ink) !important; }
+.contact-link .contact-meta span { color: #b9bab4 !important; }
