@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,6 +16,7 @@
     @media(max-width:940px){.products{grid-template-columns:repeat(2,1fr)}.rules{grid-template-columns:repeat(2,1fr)}.story,.danger{grid-template-columns:1fr}.model{grid-template-columns:1fr}}
     @media(max-width:680px){.topin{align-items:flex-start;flex-direction:column;padding:12px 0}.nav{width:100%}.nav a,.nav button{flex:1;text-align:center}.hero{padding-top:48px}.trustbar,.products,.rules,.checklist{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}.vs{grid-template-columns:1fr}.versus{padding:3px}.buy{align-items:flex-start;flex-direction:column}.buy a{width:100%}}
   </style>
+  <link rel="stylesheet" href="../assets/subpage-editorial.css?v=20260821-1">
 
   <link rel="canonical" href="https://stapowiczmarcin-sys.github.io/sprawdzone/">
 </head>
@@ -42,7 +43,7 @@
 </main>
 <footer class="footer"><div class="shell footerin"><span>© 2026 Marcin · <strong>Sprawdzone, polecam</strong></span><div><a href="../parts/" data-pl="Pełny katalog części" data-en="Full parts catalogue">Pełny katalog części</a> · <a href="../kora-brain/">Kora Brain</a> · <a href="../" data-pl="Portfolio" data-en="Portfolio">Portfolio</a></div></div></footer>
 <script>
-const btn=document.getElementById('lang');let lang=localStorage.getItem('sprawdzone-lang')||'pl';
+const btn=document.getElementById('lang');let lang='en';
 function apply(){document.documentElement.lang=lang;document.querySelectorAll('[data-pl][data-en]').forEach(el=>{el.innerHTML=el.dataset[lang]});btn.textContent=lang==='pl'?'PL / EN':'EN / PL';document.title=lang==='pl'?'Sprawdzone, polecam — części bez zgadywania':'Sprawdzone, polecam — trusted parts without guessing';localStorage.setItem('sprawdzone-lang',lang)}
 btn.addEventListener('click',()=>{lang=lang==='pl'?'en':'pl';apply()});apply();
 </script>
