@@ -458,3 +458,57 @@ footer { padding: 34px 0; color: #b9bab4; background: var(--ink); }
   .contact-panel,
   .series-card { color: #000; background: #fff; }
 }
+
+/* Contrast correction — light surfaces always use dark type */
+:is(
+  .panel,
+  .kora-copy,
+  .radio-copy,
+  .rgb-lamp-copy,
+  .rgb-lamp-fact,
+  .code-guide,
+  .next-card,
+  .income-card,
+  .history-card,
+  .latest-update-copy
+) { color: var(--ink) !important; }
+
+:is(
+  .panel,
+  .kora-copy,
+  .radio-copy,
+  .rgb-lamp-copy,
+  .rgb-lamp-fact,
+  .code-guide,
+  .next-card,
+  .income-card,
+  .history-card,
+  .latest-update-copy
+) :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,li) { color: var(--ink) !important; }
+
+:is(
+  .panel,
+  .kora-copy,
+  .radio-copy,
+  .rgb-lamp-copy,
+  .rgb-lamp-fact,
+  .code-guide,
+  .next-card,
+  .income-card,
+  .history-card,
+  .latest-update-copy
+) :is(p,span,small) { color: #5f605b !important; }
+
+.rgb-lamp-copy,
+.system-panel,
+.support-card { color: var(--ink) !important; }
+.rgb-lamp-copy :is(h2,h3,h4,strong,a),
+.system-panel :is(h2,h3,h4,strong,a),
+.support-card :is(h2,h3,h4,strong,a) { color: var(--ink) !important; }
+.code-panel,
+.code-panel pre,
+.code-panel pre *,
+.code-toolbar,
+.code-toolbar * { color: #f4f5f7 !important; }
+.status,
+.verified-update { color: var(--ink) !important; }

@@ -364,3 +364,124 @@ footer a:hover,
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* Contrast correction — never inherit white type into a light card */
+.pill {
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  background: rgba(255,255,255,.7) !important;
+}
+.pipe { color: var(--ink) !important; }
+.brand b,
+.hero h1 em { color: var(--ink) !important; }
+
+:is(
+  .card,
+  .tested-card,
+  .statusbox,
+  .block,
+  .metric,
+  .fact,
+  .step,
+  .item,
+  .pipe,
+  .note,
+  .safety,
+  .maker-quote,
+  .maker-foot,
+  .rule,
+  .notice,
+  .warning,
+  .motto,
+  .proofline,
+  .verdict,
+  .example,
+  .affiliate,
+  .model,
+  .danger,
+  .checklist,
+  .table-wrap,
+  .timeline-item
+) { color: var(--ink) !important; }
+
+:is(
+  .card,
+  .tested-card,
+  .statusbox,
+  .block,
+  .metric,
+  .fact,
+  .step,
+  .item,
+  .pipe,
+  .note,
+  .safety,
+  .maker-quote,
+  .maker-foot,
+  .rule,
+  .notice,
+  .warning,
+  .motto,
+  .proofline,
+  .verdict,
+  .example,
+  .affiliate,
+  .model,
+  .danger,
+  .checklist,
+  .table-wrap,
+  .timeline-item
+) :is(h1,h2,h3,h4,h5,h6,strong,b,em,a) { color: var(--ink) !important; }
+
+:is(
+  .card,
+  .tested-card,
+  .statusbox,
+  .block,
+  .metric,
+  .fact,
+  .step,
+  .item,
+  .pipe,
+  .note,
+  .safety,
+  .maker-quote,
+  .maker-foot,
+  .rule,
+  .notice,
+  .warning,
+  .motto,
+  .proofline,
+  .verdict,
+  .example,
+  .affiliate,
+  .model,
+  .danger,
+  .checklist,
+  .table-wrap,
+  .timeline-item
+) :is(p,span,li,small,label) { color: #5f605b !important; }
+
+.tag,
+.status,
+.pin,
+.tag *,
+.status *,
+.pin * { color: var(--ink) !important; }
+.status.failed,
+.status.failed * { color: #fff !important; }
+.codebox,
+.codebox *,
+.code-panel,
+.code-panel *,
+pre,
+pre * { color: #dce8e5 !important; }
+.code-head,
+.code-head *,
+.code-toolbar,
+.code-toolbar * { color: #fff !important; }
+figcaption,
+figcaption * { color: #fff !important; }
+footer,
+footer * { color: #b9bab4 !important; }
+footer a { color: #fff !important; }
