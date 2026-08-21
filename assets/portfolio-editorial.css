@@ -532,3 +532,4 @@ main > section:nth-of-type(4n + 3) :is(.panel,.gallery-card,.video-card,.next-ca
 .code-panel pre * { color: #f4f5f7 !important; }
 figcaption,
 figcaption * { color: #fff !important; }
+.nav-youtube { color: #fff !important; border-color: #d00028 !important; background: #d00028 !important; }
