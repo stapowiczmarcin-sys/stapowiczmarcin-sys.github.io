@@ -149,6 +149,10 @@ footer p { margin: 0; color: #a7a7a0; font-size: 11px; line-height: 1.5; } foote
 .build-note .primary { background:var(--acid); color:var(--ink); }
 .build-note .primary .primary-label,
 .build-note .primary > span:last-child { color:var(--ink); }
+.brand-muted,
+.privacy-note,
+.stats span { color:#62625c; }
+.youtube-link { border-color:#d00028; background:#d00028; }
 .text-link { color:var(--acid); font-weight:900; text-transform:uppercase; letter-spacing:.06em; font-size:.78rem; }
 @media(max-width:800px){ .build-note{grid-template-columns:1fr;margin-inline:18px}.build-note-media{min-height:260px} }
 @media(prefers-reduced-motion:reduce){.part-card{transition:none}}
