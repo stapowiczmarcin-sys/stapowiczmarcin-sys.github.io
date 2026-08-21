@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +21,7 @@
     @media(max-width:960px){.hero-grid,.grid.three{grid-template-columns:1fr 1fr}.pipeline{grid-template-columns:repeat(3,1fr)}.pipe:nth-child(3)::after{display:none}}
     @media(max-width:720px){.topbar-inner{align-items:flex-start;flex-direction:column;padding:12px 0}.actions{width:100%}.button{flex:1;font-size:.84rem;padding-inline:9px}.hero{padding-top:48px}.hero-grid,.grid,.grid.three,.live-shot-grid{grid-template-columns:1fr}.wide,.live-shot:first-child{grid-column:auto}.live-shot:first-child img{aspect-ratio:4/3}.pipeline{grid-template-columns:1fr 1fr}.pipe:nth-child(3)::after{display:block}.pipe:nth-child(even)::after{display:none}.section-head{align-items:flex-start;flex-direction:column}.timeline-item{grid-template-columns:1fr;gap:4px}.maker-story{padding:23px}.maker-story::after{font-size:3.4rem}}
   </style>
+  <link rel="stylesheet" href="../assets/subpage-editorial.css?v=20260821-1">
 
   <link rel="canonical" href="https://stapowiczmarcin-sys.github.io/kora-brain/">
   <meta property="og:type" content="website">
@@ -195,7 +196,7 @@ answer = model.ask(question, context=recent)</code></pre><div class="code-note" 
 
   <script>
     const langButton=document.getElementById('lang');
-    let language=localStorage.getItem('portfolio-language')||'pl';
+    let language='en';
     function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-pl][data-en]').forEach(el=>{el.textContent=el.dataset[language]});langButton.textContent=language==='pl'?'PL / EN':'EN / PL';document.title=language==='pl'?'Kora Brain — portfolio systemu':'Kora Brain — system portfolio';localStorage.setItem('portfolio-language',language)}
     langButton.addEventListener('click',()=>{language=language==='pl'?'en':'pl';applyLanguage()});
     document.querySelectorAll('[data-copy]').forEach(button=>{button.addEventListener('click',async()=>{const code=button.closest('.code-card').querySelector('pre code').innerText;const original=button.textContent;try{await navigator.clipboard.writeText(code);button.textContent='✓'}catch(e){button.textContent='Copy failed'}setTimeout(()=>button.textContent=original,1200)})});
