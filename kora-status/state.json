@@ -1,6 +1,6 @@
 {
   "schema": "kora.source_of_truth.v1",
-  "updated": "2026-08-16T14:21:00+01:00",
+  "updated": "2026-08-22T09:00:00+01:00",
   "project": "Kora",
   "rule": {
     "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
@@ -43,16 +43,21 @@
     "ROLLED_BACK": "The failed change was reverted to the previous known state."
   },
   "current_priority": {
-    "title": "Restore listening after failed local-dialogue deployment",
-    "status": "ROLLBACK_REQUIRED",
-    "details_pl": "Po ostatnim wdrozeniu local dialogue ring zapalil sie na czerwono i Kora przestala slyszec. Najpierw cofamy zmiane, sprawdzamy wake/audio/ring, dopiero potem projektujemy kolejna wersje.",
-    "details_en": "After the latest local-dialogue deployment the ring turned red and Kora stopped hearing. First restore the previous state and validate wake/audio/ring; only then design the next version."
+    "title": "Complete spoken-answer path and begin controlled walking tests",
+    "status": "TESTING",
+    "details_pl": "Wake word uruchamia odpowiedź wstępną, ReSpeaker XVF3800 nagrywa, ale pełna odpowiedź po pytaniu głosowym nadal wymaga potwierdzenia. Metalowe nogi wykonały pierwszy widoczny ruch; chodzenie nie jest jeszcze potwierdzone.",
+    "details_en": "The wake word triggers an acknowledgement and ReSpeaker XVF3800 records, but the full answer after a spoken question still needs confirmation. The metal legs produced their first visible movement; walking is not confirmed yet."
   },
   "active_issues": [
     {
-      "id": "local_dialogue_regression_2026_08_16",
-      "status": "FAILED",
-      "summary": "Local dialogue deployment caused red ring and loss of listening; rollback requested."
+      "id": "spoken_question_no_answer_2026_08_20",
+      "status": "TESTING",
+      "summary": "Wake acknowledgement works, but the full reply after a spoken question still needs a confirmed end-to-end test."
+    },
+    {
+      "id": "controlled_walking_tests",
+      "status": "TESTING",
+      "summary": "Metal legs produced a visible twitch/movement; gait and walking are not yet confirmed."
     },
     {
       "id": "en_secretary_guard",
@@ -63,11 +68,6 @@
       "id": "en_time_routing",
       "status": "OPEN",
       "summary": "English time questions must be handled locally and must not fall through to generic conversation/model routing."
-    },
-    {
-      "id": "wake_false_positive_marzena",
-      "status": "OPEN_OR_RETEST",
-      "summary": "The wake recognizer has previously reacted to 'Marzena'; false wake handling needs measured retest after rollback."
     }
   ],
   "paths": {
@@ -81,14 +81,27 @@
   },
   "safety": {
     "rule": "STOP/release/PWM-off and core listening must take priority over personality, local dialogue and model routing.",
-    "do_not_publish": ["API keys", "passwords", "tokens", "private credentials", "personal private data"]
+    "do_not_publish": [
+      "API keys",
+      "passwords",
+      "tokens",
+      "private credentials",
+      "personal private data"
+    ]
   },
   "next_test": [
-    "Rollback the failed local-dialogue change.",
-    "Confirm vega.service is active.",
-    "Confirm wake/listening works with a single spoken 'Kora'.",
-    "Confirm ring returns to normal listening state.",
-    "Do not modify personality/router until wake/audio are confirmed restored.",
-    "After rollback is confirmed, add a safe read-only documentation field to Live/Live JSON without changing robot runtime behaviour."
-  ]
+    "Confirm a complete wake → spoken question → answer cycle in Polish.",
+    "Confirm a complete wake → spoken question → answer cycle in English.",
+    "Verify neutral positions and the direction of every leg-servo channel.",
+    "Run controlled gait tests only after the power path and individual channels remain stable.",
+    "Record the confirmed result in the Master Panel, Live, Live JSON and this public Source of Truth."
+  ],
+  "hardware_status": {
+    "raspberry_pi_ai_hat_plus_2_hailo_10h": "WORKING",
+    "respeaker_xvf3800_capture_and_wake": "WORKING",
+    "x1203_ups": "OWNED_TESTING",
+    "mpr121": "OWNED_AWAITING_CONFIRMED_INTEGRATION",
+    "rplidar_c1": "SEPARATE_TEST_HARDWARE",
+    "metal_leg_system": "FIRST_MOVEMENT_CONFIRMED_NOT_WALKING"
+  }
 }

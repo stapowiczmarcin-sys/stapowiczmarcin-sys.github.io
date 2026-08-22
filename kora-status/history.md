@@ -25,6 +25,24 @@ Master Panel ma już trwałe dane projektu w `state.json`, `modules.json` i `cha
 
 ---
 
+## 2026-08-22 — Portfolio hardware status corrected
+
+**Status: CORRECTED**
+
+The public portfolio and parts catalogue were synchronized with the verified hardware state. Raspberry Pi AI HAT+ 2 with Hailo-10H and ReSpeaker XVF3800 are no longer described as in transit. Hailo and ReSpeaker are in use, X1203 is present and under testing, and Adafruit MPR121 is owned but remains awaiting confirmed integration. RPLIDAR C1 remains separate test hardware and does not replace the A2 used by the current Kora.
+
+## 2026-08-21 — First metal-leg movement
+
+**Status: VERIFIED / NOT WALKING**
+
+The battery pack was assembled, the BMS was soldered and installed, and the 32-channel servo controller was connected to the metal-leg system. The first visible movement/twitch was confirmed. This validates the power-and-control chain, but it is not a walking result. Controlled gait tests are the next stage.
+
+## 2026-08-20 — Voice path partially restored
+
+**Status: TESTING**
+
+ReSpeaker XVF3800 recording was confirmed and the wake word **Kora** triggered an acknowledgement. The complete spoken-question-to-answer cycle still needs a confirmed PL/EN end-to-end test.
+
 ## 2026-08-16 — Documentation mirror rule expanded
 
 **Status: RULE ACTIVE / LIVE INTEGRATION PENDING**

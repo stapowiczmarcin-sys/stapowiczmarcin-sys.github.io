@@ -94,6 +94,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .part-visual::after { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(rgba(0,0,0,.11) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.11) 1px, transparent 1px); background-size: 28px 28px; opacity: .35; }
 .part-visual img { position: absolute; inset: 14px; width: calc(100% - 28px) !important; height: calc(100% - 28px) !important; object-fit: contain; display: block; background: #fff; mix-blend-mode: normal; box-shadow: 0 10px 28px rgba(16,17,18,.12); transition: transform .28s ease; }
 .part-card:hover .part-visual img { transform: scale(1.035); }
+.part-image-placeholder { position: absolute; inset: 14px; display: grid; place-content: center; gap: 8px; text-align: center; background: rgba(255,255,255,.82); color: var(--ink); border: 1px dashed rgba(16,17,18,.28); }
+.part-image-placeholder span { font-size: 34px; line-height: 1; }
+.part-image-placeholder small { max-width: 170px; font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .card-number { position: absolute; top: 14px; left: 15px; font-family: var(--font-geist-mono), monospace; font-size: 11px; z-index: 3; background: var(--ink); color: white; padding: 6px 7px; }
 .status { position: absolute; right: 12px; top: 12px; z-index: 3; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; background: white; padding: 7px 9px; border: 1px solid rgba(0,0,0,.15); }
 .status[data-status="Używam"]::before { content: "• "; color: #59a500; }.status[data-status="W drodze"]::before { content: "→ "; color: #aa7800; }.status[data-status="Używałem"]::before { content: "◌ "; color: #6d6a62; }.status[data-status="Archiwum"]::before { content: "□ "; color: #6d6a62; }

@@ -301,5 +301,10 @@ window.PORTFOLIO_DE = {
   "Follow the series": "Serie verfolgen",
   "EPISODE 01 · RECORDING": "FOLGE 01 · AUFNAHME",
   "Kora’s reply stays under wraps until the premiere.": "Koras Antwort bleibt bis zur Premiere geheim.",
-  "Topic: the X1203 UPS, Raspberry Pi 5, Hailo and one missing assembly detail. The punchline appears in the video — nowhere else.": "Thema: X1203-USV, Raspberry Pi 5, Hailo und ein fehlendes Montagedetail. Die Pointe erscheint erst im Video — nirgendwo sonst."
+  "Topic: the X1203 UPS, Raspberry Pi 5, Hailo and one missing assembly detail. The punchline appears in the video — nowhere else.": "Thema: X1203-USV, Raspberry Pi 5, Hailo und ein fehlendes Montagedetail. Die Pointe erscheint erst im Video — nirgendwo sonst.",
+  "Verified status · 22 Aug 2026": "Verifizierter Stand · 22. Aug. 2026",
+  "Owned / in use": "Vorhanden / im Einsatz",
+  "The X1203 UPS, Raspberry Pi AI HAT+ 2 with Hailo-10H and ReSpeaker XVF3800 are already here and are being used or tested in Kora. The RPLIDAR C1 remains a separate test lidar, not a replacement for the A2.": "Die X1203-USV, der Raspberry Pi AI HAT+ 2 mit Hailo-10H und der ReSpeaker XVF3800 sind bereits vorhanden und werden in Kora eingesetzt oder getestet. Der RPLIDAR C1 bleibt ein separater Test-Lidar und ersetzt den A2 nicht.",
+  "Owned / awaiting integration": "Vorhanden / wartet auf Integration",
+  "The Adafruit MPR121 is already here. It is not marked as in use yet because installation and a functional test have not been confirmed.": "Der Adafruit MPR121 ist bereits vorhanden. Er wird noch nicht als im Einsatz markiert, da Montage und Funktionstest noch nicht bestätigt wurden."
 };

@@ -20,7 +20,7 @@ const ui = {
   pl: {
     allStores: "Wszystkie sklepy", results: "wyników", elements: "elementów", inUse: "w użyciu", stores: "sklepy", incoming: "w drodze",
     project: "Projekt", price: "Cena zakupu", youtube: "Opis na YouTube", copied: "Skopiowano ✓", copyShort: "Kopiuj krótki opis",
-    open: "Otwórz produkt", knownVisible: "Widoczne — znane ceny", knownPrices: "znanych cen", search: "Szukaj: lidar, ESP32, audio…",
+    open: "Otwórz produkt", noPhoto: "Zdjęcie jeszcze nie dodane", knownVisible: "Widoczne — znane ceny", knownPrices: "znanych cen", search: "Szukaj: lidar, ESP32, audio…",
     searchLabel: "Szukaj części", clearLabel: "Wyczyść wyszukiwanie", projectLabel: "Filtruj według projektu", supplierLabel: "Filtruj według sklepu",
     statusLabel: "Filtruj według statusu", categoriesLabel: "Kategorie", languageLabel: "Zmień język na angielski",
     pageTitle: "Marcin — katalog części projektowych", pageDescription: "Katalog części używanych przez Marcina w projektach CNC, Kora, robotyce, elektronice i audio."
@@ -28,7 +28,7 @@ const ui = {
   en: {
     allStores: "All stores", results: "results", elements: "components", inUse: "in use", stores: "stores", incoming: "in transit",
     project: "Project", price: "Purchase price", youtube: "YouTube copy", copied: "Copied ✓", copyShort: "Copy short description",
-    open: "Open product", knownVisible: "Visible — known prices", knownPrices: "known prices", search: "Search: lidar, ESP32, audio…",
+    open: "Open product", noPhoto: "Photo not added yet", knownVisible: "Visible — known prices", knownPrices: "known prices", search: "Search: lidar, ESP32, audio…",
     searchLabel: "Search parts", clearLabel: "Clear search", projectLabel: "Filter by project", supplierLabel: "Filter by store",
     statusLabel: "Filter by status", categoriesLabel: "Categories", languageLabel: "Switch language to Polish",
     pageTitle: "Marcin — project parts catalogue", pageDescription: "Tested project parts used in Kora, CNC, robotics and electronics — with real build notes and hardware gotchas."
@@ -128,9 +128,13 @@ function renderCards() {
   renderBudget(filtered);
   $("#partsGrid").innerHTML = filtered.map((part, index) => {
     const view = viewPart(part);
+    const imageSrc = window.PART_IMAGES && window.PART_IMAGES[part.id];
+    const imageMarkup = imageSrc
+      ? '<img src="' + escapeHtml(imageSrc) + '" alt="' + escapeHtml(view.name) + '" loading="lazy">'
+      : '<div class="part-image-placeholder" role="img" aria-label="' + escapeHtml(ui[state.language].noPhoto + ": " + view.name) + '"><span>◇</span><small>' + escapeHtml(ui[state.language].noPhoto) + '</small></div>';
     return '<article class="part-card">' +
       '<div class="part-visual ' + escapeHtml(part.accent) + '">' +
-        '<img src="' + escapeHtml(window.PART_IMAGES[part.id]) + '" alt="' + escapeHtml(view.name) + '" loading="lazy">' +
+        imageMarkup +
         '<span class="card-number">' + String(index + 1).padStart(2, "0") + '</span>' +
         '<span class="status" data-status="' + escapeHtml(part.status) + '">' + escapeHtml(view.statusLabel) + '</span>' +
       '</div>' +

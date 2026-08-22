@@ -1,12 +1,12 @@
 {
   "date": "2026-08-21",
   "series": "What Will Kora Say?",
-  "episode": 2,
+  "episode": 3,
   "title_en": "First Power Test — Kora's Metal Legs Move",
   "title_pl": "Pierwszy test zasilania — metalowe nogi Kory ruszyły",
   "youtube": "https://youtube.com/shorts/lTnTV2sUjIg",
   "verified_result_en": "Battery pack assembled, BMS soldered and installed inside Kora. During the first connection to the servo controller, the new metal legs produced their first visible twitch/movement. This is not walking yet.",
   "verified_result_pl": "Pakiet baterii złożony, BMS polutowany i zamontowany wewnątrz Kory. Podczas pierwszego podłączenia sterownika serw nowe metalowe nogi wykonały pierwszy widoczny ruch/drgnięcie. To jeszcze nie jest chodzenie.",
-  "next_en": "Controlled walking tests",
-  "next_pl": "Kontrolowane testy chodzenia"
+  "next_en": "Episode 4 — controlled walking tests",
+  "next_pl": "Odcinek 4 — kontrolowane testy chodzenia"
 }
