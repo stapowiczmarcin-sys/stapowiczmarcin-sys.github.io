@@ -10,6 +10,16 @@ Object.assign(window.CATALOG_I18N.categories, {
 });
 
 Object.assign(window.CATALOG_I18N.parts, {
+  "cam3": {
+    name: "Raspberry Pi Camera Module 3 Wide",
+    short: "Wide-angle daytime camera with autofocus",
+    spec: "Sony IMX708 • 12 MP • autofocus • wide field of view"
+  },
+  "cam3-noir": {
+    name: "Raspberry Pi Camera Module 3 Wide NoIR",
+    short: "Wide-angle night camera without an IR filter",
+    spec: "Sony IMX708 • 12 MP • autofocus • wide field of view • infrared sensitivity"
+  },
   "uni-t-ut61b-plus": {
     name: "UNI-T UT61B+ — True RMS digital multimeter",
     short: "Workshop meter for electronics and power diagnostics",
