@@ -18,6 +18,12 @@
     "github_pages": "UPDATED_IN_THIS_CHANGE",
     "master_panel": "PENDING_DIRECT_PI_WRITE",
     "live": "PENDING_SAFE_DATA_PATH",
-    "live_json": "PENDING_SAFE_DATA_PATH"
+    "live_json": "PENDING_SAFE_DATA_PATH",
+    "private_kora_master": "UPDATED_GITHUB"
+  },
+  "private_registry": {
+    "status": "SYNCED",
+    "head_commit": "a6618c893449d3a4434c4a7e599ca36a65b75257",
+    "note": "Private source-of-truth records updated; Pi-side Master Panel and generated Live views retain their separate pending statuses."
   }
 }
