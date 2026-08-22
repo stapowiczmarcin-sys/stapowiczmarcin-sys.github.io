@@ -666,3 +666,4 @@ main .part-card .part-tag.part-tag,
 main .part-card .part-tag.part-tag * {
   color: #31421e !important;
 }
+main #rules .card .rule span { color: #5f605b !important; }
