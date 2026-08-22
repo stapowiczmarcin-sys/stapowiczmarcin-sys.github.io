@@ -22,11 +22,11 @@
           workaround: "Obejście",
           workaroundText: "Zastosowałem dodatkowe dystanse M2.5 oraz 40-pinowy, wysoki header 2×20 z zestawu Pi Hut. Specjalne cztery piny PoE nie były potrzebne. Najpierw przymierz warstwy, potem dokręcaj — młotek nadal nie jest standardem Raspberry Pi.",
           products: [
-            { name: "Dystanse M2.5 — zestaw 503 elementów", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://amzn.to/4y1Rvbf", cta: "Sklep →" },
+            { name: "Dystanse M2.5 — zestaw 280 elementów", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://www.amazon.co.uk/dp/B07FMV5RMG", cta: "Sklep →" },
             { name: "Przedłużka GPIO 2×20 — extra-tall", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Sklep →" },
             { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Sklep →" },
             { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Sklep →" },
-            { name: "Raspberry Pi 5 — 16 GB", imageId: "rpi5-16", url: "https://amzn.to/4imKH38", cta: "Sklep →" }
+            { name: "Raspberry Pi 5", imageId: "rpi5-16", url: "https://thepihut.com/products/raspberry-pi-5", cta: "Sklep →" }
           ],
           videoId: "2q_VNgvxkWU",
           videoTitle: "Kora komentuje problem z UPS X1203",
@@ -37,10 +37,10 @@
           title: "18 serw, kruche plastiki, niedopasowane elementy i zasilanie, przy którym zaczynasz liczyć minuty.",
           body: "Moje doświadczenie z hexapodem Freenove jest po prostu złe. Dystanse i mechanika nie zostały dopracowane tak, żeby robot dawał się bezproblemowo złożyć. Część plastikowych elementów jest na tyle krucha, że potrafi pęknąć już podczas normalnego montażu. Do tego dochodzą śruby i dystanse, których długości nie tworzą sensownego stacka. Efekt? Zamiast składać robota, zaczynasz projektować poprawki do zestawu, który miał być gotowy do złożenia.",
           images: [
-            { src: "assets/gotchas/freenove-hexapod-gotcha-01-20260822.jpg", alt: "Freenove hexapod — warstwy elektroniki i okablowanie nad Raspberry Pi", caption: "Stack elektroniki: Raspberry Pi, płytki sterujące, przewody i coraz mniej miejsca." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-02-20260822.jpg", alt: "Freenove hexapod — Raspberry Pi z radiatorem i płytkami rozszerzeń", caption: "Raspberry Pi i kolejne moduły — kompatybilność na papierze nie rozwiązuje mechaniki." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-01.jpg", alt: "Freenove hexapod — warstwy elektroniki i okablowanie nad Raspberry Pi", caption: "Stack elektroniki: Raspberry Pi, płytki sterujące, przewody i coraz mniej miejsca." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-02.jpg", alt: "Freenove hexapod — Raspberry Pi z radiatorem i płytkami rozszerzeń", caption: "Raspberry Pi i kolejne moduły — kompatybilność na papierze nie rozwiązuje mechaniki." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-03.webp", alt: "Freenove hexapod — mały prześwit pomiędzy piętrami konstrukcji", caption: "Między płytami każdy milimetr zaczyna mieć znaczenie." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-04-20260822.jpg", alt: "Freenove hexapod — całe podwozie z serwami i wielopoziomową elektroniką", caption: "18 serw i wielopoziomowa elektronika. Tu teoria spotyka stół montażowy." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-04.webp", alt: "Freenove hexapod — całe podwozie z serwami i wielopoziomową elektroniką", caption: "18 serw i wielopoziomowa elektronika. Tu teoria spotyka stół montażowy." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-05.webp", alt: "Freenove hexapod — mocowanie serwa i śruba M2 x 16", caption: "Mocowanie serwa i M2×16 — kolejny detal, przy którym zaczyna się kombinowanie." }
           ],
           discovery: "Lista absurdów",
@@ -49,6 +49,17 @@
           workaroundText: "W praktyce przebudowa mechaniki, własne dystanse i osobny, wydajny tor zasilania serw są rozsądniejsze niż ślepe trzymanie się zestawu. A „może dwie minuty chodzenia” zostawiam jako żart, nie pomiar — ale sam fakt, że taki żart przychodzi do głowy, mówi sporo o projekcie.",
           link: "",
           url: ""
+        },
+        {
+          kicker: "ALUMINIOWE NOGI DZIAŁAJĄ. STARY PRZEWÓD SERWA — JUŻ NIE.",
+          title: "Odzyskane serwo zadymiło przez stary przewód zaraz po podłączeniu.",
+          body: "W teście z 22.08.2026 aluminiowa mechanika nóg nie była problemem. Po podłączeniu odzyskanego serwa zadymił stary przewód. To jest potwierdzony objaw; bez pomiarów nie przypisuję jeszcze winy sterownikowi, serwu, polaryzacji, izolacji ani złączu.",
+          discovery: "Wniosek z testu",
+          discoveryText: "Wiek przewodu jest częścią ryzyka tak samo jak stan samego serwa. Wygląd zewnętrzny nie potwierdza poprawnych crimpów, izolacji ani układu pinów.",
+          workaround: "Następny bezpieczny krok",
+          workaroundText: "Podejrzany przewód zostaje wycofany. Przy odłączonym zasilaniu sprawdzam złącze, piny, ciągłość i zwarcia, a każde odzyskane serwo testuję osobno na torze z ograniczeniem prądu i bezpiecznikiem. Całe nogi dostaną zasilanie dopiero po tych testach.",
+          link: "Pełny dziennik aluminiowej Kory →",
+          url: "../updates/kora-aluminium-2026-08-11/#servo-lead-incident"
         }
       ],
       note: "Ta sekcja będzie rosła. Każda rzecz, która wygląda dobrze w opisie produktu, a potem robi niespodziankę na stole, trafia właśnie tutaj. Bez pudrowania."
@@ -68,11 +79,11 @@
           workaround: "Workaround",
           workaroundText: "I used extra M2.5 standoffs and the 40-pin, 2×20 extra-tall header from the Pi Hut kit. The special four PoE pins were not required. Dry-fit every layer before tightening — a hammer is still not part of the Raspberry Pi standard.",
           products: [
-            { name: "M2.5 standoffs — 503-piece kit", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://amzn.to/4y1Rvbf", cta: "Shop →" },
+            { name: "M2.5 standoffs — 280-piece kit", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://www.amazon.co.uk/dp/B07FMV5RMG", cta: "Shop →" },
             { name: "2×20 extra-tall GPIO header", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Shop →" },
             { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Shop →" },
             { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Shop →" },
-            { name: "Raspberry Pi 5 — 16 GB", imageId: "rpi5-16", url: "https://amzn.to/4imKH38", cta: "Shop →" }
+            { name: "Raspberry Pi 5", imageId: "rpi5-16", url: "https://thepihut.com/products/raspberry-pi-5", cta: "Shop →" }
           ],
           videoId: "2q_VNgvxkWU",
           videoTitle: "Kora comments on the X1203 UPS problem",
@@ -83,10 +94,10 @@
           title: "18 servos, brittle plastic, mismatched hardware and a power concept that makes you count minutes.",
           body: "My experience with the Freenove hexapod has been poor. The standoffs and mechanics are not refined enough for the robot to go together cleanly. Some plastic parts are brittle enough to crack during normal assembly. Screw and standoff lengths also fail to create a sensible stack. Instead of assembling the robot, you end up redesigning the kit that was supposed to be ready to build.",
           images: [
-            { src: "assets/gotchas/freenove-hexapod-gotcha-01-20260822.jpg", alt: "Freenove hexapod — stacked electronics and wiring above the Raspberry Pi", caption: "The electronics stack: Raspberry Pi, controller boards, wiring and less room with every layer." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-02-20260822.jpg", alt: "Freenove hexapod — Raspberry Pi heatsink and expansion boards", caption: "Raspberry Pi plus more modules — compatibility on paper does not solve the mechanics." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-01.jpg", alt: "Freenove hexapod — stacked electronics and wiring above the Raspberry Pi", caption: "The electronics stack: Raspberry Pi, controller boards, wiring and less room with every layer." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-02.jpg", alt: "Freenove hexapod — Raspberry Pi heatsink and expansion boards", caption: "Raspberry Pi plus more modules — compatibility on paper does not solve the mechanics." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-03.webp", alt: "Freenove hexapod — tight clearance between chassis layers", caption: "Between the plates, every millimetre starts to matter." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-04-20260822.jpg", alt: "Freenove hexapod — complete chassis with servos and multi-level electronics", caption: "18 servos and multi-level electronics. This is where the brochure meets the workbench." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-04.webp", alt: "Freenove hexapod — complete chassis with servos and multi-level electronics", caption: "18 servos and multi-level electronics. This is where the brochure meets the workbench." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-05.webp", alt: "Freenove hexapod — servo mounting and M2 x 16 screw", caption: "Servo mounting and M2×16 — another small detail that turns into redesign work." }
           ],
           discovery: "The absurdity list",
@@ -95,6 +106,17 @@
           workaroundText: "In practice, rebuilding the mechanics, using your own standoffs and giving the servos a separate high-current power rail makes more sense than blindly following the kit. And the 'maybe two minutes of walking' line stays a joke, not a measured runtime — but the fact that the joke feels plausible says enough.",
           link: "",
           url: ""
+        },
+        {
+          kicker: "THE ALUMINIUM LEGS WORK. THE OLD SERVO LEAD DOES NOT.",
+          title: "A salvaged servo produced smoke from its old lead as soon as it was connected.",
+          body: "In the 22 Aug 2026 test, the aluminium leg mechanics were not the problem. An old lead on a salvaged servo emitted smoke after connection. That symptom is confirmed; without measurements I am not yet blaming the controller, servo, polarity, insulation or connector.",
+          discovery: "What the test proved",
+          discoveryText: "Cable age is part of the risk, just like the condition of the servo itself. A clean exterior does not confirm sound crimps, insulation or pin order.",
+          workaround: "Next safe step",
+          workaroundText: "The suspect lead is retired. With power disconnected, I will inspect the connector and pins, check continuity and shorts, then test each salvaged servo individually on a current-limited, fused rail. The complete leg system will only be powered after those checks.",
+          link: "Full Aluminium Kora build log →",
+          url: "../updates/kora-aluminium-2026-08-11/#servo-lead-incident"
         }
       ],
       note: "This section will grow. Anything that looks perfect in the product listing but produces a surprise on the workbench ends up here. No polishing the story."
