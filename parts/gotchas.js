@@ -37,10 +37,10 @@
           title: "18 serw, kruche plastiki, niedopasowane elementy i zasilanie, przy którym zaczynasz liczyć minuty.",
           body: "Moje doświadczenie z hexapodem Freenove jest po prostu złe. Dystanse i mechanika nie zostały dopracowane tak, żeby robot dawał się bezproblemowo złożyć. Część plastikowych elementów jest na tyle krucha, że potrafi pęknąć już podczas normalnego montażu. Do tego dochodzą śruby i dystanse, których długości nie tworzą sensownego stacka. Efekt? Zamiast składać robota, zaczynasz projektować poprawki do zestawu, który miał być gotowy do złożenia.",
           images: [
-            { src: "assets/gotchas/freenove-hexapod-gotcha-01.jpg", alt: "Freenove hexapod — warstwy elektroniki i okablowanie nad Raspberry Pi", caption: "Stack elektroniki: Raspberry Pi, płytki sterujące, przewody i coraz mniej miejsca." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-02.jpg", alt: "Freenove hexapod — Raspberry Pi z radiatorem i płytkami rozszerzeń", caption: "Raspberry Pi i kolejne moduły — kompatybilność na papierze nie rozwiązuje mechaniki." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-01-20260822.jpg", alt: "Freenove hexapod — warstwy elektroniki i okablowanie nad Raspberry Pi", caption: "Stack elektroniki: Raspberry Pi, płytki sterujące, przewody i coraz mniej miejsca." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-02-20260822.jpg", alt: "Freenove hexapod — Raspberry Pi z radiatorem i płytkami rozszerzeń", caption: "Raspberry Pi i kolejne moduły — kompatybilność na papierze nie rozwiązuje mechaniki." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-03.webp", alt: "Freenove hexapod — mały prześwit pomiędzy piętrami konstrukcji", caption: "Między płytami każdy milimetr zaczyna mieć znaczenie." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-04.webp", alt: "Freenove hexapod — całe podwozie z serwami i wielopoziomową elektroniką", caption: "18 serw i wielopoziomowa elektronika. Tu teoria spotyka stół montażowy." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-04-20260822.jpg", alt: "Freenove hexapod — całe podwozie z serwami i wielopoziomową elektroniką", caption: "18 serw i wielopoziomowa elektronika. Tu teoria spotyka stół montażowy." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-05.webp", alt: "Freenove hexapod — mocowanie serwa i śruba M2 x 16", caption: "Mocowanie serwa i M2×16 — kolejny detal, przy którym zaczyna się kombinowanie." }
           ],
           discovery: "Lista absurdów",
@@ -83,10 +83,10 @@
           title: "18 servos, brittle plastic, mismatched hardware and a power concept that makes you count minutes.",
           body: "My experience with the Freenove hexapod has been poor. The standoffs and mechanics are not refined enough for the robot to go together cleanly. Some plastic parts are brittle enough to crack during normal assembly. Screw and standoff lengths also fail to create a sensible stack. Instead of assembling the robot, you end up redesigning the kit that was supposed to be ready to build.",
           images: [
-            { src: "assets/gotchas/freenove-hexapod-gotcha-01.jpg", alt: "Freenove hexapod — stacked electronics and wiring above the Raspberry Pi", caption: "The electronics stack: Raspberry Pi, controller boards, wiring and less room with every layer." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-02.jpg", alt: "Freenove hexapod — Raspberry Pi heatsink and expansion boards", caption: "Raspberry Pi plus more modules — compatibility on paper does not solve the mechanics." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-01-20260822.jpg", alt: "Freenove hexapod — stacked electronics and wiring above the Raspberry Pi", caption: "The electronics stack: Raspberry Pi, controller boards, wiring and less room with every layer." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-02-20260822.jpg", alt: "Freenove hexapod — Raspberry Pi heatsink and expansion boards", caption: "Raspberry Pi plus more modules — compatibility on paper does not solve the mechanics." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-03.webp", alt: "Freenove hexapod — tight clearance between chassis layers", caption: "Between the plates, every millimetre starts to matter." },
-            { src: "assets/gotchas/freenove-hexapod-gotcha-04.webp", alt: "Freenove hexapod — complete chassis with servos and multi-level electronics", caption: "18 servos and multi-level electronics. This is where the brochure meets the workbench." },
+            { src: "assets/gotchas/freenove-hexapod-gotcha-04-20260822.jpg", alt: "Freenove hexapod — complete chassis with servos and multi-level electronics", caption: "18 servos and multi-level electronics. This is where the brochure meets the workbench." },
             { src: "assets/gotchas/freenove-hexapod-gotcha-05.webp", alt: "Freenove hexapod — servo mounting and M2 x 16 screw", caption: "Servo mounting and M2×16 — another small detail that turns into redesign work." }
           ],
           discovery: "The absurdity list",
