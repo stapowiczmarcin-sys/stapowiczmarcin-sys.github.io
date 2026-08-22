@@ -163,7 +163,7 @@ main > section:nth-of-type(4n + 3) h3,
 main > section:nth-of-type(4n + 3) strong { color: #fff !important; }
 main > section:nth-of-type(4n + 3) p,
 main > section:nth-of-type(4n + 3) li,
-main > section:nth-of-type(4n + 3) span:not(.tag):not(.status):not(.pin) { color: #b9bab4 !important; }
+main > section:nth-of-type(4n + 3) span:not(.tag):not(.status):not(.pin):not(.part-tag) { color: #b9bab4 !important; }
 .head,
 .section-head { margin-bottom: clamp(28px, 4vw, 48px) !important; }
 .head h2,
