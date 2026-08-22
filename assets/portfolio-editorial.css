@@ -541,3 +541,14 @@ figcaption * { color: #fff !important; }
 .series-card .button-youtube:hover,
 .series-card .button-youtube:focus-visible { color: var(--ink) !important; }
 .contact-link .contact-meta span { color: #b9bab4 !important; }
+
+/* Captions stay readable regardless of the brightness of the photo below. */
+.hero-caption,
+.gallery-card figcaption {
+  color: #fff !important;
+  background: rgba(16,17,18,.88) !important;
+  padding: 10px 12px !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.65);
+}
+main > section:nth-of-type(4n + 3) .quote { color: #f4f5f7 !important; }
+.about .panel .quote.quote { color: #f4f5f7 !important; }
