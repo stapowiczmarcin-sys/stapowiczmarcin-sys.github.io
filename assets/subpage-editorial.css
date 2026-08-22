@@ -613,3 +613,44 @@ main > section:nth-of-type(4n + 3) .card .tag.tag,
 main > section:nth-of-type(4n + 3) .card .tag.tag * { color: var(--ink) !important; }
 main > section:nth-of-type(4n + 3) .card .status.status.failed,
 main > section:nth-of-type(4n + 3) .card .status.status.failed * { color: #fff !important; }
+
+/* Voice-demo contrast contract — light editorial skin over legacy dark styles. */
+.short-panel,
+.voice-details > .card,
+.capability,
+.polish-note,
+.live-shot {
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  background: #fff !important;
+}
+.capability { background: #faf9f5 !important; }
+.polish-note {
+  border-left: 5px solid #9a6812 !important;
+  background: #fff4cf !important;
+}
+.polish-note strong { color: #654000 !important; }
+.polish-note p,
+.capability p,
+.live-shot p { color: #565752 !important; }
+.maker-story p { color: #565752 !important; }
+.truth strong { color: #744900 !important; }
+.part-tag {
+  color: #31421e !important;
+  border-color: #83a660 !important;
+  background: #cce8bf !important;
+}
+
+/* Dark alternating sections remain dark; embedded cards remain light. */
+main > section:nth-of-type(4n + 3) :is(.short-panel,.capability,.polish-note,.live-shot) {
+  color: var(--ink) !important;
+  background: #fff !important;
+}
+main > section:nth-of-type(4n + 3) .polish-note { background: #fff4cf !important; }
+main > section:nth-of-type(4n + 3) :is(.short-panel,.capability,.polish-note,.live-shot) :is(h1,h2,h3,h4,strong,b,a) {
+  color: var(--ink) !important;
+}
+main > section:nth-of-type(4n + 3) :is(.short-panel,.capability,.polish-note,.live-shot) :is(p,li,span:not(.tag):not(.status)) {
+  color: #565752 !important;
+}
+main > section:nth-of-type(4n + 3) .polish-note strong { color: #654000 !important; }
