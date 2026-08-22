@@ -2,7 +2,7 @@
 window.PORTFOLIO_DE = {};
 try {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'portfolio-de-translations.js?v=20260821-1', false);
+  xhr.open('GET', 'portfolio-de-translations.js?v=20260822-1', false);
   xhr.send(null);
   if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) {
     (0, eval)(xhr.responseText);
@@ -13,25 +13,25 @@ try {
 
 (() => {
   const section = document.getElementById('kora-says');
-  if (!section || section.dataset.episode02Injected === '1') return;
+  if (!section || section.dataset.episode03Injected === '1') return;
   const card = section.querySelector('.series-card');
   const copy = section.querySelector('.series-copy');
   const episode01 = section.querySelector('.series-dialogue');
   if (!card || !copy || !episode01) return;
 
-  section.dataset.episode02Injected = '1';
+  section.dataset.episode03Injected = '1';
 
   const kicker = copy.querySelector('.series-kicker');
   if (kicker) {
-    kicker.dataset.en = 'SERIES · EPISODE 02 NOW LIVE';
-    kicker.dataset.pl = 'SERIA · ODCINEK 02 JUŻ JEST';
+    kicker.dataset.en = 'SERIES · EPISODE 03 NOW LIVE';
+    kicker.dataset.pl = 'SERIA · ODCINEK 03 JUŻ JEST';
     kicker.textContent = kicker.dataset.en;
   }
 
   const intro = copy.querySelector('p');
   if (intro) {
-    intro.dataset.en = 'Kora answers first — usually dry, sarcastic and slightly insulting — then I show the real build, the parts, the problem and the result. Episode #2 is the first power test of her new metal legs.';
-    intro.dataset.pl = 'Najpierw odpowiada Kora — zwykle sucho, sarkastycznie i trochę złośliwie — a potem pokazuję prawdziwy montaż, części, problem i wynik. Odcinek #2 to pierwszy test zasilania nowych metalowych nóg.';
+    intro.dataset.en = 'Kora answers first — usually dry, sarcastic and slightly insulting — then I show the real build, the parts, the problem and the result. Episode #3 shows her anger through light, voice and neck movement.';
+    intro.dataset.pl = 'Najpierw odpowiada Kora — zwykle sucho, sarkastycznie i trochę złośliwie — a potem pokazuję prawdziwy montaż, części, problem i wynik. W odcinku #3 pokazuje złość światłem, głosem i ruchem szyi.';
     intro.textContent = intro.dataset.en;
   }
 
@@ -39,11 +39,11 @@ try {
   if (actions) {
     const watch = document.createElement('a');
     watch.className = 'button button-primary';
-    watch.href = 'https://youtube.com/shorts/lTnTV2sUjIg';
+    watch.href = 'https://youtube.com/shorts/cM3Gd1e1JrA';
     watch.target = '_blank';
     watch.rel = 'noopener';
-    watch.dataset.en = 'Watch episode #2 ↗';
-    watch.dataset.pl = 'Obejrzyj odcinek #2 ↗';
+    watch.dataset.en = 'Watch episode #3 ↗';
+    watch.dataset.pl = 'Obejrzyj odcinek #3 ↗';
     watch.textContent = watch.dataset.en;
     actions.prepend(watch);
 
@@ -60,8 +60,22 @@ try {
   episodes.className = 'series-episodes';
   card.insertBefore(episodes, episode01);
 
+  const episode03 = document.createElement('div');
+  episode03.className = 'series-dialogue series-teaser series-dialogue--latest';
+  episode03.setAttribute('aria-label', 'Episode three — published');
+  episode03.innerHTML = `
+    <span class="series-label" data-pl="ODCINEK 03 · OPUBLIKOWANY" data-en="EPISODE 03 · PUBLISHED">EPISODE 03 · PUBLISHED</span>
+    <blockquote data-pl="Pierścień LED → głos → ruch szyi → nastrój Kory staje się widoczny." data-en="LED ring → voice → neck movement → Kora's mood becomes visible.">LED ring → voice → neck movement → Kora's mood becomes visible.</blockquote>
+    <p data-pl="Test pokazuje, jak mood_score i arousal łączą głos Kory, 16-diodowy pierścień LED oraz serwa szyi w jedną skoordynowaną reakcję. Jej właściwa odpowiedź zostaje w filmie — bez psucia puenty na stronie." data-en="The test shows how mood_score and arousal connect Kora's voice, 16-LED ring and neck servos into one coordinated reaction. Her actual reply stays in the video — no punchline spoiled on the page.">The test shows how mood_score and arousal connect Kora's voice, 16-LED ring and neck servos into one coordinated reaction. Her actual reply stays in the video — no punchline spoiled on the page.</p>
+    <div class="series-parts" aria-label="Parts used in episode three">
+      <span>MOOD ENGINE</span><span>16-LED RING</span><span>RESPEAKER XVF3800</span><span>NECK SERVOS</span>
+    </div>
+    <div class="series-episode-actions">
+      <a class="button button-youtube" href="https://youtube.com/shorts/cM3Gd1e1JrA" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #3 ↗" data-en="Watch Short #3 ↗">Watch Short #3 ↗</span></a>
+    </div>`;
+
   const episode02 = document.createElement('div');
-  episode02.className = 'series-dialogue series-teaser series-dialogue--latest';
+  episode02.className = 'series-dialogue series-teaser';
   episode02.setAttribute('aria-label', 'Episode two — published');
   episode02.innerHTML = `
     <span class="series-label" data-pl="ODCINEK 02 · OPUBLIKOWANY" data-en="EPISODE 02 · PUBLISHED">EPISODE 02 · PUBLISHED</span>
@@ -75,6 +89,7 @@ try {
       <a class="button" href="updates/kora-aluminium-2026-08-11/" data-pl="Pełny build log i części →" data-en="Full build log & parts →">Full build log & parts →</a>
     </div>`;
 
+  episodes.appendChild(episode03);
   episodes.appendChild(episode02);
   episodes.appendChild(episode01);
 
