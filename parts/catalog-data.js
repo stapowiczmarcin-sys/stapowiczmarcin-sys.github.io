@@ -9,7 +9,7 @@ window.PARTS_CATALOG = [
     "status": "Mam",
     "accent": "violet",
     "spec": "16 GB RAM • czterordzeniowy CPU • PCIe • 2× MIPI",
-    "url": "https://amzn.to/3Ud5CvD",
+    "url": "https://amzn.to/4imKH38",
     "youtubePl": "Głównym komputerem robota Kora jest Raspberry Pi 5 z 16 GB pamięci RAM.",
     "youtubeEn": "Kora's main computer is a Raspberry Pi 5 with 16 GB of RAM."
   },
