@@ -1,6 +1,6 @@
 {
   "schema": "kora.source_of_truth.v1",
-  "updated": "2026-08-22T22:26:26+01:00",
+  "updated": "2026-08-22T22:41:23+01:00",
   "project": "Kora",
   "rule": {
     "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
@@ -69,6 +69,20 @@
       "live": "PENDING_SAFE_DATA_PATH",
       "live_json": "PENDING_SAFE_DATA_PATH",
       "payload": "pi-sync/2026-08-22-kora-alexa-social-cover.json"
+    },
+    "private_registry_sync": {
+      "status": "SYNCED",
+      "source_of_truth": "KORA-MASTER",
+      "scope": [
+        "README status",
+        "changelog",
+        "content pipeline",
+        "project registry",
+        "Kora quote memory",
+        "public links",
+        "canonical content record"
+      ],
+      "head_commit": "a6618c893449d3a4434c4a7e599ca36a65b75257"
     }
   },
   "active_issues": [
