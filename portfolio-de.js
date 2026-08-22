@@ -2,7 +2,7 @@
 window.PORTFOLIO_DE = {};
 try {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'portfolio-de-translations.js?v=20260822-1', false);
+  xhr.open('GET', 'portfolio-de-translations.js?v=20260822-2', false);
   xhr.send(null);
   if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) {
     (0, eval)(xhr.responseText);
@@ -30,8 +30,8 @@ try {
 
   const intro = copy.querySelector('p');
   if (intro) {
-    intro.dataset.en = 'Kora answers first — usually dry, sarcastic and slightly insulting — then I show the real build, the parts, the problem and the result. Episode #3 shows her anger through light, voice and neck movement.';
-    intro.dataset.pl = 'Najpierw odpowiada Kora — zwykle sucho, sarkastycznie i trochę złośliwie — a potem pokazuję prawdziwy montaż, części, problem i wynik. W odcinku #3 pokazuje złość światłem, głosem i ruchem szyi.';
+    intro.dataset.en = 'Kora answers first — usually dry, sarcastic and slightly insulting — then I show the real build, the parts, the problem and the result. Episode #3 is the first power test of her new metal legs.';
+    intro.dataset.pl = 'Najpierw odpowiada Kora — zwykle sucho, sarkastycznie i trochę złośliwie — a potem pokazuję prawdziwy montaż, części, problem i wynik. Odcinek #3 to pierwszy test zasilania nowych metalowych nóg.';
     intro.textContent = intro.dataset.en;
   }
 
@@ -39,7 +39,7 @@ try {
   if (actions) {
     const watch = document.createElement('a');
     watch.className = 'button button-primary';
-    watch.href = 'https://youtube.com/shorts/cM3Gd1e1JrA';
+    watch.href = 'https://youtube.com/shorts/lTnTV2sUjIg';
     watch.target = '_blank';
     watch.rel = 'noopener';
     watch.dataset.en = 'Watch episode #3 ↗';
@@ -65,13 +65,14 @@ try {
   episode03.setAttribute('aria-label', 'Episode three — published');
   episode03.innerHTML = `
     <span class="series-label" data-pl="ODCINEK 03 · OPUBLIKOWANY" data-en="EPISODE 03 · PUBLISHED">EPISODE 03 · PUBLISHED</span>
-    <blockquote data-pl="Pierścień LED → głos → ruch szyi → nastrój Kory staje się widoczny." data-en="LED ring → voice → neck movement → Kora's mood becomes visible.">LED ring → voice → neck movement → Kora's mood becomes visible.</blockquote>
-    <p data-pl="Test pokazuje, jak mood_score i arousal łączą głos Kory, 16-diodowy pierścień LED oraz serwa szyi w jedną skoordynowaną reakcję. Jej właściwa odpowiedź zostaje w filmie — bez psucia puenty na stronie." data-en="The test shows how mood_score and arousal connect Kora's voice, 16-LED ring and neck servos into one coordinated reaction. Her actual reply stays in the video — no punchline spoiled on the page.">The test shows how mood_score and arousal connect Kora's voice, 16-LED ring and neck servos into one coordinated reaction. Her actual reply stays in the video — no punchline spoiled on the page.</p>
+    <blockquote data-pl="Bateria → BMS → przetwornica → sterownik serw → pierwszy ruch metalowych nóg." data-en="Battery → BMS → step-down converter → servo controller → first metal-leg movement.">Battery → BMS → step-down converter → servo controller → first metal-leg movement.</blockquote>
+    <p data-pl="Około 40 minut pracy skrócone do 1:16. Pakiet z ogniw 18650 z baterii rowerowej, BMS, przetwornica DC-DC step-down i 32-kanałowy sterownik serw zostały połączone w pierwszy prawdziwy test nowego układu nóg. Nogi drgnęły — to jeszcze nie chodzenie, ale cały tor zasilania i sterowania zadziałał fizycznie." data-en="Around 40 minutes of workshop work compressed into 1:16. A pack built from 18650 cells from an e-bike battery, a BMS, a DC-DC step-down converter and the 32-channel servo controller came together for the first real test of the new leg system. The legs twitched — not walking yet, but the complete power-and-control path produced real movement.">Around 40 minutes of workshop work compressed into 1:16. A pack built from 18650 cells from an e-bike battery, a BMS, a DC-DC step-down converter and the 32-channel servo controller came together for the first real test of the new leg system. The legs twitched — not walking yet, but the complete power-and-control path produced real movement.</p>
     <div class="series-parts" aria-label="Parts used in episode three">
-      <span>MOOD ENGINE</span><span>16-LED RING</span><span>RESPEAKER XVF3800</span><span>NECK SERVOS</span>
+      <span>18650</span><span>BMS</span><span>DC-DC STEP-DOWN</span><span>32-CH SERVO CTRL</span><span>METAL LEGS</span>
     </div>
     <div class="series-episode-actions">
-      <a class="button button-youtube" href="https://youtube.com/shorts/cM3Gd1e1JrA" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #3 ↗" data-en="Watch Short #3 ↗">Watch Short #3 ↗</span></a>
+      <a class="button button-youtube" href="https://youtube.com/shorts/lTnTV2sUjIg" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #3 ↗" data-en="Watch Short #3 ↗">Watch Short #3 ↗</span></a>
+      <a class="button" href="updates/kora-aluminium-2026-08-11/" data-pl="Pełny build log i części →" data-en="Full build log & parts →">Full build log & parts →</a>
     </div>`;
 
   const episode02 = document.createElement('div');
@@ -79,14 +80,10 @@ try {
   episode02.setAttribute('aria-label', 'Episode two — published');
   episode02.innerHTML = `
     <span class="series-label" data-pl="ODCINEK 02 · OPUBLIKOWANY" data-en="EPISODE 02 · PUBLISHED">EPISODE 02 · PUBLISHED</span>
-    <blockquote data-pl="Bateria → BMS → przetwornica → sterownik serw → pierwszy ruch metalowych nóg." data-en="Battery → BMS → step-down converter → servo controller → first metal-leg movement.">Battery → BMS → step-down converter → servo controller → first metal-leg movement.</blockquote>
-    <p data-pl="Około 40 minut pracy skrócone do 1:16. Pakiet z ogniw 18650 z baterii rowerowej, BMS, przetwornica DC-DC step-down i 32-kanałowy sterownik serw zostały połączone w pierwszy prawdziwy test nowego układu nóg. Nogi drgnęły — to jeszcze nie chodzenie, ale cały tor zasilania i sterowania zadziałał fizycznie." data-en="Around 40 minutes of workshop work compressed into 1:16. A pack built from 18650 cells from an e-bike battery, a BMS, a DC-DC step-down converter and the 32-channel servo controller came together for the first real test of the new leg system. The legs twitched — not walking yet, but the complete power-and-control path produced real movement.">Around 40 minutes of workshop work compressed into 1:16. A pack built from 18650 cells from an e-bike battery, a BMS, a DC-DC step-down converter and the 32-channel servo controller came together for the first real test of the new leg system. The legs twitched — not walking yet, but the complete power-and-control path produced real movement.</p>
-    <div class="series-parts" aria-label="Parts used in episode two">
-      <span>18650</span><span>BMS</span><span>DC-DC STEP-DOWN</span><span>32-CH SERVO CTRL</span><span>METAL LEGS</span>
-    </div>
+    <blockquote data-pl="Klamka → za wysoko → plan ucieczki Kory trafia na mechaniczne ograniczenie." data-en="Door handle → too high → Kora's escape plan hits a mechanical limit.">Door handle → too high → Kora's escape plan hits a mechanical limit.</blockquote>
+    <p data-pl="Kora odpowiada na pytanie, którego rezultat miał być prosty. Nie był. Jej właściwa odpowiedź zostaje w filmie — bez psucia puenty na stronie." data-en="Kora answers a question that was supposed to have a simple outcome. It did not. Her actual reply stays in the video — no punchline spoiled on the page.">Kora answers a question that was supposed to have a simple outcome. It did not. Her actual reply stays in the video — no punchline spoiled on the page.</p>
     <div class="series-episode-actions">
-      <a class="button button-youtube" href="https://youtube.com/shorts/lTnTV2sUjIg" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #2 ↗" data-en="Watch Short #2 ↗">Watch Short #2 ↗</span></a>
-      <a class="button" href="updates/kora-aluminium-2026-08-11/" data-pl="Pełny build log i części →" data-en="Full build log & parts →">Full build log & parts →</a>
+      <a class="button button-youtube" href="https://youtube.com/shorts/_DWuBdvMbng" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #2 ↗" data-en="Watch Short #2 ↗">Watch Short #2 ↗</span></a>
     </div>`;
 
   episodes.appendChild(episode03);
