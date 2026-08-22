@@ -654,3 +654,11 @@ main > section:nth-of-type(4n + 3) :is(.short-panel,.capability,.polish-note,.li
   color: #565752 !important;
 }
 main > section:nth-of-type(4n + 3) .polish-note strong { color: #654000 !important; }
+main > section:nth-of-type(4n + 3) .card .code-head strong,
+main > section:nth-of-type(4n + 3) .card .code-toolbar strong {
+  color: #fff !important;
+}
+main > section:nth-of-type(4n + 3) .part-tag,
+main > section:nth-of-type(4n + 3) .part-tag * {
+  color: #31421e !important;
+}
