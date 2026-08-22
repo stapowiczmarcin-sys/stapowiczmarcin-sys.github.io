@@ -22,17 +22,17 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "uni-t-ut61b-plus")) {
 if (!window.PARTS_CATALOG.some((part) => part.id === "bgtxingi-m25-standoff-kit-280")) {
   window.PARTS_CATALOG.push({
     "id": "bgtxingi-m25-standoff-kit-280",
-    "name": "BGTXINGI — zestaw dystansów M2.5, 280 elementów",
+    "name": "Zestaw dystansów M2.5 — 503 elementy",
     "short": "Mosiężne dystanse, śruby i nakrętki do montażu Raspberry Pi, UPS i Hailo",
     "category": "Montaż",
     "supplier": "Amazon",
     "project": "Kora / VEGA",
     "status": "Mam",
     "accent": "slate",
-    "spec": "280 elementów • gwint M2.5 • mosiężne dystanse male-female i female-female • śruby i nakrętki ze stali nierdzewnej",
-    "url": "https://amzn.to/4xKNzvh",
-    "youtubePl": "Do pewnego montażu Raspberry Pi, UPS-a i Hailo używam zestawu 280 elementów M2.5 z mosiężnymi dystansami oraz stalowymi śrubami i nakrętkami.",
-    "youtubeEn": "For secure Raspberry Pi, UPS and Hailo mounting I use a 280-piece M2.5 kit with brass standoffs and stainless-steel screws and nuts."
+    "spec": "503 elementy • gwint M2.5 • mosiężne dystanse męsko-żeńskie i żeńsko-żeńskie • śruby i nakrętki",
+    "url": "https://amzn.to/4y1Rvbf",
+    "youtubePl": "Do pewnego montażu Raspberry Pi, UPS-a i Hailo używam zestawu 503 elementów M2.5 z mosiężnymi dystansami oraz stalowymi śrubami i nakrętkami.",
+    "youtubeEn": "For secure Raspberry Pi, UPS and Hailo mounting I use a 503-piece M2.5 kit with brass standoffs and stainless-steel screws and nuts."
   });
 }
 
