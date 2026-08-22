@@ -25,6 +25,14 @@ Master Panel ma już trwałe dane projektu w `state.json`, `modules.json` i `cha
 
 ---
 
+## 2026-08-22 — Kora/Alexa social cover corrected
+
+**Status: ASSET_READY**
+
+PL: Usunięto z okładki zdania zdradzające odpowiedź Kory. Zastąpił je teaser „Kora ma swoje zdanie / Poczekaj na jej odpowiedź”, dzięki czemu puenta pozostaje w filmie. Gotowa wersja Instagram Reels/Stories ma dokładnie 1080 × 1920 px, proporcje 9:16 i przestrzeń barwną sRGB. Lekki WebP służy do podglądu w Kora Brain, a pełny PNG jest dostępny do pobrania.
+
+EN: The lines revealing Kora's reply were removed from the cover. They were replaced with the teaser “Kora has an opinion / Wait for her answer”, keeping the punchline inside the video. The Instagram Reels/Stories version is exactly 1080 × 1920 px, 9:16 and sRGB. A lightweight WebP is used for the Kora Brain preview and the full PNG remains available for download.
+
 ## 2026-08-22 — Portfolio hardware status corrected
 
 **Status: CORRECTED**

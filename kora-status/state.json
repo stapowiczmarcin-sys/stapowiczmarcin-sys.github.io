@@ -1,6 +1,6 @@
 {
   "schema": "kora.source_of_truth.v1",
-  "updated": "2026-08-22T09:00:00+01:00",
+  "updated": "2026-08-22T22:26:26+01:00",
   "project": "Kora",
   "rule": {
     "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
@@ -47,6 +47,29 @@
     "status": "TESTING",
     "details_pl": "Wake word uruchamia odpowiedź wstępną, ReSpeaker XVF3800 nagrywa, ale pełna odpowiedź po pytaniu głosowym nadal wymaga potwierdzenia. Metalowe nogi wykonały pierwszy widoczny ruch; chodzenie nie jest jeszcze potwierdzone.",
     "details_en": "The wake word triggers an acknowledgement and ReSpeaker XVF3800 records, but the full answer after a spoken question still needs confirmation. The metal legs produced their first visible movement; walking is not confirmed yet."
+  },
+  "recent_content_work": {
+    "id": "kora_alexa_no_spoiler_cover_2026_08_22",
+    "status": "ASSET_READY",
+    "summary_pl": "Okładka Shorta o Aleksie nie zdradza już odpowiedzi Kory. Gotowa wersja Instagram ma 1080 x 1920 px, proporcje 9:16 i sRGB.",
+    "summary_en": "The Alexa Short cover no longer reveals Kora's reply. The finished Instagram version is 1080 x 1920 px, 9:16 and sRGB.",
+    "public_targets": [
+      "Kora Brain",
+      "Public Source of Truth",
+      "GitHub Pages",
+      "Instagram Reels",
+      "Instagram Stories"
+    ],
+    "assets": {
+      "web_preview": "https://stapowiczmarcin-sys.github.io/assets/kora/content/kora-alexa-no-spoiler.webp",
+      "instagram_png": "https://stapowiczmarcin-sys.github.io/assets/kora/content/kora-alexa-no-spoiler-instagram-1080x1920.png"
+    },
+    "pi_sync": {
+      "master_panel": "PENDING_DIRECT_PI_WRITE",
+      "live": "PENDING_SAFE_DATA_PATH",
+      "live_json": "PENDING_SAFE_DATA_PATH",
+      "payload": "pi-sync/2026-08-22-kora-alexa-social-cover.json"
+    }
   },
   "active_issues": [
     {

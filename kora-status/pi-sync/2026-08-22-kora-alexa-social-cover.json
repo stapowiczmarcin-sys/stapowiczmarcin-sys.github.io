@@ -1,0 +1,23 @@
+{
+  "schema": "kora.master_panel.sync_event.v1",
+  "event": {
+    "ts": "2026-08-22T22:26:26+01:00",
+    "type": "CONTENT_ASSET",
+    "status": "ASSET_READY",
+    "module": "Kora Brain / social content",
+    "description_pl": "Okładka Shorta o Aleksie została poprawiona tak, aby nie zdradzała odpowiedzi Kory. Gotowy PNG dla Instagram Reels/Stories ma 1080 x 1920 px, 9:16 i sRGB; lekki WebP służy do podglądu na stronie Kora Brain.",
+    "description_en": "The Alexa Short cover was corrected so it no longer reveals Kora's reply. The Instagram Reels/Stories PNG is 1080 x 1920 px, 9:16 and sRGB; a lightweight WebP is used for the Kora Brain preview.",
+    "artifacts": [
+      "assets/kora/content/kora-alexa-no-spoiler.webp",
+      "assets/kora/content/kora-alexa-no-spoiler-instagram-1080x1920.png"
+    ]
+  },
+  "targets": {
+    "public_source_of_truth": "UPDATED_IN_THIS_CHANGE",
+    "kora_brain": "UPDATED_IN_THIS_CHANGE",
+    "github_pages": "UPDATED_IN_THIS_CHANGE",
+    "master_panel": "PENDING_DIRECT_PI_WRITE",
+    "live": "PENDING_SAFE_DATA_PATH",
+    "live_json": "PENDING_SAFE_DATA_PATH"
+  }
+}
