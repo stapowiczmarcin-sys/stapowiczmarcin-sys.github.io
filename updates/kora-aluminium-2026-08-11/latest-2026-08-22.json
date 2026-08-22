@@ -1,0 +1,13 @@
+{
+  "updated": "2026-08-22",
+  "project": "Kora aluminium leg system",
+  "status": "verified bench incident; diagnosis pending",
+  "verified_result_en": "The aluminium leg mechanics were reported as OK. An old lead on a salvaged servo emitted smoke after connection.",
+  "verified_result_pl": "Aluminiowa mechanika nóg została zgłoszona jako sprawna. Stary przewód przy odzyskanym serwie zadymił po podłączeniu.",
+  "not_confirmed_en": "The exact electrical cause has not been measured. Do not assign the fault to the controller, servo, polarity, insulation or connector yet.",
+  "not_confirmed_pl": "Dokładna przyczyna elektryczna nie została zmierzona. Nie przypisywać jeszcze winy sterownikowi, serwu, polaryzacji, izolacji ani złączu.",
+  "next_test_en": "Retire the suspect lead, inspect and measure with power disconnected, then test each salvaged servo individually on a current-limited, fused rail.",
+  "next_test_pl": "Wycofać podejrzany przewód, wykonać oględziny i pomiary przy odłączonym zasilaniu, a następnie testować każde odzyskane serwo osobno na torze z ograniczeniem prądu i bezpiecznikiem.",
+  "short_episode_number": null,
+  "short_url": null
+}
