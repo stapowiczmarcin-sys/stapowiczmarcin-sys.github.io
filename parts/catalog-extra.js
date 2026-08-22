@@ -2,6 +2,31 @@
 
 window.PARTS_CATALOG = window.PARTS_CATALOG || [];
 
+// Central runtime overrides for catalogue entries whose store / affiliate link changes.
+const catalogueOverrides = {
+  "cam3": {
+    name: "Raspberry Pi Camera Module 3 Wide",
+    short: "Szerokokątna kamera dzienna z autofokusem",
+    supplier: "Amazon",
+    spec: "Sony IMX708 • 12 MP • autofocus • szerokie pole widzenia",
+    url: "https://amzn.to/4coJbtR",
+    youtubePl: "Obraz dzienny Kory zapewnia szerokokątna Raspberry Pi Camera Module 3 Wide z autofokusem i sensorem IMX708.",
+    youtubeEn: "Kora's daytime vision uses a wide-angle Raspberry Pi Camera Module 3 Wide with autofocus and an IMX708 sensor."
+  },
+  "cam3-noir": {
+    supplier: "Amazon",
+    url: "https://amzn.to/4xgsdpC"
+  }
+};
+
+Object.entries(catalogueOverrides).forEach(([id, override]) => {
+  const part = window.PARTS_CATALOG.find((item) => item.id === id);
+  if (part) Object.assign(part, override);
+});
+
+const daytimeCamera = window.PARTS_CATALOG.find((item) => item.id === "cam3");
+if (daytimeCamera) delete daytimeCamera.price;
+
 if (!window.PARTS_CATALOG.some((part) => part.id === "uni-t-ut61b-plus")) {
   window.PARTS_CATALOG.push({
     "id": "uni-t-ut61b-plus",
