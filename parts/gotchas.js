@@ -26,7 +26,7 @@
             { name: "Przedłużka GPIO 2×20 — extra-tall", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Sklep →" },
             { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Sklep →" },
             { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Sklep →" },
-            { name: "Raspberry Pi 5", imageId: "rpi5-16", url: "https://thepihut.com/products/raspberry-pi-5", cta: "Sklep →" }
+            { name: "Raspberry Pi 5 — 16 GB", imageId: "rpi5-16", url: "https://amzn.to/3Ud5CvD", cta: "Sklep →" }
           ],
           videoId: "2q_VNgvxkWU",
           videoTitle: "Kora komentuje problem z UPS X1203",
@@ -72,7 +72,7 @@
             { name: "2×20 extra-tall GPIO header", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Shop →" },
             { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Shop →" },
             { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Shop →" },
-            { name: "Raspberry Pi 5", imageId: "rpi5-16", url: "https://thepihut.com/products/raspberry-pi-5", cta: "Shop →" }
+            { name: "Raspberry Pi 5 — 16 GB", imageId: "rpi5-16", url: "https://amzn.to/3Ud5CvD", cta: "Shop →" }
           ],
           videoId: "2q_VNgvxkWU",
           videoTitle: "Kora comments on the X1203 UPS problem",
