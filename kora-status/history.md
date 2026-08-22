@@ -33,6 +33,10 @@ PL: Usunięto z okładki zdania zdradzające odpowiedź Kory. Zastąpił je teas
 
 EN: The lines revealing Kora's reply were removed from the cover. They were replaced with the teaser “Kora has an opinion / Wait for her answer”, keeping the punchline inside the video. The Instagram Reels/Stories version is exactly 1080 × 1920 px, 9:16 and sRGB. A lightweight WebP is used for the Kora Brain preview and the full PNG remains available for download.
 
+PL: Prywatny KORA-MASTER został zsynchronizowany: status główny, changelog, pipeline, projekty, pamięć wypowiedzi Kory, linki i kanoniczny zapis materiału. Panel Master/Live na Pi pozostaje osobnym celem synchronizacji i nie jest oznaczony jako zaktualizowany.
+
+EN: The private KORA-MASTER registry was synchronized: main status, changelog, content pipeline, projects, Kora quote memory, links and the canonical content record. The Pi-side Master/Live panel remains a separate synchronization target and is not marked as updated.
+
 ## 2026-08-22 — Portfolio hardware status corrected
 
 **Status: CORRECTED**
