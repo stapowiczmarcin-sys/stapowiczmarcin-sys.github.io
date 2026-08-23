@@ -1,6 +1,6 @@
 {
   "schema": "kora.source_of_truth.v1",
-  "updated": "2026-08-22T22:41:23+01:00",
+  "updated": "2026-08-23T18:58:52+01:00",
   "project": "Kora",
   "rule": {
     "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
@@ -49,26 +49,32 @@
     "details_en": "The wake word triggers an acknowledgement and ReSpeaker XVF3800 records, but the full answer after a spoken question still needs confirmation. The metal legs produced their first visible movement; walking is not confirmed yet."
   },
   "recent_content_work": {
-    "id": "kora_alexa_no_spoiler_cover_2026_08_22",
-    "status": "ASSET_READY",
-    "summary_pl": "Okładka Shorta o Aleksie nie zdradza już odpowiedzi Kory. Gotowa wersja Instagram ma 1080 x 1920 px, proporcje 9:16 i sRGB.",
-    "summary_en": "The Alexa Short cover no longer reveals Kora's reply. The finished Instagram version is 1080 x 1920 px, 9:16 and sRGB.",
+    "id": "what_will_kora_say_04_2s4p_published_2026_08_23",
+    "status": "PUBLISHED",
+    "summary_pl": "Odcinek #4 o budowie pakietu 2S4P z ośmiu odzyskanych ogniw dla mózgu Kory jest opublikowany. Portfolio zawiera pełny schemat, drogę przewodów i uczciwe ograniczenia pomiaru miernikiem.",
+    "summary_en": "Episode #4 about building an eight-cell 2S4P pack for Kora's brain is published. The portfolio contains the full diagram, cable path and honest limits of a multimeter-only check.",
     "public_targets": [
+      "YouTube Shorts",
+      "Main Portfolio",
       "Kora Brain",
       "Public Source of Truth",
-      "GitHub Pages",
-      "Instagram Reels",
-      "Instagram Stories"
+      "Facebook copy ready",
+      "Ko-fi copy ready"
     ],
-    "assets": {
-      "web_preview": "https://stapowiczmarcin-sys.github.io/assets/kora/content/kora-alexa-no-spoiler.webp",
-      "instagram_png": "https://stapowiczmarcin-sys.github.io/assets/kora/content/kora-alexa-no-spoiler-instagram-1080x1920.png"
+    "links": {
+      "youtube_short": "https://youtube.com/shorts/EDdY38zSmYM",
+      "portfolio_guide": "https://stapowiczmarcin-sys.github.io/kora-brain/#episode-4-power"
+    },
+    "fact_status": {
+      "cell_voltage_and_polarity": "CHECKED_WITH_MULTIMETER",
+      "capacity_internal_resistance_and_runtime": "NOT_CONFIRMED",
+      "kora_exact_spoken_line": "NOT_TRANSCRIBED"
     },
     "pi_sync": {
       "master_panel": "PENDING_DIRECT_PI_WRITE",
       "live": "PENDING_SAFE_DATA_PATH",
       "live_json": "PENDING_SAFE_DATA_PATH",
-      "payload": "pi-sync/2026-08-22-kora-alexa-social-cover.json"
+      "payload": "PENDING_EPISODE_04_PUBLICATION_SYNC"
     },
     "private_registry_sync": {
       "status": "SYNCED",
@@ -82,7 +88,7 @@
         "public links",
         "canonical content record"
       ],
-      "head_commit": "401eb4990d2473baf424938fb6daf7bfe396d363"
+      "head_commit": "8934eef72c32610b8a50ff9e5d2ffc7e3f896181"
     }
   },
   "active_issues": [
