@@ -95,5 +95,74 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "bms-13s-48v-mnine")) {
   });
 }
 
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "dc-pigtail-female-5521-2pk")) {
+  window.PARTS_CATALOG.push({
+    "id": "dc-pigtail-female-5521-2pk",
+    "name": "sourcing map — przewód DC żeński 5.5 × 2.1 mm, 2 szt.",
+    "short": "Żeńskie gniazdo baryłkowe na przewodzie do połączeń zasilania",
+    "category": "Zasilanie",
+    "supplier": "Amazon",
+    "project": "Kora Brain",
+    "status": "Mam",
+    "accent": "amber",
+    "spec": "2 szt. • żeńskie 5.5 × 2.1 mm • przewód 30 cm • otwarte końce",
+    "url": "https://amzn.to/4gedq95",
+    "youtubePl": "Żeńskie przewody DC 5,5 × 2,1 mm wykorzystuję do rozłącznych połączeń zasilania. Przed podłączeniem zawsze sprawdzam biegunowość miernikiem.",
+    "youtubeEn": "I use 5.5 × 2.1 mm female DC pigtails for detachable power connections. I always verify polarity with a multimeter before connection."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "charger-2s-84v-1a-uk")) {
+  window.PARTS_CATALOG.push({
+    "id": "charger-2s-84v-1a-uk",
+    "name": "Ładowarka UK 8.4 V / 1 A do pakietu 2S",
+    "short": "Zewnętrzna ładowarka do pakietów Li-ion 2S przez właściwy BMS",
+    "category": "Zasilanie",
+    "supplier": "Amazon",
+    "project": "Kora Brain",
+    "status": "Mam",
+    "accent": "amber",
+    "spec": "wejście UK AC • wyjście 8.4 V DC • 1000 mA • pakiety 18650 2S",
+    "url": "https://amzn.to/4gftVSk",
+    "youtubePl": "Pakiet 2S ładuję zewnętrzną ładowarką 8,4 V / 1 A przez BMS. Przed użyciem sprawdzam napięcie wyjściowe, biegunowość i zgodność wtyku.",
+    "youtubeEn": "I charge the 2S pack with an external 8.4 V / 1 A charger through the BMS. Before use I verify output voltage, polarity and plug compatibility."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "qury-bms-2s-20a-balanced-5pk")) {
+  window.PARTS_CATALOG.push({
+    "id": "qury-bms-2s-20a-balanced-5pk",
+    "name": "Qury — BMS 2S 20 A z balansowaniem, 5 szt.",
+    "short": "Płytka ochronna i balansująca do pakietu Li-ion 2S",
+    "category": "Zasilanie",
+    "supplier": "Amazon",
+    "project": "Kora Brain",
+    "status": "Mam",
+    "accent": "amber",
+    "spec": "5 szt. • 2S • 7.4 V nominalnie / 8.4 V maks. • deklarowane 20 A • balansowanie",
+    "url": "https://amzn.to/4gteGnB",
+    "youtubePl": "W pakiecie 2S stosuję płytkę BMS z balansowaniem. Oznaczenia pól i rzeczywisty limit prądu trzeba sprawdzić na konkretnej wersji płytki — nie zgadywać po samym tytule oferty.",
+    "youtubeEn": "I use a balancing BMS board in the 2S pack. Terminal labels and the real current limit must be checked on the exact board version rather than assumed from the listing title."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "dc-pigtail-male-5525-5pk")) {
+  window.PARTS_CATALOG.push({
+    "id": "dc-pigtail-male-5525-5pk",
+    "name": "sourcing map — przewód DC męski 5.5 × 2.5 mm, 5 szt.",
+    "short": "Męski wtyk baryłkowy na przewodzie do połączeń zasilania",
+    "category": "Zasilanie",
+    "supplier": "Amazon",
+    "project": "Warsztat",
+    "status": "Mam",
+    "accent": "amber",
+    "spec": "5 szt. • męskie 5.5 × 2.5 mm • przewód 50 cm • otwarte końce",
+    "url": "https://amzn.to/4hQwnzM",
+    "youtubePl": "Przewód ma wtyk 5,5 × 2,5 mm. Nie opisuję go jako bezpośrednio zgodnego z X1203, którego oficjalne gniazdo ma 5,5 × 2,1 mm.",
+    "youtubeEn": "This lead has a 5.5 × 2.5 mm plug. I do not list it as a direct X1203 lead because the official X1203 jack is 5.5 × 2.1 mm."
+  });
+}
+
 window.PART_IMAGES = window.PART_IMAGES || {};
 window.PART_IMAGES["neewer-lm2"] = "https://de.neewer.com/cdn/shop/files/1_42e1f1da-e75d-44cc-be2b-aa2225eb4d2a.jpg?v=1746761338&width=1600";
