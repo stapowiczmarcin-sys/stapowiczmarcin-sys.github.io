@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wooly Wonders</title>
+<style>body{margin:0;background:#fbf7f1;color:#342920;font:16px/1.5 system-ui,sans-serif}.loading{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center}</style>
+<div class="loading" id="status">Loading archived Wooly Wonders…</div>
+<script>
+(async()=>{
+  try{
+    const names=Array.from({length:10},(_,i)=>`_source/part-${String(i+1).padStart(2,'0')}.txt`);
+    const parts=await Promise.all(names.map(async n=>{
+      const r=await fetch(n,{cache:'no-store'});
+      if(!r.ok) throw new Error(`${n}: HTTP ${r.status}`);
+      return r.text();
+    }));
+    document.open();
+    document.write(parts.join(''));
+    document.close();
+  }catch(e){
+    document.getElementById('status').innerHTML='<strong>Archive load error</strong><br><small>'+String(e)+'</small>';
+  }
+})();
+</script>
