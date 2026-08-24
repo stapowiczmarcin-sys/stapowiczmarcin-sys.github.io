@@ -1,0 +1,87 @@
+    <nav aria-label="Main navigation">
+      <a href="#collection">Collection</a>
+      <a href="#flowers">Flowers</a>
+      <a href="#about">About</a>
+      <a class="cta" href="#contact">Custom orders</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Handmade with care</div>
+        <h1>Small stitches.<br>Big character.</h1>
+        <p>A joyful collection of handmade crochet miniatures, playful ocean creatures and flowers designed to last far longer than a bouquet from the shop.</p>
+        <div class="actions"><a class="btn" href="#collection">Explore collection →</a><a class="btn secondary" href="#contact">Ask about a piece</a></div>
+      </div>
+      <div class="hero-photo"><img src="__INLINE_IMAGE_0__" alt="Handmade gray crochet shark" /></div>
+    </div>
+  </section>
+
+  <section id="collection">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Featured pieces</div><h2>The collection</h2></div><p>Each piece is crocheted by hand, so small variations are part of its character — not a defect, but the signature of something genuinely handmade.</p></div>
+      <div class="grid">
+        <article class="card" data-full="__INLINE_IMAGE_1__"><div class="photo"><img src="__INLINE_IMAGE_2__" alt="Blue and yellow crochet fish pen topper"></div><div class="card-body"><h3>Blue & Yellow Fish</h3><div class="meta">Miniature · Handmade</div></div></article>
+        <article class="card" data-full="__INLINE_IMAGE_3__"><div class="photo"><img src="__INLINE_IMAGE_4__" alt="Orange crochet fish"></div><div class="card-body"><h3>Orange Fish</h3><div class="meta">Miniature · Handmade</div></div></article>
+        <article class="card" data-full="__INLINE_IMAGE_5__"><div class="photo"><img src="__INLINE_IMAGE_6__" alt="Pink crochet fish"></div><div class="card-body"><h3>Pink Fish</h3><div class="meta">Miniature · Handmade</div></div></article>
+        <article class="card" data-full="__INLINE_IMAGE_7__"><div class="photo"><img src="__INLINE_IMAGE_8__" alt="Green crochet fish"></div><div class="card-body"><h3>Green Fish</h3><div class="meta">Miniature · Handmade</div></div></article>
+        <article class="card" data-full="__INLINE_IMAGE_9__"><div class="photo"><img src="__INLINE_IMAGE_10__" alt="Orange crochet octopus"></div><div class="card-body"><h3>Orange Octopus</h3><div class="meta">Ocean friend · Handmade</div></div></article>
+        <article class="card" data-full="__INLINE_IMAGE_11__"><div class="photo"><img src="__INLINE_IMAGE_12__" alt="Gray crochet shark"></div><div class="card-body"><h3>Gray Shark</h3><div class="meta">Ocean friend · Handmade</div></div></article>
+        <article class="card" data-full="__INLINE_IMAGE_13__"><div class="photo"><img src="__INLINE_IMAGE_14__" alt="Gray crochet shark side view"></div><div class="card-body"><h3>Shark — Side View</h3><div class="meta">Detail · Handmade</div></div></article>
+        <article class="card" data-full="__INLINE_IMAGE_15__"><div class="photo"><img src="__INLINE_IMAGE_16__" alt="Purple crochet miniature topper"></div><div class="card-body"><h3>Purple Mini Topper</h3><div class="meta">Tiny piece · Handmade</div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="flowers">
+    <div class="wrap">
+      <div class="feature">
+        <div class="feature-copy"><div class="eyebrow">Floral collection</div><h2>Bouquets that never fade.</h2><p>Colourful crochet flowers turn a familiar gift into something permanent. Every petal, leaf and stem is shaped by hand, one stitch at a time.</p><div class="actions"><a class="btn" href="#contact">Enquire about a bouquet</a></div></div>
+        <div class="feature-img"><img src="__INLINE_IMAGE_17__" alt="Colourful handmade crochet flower bouquet"></div>
+      </div>
+      <div class="ocean-strip">
+        <div class="wide-card"><img src="__INLINE_IMAGE_18__" alt="Handmade crochet shark"><div class="wide-copy"><h3>Ocean Friends</h3><p>Playful sea creatures with individual expressions and plenty of personality.</p></div></div>
+        <div class="mini-stack"><div class="mini"><img src="__INLINE_IMAGE_19__" alt="Orange crochet octopus"></div><div class="mini"><img src="__INLINE_IMAGE_20__" alt="Pink crochet fish"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="wrap about-grid">
+      <div><div class="eyebrow">The craft</div><h2>Made slowly. Made properly.</h2><p>This is the opposite of mass production. Every shape is built stitch by stitch, with attention paid to texture, expression and the small details that make each piece feel personal.</p><p>The result is a collection of tactile, cheerful objects that work as gifts, desk companions, decorations or simply tiny things that make people smile.</p><div class="facts"><div class="fact"><b>100% handmade</b><span>Each piece is individually crocheted.</span></div><div class="fact"><b>One of a kind</b><span>Natural variations make every item unique.</span></div><div class="fact"><b>Custom ideas</b><span>Colours and themes can be discussed.</span></div><div class="fact"><b>Made with care</b><span>Created as keepsakes, not factory products.</span></div></div></div>
+      <div class="about-photo"><img src="__INLINE_IMAGE_21__" alt="Close detail of handmade crochet shark"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap"><div class="contact-box"><div><div class="eyebrow">Custom orders</div><h2>Have an idea in mind?</h2><p>Custom colours, small characters, ocean creatures and floral pieces can be discussed. Add your real contact details here before publishing the portfolio.</p></div><a class="btn" href="#top">Back to top ↑</a></div></div>
+  </section>
+</main>
+<footer><div class="wrap foot"><span>© 2026 Wooly Wonders. Handmade crochet portfolio.</span><span>Made by hand, one stitch at a time.</span></div></footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview"><div class="lightbox-inner"><button class="close" aria-label="Close">×</button><img alt="Expanded handmade crochet piece" /></div></div>
+<script>
+  const box=document.getElementById('lightbox'), full=box.querySelector('img');
+  document.querySelectorAll('[data-full]').forEach(card=>card.addEventListener('click',()=>{full.src=card.dataset.full;box.classList.add('open')}));
+  const close=()=>box.classList.remove('open');
+  box.querySelector('.close').addEventListener('click',close); box.addEventListener('click',e=>{if(e.target===box)close()});
+  addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+</script>
+<script>
+const __INLINE_IMAGES = [
+  [
+    'UklGRjIKAABXRUJQVlA4ICYKAACwQwCdASrcAK4AP0WQu1ewKbozrFk7G0AoiWkG+IgkUYQaNkpjN6J6LwH4MqHrP8x7uhbM2sRzR8wS/LCGNkzb/aDL6cHA',
+    'PLsQe9cH5BR7Ytv68w3JctN+XB11cxCEIvh+wmDiPN/mW14j6GL5wmdbpiqH8pcBb/FPbkzSl5fj+jbPxiwMOyjsFqWiW7Pcdgf6OI0TheLEe3qcgTXLk+HL',
+    '9dc+pfjVPaV8V1WP9C+Lp5YIuTl0I4Og48I4yRHd5WNf5OBa85CUcNineUL2E0/kr4D6RRf+H4xpzWuxWpznplwShwyuI1pljPGjptNhiv0jDMcH59PvlefF',
+    'C2EGzXY5yWGgPzeHVyxwflkGjxiFLR9JdCzjsqQMKgl6ST4e9dovWMyUe5DBV5/MA5eY6zZe+JELOdsCMtgTR3NUR9B3ie+7T6AkwrATIJRUOg25lPUy4nt3',
+    'uso7lDx4Z4TyBYYBI0FcXiDpW8jb9GwSG66RGKLRcwFA7zOpq2ZEcTL2/iXey+VL5wpEGQ1VW+7QJOj/zqmHVfjYWikwTL5H4WeEfaJF+o3Fj8FWhJnQmp8Y',
+    'zAevYgxVHSWvNJVkMf/TBZghXdEUzZto02Yxrc7eY0onQ0eILljWNFpO0J7nnLm8nT648ebHf0g6+c70RAoL15g8hJbBpgYxpr8nh8wuL1VMTP8ZcIjOCUPm',
+    'BYwCZfkN4ADtq51EmFGqwxVGBcuWgKss+YDw4mY4AP7or3tfNOySKfoEGvSC1zkMQyKsVTQeCn3QOs98wnkhAt8HKmZcdBuyhf00EHTLacdAKMynQVK/J5NK',
+    'm2SpWApemnmFLqT8mODz0aOe3cRsBNOxLACmoAQRBCUsZ22AO17SzBC6HACOF20QkLzSzg38JpDIJwHDWikS2r58RlsrKwvPxAHYrVbgkooIO2+ul0MMTRAy',
+    '2wYK6hxl/qWl3eHzUQ0Swh6aiHdU8UOgsgRHAEiFmlrfRBAI3rfxf4fy8+JKnB/yFYGs0CVqg8dlPlME7GAPPJohOR/I8nhuzdByssD7NwrajKhkkVTPR4of',
+    '/hSvwlnnDHFIVBMBWb9K72NplAdQyMH7oChgzsDMKNLAezz5LoXALB6hIBUbZIAZww32RS4gnRwdZ5HcRa9Y0a5trpgqbnD49tiJKKk6nXH5GRfiw6guHVN4',
+    'QDPLL3CFWR8wO0SLEuoKdYQzmFyePSC6uwB7nbtVLb7QacT723T1Kf1WTjoOmRkwKHF1e80N+UD1A5PGI/X/FcKfURWTsFCHMppYFHYyfEo1R4G02J+4itGi',
+    'tlNmT8R9m2L56J98oMHx3izdhxWLnGwWHncHbjkE2l6IxL989xX3R+/sZWUwVEVdvPiG/c2gtBhNWAZwEbPgwIkuluNyhuX12kblN9Umuk87K7sjDIUt2kl0',
+    'H7mmhVW240WRyG58iRn7DfYbQmyAKiInDdOPVbgxXYhiSihChvreQLPuBf2/xwum98XWMBNXpXIfx2tg33ogDe6BapECCTaOL/otfNnl7w2E+paw+YEeEdH6',
