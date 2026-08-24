@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A portfolio of handmade crochet miniatures, ocean creatures and floral pieces." />
+  <meta name="theme-color" content="#f7f0e8" />
+  <title>Wooly Wonders — Handmade Crochet Collection</title>
+  <style>
+    :root{
+      --bg:#fbf7f1;--paper:#fffdf9;--ink:#342920;--muted:#75675d;--line:#e9dacc;
+      --accent:#bd7d57;--accent2:#e8bda5;--soft:#f4e9df;--shadow:0 20px 55px rgba(74,49,33,.10);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%}
+    button{font:inherit}
+    .wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(251,247,241,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(189,125,87,.14)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+    .mark{width:39px;height:39px;border:1.5px solid var(--accent);border-radius:50%;display:grid;place-items:center;color:var(--accent);font-size:21px}
+    nav{display:flex;align-items:center;gap:28px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    nav a{opacity:.72} nav a:hover{opacity:1;color:var(--accent)}
+    .cta{border:1px solid var(--accent);padding:10px 16px;border-radius:999px;color:var(--accent);opacity:1!important}
+    .hero{padding:70px 0 58px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:42px;align-items:center}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:46px;height:1px;background:var(--accent)}
+    h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:500;line-height:1.05;margin:0}
+    h1{font-size:clamp(52px,7vw,94px);letter-spacing:-.045em;margin:18px 0 24px}
+    .hero p{max-width:520px;font-size:18px;color:var(--muted);margin:0 0 30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 19px;border-radius:999px;background:var(--accent);color:#fff;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--accent)}
+    .btn.secondary{background:transparent;color:var(--accent)}
+    .hero-photo{position:relative;border-radius:44px;overflow:hidden;box-shadow:var(--shadow);background:var(--soft);min-height:590px}
+    .hero-photo img{height:100%;min-height:590px;object-fit:cover;object-position:center}
+    .hero-photo:after{content:"Made by hand";position:absolute;left:24px;bottom:24px;background:rgba(255,253,249,.9);padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    section{padding:82px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}
+    .section-head h2{font-size:clamp(38px,5vw,62px);letter-spacing:-.035em}
+    .section-head p{max-width:430px;color:var(--muted);margin:0}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.25s ease;cursor:pointer}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .card .photo{aspect-ratio:1/1;background:#eee7df;overflow:hidden}
+    .card .photo img{height:100%;object-fit:cover;transition:transform .35s ease}
+    .card:hover img{transform:scale(1.025)}
+    .card-body{padding:16px 17px 18px}
+    .card h3{font-size:20px;margin-bottom:5px}
+    .meta{font-size:12px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.10em}
+    .feature{display:grid;grid-template-columns:1fr 1fr;border-radius:34px;overflow:hidden;background:#efe2d6;min-height:510px}
+    .feature.reverse .feature-copy{order:2}.feature.reverse .feature-img{order:1}
+    .feature-copy{padding:58px;display:flex;flex-direction:column;justify-content:center}
+    .feature-copy h2{font-size:clamp(42px,5vw,68px);letter-spacing:-.04em;margin:14px 0 20px}
+    .feature-copy p{color:var(--muted);font-size:17px;max-width:480px}
+    .feature-img{min-height:510px;overflow:hidden}
+    .feature-img img{height:100%;object-fit:cover}
+    .ocean-strip{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:18px}
+    .wide-card{position:relative;min-height:430px;border-radius:30px;overflow:hidden;background:#ded5cc}
+    .wide-card img{height:100%;position:absolute;inset:0;object-fit:cover}
+    .wide-card:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(35,28,22,.65),rgba(35,28,22,.08) 65%)}
+    .wide-copy{position:absolute;z-index:2;left:34px;bottom:32px;color:white;max-width:330px}
+    .wide-copy h3{font-size:38px;margin-bottom:10px}.wide-copy p{margin:0;opacity:.88}
+    .mini-stack{display:grid;gap:18px}
+    .mini{position:relative;border-radius:30px;overflow:hidden;min-height:206px;background:#ddd}
+    .mini img{height:100%;position:absolute;inset:0;object-fit:cover}
+    .about{background:#342920;color:#fff}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .about h2{font-size:clamp(44px,5vw,70px);margin-bottom:22px}.about p{color:#e8ddd5;font-size:17px}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+    .fact{border:1px solid rgba(255,255,255,.16);padding:19px;border-radius:18px}
+    .fact b{display:block;font-family:Georgia,'Times New Roman',serif;font-size:22px;margin-bottom:4px}.fact span{font-size:13px;color:#cebfb3}
+    .about-photo{border-radius:34px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.24)}
+    .about-photo img{aspect-ratio:4/5;object-fit:cover}
+    .contact{padding:75px 0}
+    .contact-box{background:var(--paper);border:1px solid var(--line);border-radius:34px;padding:54px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+    .contact h2{font-size:clamp(40px,5vw,64px);margin-bottom:12px}.contact p{margin:0;color:var(--muted);max-width:650px}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13px}
+    .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .lightbox{position:fixed;inset:0;display:none;z-index:99;background:rgba(25,19,15,.88);padding:28px;align-items:center;justify-content:center}
+    .lightbox.open{display:flex}.lightbox-inner{max-width:1050px;width:100%;position:relative}
+    .lightbox img{max-height:82vh;object-fit:contain;border-radius:22px;background:#fff}.close{position:absolute;right:12px;top:12px;border:0;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.92);font-size:25px;cursor:pointer}
+    @media(max-width:900px){nav a:not(.cta){display:none}.hero-grid,.feature,.about-grid,.contact-box{grid-template-columns:1fr}.hero-photo,.hero-photo img{min-height:430px}.grid{grid-template-columns:repeat(2,1fr)}.feature.reverse .feature-copy{order:1}.feature.reverse .feature-img{order:2}.ocean-strip{grid-template-columns:1fr}.feature-copy{padding:40px}.contact-box{padding:36px}.contact-box .btn{justify-self:start}}
+    @media(max-width:560px){.wrap{width:min(100% - 24px,1180px)}.brand{font-size:18px}.mark{width:34px;height:34px}.nav{min-height:66px}.cta{padding:8px 12px}.hero{padding-top:40px}.hero-grid{gap:28px}.hero-photo,.hero-photo img{min-height:360px;border-radius:28px}.section-head{align-items:start;flex-direction:column}.grid{grid-template-columns:1fr 1fr;gap:10px}.card-body{padding:12px}.card h3{font-size:17px}.feature-copy{padding:34px 24px}.feature-img{min-height:380px}.facts{grid-template-columns:1fr}.wide-card{min-height:350px}.wide-copy{left:22px;bottom:22px}.wide-copy h3{font-size:32px}.contact{padding:58px 0}.contact-box{padding:28px}.about-grid{gap:36px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="mark">⌁</span><span>Wooly Wonders</span></a>
