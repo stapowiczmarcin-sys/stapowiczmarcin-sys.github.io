@@ -114,3 +114,91 @@ try {
   `;
   document.head.appendChild(style);
 })();
+
+(() => {
+  const section = document.getElementById('kora-says');
+  if (!section || section.dataset.episode05StoryInjected === '1') return;
+
+  const card = section.querySelector('.series-card');
+  const copy = section.querySelector('.series-copy');
+  if (!card || !copy) return;
+
+  section.dataset.episode05StoryInjected = '1';
+
+  const kicker = copy.querySelector('.series-kicker');
+  if (kicker) {
+    kicker.dataset.en = 'SERIES · EPISODES 01–05 PUBLISHED';
+    kicker.dataset.pl = 'SERIA · ODCINKI 01–05 OPUBLIKOWANE';
+    kicker.textContent = kicker.dataset.en;
+  }
+
+  const intro = copy.querySelector('p');
+  if (intro) {
+    intro.dataset.en = 'Real hardware work and real Kora tests happen together. While I replace questionable servos and test the plastic legs, I also test her speech, personality, incomplete prompts and whether she starts sounding like a generic secretary.';
+    intro.dataset.pl = 'Prawdziwa praca przy sprzęcie i testy Kory dzieją się równocześnie. Kiedy wymieniam podejrzane serwa i testuję plastikowe nogi, jednocześnie sprawdzam jej rozmowę, charakter, urwane pytania i to, czy nie zaczyna brzmieć jak generyczna sekretarka.';
+    intro.textContent = intro.dataset.en;
+  }
+
+  const actions = copy.querySelector('.series-actions');
+  if (actions && !actions.querySelector('a[href*="dL1_7s7Pl14"]')) {
+    const watch = document.createElement('a');
+    watch.className = 'button button-youtube';
+    watch.href = 'https://youtube.com/shorts/dL1_7s7Pl14';
+    watch.target = '_blank';
+    watch.rel = 'noopener';
+    watch.innerHTML = '<span class="youtube-mark" aria-hidden="true"></span><span data-pl="Odcinek #5 ↗" data-en="Episode #5 ↗">Episode #5 ↗</span>';
+    actions.prepend(watch);
+  }
+
+  if (actions && !actions.querySelector('a[href="kora-brain/story-mode.html"]')) {
+    const explain = document.createElement('a');
+    explain.className = 'button';
+    explain.href = 'kora-brain/story-mode.html';
+    explain.dataset.en = 'How Kora stories work →';
+    explain.dataset.pl = 'Jak Kora tworzy historie →';
+    explain.textContent = explain.dataset.en;
+    actions.insertBefore(explain, actions.children[1] || null);
+  }
+
+  let episodes = section.querySelector('.series-episodes');
+  if (!episodes) {
+    episodes = document.createElement('div');
+    episodes.className = 'series-episodes';
+    const firstDialogue = section.querySelector('.series-dialogue');
+    if (firstDialogue) card.insertBefore(episodes, firstDialogue);
+    else card.appendChild(episodes);
+  }
+
+  if (!episodes.querySelector('[data-episode="05"]')) {
+    const episode05 = document.createElement('div');
+    episode05.className = 'series-dialogue series-teaser series-dialogue--latest series-story-test';
+    episode05.dataset.episode = '05';
+    episode05.setAttribute('aria-label', 'Episode five — servo swap and Kora story test');
+    episode05.innerHTML = `
+      <span class="series-label" data-pl="ODCINEK 05 · TEST + ZABAWA" data-en="EPISODE 05 · TEST + PLAY">EPISODE 05 · TEST + PLAY</span>
+      <blockquote data-pl="Przekładam serwa. Kora dostaje urwane „banan i ba…” i zamiast się zatrzymać — zaczyna własną dziwną historię." data-en="I am swapping servos. Kora gets a cut-off “banana and ba…” prompt and, instead of stopping, starts her own strange story.">I am swapping servos. Kora gets a cut-off “banana and ba…” prompt and, instead of stopping, starts her own strange story.</blockquote>
+      <p data-pl="Po dymie ze starego przewodu aluminiowego zestawu wymieniam serwa i ruch najpierw sprawdzam na plastikowych nogach. W tym samym czasie wykorzystuję każdą chwilę do testowania rozmowy Kory: czy trzyma kontekst, czy improwizuje i czy nie wpada w tryb grzecznej sekretarki. Ten film pokazuje oba testy naraz — sprzętowy i językowo-charakterologiczny." data-en="After smoke from an old cable in the aluminium setup, I am replacing the servos and checking movement on the plastic legs first. At the same time I use every spare moment to test Kora's conversation: whether she keeps context, improvises and avoids slipping into polite-secretary mode. This Short shows both tests at once — hardware and language/personality.">After smoke from an old cable in the aluminium setup, I am replacing the servos and checking movement on the plastic legs first. At the same time I use every spare moment to test Kora's conversation: whether she keeps context, improvises and avoids slipping into polite-secretary mode. This Short shows both tests at once — hardware and language/personality.</p>
+      <div class="series-parts" aria-label="Episode five test areas"><span>SERVO SWAP</span><span>PLASTIC LEGS</span><span>STORY MODE</span><span>MOOD PANEL</span><span>CONTEXT</span></div>
+      <div class="series-episode-actions"><a class="button button-youtube" href="https://youtube.com/shorts/dL1_7s7Pl14" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #5 ↗" data-en="Watch Short #5 ↗">Watch Short #5 ↗</span></a><a class="button" href="kora-brain/story-mode.html" data-pl="Dlaczego historie wychodzą inaczej →" data-en="Why the stories come out differently →">Why the stories come out differently →</a></div>`;
+    episodes.prepend(episode05);
+  }
+
+  if (!episodes.querySelector('.story-engine-note')) {
+    const note = document.createElement('div');
+    note.className = 'series-dialogue story-engine-note';
+    note.innerHTML = `
+      <span class="series-label" data-pl="STORY MODE · CO SIĘ ZMIENIA" data-en="STORY MODE · WHAT CHANGES">STORY MODE · WHAT CHANGES</span>
+      <blockquote data-pl="Kora nie odtwarza gotowej historyjki z listy. Punkt startowy to pytanie, bieżący kontekst, stan Panelu Nastroju i generowana odpowiedź." data-en="Kora is not replaying a fixed story from a list. The starting point is the prompt, current context, Mood Panel state and a generated reply.">Kora is not replaying a fixed story from a list. The starting point is the prompt, current context, Mood Panel state and a generated reply.</blockquote>
+      <p data-pl="Panel Nastroju ma wpływać na charakter, nie na samo rozpoznanie pytania: humor, sarkazm, ciepło, ciekawość i energia mogą zmienić ton oraz kierunek opowieści. Ponieważ wejście i generowanie zmieniają się między próbami, podobny temat może skończyć się inną historią. Nie nazywam tego jednak matematyczną gwarancją unikalności — twardy anty-duplikator z pamięcią/hashowaniem byłby osobną, mierzalną funkcją." data-en="The Mood Panel is meant to shape character, not decide whether the request was understood: humour, sarcasm, warmth, curiosity and energy can change the tone and direction of a story. Because the inputs and generation vary between runs, a similar topic can end as a different story. I do not call that a mathematical uniqueness guarantee — a strict memory/hash anti-duplicate layer would be a separate, measurable feature.">The Mood Panel is meant to shape character, not decide whether the request was understood: humour, sarcasm, warmth, curiosity and energy can change the tone and direction of a story. Because the inputs and generation vary between runs, a similar topic can end as a different story. I do not call that a mathematical uniqueness guarantee — a strict memory/hash anti-duplicate layer would be a separate, measurable feature.</p>
+      <p data-pl="Chcesz historię tylko dla siebie? Zostaw imię i trzy słowa pod Shortem. Wybrane propozycje podam Korze przy jej aktualnym nastroju i zobaczymy, gdzie tym razem pójdzie." data-en="Want a story made for you? Leave a name and three words under the Short. I will feed selected prompts to Kora in her current mood and see where she takes them this time.">Want a story made for you? Leave a name and three words under the Short. I will feed selected prompts to Kora in her current mood and see where she takes them this time.</p>`;
+    episodes.insertBefore(note, episodes.children[1] || null);
+  }
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #kora-says .series-story-test{border-color:#a28bff!important;box-shadow:inset 0 0 0 1px rgba(162,139,255,.9)!important}
+    #kora-says .story-engine-note{border-color:#6ee7c3!important;background:linear-gradient(145deg,rgba(110,231,195,.07),rgba(162,139,255,.055))!important}
+    #kora-says .story-engine-note blockquote{border-left-color:#6ee7c3!important}
+  `;
+  document.head.appendChild(style);
+})();
