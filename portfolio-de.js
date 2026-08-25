@@ -140,10 +140,10 @@ try {
   }
 
   const actions = copy.querySelector('.series-actions');
-  if (actions && !actions.querySelector('a[href*="dL1_7s7Pl14"]')) {
+  if (actions && !actions.querySelector('a[href*="IQUURKHAdes"]')) {
     const watch = document.createElement('a');
     watch.className = 'button button-youtube';
-    watch.href = 'https://youtube.com/shorts/dL1_7s7Pl14';
+    watch.href = 'https://youtube.com/shorts/IQUURKHAdes?feature=share';
     watch.target = '_blank';
     watch.rel = 'noopener';
     watch.innerHTML = '<span class="youtube-mark" aria-hidden="true"></span><span data-pl="Odcinek #5 ↗" data-en="Episode #5 ↗">Episode #5 ↗</span>';
@@ -179,7 +179,7 @@ try {
       <blockquote data-pl="Przekładam serwa. Kora dostaje urwane „banan i ba…” i zamiast się zatrzymać — zaczyna własną dziwną historię." data-en="I am swapping servos. Kora gets a cut-off “banana and ba…” prompt and, instead of stopping, starts her own strange story.">I am swapping servos. Kora gets a cut-off “banana and ba…” prompt and, instead of stopping, starts her own strange story.</blockquote>
       <p data-pl="Po dymie ze starego przewodu aluminiowego zestawu wymieniam serwa i ruch najpierw sprawdzam na plastikowych nogach. W tym samym czasie wykorzystuję każdą chwilę do testowania rozmowy Kory: czy trzyma kontekst, czy improwizuje i czy nie wpada w tryb grzecznej sekretarki. Ten film pokazuje oba testy naraz — sprzętowy i językowo-charakterologiczny." data-en="After smoke from an old cable in the aluminium setup, I am replacing the servos and checking movement on the plastic legs first. At the same time I use every spare moment to test Kora's conversation: whether she keeps context, improvises and avoids slipping into polite-secretary mode. This Short shows both tests at once — hardware and language/personality.">After smoke from an old cable in the aluminium setup, I am replacing the servos and checking movement on the plastic legs first. At the same time I use every spare moment to test Kora's conversation: whether she keeps context, improvises and avoids slipping into polite-secretary mode. This Short shows both tests at once — hardware and language/personality.</p>
       <div class="series-parts" aria-label="Episode five test areas"><span>SERVO SWAP</span><span>PLASTIC LEGS</span><span>STORY MODE</span><span>MOOD PANEL</span><span>CONTEXT</span></div>
-      <div class="series-episode-actions"><a class="button button-youtube" href="https://youtube.com/shorts/dL1_7s7Pl14" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #5 ↗" data-en="Watch Short #5 ↗">Watch Short #5 ↗</span></a><a class="button" href="kora-brain/story-mode.html" data-pl="Dlaczego historie wychodzą inaczej →" data-en="Why the stories come out differently →">Why the stories come out differently →</a></div>`;
+      <div class="series-episode-actions"><a class="button button-youtube" href="https://youtube.com/shorts/IQUURKHAdes?feature=share" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #5 ↗" data-en="Watch Short #5 ↗">Watch Short #5 ↗</span></a><a class="button" href="kora-brain/story-mode.html" data-pl="Dlaczego historie wychodzą inaczej →" data-en="Why the stories come out differently →">Why the stories come out differently →</a></div>`;
     episodes.prepend(episode05);
   }
 
