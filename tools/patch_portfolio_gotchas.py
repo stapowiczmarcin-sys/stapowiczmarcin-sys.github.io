@@ -40,6 +40,16 @@ if mobile_line not in text:
         raise SystemExit("Mobile CSS anchor not found")
     text = text.replace(mobile_anchor, mobile_anchor + "\n" + mobile_line, 1)
 
+# Add the latest Kora Short: temporary plastic legs, all six active,
+# with the first stand/sit tests. Keep the portfolio bilingual.
+latest_short_url = "https://youtube.com/shorts/P-dCpj5-U8c"
+latest_anchor = '              <a class="button button-youtube" href="https://youtube.com/shorts/EDdY38zSmYM" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Odcinek #4 ↗" data-en="Episode #4 ↗">Episode #4 ↗</span></a>'
+latest_link = '              <a class="button button-youtube" href="https://youtube.com/shorts/P-dCpj5-U8c" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Najnowszy test: 6 plastikowych nóg — wstaje i siada ↗" data-en="Latest test: 6 plastic legs — stand & sit ↗">Latest test: 6 plastic legs — stand & sit ↗</span></a>'
+if latest_short_url not in text:
+    if latest_anchor not in text:
+        raise SystemExit("Episode #4 anchor not found")
+    text = text.replace(latest_anchor, latest_anchor + "\n" + latest_link, 1)
+
 path.write_text(text, encoding="utf-8")
 
 # Make the direct portfolio link open the gotchas panel immediately.
