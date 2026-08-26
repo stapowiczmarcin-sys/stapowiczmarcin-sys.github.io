@@ -1,0 +1,126 @@
+/* Shared workshop photo frame — portfolio only, Parts intentionally excluded. */
+:root {
+  --photo-frame-ink: #161718;
+  --photo-frame-metal: rgba(232, 230, 222, .82);
+  --photo-frame-acid: #d9ff57;
+  --photo-frame-shadow: 0 18px 38px rgba(16, 17, 18, .16);
+}
+
+:where(
+  .hero-media,
+  .gallery-card,
+  .kora-main,
+  .history-media,
+  .latest-update-media,
+  .radio-main,
+  .radio-card,
+  .rgb-lamp-card,
+  .mirror-card,
+  .short-cover,
+  .live-shot > a,
+  figure.card.media,
+  .gallery > figure.card,
+  .diagram,
+  .grid > article.card:has(> img)
+) {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  border: 3px solid var(--photo-frame-ink) !important;
+  border-radius: 3px !important;
+  outline: 1px solid var(--photo-frame-metal);
+  outline-offset: -7px;
+  box-shadow: var(--photo-frame-shadow) !important;
+  background: #d7d5cd;
+  transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+
+:where(
+  .hero-media,
+  .gallery-card,
+  .kora-main,
+  .history-media,
+  .latest-update-media,
+  .radio-main,
+  .radio-card,
+  .rgb-lamp-card,
+  .mirror-card,
+  .short-cover,
+  .live-shot > a,
+  figure.card.media,
+  .gallery > figure.card,
+  .diagram,
+  .grid > article.card:has(> img)
+):hover {
+  border-color: #0f1011 !important;
+  box-shadow:
+    0 0 0 2px var(--photo-frame-acid),
+    0 22px 46px rgba(16, 17, 18, .22) !important;
+}
+
+/* Keep framed photographs crisp without changing their crop or captions. */
+:where(
+  .hero-media,
+  .gallery-card,
+  .kora-main,
+  .history-media,
+  .latest-update-media,
+  .radio-main,
+  .radio-card,
+  .rgb-lamp-card,
+  .mirror-card,
+  .short-cover,
+  .live-shot > a,
+  figure.card.media,
+  .gallery > figure.card,
+  .diagram,
+  .grid > article.card:has(> img)
+) img {
+  backface-visibility: hidden;
+}
+
+@media (max-width: 640px) {
+  :where(
+    .hero-media,
+    .gallery-card,
+    .kora-main,
+    .history-media,
+    .latest-update-media,
+    .radio-main,
+    .radio-card,
+    .rgb-lamp-card,
+    .mirror-card,
+    .short-cover,
+    .live-shot > a,
+    figure.card.media,
+    .gallery > figure.card,
+    .diagram,
+    .grid > article.card:has(> img)
+  ) {
+    border-width: 2px !important;
+    outline-offset: -5px;
+    box-shadow: 0 10px 24px rgba(16, 17, 18, .14) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(
+    .hero-media,
+    .gallery-card,
+    .kora-main,
+    .history-media,
+    .latest-update-media,
+    .radio-main,
+    .radio-card,
+    .rgb-lamp-card,
+    .mirror-card,
+    .short-cover,
+    .live-shot > a,
+    figure.card.media,
+    .gallery > figure.card,
+    .diagram,
+    .grid > article.card:has(> img)
+  ) {
+    transition: none;
+  }
+}
