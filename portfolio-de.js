@@ -127,15 +127,15 @@ try {
 
   const kicker = copy.querySelector('.series-kicker');
   if (kicker) {
-    kicker.dataset.en = 'SERIES · EPISODES 01–05 PUBLISHED';
-    kicker.dataset.pl = 'SERIA · ODCINKI 01–05 OPUBLIKOWANE';
+    kicker.dataset.en = 'SERIES · EPISODES 01–06 PUBLISHED';
+    kicker.dataset.pl = 'SERIA · ODCINKI 01–06 OPUBLIKOWANE';
     kicker.textContent = kicker.dataset.en;
   }
 
   const intro = copy.querySelector('p');
   if (intro) {
-    intro.dataset.en = 'Real hardware work and real Kora tests happen together. While I replace questionable servos and test the plastic legs, I also test her speech, personality, incomplete prompts and whether she starts sounding like a generic secretary.';
-    intro.dataset.pl = 'Prawdziwa praca przy sprzęcie i testy Kory dzieją się równocześnie. Kiedy wymieniam podejrzane serwa i testuję plastikowe nogi, jednocześnie sprawdzam jej rozmowę, charakter, urwane pytania i to, czy nie zaczyna brzmieć jak generyczna sekretarka.';
+    intro.dataset.en = 'Episode #6 records a new hardware milestone: all 18 MG996R servos worked from one 32-channel controller, and Kora lifted and lowered her entire body on six plastic legs. It is a stand-and-sit test — not walking yet.';
+    intro.dataset.pl = 'Odcinek #6 zapisuje nowy etap sprzętowy: wszystkie 18 serw MG996R pracowało z jednym 32-kanałowym sterownikiem, a Kora podniosła i opuściła cały korpus na sześciu plastikowych nogach. To test wstawania i siadania — jeszcze nie chodzenie.';
     intro.textContent = intro.dataset.en;
   }
 
@@ -183,6 +183,20 @@ try {
     episodes.prepend(episode05);
   }
 
+  if (!episodes.querySelector('[data-episode="06"]')) {
+    const episode06 = document.createElement('div');
+    episode06.className = 'series-dialogue series-teaser series-dialogue--latest series-stand-test';
+    episode06.dataset.episode = '06';
+    episode06.setAttribute('aria-label', 'Episode six — six plastic legs stand and sit test');
+    episode06.innerHTML = `
+      <span class="series-label" data-pl="ODCINEK 06 · PEŁNE WSTANIE I SIADANIE" data-en="EPISODE 06 · FULL STAND AND SIT">EPISODE 06 · FULL STAND AND SIT</span>
+      <blockquote data-pl="18 serw MG996R. Jeden 32-kanałowy sterownik. Sześć plastikowych nóg podniosło i ponownie opuściło cały korpus Kory." data-en="18 MG996R servos. One 32-channel controller. Six plastic legs lifted and lowered Kora's entire body.">18 MG996R servos. One 32-channel controller. Six plastic legs lifted and lowered Kora's entire body.</blockquote>
+      <p data-pl="To pierwszy potwierdzony pełny test wstawania i siadania tej konfiguracji. Film pokazuje rzeczywisty rezultat, ale nie nazywam go jeszcze chodzeniem." data-en="This is the first confirmed full stand-and-sit test of this configuration. The video shows the real result, but I am not calling it walking yet.">This is the first confirmed full stand-and-sit test of this configuration. The video shows the real result, but I am not calling it walking yet.</p>
+      <div class="series-parts" aria-label="Episode six hardware"><span>18 × MG996R</span><span>32-CH CONTROLLER</span><span>6 PLASTIC LEGS</span><span>STAND + SIT</span></div>
+      <div class="series-episode-actions"><a class="button button-youtube" href="https://youtube.com/shorts/P-dCpj5-U8c" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj Short #6 ↗" data-en="Watch Short #6 ↗">Watch Short #6 ↗</span></a></div>`;
+    episodes.prepend(episode06);
+  }
+
   if (!episodes.querySelector('.story-engine-note')) {
     const note = document.createElement('div');
     note.className = 'series-dialogue story-engine-note';
@@ -196,6 +210,8 @@ try {
 
   const style = document.createElement('style');
   style.textContent = `
+    #kora-says .series-stand-test{border-color:#ff8a00!important;box-shadow:inset 0 0 0 1px rgba(255,138,0,.9)!important}
+    #kora-says .series-stand-test blockquote{border-left-color:#ff8a00!important}
     #kora-says .series-story-test{border-color:#a28bff!important;box-shadow:inset 0 0 0 1px rgba(162,139,255,.9)!important}
     #kora-says .story-engine-note{border-color:#6ee7c3!important;background:linear-gradient(145deg,rgba(110,231,195,.07),rgba(162,139,255,.055))!important}
     #kora-says .story-engine-note blockquote{border-left-color:#6ee7c3!important}
