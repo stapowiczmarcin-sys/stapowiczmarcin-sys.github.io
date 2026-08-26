@@ -1,0 +1,69 @@
+name: Add Kora six-leg servo test to portfolio
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-kora-six-leg-servo-test.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-portfolio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Add the published six-leg servo test note
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          short_id = 'P-dCpj5-U8c'
+
+          if short_id in text:
+              print('Short already present — nothing to change.')
+              raise SystemExit(0)
+
+          marker = '        <article class="series-card incident-card">\n'
+          if marker not in text:
+              raise SystemExit('Insertion marker not found in index.html')
+
+          card = '''        <article class="series-card">
+          <div class="series-copy">
+            <span class="series-kicker" data-pl="TEST RUCHU · 26.08.2026" data-en="MOTION TEST · 26 AUG 2026">MOTION TEST · 26 AUG 2026</span>
+            <h2 data-pl="Pierwsze wstawanie i siadanie na sześciu plastikowych nogach" data-en="First stand-up and sit-down tests on six plastic legs">First stand-up and sit-down tests on six plastic legs</h2>
+            <p data-pl="Przed kolejnymi próbami na aluminiowej konstrukcji wróciłem do plastikowych nóg jako zestawu testowego. 18 serw MG996R i 32-kanałowy sterownik po raz pierwszy podniosły i opuściły cały korpus na wszystkich sześciu nogach. Wcześniej były testy pojedynczej nogi oraz czterech nóg." data-en="Before the next tests on the aluminium structure, I went back to the plastic legs as a test rig. Eighteen MG996R servos and the 32-channel controller raised and lowered the whole body on all six legs for the first time. Earlier tests covered one leg and then four legs.">Before the next tests on the aluminium structure, I went back to the plastic legs as a test rig. Eighteen MG996R servos and the 32-channel controller raised and lowered the whole body on all six legs for the first time. Earlier tests covered one leg and then four legs.</p>
+            <div class="series-actions">
+              <a class="button button-youtube" href="https://youtube.com/shorts/P-dCpj5-U8c" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj test 6 nóg ↗" data-en="Watch the six-leg test ↗">Watch the six-leg test ↗</span></a>
+            </div>
+          </div>
+          <div class="series-dialogue" aria-label="Published six-leg servo test">
+            <span class="series-label" data-pl="SHORT OPUBLIKOWANY" data-en="SHORT PUBLISHED">SHORT PUBLISHED</span>
+            <blockquote data-pl="Osiemnaście serw i świętujemy siadanie." data-en="Eighteen servos, and we're celebrating sitting down.">Eighteen servos, and we're celebrating sitting down.</blockquote>
+            <p data-pl="Pierwszy pełny test podnoszenia i opuszczania korpusu na sześciu plastikowych nogach." data-en="The first full-body raise-and-lower test on six plastic legs.">The first full-body raise-and-lower test on six plastic legs.</p>
+          </div>
+        </article>
+'''
+
+          text = text.replace(marker, card + marker, 1)
+          path.write_text(text, encoding='utf-8')
+          print('Portfolio note inserted.')
+          PY
+
+      - name: Commit portfolio update
+        shell: bash
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "No portfolio change required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Add Kora six-leg servo test Short to portfolio"
+          git push
