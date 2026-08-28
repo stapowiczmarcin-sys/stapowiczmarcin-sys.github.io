@@ -164,5 +164,123 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "dc-pigtail-male-5525-5pk")
   });
 }
 
+
+const esp32Wroom38 = window.PARTS_CATALOG.find((part) => part.id === "esp32-wroom-usbc");
+if (esp32Wroom38) {
+  Object.assign(esp32Wroom38, {
+    name: "AYWHP ESP32-WROOM-32 — 38 pin, USB-C",
+    short: "Pełnowymiarowa płytka ESP32 używana w prototypach Kory",
+    supplier: "Amazon",
+    status: "Używam",
+    spec: "38 pinów • 4 MB Flash • Wi-Fi 2,4 GHz • Bluetooth • CP2102 • USB-C",
+    url: "https://amzn.to/3SeHqIP",
+    youtubePl: "Do części prototypów Kory używam 38-pinowej płytki ESP32-WROOM-32 z USB-C, Wi-Fi i Bluetooth.",
+    youtubeEn: "For some Kora prototypes I use a 38-pin ESP32-WROOM-32 board with USB-C, Wi-Fi and Bluetooth."
+  });
+  delete esp32Wroom38.price;
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "mg996r-plastic-legs")) {
+  window.PARTS_CATALOG.push({
+    id: "mg996r-plastic-legs",
+    name: "MG996R — serwo plastikowych nóg Kory",
+    short: "Serwo użyte podczas prób wstawania i siadania na wydrukowanych nogach",
+    category: "Napędy",
+    supplier: "Amazon",
+    project: "Kora / VEGA",
+    status: "Używam",
+    accent: "red",
+    spec: "Standardowe serwo PWM • metalowe przekładnie • zasilanie dobierane do konkretnej wersji",
+    url: "https://amzn.to/4iws8cT",
+    youtubePl: "W testach plastikowych nóg Kory użyłem serw MG996R do pierwszych prób wstawania i siadania.",
+    youtubeEn: "I used MG996R servos in Kora's printed legs for the first standing and sitting tests."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "esp32-38pin-breakout-kit")) {
+  window.PARTS_CATALOG.push({
+    id: "esp32-38pin-breakout-kit",
+    name: "ESP32 38-pin + terminal breakout board",
+    short: "Płytka ESP32 wraz z podstawką wyprowadzającą zaciski",
+    category: "Sterowanie",
+    supplier: "Amazon",
+    project: "Kora / VEGA",
+    status: "Używam",
+    accent: "green",
+    spec: "ESP32-WROOM-32D • 38 pinów • CP2102 • Wi-Fi i Bluetooth • terminalowa podstawka",
+    url: "https://amzn.to/3Urmwqs",
+    youtubePl: "Do wygodnego prototypowania używam 38-pinowej płytki ESP32 wraz z terminalową podstawką, która upraszcza podłączanie przewodów.",
+    youtubeEn: "For easier prototyping I use a 38-pin ESP32 board with a terminal breakout base that simplifies wiring."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "female-charging-lead")) {
+  window.PARTS_CATALOG.push({
+    id: "female-charging-lead",
+    name: "Żeński przewód do ładowania",
+    short: "Rozłączne połączenie ładowarki z układem zasilania",
+    category: "Zasilanie",
+    supplier: "Amazon",
+    project: "Kora / VEGA",
+    status: "Używam",
+    accent: "amber",
+    spec: "Żeńskie złącze zasilania • przewód do ładowania • przed użyciem sprawdzić średnicę wtyku i biegunowość",
+    url: "https://amzn.to/4yatjU8",
+    youtubePl: "Do rozłącznego podłączenia ładowarki używam żeńskiego przewodu zasilającego; przed podłączeniem sprawdzam biegunowość miernikiem.",
+    youtubeEn: "I use a female power lead for a detachable charger connection and verify polarity with a multimeter before connecting it."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "oled12864-sh1106-13")) {
+  window.PARTS_CATALOG.push({
+    id: "oled12864-sh1106-13",
+    name: "OLED 1.3″ 128×64 — SH1106",
+    short: "Monochromatyczny ekran używany do informacji i prostych animacji",
+    category: "Wyświetlacze",
+    supplier: "Amazon",
+    project: "Kora / VEGA",
+    status: "Używam",
+    accent: "blue",
+    spec: "1,3 cala • 128×64 px • OLED • I²C • kontroler SH1106",
+    url: "https://amzn.to/4gAMxep",
+    youtubePl: "Informacje i proste animacje wyświetlam na 1,3-calowym ekranie OLED 128×64 z kontrolerem SH1106.",
+    youtubeEn: "I display information and simple animations on a 1.3-inch 128×64 OLED screen driven by the SH1106 controller."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "anycubic-photon-mono-4")) {
+  window.PARTS_CATALOG.push({
+    id: "anycubic-photon-mono-4",
+    name: "ANYCUBIC Photon Mono 4 — drukarka żywiczna 10K",
+    short: "Obecna drukarka 3D użyta do wykonania plastikowych nóg Kory",
+    category: "Druk 3D",
+    supplier: "Amazon",
+    project: "Kora / VEGA",
+    status: "Używam",
+    accent: "violet",
+    spec: "7-calowy ekran mono 10K • pole robocze 153,4 × 87 × 165 mm • druk żywiczny 405 nm",
+    url: "https://amzn.to/4zN5Dqw",
+    youtubePl: "Plastikowe nogi Kory wydrukowałem na żywicznej drukarce ANYCUBIC Photon Mono 4 z ekranem 10K.",
+    youtubeEn: "I printed Kora's plastic legs on an ANYCUBIC Photon Mono 4 resin printer with a 10K screen."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "anycubic-standard-resin-black-1kg")) {
+  window.PARTS_CATALOG.push({
+    id: "anycubic-standard-resin-black-1kg",
+    name: "ANYCUBIC Standard Resin — czarna, 1 kg",
+    short: "Żywica użyta do wydrukowania plastikowych nóg Kory",
+    category: "Druk 3D",
+    supplier: "Amazon",
+    project: "Kora / VEGA",
+    status: "Używam",
+    accent: "violet",
+    spec: "405 nm • standardowa żywica fotopolimerowa • czarna • 1 kg • LCD / DLP / SLA",
+    url: "https://amzn.to/4gnNt71",
+    youtubePl: "Plastikowe nogi Kory wydrukowałem z czarnej standardowej żywicy ANYCUBIC 405 nm.",
+    youtubeEn: "I printed Kora's plastic legs using black ANYCUBIC 405 nm standard resin."
+  });
+}
+
 window.PART_IMAGES = window.PART_IMAGES || {};
 window.PART_IMAGES["neewer-lm2"] = "https://de.neewer.com/cdn/shop/files/1_42e1f1da-e75d-44cc-be2b-aa2225eb4d2a.jpg?v=1746761338&width=1600";
