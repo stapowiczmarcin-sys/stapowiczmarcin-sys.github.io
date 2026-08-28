@@ -180,21 +180,16 @@ if (esp32Wroom38) {
   delete esp32Wroom38.price;
 }
 
-if (!window.PARTS_CATALOG.some((part) => part.id === "mg996r-plastic-legs")) {
-  window.PARTS_CATALOG.push({
-    id: "mg996r-plastic-legs",
-    name: "MG996R — serwo plastikowych nóg Kory",
-    short: "Serwo użyte podczas prób wstawania i siadania na wydrukowanych nogach",
-    category: "Napędy",
+const quadrupedServo = window.PARTS_CATALOG.find((part) => part.id === "rds3115");
+if (quadrupedServo) {
+  Object.assign(quadrupedServo, {
     supplier: "Amazon",
-    project: "Kora / VEGA",
-    status: "Używam",
-    accent: "red",
-    spec: "Standardowe serwo PWM • metalowe przekładnie • zasilanie dobierane do konkretnej wersji",
+    status: "Używałem",
     url: "https://amzn.to/4iws8cT",
-    youtubePl: "W testach plastikowych nóg Kory użyłem serw MG996R do pierwszych prób wstawania i siadania.",
-    youtubeEn: "I used MG996R servos in Kora's printed legs for the first standing and sitting tests."
+    youtubePl: "W czteronożnej wersji Kory używałem dwuosiowych serw RDS3115MG z metalowymi przekładniami.",
+    youtubeEn: "The four-legged Kora used RDS3115MG dual-shaft servos with metal gears."
   });
+  delete quadrupedServo.price;
 }
 
 if (!window.PARTS_CATALOG.some((part) => part.id === "esp32-38pin-breakout-kit")) {
