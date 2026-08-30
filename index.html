@@ -864,6 +864,27 @@
     @media (max-width: 390px) {
       .brand span:last-child { display: none; }
     }
+
+    .quadruped-wiring {
+      margin: 28px 0;
+      padding: clamp(20px, 4vw, 34px);
+      border: 1px solid rgba(67,220,255,.3);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(67,220,255,.07), rgba(156,132,255,.05));
+    }
+    .quadruped-wiring-head h4 { margin: 8px 0 8px; font-size: clamp(1.4rem, 3vw, 2.15rem); letter-spacing: -.04em; }
+    .quadruped-wiring-head p { margin: 0; max-width: 900px; color: var(--muted); }
+    .quadruped-wiring-figure { margin: 22px 0 18px; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: #07111f; }
+    .quadruped-wiring-figure img { width: 100%; height: auto; }
+    .wiring-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; }
+    .wiring-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: .86rem; }
+    .wiring-table th, .wiring-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .wiring-table tr:last-child td { border-bottom: 0; }
+    .wiring-table th { color: var(--mint); background: rgba(255,255,255,.035); font-size: .73rem; letter-spacing: .09em; text-transform: uppercase; }
+    .wiring-table code { color: #fff; font-weight: 800; }
+    .calibration-warning { margin-top: 16px; padding: 17px 18px; border: 1px solid rgba(255,82,119,.65); border-radius: 17px; color: #ffdce4; background: rgba(255,82,119,.09); }
+    .calibration-warning strong { display: block; margin-bottom: 5px; color: #ff8aa5; }
+    .quadruped-wiring-links { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
   </style>
   <link rel="stylesheet" href="assets/site-refresh.css?v=20260820-1">
   <link rel="stylesheet" href="assets/portfolio-editorial.css?v=20260828-1">
@@ -1191,6 +1212,42 @@ Total output lines: 220
                   <figcaption data-pl="Oczy z rzęsami — pierwszy mocny element osobowości Kory." data-en="Eyes with eyelashes — Kora's first strong personality cue.">Oczy z rzęsami — pierwszy mocny element osobowości Kory.</figcaption>
                 </figure>
               </div>
+
+              <section class="quadruped-wiring" id="kora-quadruped-wiring" aria-labelledby="kora-wiring-title">
+                <div class="quadruped-wiring-head">
+                  <span class="release-kicker" data-en="WIRING · ESP32-WROOM-32" data-pl="POŁĄCZENIA · ESP32-WROOM-32">WIRING · ESP32-WROOM-32</span>
+                  <h4 id="kora-wiring-title" data-en="PCA9685, OLED and two VL53L1X sensors" data-pl="PCA9685, OLED i dwa czujniki VL53L1X">PCA9685, OLED and two VL53L1X sensors</h4>
+                  <p data-en="All I²C modules share GPIO21/22. Each ToF sensor has a separate XSHUT pin, so the code wakes only one 0x29 sensor at a time." data-pl="Wszystkie moduły I²C współdzielą GPIO21/22. Każdy czujnik ToF ma osobny pin XSHUT, dlatego kod uruchamia tylko jeden czujnik 0x29 naraz.">All I²C modules share GPIO21/22. Each ToF sensor has a separate XSHUT pin, so the code wakes only one 0x29 sensor at a time.</p>
+                </div>
+                <figure class="quadruped-wiring-figure">
+                  <img src="assets/kora/content/kora-quadruped-wiring.svg" width="1600" height="1050" loading="lazy" alt="Kora quadruped wiring diagram: ESP32, PCA9685, OLED, two VL53L1X sensors and separate servo power">
+                </figure>
+                <div class="wiring-table-wrap">
+                  <table class="wiring-table">
+                    <thead><tr><th>ESP32 / POWER</th><th data-en="Connect to" data-pl="Połącz z">Connect to</th><th data-en="Function" data-pl="Funkcja">Function</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>GPIO21</code></td><td>SDA: PCA9685, OLED, VL53L1X L/R</td><td data-en="Shared I²C data bus" data-pl="Wspólna magistrala danych I²C">Shared I²C data bus</td></tr>
+                      <tr><td><code>GPIO22</code></td><td>SCL: PCA9685, OLED, VL53L1X L/R</td><td data-en="Shared I²C clock bus" data-pl="Wspólna magistrala zegara I²C">Shared I²C clock bus</td></tr>
+                      <tr><td><code>GPIO26</code></td><td>XSHUT: VL53L1X left</td><td data-en="Enables the front-left distance sensor" data-pl="Włącza przedni lewy czujnik odległości">Enables the front-left distance sensor</td></tr>
+                      <tr><td><code>GPIO27</code></td><td>XSHUT: VL53L1X right</td><td data-en="Enables the front-right distance sensor" data-pl="Włącza przedni prawy czujnik odległości">Enables the front-right distance sensor</td></tr>
+                      <tr><td><code>3V3</code></td><td>PCA VCC, OLED VCC, VL53L1X VIN</td><td data-en="Logic and sensor power only" data-pl="Tylko zasilanie logiki i czujników">Logic and sensor power only</td></tr>
+                      <tr><td><code>GND</code></td><td data-en="Every module and servo-supply negative" data-pl="Każdy moduł i minus zasilacza serw">Every module and servo-supply negative</td><td data-en="One required common ground" data-pl="Jedna obowiązkowa wspólna masa">One required common ground</td></tr>
+                      <tr><td data-en="Regulated servo supply +" data-pl="Plus stabilizowanego zasilacza serw">Regulated servo supply +</td><td><code>PCA9685 V+</code></td><td data-en="RDS3115MG power — never from the ESP32" data-pl="Zasilanie RDS3115MG — nigdy z ESP32">RDS3115MG power — never from the ESP32</td></tr>
+                      <tr><td><code>PCA CH 0–11</code></td><td data-en="12 servo signal wires" data-pl="12 przewodów sygnałowych serw">12 servo signal wires</td><td data-en="0–2 FR · 3–5 RR · 6–8 FL · 9–11 RL" data-pl="0–2 prawy przód · 3–5 prawy tył · 6–8 lewy przód · 9–11 lewy tył">0–2 FR · 3–5 RR · 6–8 FL · 9–11 RL</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <aside class="calibration-warning">
+                  <strong data-en="⚠ CALIBRATE BEFORE MOVING" data-pl="⚠ KALIBRUJ PRZED RUCHEM">⚠ CALIBRATE BEFORE MOVING</strong>
+                  <span data-en="Servo-horn position, mechanical assembly and individual servo tolerances differ in every build. Lift the robot so its legs are unloaded, calibrate every joint in the web panel, save the offsets to NVS, then test one slow movement. Do not copy another robot’s calibration values." data-pl="Położenie orczyków, montaż mechaniki i tolerancje serw różnią się w każdym egzemplarzu. Unieś robota, aby nogi nie były obciążone, skalibruj każdy przegub w panelu WWW, zapisz offsety do NVS, a następnie wykonaj jeden powolny test. Nie kopiuj kalibracji z innego robota.">Servo-horn position, mechanical assembly and individual servo tolerances differ in every build. Lift the robot so its legs are unloaded, calibrate every joint in the web panel, save the offsets to NVS, then test one slow movement. Do not copy another robot’s calibration values.</span>
+                </aside>
+                <div class="quadruped-wiring-links">
+                  <a class="button button-primary" href="code/kora-quadruped-web/KORA_QUADRUPED_WEB_FREE_CODE.ino" download data-en="Download free code ↓" data-pl="Pobierz darmowy kod ↓">Download free code ↓</a>
+                  <a class="button" href="parts/#catalog" data-en="Parts used in this build" data-pl="Części użyte w tej konstrukcji">Parts used in this build</a>
+                  <a class="button" href="assets/kora/content/kora-quadruped-wiring.svg" target="_blank" rel="noopener" data-en="Open full-size schematic ↗" data-pl="Otwórz pełny schemat ↗">Open full-size schematic ↗</a>
+                </div>
+              </section>
+
               <div class="hardware-status prototype-hardware-status">
                 <article><strong data-pl="Napęd" data-en="Actuation">Napęd</strong><span data-pl="Serwa RDS3115MG w tej wcześniejszej, czteronożnej wersji." data-en="RDS3115MG servos in this earlier, four-legged version.">Serwa RDS3115MG w tej wcześniejszej, czteronożnej wersji.</span></article>
                 <article><strong data-pl="Sterowanie" data-en="Control">Sterowanie</strong><span data-pl="ESP32-WROOM oraz 16-kanałowy sterownik PCA9685PW." data-en="ESP32-WROOM with a 16-channel PCA9685PW controller.">ESP32-WROOM oraz 16-kanałowy sterownik PCA9685PW.</span></article>
