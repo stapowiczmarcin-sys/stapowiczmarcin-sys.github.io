@@ -224,6 +224,16 @@ bool          autoEnabled    = false;
 int           autoIndex      = 0;
 unsigned long lastAutoMillis = 0;
 
+// -------------------- DANCING LIKE MADONNA – 25 s, STOPPABLE / 25 s, MOŻNA PRZERWAĆ STOP --------------------
+// The choreography advances one phase at a time from loop(), so the web server can process STOP.
+// Choreografia przechodzi fazami z loop(), dzięki czemu panel WWW może obsłużyć STOP.
+static const unsigned long MADONNA_DURATION_MS = 25000UL;
+static const unsigned long MADONNA_ACTION_GAP_MS = 70UL;
+static bool madonnaActive = false;
+static unsigned long madonnaStartMs = 0;
+static unsigned long madonnaLastActionMs = 0;
+static uint8_t madonnaPhase = 0;
+
 // -------------------- Web sequence-recording buffer / Bufor nagrywania sekwencji z WWW --------------------
 String recordSeq = "";
 bool   recordOn  = false;
@@ -250,7 +260,7 @@ static void updateBodyHeight(float newBodyZ) {
 }
 
 // -------------------- SERVO POWER SAVING (IDLE) / OSZCZĘDZANIE SERW --------------------
-const unsigned long IDLE_TIMEOUT_MS = 3000000UL; // 30 s
+const unsigned long IDLE_TIMEOUT_MS = 3000000UL; // 50 min
 unsigned long lastActivityMs = 0;
 bool idleDetached = false;
 
@@ -310,6 +320,7 @@ static void neckMirrorRobotCmd(char ch){
     case 'R': neckSend('R'); neckSend('O'); break;
 
     case 'm': neckSend('S'); neckSend('O'); break; // happy dance -> HAPPY
+    case 'M': neckSend('S'); neckSend('O'); neckSend('M'); break; // Madonna -> HAPPY + blink
     case '1': neckSend('Q'); neckSend('M'); break;
     case '2': neckSend('S'); neckSend('M'); break;
     case '3': neckSend('S'); neckSend('O'); break;
@@ -319,8 +330,6 @@ static void neckMirrorRobotCmd(char ch){
     case 's': /* Do not sleep on a normal STOP / Nie usypiaj przy zwykłym STOP */ break;
     case 'E': neckSend('O'); neckSend('P'); break; // High stand: eyes open / Wysoka pozycja: oczy otwarte
     case 'F': /* Do not move the eyes / Nie ruszaj oczu */ break;
-     case 'H': curStatus = 'H'; strafe_left(1); break;   // Strafe LEFT - w lewo
-    case 'K': curStatus = 'K'; strafe_right(1); break;  // Strafe RIGHT - w prawo
     default: break;
   }
 }
@@ -457,6 +466,13 @@ void moonwalk(int steps);
 void circle_walk(int steps);
 void sidewalk(int steps);
 void wave_walk(int steps);
+void strafe_left(unsigned int step);
+void strafe_right(unsigned int step);
+
+// Dancing Like Madonna / Taniec jak Madonna
+static void startMadonnaDance();
+static void stopMadonnaDance(bool completed);
+static void handleMadonnaDance();
 
 // ESP-NOW
 void initEspNow();
@@ -961,6 +977,7 @@ h3.sub{margin-top:10px;font-size:14px}
 <h3 class="sub">Main animations and tricks / Główne animacje i triki</h3>
 <div class="btn-grid">
   <button data-cmd="m">Happy dance</button>
+  <button data-cmd="M">Dancing Like Madonna – 25 s</button>
   <button data-cmd="1">Bow / Ukłon</button>
   <button data-cmd="2">Wave combo</button>
   <button data-cmd="3">Double jump</button>
@@ -969,6 +986,7 @@ h3.sub{margin-top:10px;font-size:14px}
   <button data-cmd="H">Hello combo</button>
   <button data-cmd="G">Guard scan</button>
 </div>
+<small style="display:block;margin-top:7px;color:#c4b5fd">Dancing Like Madonna runs for 25 seconds with body up/down, side shifts and diagonal leg accents. Press STOP at any time. / Dancing Like Madonna trwa 25 sekund: ciało góra/dół, ruchy na boki i akcenty nóg po przekątnej. STOP przerywa w każdej chwili.</small>
 
 <h3 class="sub">More tricks / Więcej trików</h3>
 <div class="btn-grid">
@@ -1215,9 +1233,29 @@ h3.sub{margin-top:10px;font-size:14px}
 const statusEl=document.getElementById('status');
 function showStatus(msg){ if(statusEl) statusEl.textContent=msg; }
 
+// Local 25-second countdown / Lokalny licznik 25 s
+let madonnaUiTimer=null;
+let madonnaUiEnd=0;
+function stopMadonnaUiTimer(){
+ if(madonnaUiTimer){ clearInterval(madonnaUiTimer); madonnaUiTimer=null; }
+}
+function startMadonnaUiTimer(){
+ stopMadonnaUiTimer();
+ madonnaUiEnd=Date.now()+25000;
+ const tick=()=>{
+   const left=Math.max(0,Math.ceil((madonnaUiEnd-Date.now())/1000));
+   showStatus('Dancing Like Madonna: '+left+' s — STOP interrupts / STOP przerywa');
+   if(left<=0){ stopMadonnaUiTimer(); showStatus('Dancing Like Madonna finished / Taniec zakończony'); }
+ };
+ tick();
+ madonnaUiTimer=setInterval(tick,250);
+}
+
 // --- Cache prevention / zapobieganie pamięci podręcznej ---
 function sendCmd(c){
  const url = '/cmd?c='+encodeURIComponent(c)+'&t='+Date.now();
+ if(c==='M') startMadonnaUiTimer();
+ else if(c==='s'||c==='!'||c==='0') stopMadonnaUiTimer();
  fetch(url, { cache: "no-store" })
   .then(r=>r.json())
   .then(d=>{
@@ -1780,6 +1818,10 @@ void loop() {
   handleWiFiStatus();
   server.handleClient();
 
+  // Advance one choreography phase after servicing HTTP, giving STOP priority.
+  // Kolejna faza tańca dopiero po obsłudze HTTP — STOP ma priorytet.
+  handleMadonnaDance();
+
   handleDiscoverMode();
   handleSleepSnore();
   handleAutoSequence();
@@ -2244,6 +2286,7 @@ void setupWebServer() {
 
 // -------------------- AUTOMATIC SEQUENCE LOGIC / LOGIKA AUTO-SEKWENCJI --------------------
 void handleAutoSequence() {
+  if (madonnaActive) return;
   if (discoverEnabled) return;
   if (sleepActive) return;
   if (!autoEnabled) return;
@@ -2271,6 +2314,7 @@ void handleAutoSequence() {
 
 // -------------------- IDLE POWER SAVE --------------------
 void handleIdlePowerSave() {
+  if (madonnaActive) return;
   if (discoverEnabled) return;
   if (sleepActive) return;
   if (calibrationMode) return;
@@ -2740,6 +2784,12 @@ void controlOperations(char ch) {
     stopDiscover(false);
   }
 
+  // Any manual command other than M or STOP cancels the running choreography first.
+  // Każda ręczna komenda poza M i STOP najpierw anuluje trwającą choreografię.
+  if(madonnaActive && ch != 'M' && ch != 's' && ch != '!' && ch != '0'){
+    stopMadonnaDance(false);
+  }
+
   // Command 'd' toggles Discover / Komenda 'd' przełącza Discover
   if(ch == 'd'){
     if(discoverEnabled){
@@ -2792,7 +2842,7 @@ void controlOperations(char ch) {
     (ch == 's' || ch == 'f' || ch == 'b' || ch == 'l' || ch == 'r' ||
      ch == 'L' || ch == 'R' || ch == 't' || ch == 'T' || ch == 'B' ||
      ch == '+' || ch == '-' || ch == 'E' || ch == 'F' || ch == 'P' ||
-     ch == 'H' || ch == 'K' || ch == '!' || ch == '0');
+     ch == 'H' || ch == 'K' || ch == 'M' || ch == '!' || ch == '0');
   bool known = true;
   float pose[4][3];
 
@@ -2840,6 +2890,7 @@ void controlOperations(char ch) {
     case 'z': curStatus = 'z'; sequence_left_legs_move(); break;
 
     case 'm': curStatus = 'm'; trick_happy_dance(); break;
+    case 'M': startMadonnaDance(); break;
     case 'n': curStatus = 'n'; sway_body(); break;
     case 'o': curStatus = 'o'; moonwalk(3); break;
     case 'c': curStatus = 'c'; circle_walk(5); break;
@@ -2943,6 +2994,10 @@ void stand(void) {
 }
 
 void safeStopNow(const char* reason) {
+  // STOP cancels the asynchronous choreography immediately.
+  // STOP natychmiast anuluje asynchroniczną choreografię.
+  madonnaActive = false;
+  madonnaPhase = 0;
   stopDiscover(false);
   curStatus = 's';
   move_speed = stand_seat_speed;
@@ -2958,6 +3013,7 @@ void wait_reach(int leg) {
     if (site_now[leg][0] == site_expect[leg][0] &&
         site_now[leg][1] == site_expect[leg][1] &&
         site_now[leg][2] == site_expect[leg][2]) break;
+    if (madonnaActive) server.handleClient();
     delay(1);
   }
 }
@@ -3890,6 +3946,191 @@ void polar_to_servo(int leg, float alpha, float beta, float gamma) {
   setServoAngle(leg, 0, a);
   setServoAngle(leg, 1, b);
   setServoAngle(leg, 2, c);
+}
+
+
+// -------------------- DANCING LIKE MADONNA – ASYNC 25 s / ASYNCHRONICZNY TANIEC 25 s --------------------
+static void startMadonnaDance() {
+  if (!pcaReady || calibrationMode) return;
+  stopDiscover(false);
+  sleepActive = false;
+  madonnaActive = false;
+  madonnaPhase = 0;
+  move_speed = leg_move_speed;
+  reset_body_pose();
+
+  madonnaActive = true;
+  madonnaStartMs = millis();
+  madonnaLastActionMs = 0;
+  curStatus = 'M';
+  neckSendSeq("SOM");
+  oledSetAlert("MADONNA 25s");
+  markActivity();
+  Serial.println("[MADONNA] START 25 s - STOP / ! / 0 interrupts");
+}
+
+static void stopMadonnaDance(bool completed) {
+  const bool wasActive = madonnaActive;
+  madonnaActive = false;
+  madonnaPhase = 0;
+  curStatus = 's';
+  if (!pcaReady || calibrationMode) return;
+
+  move_speed = stand_seat_speed;
+  reset_body_pose();
+  stand();
+
+  if (completed) {
+    oledSetAlert("MADONNA DONE");
+    neckSendSeq("SOMP");
+    Serial.println("[MADONNA] DONE - 25 s finished");
+  } else if (wasActive) {
+    oledSetAlert("MADONNA STOP");
+    neckSendSeq("CP");
+    Serial.println("[MADONNA] STOPPED");
+  }
+  markActivity();
+}
+
+static void handleMadonnaDance() {
+  if (!madonnaActive) return;
+  if (!pcaReady || calibrationMode || sleepActive) {
+    madonnaActive = false;
+    madonnaPhase = 0;
+    return;
+  }
+
+  const unsigned long now = millis();
+  if ((unsigned long)(now - madonnaStartMs) >= MADONNA_DURATION_MS) {
+    stopMadonnaDance(true);
+    return;
+  }
+  if (madonnaLastActionMs != 0 &&
+      (unsigned long)(now - madonnaLastActionMs) < MADONNA_ACTION_GAP_MS) return;
+
+  madonnaLastActionMs = now;
+  curStatus = 'M';
+  markActivity();
+
+  const float xr = x_default - x_offset;
+  const float xl = x_default + x_offset;
+  const float yr = y_start + y_step;
+  const float yl = y_start;
+  const float zBase = bodyZCurrent;
+  const float zDanceUp = clampBodyZ(bodyZCurrent - 10.0f);
+  const float zDanceDown = clampBodyZ(bodyZCurrent + 8.0f);
+  const float legSide = 12.0f;
+  const float bodySide = 12.0f;
+
+  switch (madonnaPhase) {
+    case 0:
+      neckSendSeq("SO");
+      move_speed = body_move_speed * 1.15f;
+      custom_set_site(0, xr, yr, zBase); custom_set_site(1, xr, yr, zBase);
+      custom_set_site(2, xl, yl, zBase); custom_set_site(3, xl, yl, zBase);
+      custom_wait_all_reach();
+      break;
+    case 1:
+      neckSendSeq("QO");
+      move_speed = body_move_speed * 1.20f;
+      for (int leg=0; leg<4; leg++) custom_set_site(leg, KEEP, KEEP, zDanceUp);
+      custom_wait_all_reach();
+      break;
+    case 2:
+      neckSend('R'); move_speed = leg_move_speed * 0.85f;
+      custom_set_site(0, xr + legSide, yr, bodyZUpCurrent);
+      custom_set_site(1, xr, yr, zBase); custom_set_site(2, xl, yl, zBase); custom_set_site(3, xl, yl, zBase);
+      custom_wait_all_reach();
+      break;
+    case 3:
+      custom_set_site(0, xr + legSide, yr, zBase); custom_wait_all_reach();
+      break;
+    case 4:
+      neckSend('L'); move_speed = body_move_speed * 1.15f;
+      custom_set_site(0, xr + bodySide, yr, zDanceUp); custom_set_site(1, xr + bodySide, yr, zDanceUp);
+      custom_set_site(2, xl - bodySide, yl, zDanceUp); custom_set_site(3, xl - bodySide, yl, zDanceUp);
+      custom_wait_all_reach();
+      break;
+    case 5:
+      neckSend('L'); move_speed = leg_move_speed * 0.85f;
+      custom_set_site(0, xr + legSide, yr, zBase); custom_set_site(1, xr, yr, zBase);
+      custom_set_site(2, xl - legSide, yl, bodyZUpCurrent); custom_set_site(3, xl, yl, zBase);
+      custom_wait_all_reach();
+      break;
+    case 6:
+      custom_set_site(2, xl - legSide, yl, zBase); custom_wait_all_reach();
+      break;
+    case 7:
+      neckSendSeq("BO"); move_speed = body_move_speed * 1.15f;
+      for (int leg=0; leg<4; leg++) custom_set_site(leg, KEEP, KEEP, zDanceDown);
+      custom_wait_all_reach();
+      break;
+    case 8:
+      neckSend('R'); move_speed = leg_move_speed * 0.85f;
+      custom_set_site(1, xr + legSide, yr, bodyZUpCurrent); custom_wait_all_reach();
+      break;
+    case 9:
+      custom_set_site(1, xr + legSide, yr, zDanceDown); custom_wait_all_reach();
+      break;
+    case 10:
+      neckSend('R'); move_speed = body_move_speed * 1.15f;
+      custom_set_site(0, xr - bodySide, yr, zDanceDown); custom_set_site(1, xr - bodySide, yr, zDanceDown);
+      custom_set_site(2, xl + bodySide, yl, zDanceDown); custom_set_site(3, xl + bodySide, yl, zDanceDown);
+      custom_wait_all_reach();
+      break;
+    case 11:
+      neckSend('L'); move_speed = leg_move_speed * 0.85f;
+      custom_set_site(3, xl + legSide, yl, bodyZUpCurrent); custom_wait_all_reach();
+      break;
+    case 12:
+      custom_set_site(3, xl + legSide, yl, zDanceDown); custom_wait_all_reach();
+      break;
+    case 13:
+      neckSendSeq("QO"); move_speed = body_move_speed * 1.20f;
+      custom_set_site(0, xr, yr, zDanceUp); custom_set_site(1, xr, yr, zDanceUp);
+      custom_set_site(2, xl, yl, zDanceUp); custom_set_site(3, xl, yl, zDanceUp);
+      custom_wait_all_reach();
+      break;
+    case 14:
+      neckSend('L'); move_speed = body_move_speed * 1.15f;
+      custom_set_site(0, xr + 8, yr + 6, zDanceUp); custom_set_site(1, xr + 8, yr - 6, zDanceUp);
+      custom_set_site(2, xl - 8, yl + 6, zDanceUp); custom_set_site(3, xl - 8, yl - 6, zDanceUp);
+      custom_wait_all_reach();
+      break;
+    case 15:
+      neckSend('R');
+      custom_set_site(0, xr - 8, yr - 6, zDanceUp); custom_set_site(1, xr - 8, yr + 6, zDanceUp);
+      custom_set_site(2, xl + 8, yl - 6, zDanceUp); custom_set_site(3, xl + 8, yl + 6, zDanceUp);
+      custom_wait_all_reach();
+      break;
+    case 16:
+      neckSendSeq("QO"); move_speed = leg_move_speed * 0.85f;
+      custom_set_site(0, xr + 10, yr + 8, bodyZUpCurrent); custom_set_site(1, xr, yr, zBase);
+      custom_set_site(2, xl, yl, zBase); custom_set_site(3, xl - 10, yl - 8, bodyZUpCurrent);
+      custom_wait_all_reach();
+      break;
+    case 17:
+      neckSendSeq("SO");
+      custom_set_site(0, xr + 10, yr + 8, zBase); custom_set_site(1, xr + 10, yr - 8, bodyZUpCurrent);
+      custom_set_site(2, xl - 10, yl + 8, bodyZUpCurrent); custom_set_site(3, xl - 10, yl - 8, zBase);
+      custom_wait_all_reach();
+      break;
+    case 18:
+      neckSendSeq("SOM"); move_speed = body_move_speed * 1.25f;
+      for (int leg=0; leg<4; leg++) custom_set_site(leg, KEEP, KEEP, zDanceUp);
+      custom_wait_all_reach();
+      break;
+    default:
+      neckSendSeq("SOMP"); move_speed = body_move_speed * 1.15f;
+      custom_set_site(0, xr, yr, zBase); custom_set_site(1, xr, yr, zBase);
+      custom_set_site(2, xl, yl, zBase); custom_set_site(3, xl, yl, zBase);
+      custom_wait_all_reach();
+      break;
+  }
+
+  if (!madonnaActive) return;
+  madonnaPhase = (uint8_t)((madonnaPhase + 1) % 20);
+  if ((unsigned long)(millis() - madonnaStartMs) >= MADONNA_DURATION_MS) stopMadonnaDance(true);
 }
 
 // -------------------- TRICK COMBOS / KOMBINACJE TRIKÓW --------------------
