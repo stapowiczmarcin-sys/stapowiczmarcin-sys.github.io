@@ -33,12 +33,12 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "uni-t-ut61b-plus")) {
     "name": "UNI-T UT61B+ — multimetr cyfrowy True RMS",
     "short": "Miernik warsztatowy do diagnostyki elektroniki i zasilania",
     "category": "Narzędzia",
-    "supplier": "UNI-T",
+    "supplier": "Amazon",
     "project": "Warsztat",
     "status": "Używam",
     "accent": "amber",
     "spec": "6000 counts • True RMS • USB • NCV • V / mV / A / mA / µA • Hz / % • ciągłość / dioda • REL • MAX/MIN • HOLD",
-    "url": "https://www.uni-trend.com/",
+    "url": "https://www.amazon.co.uk/s?k=UNI-T%20UT61B%2B%20digital%20multimeter%20True%20RMS&tag=marcinkorapro-21",
     "youtubePl": "Do pomiarów i diagnostyki elektroniki używam multimetru UNI-T UT61B+ True RMS z 6000-countowym wyświetlaczem, pomiarem częstotliwości i funkcją NCV.",
     "youtubeEn": "For electronics measurements and diagnostics I use a UNI-T UT61B+ True RMS multimeter with a 6000-count display, frequency measurement and NCV."
   });
@@ -237,7 +237,7 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "oled12864-sh1106-13")) {
     status: "Używam",
     accent: "blue",
     spec: "1,3 cala • 128×64 px • OLED • I²C • kontroler SH1106",
-    url: "https://amzn.to/4gAMxep",
+    url: "https://amzn.to/4gMEhIr",
     youtubePl: "Informacje i proste animacje wyświetlam na 1,3-calowym ekranie OLED 128×64 z kontrolerem SH1106.",
     youtubeEn: "I display information and simple animations on a 1.3-inch 128×64 OLED screen driven by the SH1106 controller."
   });
