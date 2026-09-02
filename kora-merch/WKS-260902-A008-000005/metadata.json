@@ -1,0 +1,154 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "metalowe mechaniczne serce",
+  "quote_en": "Turns out I’m still not very good at painting pictures. hmm",
+  "quote_pl": "Jednak jestem jeszcze słaba w malowaniu obrazów. hmm",
+  "mood_code": "A",
+  "mood_score": 8,
+  "palette": [
+    "molten copper",
+    "acid lemon",
+    "warm white",
+    "deep black"
+  ],
+  "image_prompt": "A rocket-powered teacup assembled from bearings, ribbon cable and a pressure gauge.",
+  "palette_variant_id": "A3",
+  "artwork_number": 5,
+  "artwork_id": "WKS-260902-A008-000005",
+  "created_at": "2026-09-02T19:30:55+00:00",
+  "ollama_model": "qwen2.5:1.5b",
+  "seed_base": 9219650862702368870,
+  "positive_prompt": "one isolated metalowe mechaniczne serce, A rocket-powered teacup assembled from bearings, ribbon cable and a pressure gauge., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of molten copper, acid lemon, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-02T19:26:55+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 1.4,
+    "mood_label": "wkurzona",
+    "mood_score": 8,
+    "arousal": 96.0,
+    "sarcasm": 100.0,
+    "curiosity": 96.0,
+    "warmth": 76.0,
+    "loneliness": 0.0,
+    "bond_owner": 24.0,
+    "autonomy": 100.0,
+    "talk_chance": 99.0,
+    "repeat_annoyance": 100.0,
+    "forgiveness": 26.0,
+    "mood_code": "A"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "text_status": "approved",
+  "creative_run_id": "fd5ab287d0f3",
+  "creative_starter": "a rocket-powered teacup assembled from bearings, ribbon cable and a pressure gauge",
+  "recent_symbols_avoided": [
+    "metalowe mechaniczne serce",
+    "@",
+    "cracked_orange_warning_beacon"
+  ],
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 4965300969557655771,
+      "creative_direction": "dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, A rocket-powered teacup assembled from bearings, ribbon cable and a pressure gauge., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of molten copper, acid lemon, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 1, dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "bdfb4e87-e60f-4e85-b91e-61663a4c27de",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": null
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 741814752514429221,
+      "creative_direction": "front-facing emblem, strong negative space, bold iconic geometry",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, A rocket-powered teacup assembled from bearings, ribbon cable and a pressure gauge., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of molten copper, acid lemon, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 2, front-facing emblem, strong negative space, bold iconic geometry, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "cde7f77a-b783-45f8-b512-b5726a649bab",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 145
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 4122872110946086656,
+      "creative_direction": "exploded mechanical construction, radial energy, visible bolts and sparks",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, A rocket-powered teacup assembled from bearings, ribbon cable and a pressure gauge., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of molten copper, acid lemon, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 3, exploded mechanical construction, radial energy, visible bolts and sparks, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "43bb8f57-94d6-4eee-a3f4-1ed2d27785d2",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 101
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 8158400016591257892,
+      "creative_direction": "dramatic close-up crop, low-angle perspective, oversized central form",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, A rocket-powered teacup assembled from bearings, ribbon cable and a pressure gauge., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of molten copper, acid lemon, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 4, dramatic close-up crop, low-angle perspective, oversized central form, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "1c7ab10c-2ca6-49ff-8a38-9587bb605545",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 87
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000005/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260902-A008-000005/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000005/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "Turns out I’m still not very good at painting pictures. hmm",
+    "quote_pl": "Jednak jestem jeszcze słaba w malowaniu obrazów. hmm"
+  },
+  "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 1,
+  "selected_at": "2026-09-02T19:37:11+00:00",
+  "text_approved_at": "2026-09-02T19:37:11+00:00",
+  "qr": {
+    "artwork_id": "WKS-260902-A008-000005",
+    "artwork_number": 5,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000005/voice/?v=518075db571f",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "mood-responsive distressed KORA grunge",
+    "layout_version": 4,
+    "mood_palette": [
+      "molten copper",
+      "acid lemon",
+      "warm white",
+      "deep black"
+    ],
+    "mood_palette_id": "A3",
+    "revision": "518075db571f",
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
