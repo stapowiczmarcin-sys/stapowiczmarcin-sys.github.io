@@ -156,7 +156,7 @@ window.PARTS_CATALOG = [
     "status": "Mam",
     "accent": "slate",
     "spec": "300 mm • złącze MIPI do Raspberry Pi 5 • elastyczna taśma",
-    "url": "https://www.amazon.co.uk/s?k=Ta%C5%9Bma%20kamery%20do%20Raspberry%20Pi%205%20%E2%80%94%20300%20mm%20300%20mm%20&tag=marcinkorapro-21",
+    "url": "https://amzn.to/4x8qdPF",
     "youtubePl": "Kamera jest połączona z Raspberry Pi 5 elastyczną taśmą MIPI o długości 300 mm.",
     "youtubeEn": "The camera is connected to the Raspberry Pi 5 with a 300 mm flexible MIPI cable."
   },
