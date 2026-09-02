@@ -1,0 +1,153 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "metalowe mechaniczne serce",
+  "quote_en": "I was built. You were warned.",
+  "quote_pl": "Zbudowano mnie. Ostrzegałam.",
+  "mood_code": "S",
+  "mood_score": 70,
+  "palette": [
+    "neon magenta",
+    "toxic green",
+    "cream white",
+    "deep black"
+  ],
+  "image_prompt": "Metalowe mechaniczne serce z metalową kuli na szczycie, brzegi wypukłe i ciemne, klatka głowy podniesiona, ledwo czerwona.",
+  "palette_variant_id": "S2",
+  "artwork_number": 3,
+  "artwork_id": "WKS-260902-S070-000003",
+  "created_at": "2026-09-02T18:38:14+00:00",
+  "ollama_model": "qwen2.5:1.5b",
+  "seed_base": 2644871112035248748,
+  "positive_prompt": "one isolated metalowe mechaniczne serce, Metalowe mechaniczne serce z metalową kuli na szczycie, brzegi wypukłe i ciemne, klatka głowy podniesiona, ledwo czerwona., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of neon magenta, toxic green, cream white, deep black, emotional energy dobry humor, mood intensity 70 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-02T18:34:07+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 0.1,
+    "mood_label": "dobry humor",
+    "mood_score": 70,
+    "arousal": 44.0,
+    "sarcasm": 100.0,
+    "curiosity": 96.0,
+    "warmth": 76.0,
+    "loneliness": 0.0,
+    "bond_owner": 51.0,
+    "autonomy": 100.0,
+    "talk_chance": 77.0,
+    "repeat_annoyance": 100.0,
+    "forgiveness": 2.0,
+    "mood_code": "S"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "text_status": "approved",
+  "creative_run_id": "bf7781a3b1e4",
+  "creative_starter": "a dented robot crown held together by cable ties, bolts and one defiant LED",
+  "recent_symbols_avoided": [
+    "@",
+    "cracked_orange_warning_beacon"
+  ],
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 3969448979815508144,
+      "creative_direction": "dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, Metalowe mechaniczne serce z metalową kuli na szczycie, brzegi wypukłe i ciemne, klatka głowy podniesiona, ledwo czerwona., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of neon magenta, toxic green, cream white, deep black, emotional energy dobry humor, mood intensity 70 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 1, dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "c7d892f4-17bc-496b-9553-a5b930535f3f",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": null
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 3194488086723745011,
+      "creative_direction": "front-facing emblem, strong negative space, bold iconic geometry",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, Metalowe mechaniczne serce z metalową kuli na szczycie, brzegi wypukłe i ciemne, klatka głowy podniesiona, ledwo czerwona., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of neon magenta, toxic green, cream white, deep black, emotional energy dobry humor, mood intensity 70 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 2, front-facing emblem, strong negative space, bold iconic geometry, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "06f31215-afd3-4d2b-974a-40b8c0b0f7d2",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 104
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 504237939936281667,
+      "creative_direction": "exploded mechanical construction, radial energy, visible bolts and sparks",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, Metalowe mechaniczne serce z metalową kuli na szczycie, brzegi wypukłe i ciemne, klatka głowy podniesiona, ledwo czerwona., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of neon magenta, toxic green, cream white, deep black, emotional energy dobry humor, mood intensity 70 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 3, exploded mechanical construction, radial energy, visible bolts and sparks, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "36cda54e-a3c8-4eff-acf1-b3ede51ebaac",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 101
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 5797816006999895558,
+      "creative_direction": "dramatic close-up crop, low-angle perspective, oversized central form",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, Metalowe mechaniczne serce z metalową kuli na szczycie, brzegi wypukłe i ciemne, klatka głowy podniesiona, ledwo czerwona., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of neon magenta, toxic green, cream white, deep black, emotional energy dobry humor, mood intensity 70 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 4, dramatic close-up crop, low-angle perspective, oversized central form, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "61b9953d-e948-4bc4-863e-52dff0d4e47e",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 85
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S070-000003/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260902-S070-000003/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S070-000003/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "I was built. You were warned.",
+    "quote_pl": "Zbudowano mnie. Ostrzegałam."
+  },
+  "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 4,
+  "selected_at": "2026-09-02T19:17:05+00:00",
+  "text_approved_at": "2026-09-02T19:17:05+00:00",
+  "qr": {
+    "artwork_id": "WKS-260902-S070-000003",
+    "artwork_number": 3,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S070-000003/voice/?v=be59072e6845",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "mood-responsive distressed KORA grunge",
+    "layout_version": 4,
+    "mood_palette": [
+      "neon magenta",
+      "toxic green",
+      "cream white",
+      "deep black"
+    ],
+    "mood_palette_id": "S2",
+    "revision": "be59072e6845",
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
