@@ -59,7 +59,7 @@ function viewPart(part) {
 function copyText(part, mode) {
   const view = viewPart(part);
   if (mode === "short") return view.name + " — " + view.spec;
-  return part.youtubePl + "\n" + part.youtubeEn + "\n\nElement / Component: " + part.name + "\nSklep / Store: " + part.supplier + "\n" + part.url;
+  const affiliateNotice = part.supplier === "Amazon" ? "\n\nLink afiliacyjny / Affiliate link\nAs an Amazon Associate I earn from qualifying purchases." : "";\n  return part.youtubePl + "\n" + part.youtubeEn + "\n\nElement / Component: " + part.name + "\nSklep / Store: " + part.supplier + "\n" + part.url + affiliateNotice;
 }
 
 async function copyToClipboard(text) {
@@ -139,7 +139,7 @@ function renderCards() {
         '<span class="status" data-status="' + escapeHtml(part.status) + '">' + escapeHtml(view.statusLabel) + '</span>' +
       '</div>' +
       '<div class="part-body">' +
-        '<div class="meta-row"><span>' + escapeHtml(view.categoryLabel) + '</span><span>' + escapeHtml(part.supplier) + '</span></div>' +
+        '<div class="meta-row"><span>' + escapeHtml(view.categoryLabel) + '</span><span>' + escapeHtml(part.supplier === "Amazon" ? (state.language === "en" ? "Amazon · affiliate link" : "Amazon · link afiliacyjny") : part.supplier) + '</span></div>' +
         '<h3>' + escapeHtml(view.name) + '</h3><p class="part-short">' + escapeHtml(view.short) + '</p><p class="spec">' + escapeHtml(view.spec) + '</p>' +
         '<div class="project-row"><span>' + escapeHtml(ui[state.language].project) + '</span><strong>' + escapeHtml(view.projectLabel) + '</strong></div>' +
         '<div class="price-row"><span>' + escapeHtml(ui[state.language].price) + '</span><strong>' + escapeHtml(part.price || "—") + '</strong></div>' +
