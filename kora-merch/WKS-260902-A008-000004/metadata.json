@@ -97,14 +97,15 @@
     "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000004/voice/",
     "bundle_dir": "public/kora-merch/WKS-260902-A008-000004/voice",
     "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000004/voice",
-    "git_published": false,
+    "git_published": true,
     "files": [
       "index.html",
       "kora-en.wav",
       "kora-pl.wav"
     ],
     "quote_en": "I'm just a six-legged robot, but I simply can't resist making sarcastic jokes. 😜",
-    "quote_pl": "Jestem robotem, ale po prostu nie potrafię się powstrzymać od sarkastycznych żartów. 😜"
+    "quote_pl": "Jestem robotem, ale po prostu nie potrafię się powstrzymać od sarkastycznych żartów. 😜",
+    "published_at": "2026-09-02 20:07:13"
   },
   "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
   "about_author": "",
