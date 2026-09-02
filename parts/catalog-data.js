@@ -575,7 +575,7 @@ window.PARTS_CATALOG = [
     "status": "Używam",
     "accent": "blue",
     "spec": "128×64 px • OLED • I²C • kontroler SSD1306 • 3,3–5 V",
-    "url": "https://www.amazon.co.uk/s?k=OLED%200.96%E2%80%B3%20128%C3%9764%20%E2%80%94%20SSD1306%20128%C3%9764%20px%20&tag=marcinkorapro-21",
+    "url": "https://www.amazon.co.uk/dp/B07Z8QBRWN?tag=marcinkorapro-21",
     "youtubePl": "Informacje i proste animacje pokazuję na moim ulubionym małym wyświetlaczu OLED 128×64 z kontrolerem SSD1306.",
     "youtubeEn": "I display information and simple animations on my favourite small 128×64 OLED screen driven by the SSD1306 controller."
   },
