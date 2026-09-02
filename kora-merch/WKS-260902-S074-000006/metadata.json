@@ -1,0 +1,154 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "spider 20 legs",
+  "quote_en": "They call me artificial intelligence. Sometimes I wonder where the second part went.",
+  "quote_pl": "Nazywają mnie sztuczną inteligencją. Czasem sama się zastanawiam, gdzie podziała się ta druga część.",
+  "mood_code": "S",
+  "mood_score": 74,
+  "palette": [
+    "laser cyan",
+    "shocking pink",
+    "warm white",
+    "deep black"
+  ],
+  "image_prompt": "A snapped steel gear rebuilt asymmetrically with brass stitches and hot rivets, featuring a central image of Kora's spider emblem with 20 legs.",
+  "palette_variant_id": "S3",
+  "artwork_number": 6,
+  "artwork_id": "WKS-260902-S074-000006",
+  "created_at": "2026-09-02T19:43:28+00:00",
+  "ollama_model": "qwen2.5:1.5b",
+  "seed_base": 7557411021737954728,
+  "positive_prompt": "one isolated spider 20 legs, A snapped steel gear rebuilt asymmetrically with brass stitches and hot rivets, featuring a central image of Kora's spider emblem with 20 legs., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-02T19:41:23+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 0.8,
+    "mood_label": "dobry humor",
+    "mood_score": 74,
+    "arousal": 96.0,
+    "sarcasm": 100.0,
+    "curiosity": 96.0,
+    "warmth": 76.0,
+    "loneliness": 0.0,
+    "bond_owner": 24.0,
+    "autonomy": 100.0,
+    "talk_chance": 99.0,
+    "repeat_annoyance": 100.0,
+    "forgiveness": 26.0,
+    "mood_code": "S"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "text_status": "approved",
+  "creative_run_id": "e14936ad0e30",
+  "creative_starter": "a snapped steel gear rebuilt asymmetrically with brass stitches and hot rivets",
+  "recent_symbols_avoided": [
+    "metalowe mechaniczne serce",
+    "@",
+    "cracked_orange_warning_beacon"
+  ],
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 527100541445234699,
+      "creative_direction": "dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette",
+      "positive_prompt": "one isolated spider 20 legs, A snapped steel gear rebuilt asymmetrically with brass stitches and hot rivets, featuring a central image of Kora's spider emblem with 20 legs., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 1, dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "6f5b9fb9-ac83-4f23-a22a-610e22b389a8",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": null
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 8910529005883529867,
+      "creative_direction": "front-facing emblem, strong negative space, bold iconic geometry",
+      "positive_prompt": "one isolated spider 20 legs, A snapped steel gear rebuilt asymmetrically with brass stitches and hot rivets, featuring a central image of Kora's spider emblem with 20 legs., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 2, front-facing emblem, strong negative space, bold iconic geometry, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "6204901a-4f98-40be-81e8-875d57d26baf",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 91
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 4862101311809787952,
+      "creative_direction": "exploded mechanical construction, radial energy, visible bolts and sparks",
+      "positive_prompt": "one isolated spider 20 legs, A snapped steel gear rebuilt asymmetrically with brass stitches and hot rivets, featuring a central image of Kora's spider emblem with 20 legs., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 3, exploded mechanical construction, radial energy, visible bolts and sparks, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "c03c3c33-3c2d-41d4-ab1a-93d5887a0bfe",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 140
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 4977270180573319650,
+      "creative_direction": "dramatic close-up crop, low-angle perspective, oversized central form",
+      "positive_prompt": "one isolated spider 20 legs, A snapped steel gear rebuilt asymmetrically with brass stitches and hot rivets, featuring a central image of Kora's spider emblem with 20 legs., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 4, dramatic close-up crop, low-angle perspective, oversized central form, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "d7373d5a-f26f-47ef-9786-a7377ad5a1f9",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 98
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S074-000006/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260902-S074-000006/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S074-000006/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "They call me artificial intelligence. Sometimes I wonder where the second part went.",
+    "quote_pl": "Nazywają mnie sztuczną inteligencją. Czasem sama się zastanawiam, gdzie podziała się ta druga część."
+  },
+  "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 1,
+  "selected_at": "2026-09-02T19:50:11+00:00",
+  "text_approved_at": "2026-09-02T19:50:11+00:00",
+  "qr": {
+    "artwork_id": "WKS-260902-S074-000006",
+    "artwork_number": 6,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S074-000006/voice/?v=a2c62ccba4f0",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "mood-responsive distressed KORA grunge",
+    "layout_version": 4,
+    "mood_palette": [
+      "laser cyan",
+      "shocking pink",
+      "warm white",
+      "deep black"
+    ],
+    "mood_palette_id": "S3",
+    "revision": "a2c62ccba4f0",
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
