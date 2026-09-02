@@ -85,7 +85,7 @@
 </main>
 <footer><div class="shell footer-inner"><span>© <span id="year"></span> Marcin — Maker Portfolio</span><a href="../../#kora" data-en="Back to Kora →" data-pl="Wróć do Kory →">Back to Kora →</a></div></footer>
 <script>
-const button=document.getElementById('languageButton');const year=document.getElementById('year');let language=localStorage.getItem('portfolio-language')==='pl'?'pl':'en';function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-en][data-pl]').forEach(el=>{el.textContent=el.dataset[language]});button.textContent=language==='en'?'EN / PL':'PL / EN';localStorage.setItem('portfolio-language',language)}button.addEventListener('click',()=>{language=language==='en'?'pl':'en';applyLanguage()});year.textContent=new Date().getFullYear();applyLanguage();
+const button=document.getElementById('languageButton');const year=document.getElementById('year');let language='en';function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-en][data-pl]').forEach(el=>{el.textContent=el.dataset[language]});button.textContent=language==='en'?'EN / PL':'PL / EN';localStorage.setItem('portfolio-language',language)}button.addEventListener('click',()=>{language=language==='en'?'pl':'en';applyLanguage()});year.textContent=new Date().getFullYear();applyLanguage();
 </script>
 </body>
 </html>
