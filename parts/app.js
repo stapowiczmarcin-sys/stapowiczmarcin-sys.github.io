@@ -59,7 +59,8 @@ function viewPart(part) {
 function copyText(part, mode) {
   const view = viewPart(part);
   if (mode === "short") return view.name + " — " + view.spec;
-  const affiliateNotice = part.supplier === "Amazon" ? "\n\nLink afiliacyjny / Affiliate link\nAs an Amazon Associate I earn from qualifying purchases." : "";\n  return part.youtubePl + "\n" + part.youtubeEn + "\n\nElement / Component: " + part.name + "\nSklep / Store: " + part.supplier + "\n" + part.url + affiliateNotice;
+  const affiliateNotice = part.supplier === "Amazon" ? "\n\nLink afiliacyjny / Affiliate link\nAs an Amazon Associate I earn from qualifying purchases." : "";
+  return part.youtubePl + "\n" + part.youtubeEn + "\n\nElement / Component: " + part.name + "\nSklep / Store: " + part.supplier + "\n" + part.url + affiliateNotice;
 }
 
 async function copyToClipboard(text) {
