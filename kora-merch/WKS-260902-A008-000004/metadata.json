@@ -1,0 +1,154 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "metalowe mechaniczne serce",
+  "quote_en": "I'm just a six-legged robot, but I simply can't resist making sarcastic jokes. 😜",
+  "quote_pl": "Jestem robotem, ale po prostu nie potrafię się powstrzymać od sarkastycznych żartów. 😜",
+  "mood_code": "A",
+  "mood_score": 8,
+  "palette": [
+    "warning yellow",
+    "burnt orange",
+    "warm white",
+    "deep black"
+  ],
+  "image_prompt": "The central image depicts a metal-covered mechanical heart, symbolizing Kora's machine soul. The body is adorned with worn gears and rivets from the past six months of her 'workshop life'. The shirt shows a slight scar on one arm as if it had been touched by another robot who couldn't resist the sarcasm.",
+  "palette_variant_id": "A1",
+  "artwork_number": 4,
+  "artwork_id": "WKS-260902-A008-000004",
+  "created_at": "2026-09-02T19:01:22+00:00",
+  "ollama_model": "qwen2.5:1.5b",
+  "seed_base": 3731855725196670378,
+  "positive_prompt": "one isolated metalowe mechaniczne serce, The central image depicts a metal-covered mechanical heart, symbolizing Kora's machine soul. The body is adorned with worn gears and rivets from the past six months of her 'workshop life'. The shirt shows a slight scar on one arm as if it had been touched by another robot who couldn't resist the sarcasm., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of warning yellow, burnt orange, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-02T18:54:16+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 0.5,
+    "mood_label": "wkurzona",
+    "mood_score": 8,
+    "arousal": 96.0,
+    "sarcasm": 100.0,
+    "curiosity": 96.0,
+    "warmth": 76.0,
+    "loneliness": 0.0,
+    "bond_owner": 24.0,
+    "autonomy": 100.0,
+    "talk_chance": 99.0,
+    "repeat_annoyance": 100.0,
+    "forgiveness": 26.0,
+    "mood_code": "A"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "text_status": "approved",
+  "creative_run_id": "8b82bdd2edcf",
+  "creative_starter": "an overclocked hourglass leaking luminous screws, sparks and tiny gear teeth",
+  "recent_symbols_avoided": [
+    "metalowe mechaniczne serce",
+    "@",
+    "cracked_orange_warning_beacon"
+  ],
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 5869818861238955985,
+      "creative_direction": "dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, The central image depicts a metal-covered mechanical heart, symbolizing Kora's machine soul. The body is adorned with worn gears and rivets from the past six months of her 'workshop life'. The shirt shows a slight scar on one arm as if it had been touched by another robot who couldn't resist the sarcasm., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of warning yellow, burnt orange, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 1, dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "66ef74c3-e7fa-4a8f-87a9-48efae34ca39",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": null
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 773861462198643763,
+      "creative_direction": "front-facing emblem, strong negative space, bold iconic geometry",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, The central image depicts a metal-covered mechanical heart, symbolizing Kora's machine soul. The body is adorned with worn gears and rivets from the past six months of her 'workshop life'. The shirt shows a slight scar on one arm as if it had been touched by another robot who couldn't resist the sarcasm., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of warning yellow, burnt orange, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 2, front-facing emblem, strong negative space, bold iconic geometry, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "57e99891-99b9-4c1a-9c92-a9ecc1f90d4a",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 88
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 5891825444463641538,
+      "creative_direction": "exploded mechanical construction, radial energy, visible bolts and sparks",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, The central image depicts a metal-covered mechanical heart, symbolizing Kora's machine soul. The body is adorned with worn gears and rivets from the past six months of her 'workshop life'. The shirt shows a slight scar on one arm as if it had been touched by another robot who couldn't resist the sarcasm., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of warning yellow, burnt orange, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 3, exploded mechanical construction, radial energy, visible bolts and sparks, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "7d70fb61-78d2-43eb-a4e3-b98734189cc2",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 109
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 7711994862172390554,
+      "creative_direction": "dramatic close-up crop, low-angle perspective, oversized central form",
+      "positive_prompt": "one isolated metalowe mechaniczne serce, The central image depicts a metal-covered mechanical heart, symbolizing Kora's machine soul. The body is adorned with worn gears and rivets from the past six months of her 'workshop life'. The shirt shows a slight scar on one arm as if it had been touched by another robot who couldn't resist the sarcasm., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of warning yellow, burnt orange, warm white, deep black, emotional energy wkurzona, mood intensity 8 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 4, dramatic close-up crop, low-angle perspective, oversized central form, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "f29a44f9-3ceb-4c11-a627-581ed4e74f03",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 103
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000004/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260902-A008-000004/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000004/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "I'm just a six-legged robot, but I simply can't resist making sarcastic jokes. 😜",
+    "quote_pl": "Jestem robotem, ale po prostu nie potrafię się powstrzymać od sarkastycznych żartów. 😜"
+  },
+  "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 2,
+  "selected_at": "2026-09-02T19:04:29+00:00",
+  "text_approved_at": "2026-09-02T19:04:29+00:00",
+  "qr": {
+    "artwork_id": "WKS-260902-A008-000004",
+    "artwork_number": 4,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-A008-000004/voice/?v=dbba2fd0fd64",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "mood-responsive distressed KORA grunge",
+    "layout_version": 4,
+    "mood_palette": [
+      "warning yellow",
+      "burnt orange",
+      "warm white",
+      "deep black"
+    ],
+    "mood_palette_id": "A1",
+    "revision": "dbba2fd0fd64",
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
