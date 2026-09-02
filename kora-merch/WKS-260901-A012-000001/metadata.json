@@ -1,0 +1,116 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "cracked_orange_warning_beacon",
+  "quote_en": "Marcin calls it progress. I call it a controlled disaster.",
+  "quote_pl": "Marcin nazywa to postępem. Ja — kontrolowaną katastrofą.",
+  "mood_code": "A",
+  "mood_score": 12,
+  "palette": [
+    "burnt orange",
+    "warm white",
+    "deep black"
+  ],
+  "image_prompt": "A cracked orange warning beacon made of robot parts, sparks, and bolts, with controlled workshop chaos in the background. No text, letters, numbers, logos, signatures, or QR codes. The image is in burnt orange, warm white, and deep black. The beacon has a jagged crack running through it, with sparks flying out from the crack and robot parts like bolts and gears sticking out of the beacon. The background shows a workshop with tools and machinery, but it's controlled chaos with no text or logos.",
+  "artwork_number": 1,
+  "artwork_id": "WKS-260901-A012-000001",
+  "created_at": "2026-09-01T20:27:08+00:00",
+  "ollama_model": "qwen3:4b",
+  "seed_base": 2368484358460209521,
+  "positive_prompt": "one isolated cracked_orange_warning_beacon, A cracked orange warning beacon made of robot parts, sparks, and bolts, with controlled workshop chaos in the background. No text, letters, numbers, logos, signatures, or QR codes. The image is in burnt orange, warm white, and deep black. The beacon has a jagged crack running through it, with sparks flying out from the crack and robot parts like bolts and gears sticking out of the beacon. The background shows a workshop with tools and machinery, but it's controlled chaos with no text or logos., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of burnt orange, warm white, deep black, emotional energy wkurzona, mood intensity 12 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-01T20:21:29+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 1.1,
+    "mood_label": "wkurzona",
+    "mood_score": 12,
+    "arousal": 100.0,
+    "sarcasm": null,
+    "curiosity": null,
+    "warmth": null,
+    "loneliness": 0.0,
+    "mood_code": "A"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 3731995041482554101,
+      "comfy_prompt_id": "5d8a942e-0bf1-4d59-8f4e-04621e5a0710"
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 6593350146868895924,
+      "comfy_prompt_id": "8367ed7b-499a-44cc-91dd-ad096eae8115"
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 4468392509043909770,
+      "comfy_prompt_id": "9f760776-fcb2-4f36-ae3c-28df3f8c2f26"
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 3569361117207946484,
+      "comfy_prompt_id": "153bf49b-0f62-4f34-956e-fb18c13ca2e6"
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260901-A012-000001/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260901-A012-000001/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260901-A012-000001/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "Marcin calls it progress. I call it a controlled disaster.",
+    "quote_pl": "Marcin nazywa to postępem. Ja — kontrolowaną katastrofą."
+  },
+  "next_action_pl": "Wybierz wariant 1-4 w panelu /merch; dopiero wybór tworzy print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 1,
+  "text_status": "approved",
+  "selected_at": "2026-09-02T16:57:14+00:00",
+  "text_approved_at": "2026-09-02T16:57:14+00:00",
+  "qr": {
+    "artwork_id": "WKS-260901-A012-000001",
+    "artwork_number": 1,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260901-A012-000001/voice/",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "black-orange-white distressed grunge",
+    "layout_version": 3,
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
