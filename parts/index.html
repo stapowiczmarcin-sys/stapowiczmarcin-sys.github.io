@@ -7,7 +7,7 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="Tested project parts used in Kora, CNC, robotics and electronics — with real build notes and hardware gotchas.">
   <title>Marcin — project parts catalogue</title>
-  <link rel="stylesheet" href="styles.css?v=20260822-1">
+  <link rel="stylesheet" href="styles.css?v=20260903-2">
   <link rel="stylesheet" href="gotchas.css?v=20260821-2">
   <script src="image-data-1.js" defer></script>
   <script src="image-data-2.js" defer></script>
@@ -15,11 +15,11 @@
   <script src="image-data-4.js" defer></script>
   <script src="image-data-5.js?v=20260814-1" defer></script>
   <script src="image-data-ebay.js?v=20260814-2" defer></script>
-  <script src="image-data-6.js?v=20260903-1" defer></script>
+  <script src="image-data-6.js?v=20260903-2" defer></script>
   <script src="catalog-data.js?v=20260902-3" defer></script>
-  <script src="catalog-extra.js?v=20260902-1" defer></script>
+  <script src="catalog-extra.js?v=20260903-2" defer></script>
   <script src="catalog-i18n.js?v=20260814-1" defer></script>
-  <script src="catalog-extra-i18n.js?v=20260823-1" defer></script>
+  <script src="catalog-extra-i18n.js?v=20260903-2" defer></script>
   <script src="app.js?v=20260903-1" defer></script>
   <script src="gotchas.js?v=20260822-2" defer></script>
 
@@ -42,7 +42,7 @@
       <div class="eyebrow"><span class="pulse"></span> WORKSHOP INDEX 01</div>
       <h1><span data-pl="Wszystko, z czego" data-en="Everything I">Everything I</span><br><em data-pl="buduję." data-en="build with.">build with.</em></h1>
       <p class="hero-copy" data-pl="Elektronika, sensory, napędy, zasilanie i narzędzia CNC używane w Korze oraz pozostałych projektach — zebrane w jednym miejscu, bez przekopywania historii zakupów." data-en="Electronics, sensors, drives, power components and CNC tools used in Kora and my other projects — collected in one place without digging through purchase history.">Electronics, sensors, drives, power components and CNC tools used in Kora and my other projects — collected in one place without digging through purchase history.</p>
-      <div class="hero-actions"><a class="primary" href="#catalog"><span class="primary-label" data-pl="Przeglądaj części" data-en="Browse parts">Browse parts</span> <span>↘</span></a><a class="primary" href="../sprawdzone/"><span class="primary-label" data-pl="Tylko sprawdzone" data-en="Trusted picks">Trusted picks</span> <span>↗</span></a><span class="privacy-note" data-pl="Bez numerów zamówień i prywatnych zakupów. Wiadomo." data-en="No order numbers or private purchase details. Obviously.">No order numbers or private purchase details. Obviously.</span></div>
+      <div class="hero-actions"><a class="primary" href="#catalog"><span class="primary-label" data-pl="Przeglądaj części" data-en="Browse parts">Browse parts</span> <span>↘</span></a><a class="primary" href="#tshirt-print-guide"><span class="primary-label" data-pl="Instrukcja koszulki" data-en="T-shirt guide">T-shirt guide</span> <span>↘</span></a><a class="primary" href="../sprawdzone/"><span class="primary-label" data-pl="Tylko sprawdzone" data-en="Trusted picks">Trusted picks</span> <span>↗</span></a><span class="privacy-note" data-pl="Bez numerów zamówień i prywatnych zakupów. Wiadomo." data-en="No order numbers or private purchase details. Obviously.">No order numbers or private purchase details. Obviously.</span></div>
       <p class="supplier-proof" data-pl="Potwierdzone miejsca zakupu, m.in.: Amazon — Raspberry Pi 5 oraz dwie kamery Raspberry Pi. Pi Hut — Raspberry Pi AI HAT+ 2 z Hailo, UPS X1203 i taśma kamery 300 mm. DFRobot — HUSKYLENS SEN0305, moduł rozpoznawania głosu DF2301Q / SEN0539 oraz moduł syntezy mowy z tekstu DFR0760. eBay — sterowniki i mechanika CNC, moduły ESP32, zasilanie, sensory oraz druk 3D." data-en="Confirmed purchase sources include: Amazon — Raspberry Pi 5 and two Raspberry Pi cameras. Pi Hut — Raspberry Pi AI HAT+ 2 with Hailo, the X1203 UPS and a 300 mm camera cable. DFRobot — HUSKYLENS SEN0305, the DF2301Q / SEN0539 voice-recognition module and the DFR0760 text-to-speech module. eBay — CNC control and mechanics, ESP32 boards, power modules, sensors and 3D printing.">Confirmed purchase sources include: Amazon — Raspberry Pi 5 and two Raspberry Pi cameras. Pi Hut — Raspberry Pi AI HAT+ 2 with Hailo, the X1203 UPS and a 300 mm camera cable. DFRobot — HUSKYLENS SEN0305, the DF2301Q / SEN0539 voice-recognition module and the DFR0760 text-to-speech module. eBay — CNC control and mechanics, ESP32 boards, power modules, sensors and 3D printing.</p>
       <div class="stats" id="stats" aria-label="Podsumowanie katalogu"></div>
     </section>
@@ -73,7 +73,87 @@
       <div class="empty" id="emptyState" hidden><strong data-pl="Nic tu nie leży." data-en="Nothing here.">Nothing here.</strong><span data-pl="Zmień filtr albo wpisz inną nazwę elementu." data-en="Change a filter or search for a different component.">Change a filter or search for a different component.</span></div>
     </section>
 
-    <section class="how-it-works"><span class="section-index" data-pl="02 / JAK TO DZIAŁA" data-en="02 / HOW IT WORKS">02 / HOW IT WORKS</span><div class="how-grid"><h2><span data-pl="Jedna część." data-en="One component.">One component.</span><br><span data-pl="Trzy zastosowania." data-en="Three uses.">Three uses.</span></h2><ol><li><span>01</span><div><strong data-pl="Dokumentacja" data-en="Documentation">Documentation</strong><p data-pl="Wiadomo, co dokładnie zostało użyte w projekcie." data-en="A clear record of exactly what was used in each project.">A clear record of exactly what was used in each project.</p></div></li><li><span>02</span><div><strong data-pl="Zakupy" data-en="Purchasing">Purchasing</strong><p data-pl="Link prowadzi do produktu lub wyszukiwania w sklepie." data-en="The link opens the product or a store search.">The link opens the product or a store search.</p></div></li><li><span>03</span><div><strong>YouTube</strong><p data-pl="Gotowy opis PL/EN trafia do schowka jednym kliknięciem." data-en="A ready-made PL/EN description is copied with one click.">A ready-made PL/EN description is copied with one click.</p></div></li></ol></div></section>
+    <section class="transfer-guide" id="tshirt-print-guide">
+      <div class="transfer-guide-heading">
+        <div><span class="section-index" data-pl="02 / KOSZULKI KORY" data-en="02 / KORA T-SHIRTS">02 / KORA T-SHIRTS</span><h2 data-pl="Nie pomyl strony. Nie pomyl papieru." data-en="Right paper. Right way round.">Right paper. Right way round.</h2></div>
+        <p data-pl="Pełna ścieżka od pliku wygenerowanego lokalnie przez Korę do nadruku na koszulce. Najważniejsza różnica: papier jasny drukujemy lustrzanie, a ciemny normalnie." data-en="The complete route from Kora's locally generated file to a finished T-shirt. The critical difference: light-fabric paper is printed mirrored; dark-fabric paper is not.">The complete route from Kora's locally generated file to a finished T-shirt. The critical difference: light-fabric paper is printed mirrored; dark-fabric paper is not.</p>
+      </div>
+
+      <div class="transfer-file-choice" aria-label="Choose the correct print file">
+        <article class="transfer-file-card transfer-dark"><span data-pl="CIEMNA KOSZULKA" data-en="DARK T-SHIRT">DARK T-SHIRT</span><strong>print_ppd_dark_normal.png</strong><p data-pl="NORMALNIE · nie odbijaj · zdejmij podkład przed prasowaniem · grafika do góry" data-en="NORMAL · do not mirror · remove backing before pressing · artwork faces up">NORMAL · do not mirror · remove backing before pressing · artwork faces up</p></article>
+        <div class="transfer-versus">VS</div>
+        <article class="transfer-file-card transfer-light"><span data-pl="JASNA KOSZULKA" data-en="LIGHT T-SHIRT">LIGHT T-SHIRT</span><strong>print_ppd_light_mirrored.png</strong><p data-pl="LUSTRZANIE · wydruk do tkaniny · podkład zdejmij po prasowaniu i ostygnięciu" data-en="MIRRORED · printed side faces fabric · remove backing after pressing and cooling">MIRRORED · printed side faces fabric · remove backing after pressing and cooling</p></article>
+      </div>
+
+      <div class="transfer-tools">
+        <a href="https://amzn.to/3Sl2RYM" target="_blank" rel="noreferrer"><span>01</span><strong>Epson EcoTank ET-2861</strong><small data-pl="drukarka atramentowa · link afiliacyjny" data-en="inkjet printer · affiliate link">inkjet printer · affiliate link</small></a>
+        <a href="https://amzn.to/4gIfQvH" target="_blank" rel="noreferrer"><span>02</span><strong>PPD PPD-4-10</strong><small data-pl="papier do ciemnych tkanin · link afiliacyjny" data-en="dark-fabric paper · affiliate link">dark-fabric paper · affiliate link</small></a>
+        <a href="https://amzn.to/4iqBSpl" target="_blank" rel="noreferrer"><span>03</span><strong>PPD PPD-1-10</strong><small data-pl="papier do jasnych tkanin · link afiliacyjny" data-en="light-fabric paper · affiliate link">light-fabric paper · affiliate link</small></a>
+      </div>
+
+      <div class="transfer-steps">
+        <article>
+          <span class="transfer-kicker" data-pl="WSPÓLNY START" data-en="START HERE">START HERE</span>
+          <h3 data-pl="Przygotuj projekt i koszulkę" data-en="Prepare the artwork and shirt">Prepare the artwork and shirt</h3>
+          <ol>
+            <li data-pl="W panelu Kory wybierz jeden z czterech wariantów, popraw tekst PL/EN i zatwierdź projekt. Dopiero wtedy powstają finalne pliki do druku i publiczny kod QR z głosem." data-en="In Kora's panel choose one of four variants, correct the PL/EN text and approve it. Only then are the final print files and public voice QR code created.">In Kora's panel choose one of four variants, correct the PL/EN text and approve it. Only then are the final print files and public voice QR code created.</li>
+            <li data-pl="Najpierw zrób próbę na zwykłej kartce. Sprawdź rozmiar, marginesy, kierunek napisów oraz czy oba kody QR skanują się z telefonu." data-en="Make a test print on ordinary paper first. Check size, margins, text direction and whether both QR codes scan on a phone.">Make a test print on ordinary paper first. Check size, margins, text direction and whether both QR codes scan on a phone.</li>
+            <li data-pl="Koszulkę wypierz bez płynu zmiękczającego, wysusz i wyprasuj. Transfer kładź tylko na czystej, płaskiej powierzchni bez zagnieceń." data-en="Wash the shirt without fabric softener, dry it and iron it flat. Apply the transfer only to a clean, crease-free surface.">Wash the shirt without fabric softener, dry it and iron it flat. Apply the transfer only to a clean, crease-free surface.</li>
+          </ol>
+        </article>
+
+        <article>
+          <span class="transfer-kicker" data-pl="DRUKARKA" data-en="PRINTER">PRINTER</span>
+          <h3 data-pl="Ustaw Epson ET-2861" data-en="Set up the Epson ET-2861">Set up the Epson ET-2861</h3>
+          <ol>
+            <li data-pl="Użyj zwykłego atramentu do drukarki atramentowej — nie atramentu sublimacyjnego. Papier PPD nie jest przeznaczony do drukarki laserowej." data-en="Use standard inkjet ink — not sublimation ink. PPD inkjet paper is not intended for laser printers.">Use standard inkjet ink — not sublimation ink. PPD inkjet paper is not intended for laser printers.</li>
+            <li data-pl="Włóż jeden arkusz PPD. W sterowniku wybierz A4, wysoką jakość oraz papier matowy / wysokiej rozdzielczości albo ustawienie zalecane w instrukcji z opakowania." data-en="Feed one PPD sheet. In the driver select A4, high quality and matte/high-resolution paper, or the setting stated in the pack instructions.">Feed one PPD sheet. In the driver select A4, high quality and matte/high-resolution paper, or the setting stated in the pack instructions.</li>
+            <li data-pl="Skalowanie ustaw na 100% i wyłącz automatyczne dopasowanie, jeśli zmienia rozmiar projektu. Przed kliknięciem Drukuj jeszcze raz sprawdź: DARK = normalnie, LIGHT = lustrzanie." data-en="Set scaling to 100% and disable automatic fit if it changes the design size. Before pressing Print, check again: DARK = normal, LIGHT = mirrored.">Set scaling to 100% and disable automatic fit if it changes the design size. Before pressing Print, check again: DARK = normal, LIGHT = mirrored.</li>
+            <li data-pl="Po wydruku nie dotykaj mokrego tuszu. Połóż arkusz płasko i pozwól mu całkowicie wyschnąć; PPD dla ciemnych tkanin zaleca około 5 minut." data-en="Do not touch wet ink. Lay the sheet flat and let it dry completely; PPD's dark-paper instructions recommend about five minutes.">Do not touch wet ink. Lay the sheet flat and let it dry completely; PPD's dark-paper instructions recommend about five minutes.</li>
+          </ol>
+        </article>
+
+        <article class="transfer-dark-step">
+          <span class="transfer-kicker" data-pl="PPD CIEMNY" data-en="DARK PPD">DARK PPD</span>
+          <h3 data-pl="Czarna lub kolorowa koszulka" data-en="Black or coloured T-shirt">Black or coloured T-shirt</h3>
+          <ol>
+            <li data-pl="Wydrukuj plik print_ppd_dark_normal.png bez odbicia lustrzanego. Wytnij grafikę możliwie blisko krawędzi — wszystko, czego nie wytniesz, pozostanie białą warstwą." data-en="Print print_ppd_dark_normal.png without mirroring. Trim close to the artwork — anything left around it remains as a white layer.">Print print_ppd_dark_normal.png without mirroring. Trim close to the artwork — anything left around it remains as a white layer.</li>
+            <li data-pl="Zdejmij papierowy podkład przed prasowaniem. Połóż cienką warstwę transferową na koszulce nadrukiem do góry." data-en="Remove the paper backing before pressing. Place the thin transfer layer on the shirt with the printed artwork facing up.">Remove the paper backing before pressing. Place the thin transfer layer on the shirt with the printed artwork facing up.</li>
+            <li data-pl="Przykryj dołączonym papierem silikonowym. Żelazko: para wyłączona, twarda powierzchnia, mocny równy nacisk i małe okręgi; oficjalna instrukcja podaje około 3 minuty dla A4. Prasa: PPD podaje orientacyjnie 190°C, 12 sekund i wysoki nacisk." data-en="Cover with the supplied silicone paper. Iron: steam off, hard surface, firm even pressure and small circles; the official instructions give about three minutes for A4. Heat press: PPD gives 190°C, 12 seconds and high pressure as a guide.">Cover with the supplied silicone paper. Iron: steam off, hard surface, firm even pressure and small circles; the official instructions give about three minutes for A4. Heat press: PPD gives 190°C, 12 seconds and high pressure as a guide.</li>
+            <li data-pl="Odczekaj około minutę, zdejmij papier silikonowy i sprawdź brzegi. Jeśli któryś nie przylega, przykryj ponownie i doprasuj." data-en="Wait about one minute, remove the silicone paper and inspect the edges. If any area has not adhered, cover it again and re-press.">Wait about one minute, remove the silicone paper and inspect the edges. If any area has not adhered, cover it again and re-press.</li>
+          </ol>
+        </article>
+
+        <article class="transfer-light-step">
+          <span class="transfer-kicker" data-pl="PPD JASNY" data-en="LIGHT PPD">LIGHT PPD</span>
+          <h3 data-pl="Biała lub bardzo jasna koszulka" data-en="White or very light T-shirt">White or very light T-shirt</h3>
+          <ol>
+            <li data-pl="Wydrukuj plik print_ppd_light_mirrored.png — on jest już odbity lustrzanie. Przytnij nadmiar papieru wokół projektu." data-en="Print print_ppd_light_mirrored.png — it is already mirrored. Trim excess paper around the design.">Print print_ppd_light_mirrored.png — it is already mirrored. Trim excess paper around the design.</li>
+            <li data-pl="Nie zdejmuj podkładu przed prasowaniem. Połóż arkusz zadrukowaną stroną bezpośrednio do tkaniny, więc z tyłu widzisz czerwoną kratkę PPD." data-en="Do not remove the backing before pressing. Place the printed side directly against the fabric, leaving the red PPD grid visible on top.">Do not remove the backing before pressing. Place the printed side directly against the fabric, leaving the red PPD grid visible on top.</li>
+            <li data-pl="Prasuj na twardej, odpornej na ciepło powierzchni, z wyłączoną parą i mocnym równym naciskiem. Czas i temperaturę weź z instrukcji w konkretnym opakowaniu PPD — mogą różnić się między partiami i sprzętem." data-en="Press on a hard, heat-resistant surface with steam off and firm, even pressure. Use the time and temperature printed in your specific PPD pack because batches and equipment can differ.">Press on a hard, heat-resistant surface with steam off and firm, even pressure. Use the time and temperature printed in your specific PPD pack because batches and equipment can differ.</li>
+            <li data-pl="Pozwól transferowi ostygnąć i zdejmij podkład zgodnie z instrukcją PPD. Nie używaj tego papieru na ciemnej koszulce — kolory i biel nie będą wyglądały prawidłowo." data-en="Let the transfer cool and peel the backing as directed by PPD. Do not use this paper on a dark shirt — colours and whites will not reproduce correctly.">Let the transfer cool and peel the backing as directed by PPD. Do not use this paper on a dark shirt — colours and whites will not reproduce correctly.</li>
+          </ol>
+        </article>
+
+        <article>
+          <span class="transfer-kicker" data-pl="PO TRANSFERZE" data-en="AFTER PRESSING">AFTER PRESSING</span>
+          <h3 data-pl="Utrwal, zeskanuj, dopiero potem noś" data-en="Set it, scan it, then wear it">Set it, scan it, then wear it</h3>
+          <ol>
+            <li data-pl="Zanim uznasz koszulkę za gotową, zeskanuj oba QR-y telefonem poza domowym Wi-Fi. Kod głosu powinien otworzyć publiczną stronę HTTPS i odtworzyć zdanie Kory." data-en="Before calling the shirt finished, scan both QRs on a phone away from home Wi-Fi. The voice code should open a public HTTPS page and play Kora's sentence.">Before calling the shirt finished, scan both QRs on a phone away from home Wi-Fi. The voice code should open a public HTTPS page and play Kora's sentence.</li>
+            <li data-pl="Odczekaj co najmniej 24 godziny przed pierwszym praniem. Pierz koszulkę odwróconą na lewą stronę, bez programu delikatnego/ręcznego i bez suszarki bębnowej." data-en="Wait at least 24 hours before the first wash. Wash the shirt inside out, avoid delicate/hand-wash cycles and do not tumble dry.">Wait at least 24 hours before the first wash. Wash the shirt inside out, avoid delicate/hand-wash cycles and do not tumble dry.</li>
+            <li data-pl="Nie przykładaj później żelazka bezpośrednio do nadruku. Jeśli trzeba go odświeżyć, zawsze osłoń go papierem silikonowym." data-en="Never place the iron directly on the finished print. If it needs refreshing, always protect it with silicone paper.">Never place the iron directly on the finished print. If it needs refreshing, always protect it with silicone paper.</li>
+          </ol>
+        </article>
+      </div>
+
+      <div class="transfer-warning">
+        <strong data-pl="Najważniejsze:" data-en="Most important:">Most important:</strong>
+        <p data-pl="Instrukcja dołączona do konkretnego opakowania PPD ma pierwszeństwo przed tą stroną. Używaj twardej powierzchni odpornej na ciepło, wyłącz parę i nie zostawiaj rozgrzanego żelazka ani prasy bez nadzoru." data-en="The instruction sheet supplied with your exact PPD pack takes priority over this page. Use a hard, heat-resistant surface, switch steam off and never leave a hot iron or press unattended.">The instruction sheet supplied with your exact PPD pack takes priority over this page. Use a hard, heat-resistant surface, switch steam off and never leave a hot iron or press unattended.</p>
+        <a href="https://photopaperdirect.com/blogs/blog/dark-transfer-paper-instructions" target="_blank" rel="noreferrer" data-pl="Oficjalna instrukcja PPD dla ciemnych tkanin ↗" data-en="Official PPD dark-fabric instructions ↗">Official PPD dark-fabric instructions ↗</a>
+      </div>
+    </section>
+
+    <section class="how-it-works"><span class="section-index" data-pl="03 / JAK TO DZIAŁA" data-en="03 / HOW IT WORKS">03 / HOW IT WORKS</span><div class="how-grid"><h2><span data-pl="Jedna część." data-en="One component.">One component.</span><br><span data-pl="Trzy zastosowania." data-en="Three uses.">Three uses.</span></h2><ol><li><span>01</span><div><strong data-pl="Dokumentacja" data-en="Documentation">Documentation</strong><p data-pl="Wiadomo, co dokładnie zostało użyte w projekcie." data-en="A clear record of exactly what was used in each project.">A clear record of exactly what was used in each project.</p></div></li><li><span>02</span><div><strong data-pl="Zakupy" data-en="Purchasing">Purchasing</strong><p data-pl="Link prowadzi do produktu lub wyszukiwania w sklepie." data-en="The link opens the product or a store search.">The link opens the product or a store search.</p></div></li><li><span>03</span><div><strong>YouTube</strong><p data-pl="Gotowy opis PL/EN trafia do schowka jednym kliknięciem." data-en="A ready-made PL/EN description is copied with one click.">A ready-made PL/EN description is copied with one click.</p></div></li></ol></div></section>
   </main>
 
   <footer><div><span class="brand-mark">M</span><strong>Marcin / Project Parts</strong></div><p data-pl="Ceny są historyczne i mogą się zmienić. Zdjęcia producentów i sprzedawców służą identyfikacji części." data-en="Prices are historical and may change. Manufacturer and seller images are used to identify parts.">Prices are historical and may change. Manufacturer and seller images are used to identify parts.</p><p data-pl="Linki oznaczone jako afiliacyjne mogą przynieść mi niewielką prowizję bez dodatkowych kosztów dla Ciebie. As an Amazon Associate I earn from qualifying purchases." data-en="Links marked as affiliate links may earn me a small commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases.">Links marked as affiliate links may earn me a small commission at no extra cost to you. As an Amazon Associate I earn from qualifying purchases.</p><a href="../sprawdzone/" data-pl="Sprawdzone, polecam ↑" data-en="Tested & recommended ↑">Tested & recommended ↑</a></footer>

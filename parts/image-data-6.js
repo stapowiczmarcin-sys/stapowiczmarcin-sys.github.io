@@ -13,5 +13,8 @@ window.PART_IMAGES = Object.assign(window.PART_IMAGES || {}, {
   "female-charging-lead": "https://www.harfington.com/cdn/shop/products/ux_a19120200ux0479_ux_g02.jpg?v=1638305169",
   "oled12864-sh1106-13": "https://m.media-amazon.com/images/I/61QFmlIpJZL._SL1010_.jpg",
   "anycubic-photon-mono-4": "https://m.media-amazon.com/images/I/712uGiTxKSL._AC_SL1500_.jpg",
-  "anycubic-standard-resin-black-1kg": "https://m.media-amazon.com/images/I/61fCJIYY8SL._SL1500_.jpg"
+  "anycubic-standard-resin-black-1kg": "https://m.media-amazon.com/images/I/61fCJIYY8SL._SL1500_.jpg",
+  "ppd-dark-a4-ppd4-10": "https://images-eu.ssl-images-amazon.com/images/I/71zc6wo55JL._AC_UL495_SR495,495_.jpg",
+  "ppd-light-a4-ppd1-10": "https://images-eu.ssl-images-amazon.com/images/I/617YxChp2YL._AC_UL495_SR495,495_.jpg",
+  "epson-ecotank-et2861": "https://m.media-amazon.com/images/I/51zA-oZ++XL._AC_SL1000_.jpg"
 });

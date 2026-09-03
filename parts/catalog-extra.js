@@ -277,5 +277,56 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "anycubic-standard-resin-bl
   });
 }
 
+if (!window.PARTS_CATALOG.some((part) => part.id === "ppd-dark-a4-ppd4-10")) {
+  window.PARTS_CATALOG.push({
+    id: "ppd-dark-a4-ppd4-10",
+    name: "PPD A4 PPD-4-10 — papier transferowy do ciemnych tkanin",
+    short: "Papier inkjet używany do czarnych i kolorowych koszulek Kory",
+    category: "Druk i transfer",
+    supplier: "Amazon",
+    project: "Koszulki Kory",
+    status: "Używam",
+    accent: "amber",
+    spec: "10 arkuszy A4 • drukarka atramentowa • ciemne tkaniny • bez odbicia lustrzanego • biały podkład",
+    url: "https://amzn.to/4gIfQvH",
+    youtubePl: "Do czarnych i kolorowych koszulek Kory używam papieru transferowego PPD PPD-4-10 do ciemnych tkanin. Projekt drukuję normalnie — bez odbicia lustrzanego — zdejmuję papierowy podkład, układam grafikę nadrukiem do góry i prasuję przez dołączony arkusz silikonowy.",
+    youtubeEn: "For Kora's black and coloured T-shirts I use PPD PPD-4-10 transfer paper for dark fabrics. I print the design normally — not mirrored — remove the paper backing, place the artwork face up and press it through the supplied silicone sheet."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "ppd-light-a4-ppd1-10")) {
+  window.PARTS_CATALOG.push({
+    id: "ppd-light-a4-ppd1-10",
+    name: "PPD A4 PPD-1-10 — papier transferowy do jasnych tkanin",
+    short: "Papier inkjet używany do białych i bardzo jasnych koszulek Kory",
+    category: "Druk i transfer",
+    supplier: "Amazon",
+    project: "Koszulki Kory",
+    status: "Używam",
+    accent: "cyan",
+    spec: "10 arkuszy A4 • drukarka atramentowa • białe i jasne tkaniny • wymagane odbicie lustrzane",
+    url: "https://amzn.to/4iqBSpl",
+    youtubePl: "Do białych i jasnych koszulek Kory używam papieru transferowego PPD PPD-1-10. Projekt drukuję w odbiciu lustrzanym, układam wydrukiem do tkaniny i po prasowaniu zdejmuję podkład zgodnie z instrukcją dołączoną do opakowania.",
+    youtubeEn: "For Kora's white and light-coloured T-shirts I use PPD PPD-1-10 transfer paper. I print the design mirrored, place the printed side against the fabric and remove the backing after pressing as directed by the instruction sheet supplied with the pack."
+  });
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "epson-ecotank-et2861")) {
+  window.PARTS_CATALOG.push({
+    id: "epson-ecotank-et2861",
+    name: "Epson EcoTank ET-2861 — drukarka atramentowa A4",
+    short: "Drukarka z dolewanym atramentem używana do transferów koszulek Kory",
+    category: "Druk i transfer",
+    supplier: "Amazon",
+    project: "Koszulki Kory",
+    status: "Używam",
+    accent: "blue",
+    spec: "A4 • atramentowa • zbiorniki EcoTank • druk / skan / kopia • Wi-Fi • zwykły atrament dye/pigment",
+    url: "https://amzn.to/3Sl2RYM",
+    youtubePl: "Grafiki na koszulki Kory drukuję na Epsonie EcoTank ET-2861. Podaję pojedynczy arkusz papieru PPD, wybieram wysoką jakość odpowiednią dla papieru matowego i przed drukiem sprawdzam dwa razy: jasna tkanina — odbicie lustrzane, ciemna tkanina — wydruk normalny.",
+    youtubeEn: "I print Kora's T-shirt graphics on an Epson EcoTank ET-2861. I feed one PPD sheet at a time, select a high-quality setting suitable for matte paper and double-check before printing: light fabric — mirrored, dark fabric — normal orientation."
+  });
+}
+
 window.PART_IMAGES = window.PART_IMAGES || {};
 window.PART_IMAGES["neewer-lm2"] = "https://de.neewer.com/cdn/shop/files/1_42e1f1da-e75d-44cc-be2b-aa2225eb4d2a.jpg?v=1746761338&width=1600";

@@ -2,11 +2,17 @@
 
 window.CATALOG_I18N = window.CATALOG_I18N || { categories: {}, projects: {}, statuses: {}, parts: {} };
 window.CATALOG_I18N.categories = window.CATALOG_I18N.categories || {};
+window.CATALOG_I18N.projects = window.CATALOG_I18N.projects || {};
 window.CATALOG_I18N.parts = window.CATALOG_I18N.parts || {};
 
 Object.assign(window.CATALOG_I18N.categories, {
   "Narzędzia": "Tools",
-  "Montaż": "Mounting"
+  "Montaż": "Mounting",
+  "Druk i transfer": "Printing & transfer"
+});
+
+Object.assign(window.CATALOG_I18N.projects, {
+  "Koszulki Kory": "Kora T-shirts"
 });
 
 Object.assign(window.CATALOG_I18N.parts, {
@@ -54,5 +60,20 @@ Object.assign(window.CATALOG_I18N.parts, {
     name: "sourcing map — 5.5 × 2.5 mm male DC pigtail, 5-pack",
     short: "Male barrel plug leads for power connections",
     spec: "5 pieces • male 5.5 × 2.5 mm • 50 cm cable • bare-wire ends"
+  },
+  "ppd-dark-a4-ppd4-10": {
+    name: "PPD A4 PPD-4-10 — transfer paper for dark fabrics",
+    short: "Inkjet paper used for Kora's black and coloured T-shirts",
+    spec: "10 A4 sheets • inkjet printer • dark fabrics • no mirroring • white backing layer"
+  },
+  "ppd-light-a4-ppd1-10": {
+    name: "PPD A4 PPD-1-10 — transfer paper for light fabrics",
+    short: "Inkjet paper used for Kora's white and very light T-shirts",
+    spec: "10 A4 sheets • inkjet printer • white and light fabrics • mirrored print required"
+  },
+  "epson-ecotank-et2861": {
+    name: "Epson EcoTank ET-2861 — A4 inkjet printer",
+    short: "Refillable ink-tank printer used for Kora's T-shirt transfers",
+    spec: "A4 • inkjet • EcoTank reservoirs • print / scan / copy • Wi-Fi • standard dye/pigment ink"
   }
 });
