@@ -887,6 +887,29 @@
     .calibration-warning { margin-top: 16px; padding: 17px 18px; border: 1px solid rgba(255,82,119,.65); border-radius: 17px; color: #ffdce4; background: rgba(255,82,119,.09); }
     .calibration-warning strong { display: block; margin-bottom: 5px; color: #ff8aa5; }
     .quadruped-wiring-links { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
+    .merch-spotlight {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      border: 1px solid rgba(255,154,69,.4);
+      border-radius: 26px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255,154,69,.16), transparent 24rem),
+        linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.018));
+      box-shadow: var(--shadow);
+    }
+    .merch-spotlight-copy { padding: clamp(26px, 5vw, 58px); display: flex; flex-direction: column; justify-content: center; }
+    .merch-spotlight-copy h2 { margin: 14px 0 14px; font-size: clamp(2.4rem, 6vw, 5.3rem); line-height: .9; letter-spacing: -.06em; }
+    .merch-spotlight-copy p { max-width: 650px; margin: 0; color: var(--muted); font-size: clamp(1rem, 1.7vw, 1.18rem); }
+    .merch-facts { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 24px; }
+    .merch-fact { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: #e6e8ec; background: rgba(0,0,0,.22); font-size: .78rem; font-weight: 850; }
+    .merch-spotlight-media { min-height: 580px; position: relative; background: #eee; overflow: hidden; }
+    .merch-spotlight-media img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .merch-spotlight-media figcaption { position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 13px 15px; border: 1px solid rgba(255,255,255,.2); border-radius: 15px; color: #fff; background: rgba(8,11,16,.84); backdrop-filter: blur(12px); font-size: .84rem; font-weight: 850; }
+    @media (max-width: 820px) {
+      .merch-spotlight { grid-template-columns: 1fr; }
+      .merch-spotlight-media { min-height: 560px; }
+    }
   </style>
   <link rel="stylesheet" href="assets/site-refresh.css?v=20260820-1">
   <link rel="stylesheet" href="assets/portfolio-editorial.css?v=20260828-1">
@@ -919,6 +942,7 @@
           <a href="#cnc">CNC</a>
           <a href="#kora">Kora</a>
           <a href="#kora-says" data-pl="Kora mówi" data-en="Kora Says">Kora Says</a>
+          <a href="kora-merch/" data-pl="Koszulki" data-en="T-shirts">T-shirts</a>
           <a href="#radio" data-pl="Elektronika" data-en="Electronics">Electronics</a>
           <a href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Części" data-en="Parts">Parts</a>
           <a href="kora-brain/" data-pl="Mózg Kory" data-en="Kora brain">Kora brain</a>
@@ -949,6 +973,7 @@
           <div class="hero-buttons">
             <a class="button button-primary" href="#cnc" data-pl="Zobacz projekt CNC" data-en="See the CNC project">Zobacz projekt CNC</a>
             <a class="button" href="#kora" data-pl="Zobacz Korę – robota" data-en="See Kora the robot">Zobacz Korę – robota</a>
+            <a class="button" href="kora-merch/" data-pl="Koszulki WHAT KORA SAYS" data-en="WHAT KORA SAYS T-shirts">WHAT KORA SAYS T-shirts</a>
             <a class="button" href="updates/kora-aluminium-2026-08-11/" data-pl="Najnowsza relacja Kory" data-en="Latest Kora build log">Najnowsza relacja Kory</a>
             <a class="button" href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Katalog użytych części" data-en="Parts used in my projects">Katalog użytych części</a>
             <a class="button button-gotchas" href="https://stapowiczmarcin-sys.github.io/parts/#gotchas" target="_blank" rel="noopener" data-pl="🤬 DLACZEGO SIĘ WKURZYŁEM" data-en="🤬 WHY I GOT ANNOYED">🤬 DLACZEGO SIĘ WKURZYŁEM</a>
@@ -964,6 +989,7 @@
             <a class="chip" href="#galeria">CAD / CAM</a>
             <a class="chip" href="#radio" data-pl="Elektronika" data-en="Electronics">Elektronika</a>
             <a class="chip" href="#kora" data-pl="Robotyka" data-en="Robotics">Robotyka</a>
+            <a class="chip" href="kora-merch/" data-pl="Koszulki Kory" data-en="Kora T-shirts">Kora T-shirts</a>
             <a class="chip" href="#historia-kory" data-pl="Prototypowanie" data-en="Prototyping">Prototypowanie</a>
           </div>
         </div>
@@ -971,6 +997,32 @@
           <img src="assets/kora/kora-portfolio-hero-2026-08.webp" alt="Kora — autorski robot Marcina z ruchomymi oczami, ekranem i wielonożną konstrukcją" width="1672" height="941" fetchpriority="high" decoding="async" style="object-position: 72% center;">
           <figcaption class="hero-caption" data-pl="Kora — działający, stale rozwijany robot z własną mechaniką, elektroniką, zmysłami i charakterem." data-en="Kora — a working robot in constant development, with custom mechanics, electronics, senses and character.">Kora — działający, stale rozwijany robot z własną mechaniką, elektroniką, zmysłami i charakterem.</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section id="kora-merch">
+      <div class="shell">
+        <article class="merch-spotlight">
+          <div class="merch-spotlight-copy">
+            <span class="eyebrow" data-pl="NOWY PROJEKT FIZYCZNY" data-en="NEW PHYSICAL PROJECT">NEW PHYSICAL PROJECT</span>
+            <h2>WHAT KORA SAYS</h2>
+            <p data-pl="Aktualny nastrój Kory staje się grafiką, dwujęzycznym cytatem i prawdziwą koszulką. Drugi kod QR uruchamia publiczną stronę, na której można usłyszeć głos Kory — również poza moim warsztatem." data-en="Kora's live mood becomes artwork, a bilingual quote and a physical T-shirt. A second QR code opens a public page where you can hear Kora's voice — even away from my workshop.">Kora's live mood becomes artwork, a bilingual quote and a physical T-shirt. A second QR code opens a public page where you can hear Kora's voice — even away from my workshop.</p>
+            <div class="merch-facts" aria-label="WHAT KORA SAYS project facts">
+              <span class="merch-fact" data-pl="6 unikalnych wzorów" data-en="6 unique designs">6 unique designs</span>
+              <span class="merch-fact" data-pl="EN + PL" data-en="EN + PL">EN + PL</span>
+              <span class="merch-fact" data-pl="2 kody QR" data-en="2 QR codes">2 QR codes</span>
+              <span class="merch-fact" data-pl="głos Kory" data-en="Kora's voice">Kora's voice</span>
+            </div>
+            <div class="hero-buttons">
+              <a class="button button-primary" href="kora-merch/" data-pl="Zobacz kolekcję ↗" data-en="Explore the collection ↗">Explore the collection ↗</a>
+              <a class="button" href="kora-merch/WKS-260902-S074-000006/voice/" data-pl="Posłuchaj najnowszej Kory ▶" data-en="Hear the latest Kora ▶">Hear the latest Kora ▶</a>
+            </div>
+          </div>
+          <figure class="merch-spotlight-media">
+            <img src="kora-merch/assets/WKS-260902-S074-000006.webp" alt="WHAT KORA SAYS — numbered T-shirt artwork with two QR codes" width="720" height="1018" loading="lazy" decoding="async">
+            <figcaption data-pl="Wzór nr 000006 · nastrój S074 · publiczny głos EN/PL" data-en="Design No. 000006 · mood S074 · public EN/PL voice">Design No. 000006 · mood S074 · public EN/PL voice</figcaption>
+          </figure>
+        </article>
       </div>
     </section>
 
@@ -1702,6 +1754,7 @@ https://ko-fi.com/marcinstapowicz
         <a href="https://www.youtube.com/@kreatywnymorrcin" target="_blank" rel="noopener me">YouTube</a>
         <a href="#materialy-wsparcie" data-pl="Materiały i wsparcie" data-en="Materials &amp; support">Materiały i wsparcie</a>
         <a href="https://ko-fi.com/marcinstapowicz" target="_blank" rel="noopener me" data-pl="Ko-fi — postaw kawę" data-en="Ko-fi — buy me a coffee">Ko-fi — postaw kawę</a>
+        <a href="kora-merch/" data-pl="Koszulki Kory" data-en="Kora T-shirts">Kora T-shirts</a>
         <a href="https://stapowiczmarcin-sys.github.io/parts/#catalog" target="_blank" rel="noopener" data-pl="Katalog części" data-en="Parts catalogue">Katalog części</a>
       </nav>
     </div>
