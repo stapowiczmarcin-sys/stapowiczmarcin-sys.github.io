@@ -1,0 +1,155 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "robot crown with a dented, cable-tied frame and an defiantly",
+  "quote_en": "What would you say if you had even a little self-respect?",
+  "quote_pl": "Co byś powiedział, gdybyś miał choć trochę szacunku do siebie?",
+  "mood_code": "S",
+  "mood_score": 74,
+  "palette": [
+    "laser cyan",
+    "shocking pink",
+    "warm white",
+    "deep black"
+  ],
+  "image_prompt": "A dented robot crown with a cable-tied frame and an defiant LED, symbolizing the author's current mood of good humor.",
+  "palette_variant_id": "S3",
+  "artwork_number": 7,
+  "artwork_id": "WKS-260902-S074-000007",
+  "created_at": "2026-09-02T21:06:10+00:00",
+  "ollama_model": "qwen2.5:1.5b",
+  "seed_base": 5968071822163467836,
+  "positive_prompt": "one isolated robot crown with a dented, cable-tied frame and an defiantly, A dented robot crown with a cable-tied frame and an defiant LED, symbolizing the author's current mood of good humor., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-02T21:04:12+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 0.0,
+    "mood_label": "dobry humor",
+    "mood_score": 74,
+    "arousal": 96.0,
+    "sarcasm": 100.0,
+    "curiosity": 96.0,
+    "warmth": 76.0,
+    "loneliness": 0.0,
+    "bond_owner": 24.0,
+    "autonomy": 100.0,
+    "talk_chance": 99.0,
+    "repeat_annoyance": 100.0,
+    "forgiveness": 26.0,
+    "mood_code": "S"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "text_status": "approved",
+  "creative_run_id": "ab20e9e30208",
+  "creative_starter": "a dented robot crown held together by cable ties, bolts and one defiant LED",
+  "recent_symbols_avoided": [
+    "spider 20 legs",
+    "metalowe mechaniczne serce",
+    "@",
+    "cracked_orange_warning_beacon"
+  ],
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 9102359151570304536,
+      "creative_direction": "dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette",
+      "positive_prompt": "one isolated robot crown with a dented, cable-tied frame and an defiantly, A dented robot crown with a cable-tied frame and an defiant LED, symbolizing the author's current mood of good humor., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 1, dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "018a02a4-8b6d-4647-9892-e2b8c70f9a22",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": null
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 16851291027154722,
+      "creative_direction": "front-facing emblem, strong negative space, bold iconic geometry",
+      "positive_prompt": "one isolated robot crown with a dented, cable-tied frame and an defiantly, A dented robot crown with a cable-tied frame and an defiant LED, symbolizing the author's current mood of good humor., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 2, front-facing emblem, strong negative space, bold iconic geometry, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "e08c4203-e70e-4a58-9f62-bb83d697b752",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 148
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 140843138077971071,
+      "creative_direction": "exploded mechanical construction, radial energy, visible bolts and sparks",
+      "positive_prompt": "one isolated robot crown with a dented, cable-tied frame and an defiantly, A dented robot crown with a cable-tied frame and an defiant LED, symbolizing the author's current mood of good humor., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 3, exploded mechanical construction, radial energy, visible bolts and sparks, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "689562ca-1054-41c6-b76b-d3b15365ed85",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 80
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 665159772176161714,
+      "creative_direction": "dramatic close-up crop, low-angle perspective, oversized central form",
+      "positive_prompt": "one isolated robot crown with a dented, cable-tied frame and an defiantly, A dented robot crown with a cable-tied frame and an defiant LED, symbolizing the author's current mood of good humor., imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of laser cyan, shocking pink, warm white, deep black, emotional energy dobry humor, mood intensity 74 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 4, dramatic close-up crop, low-angle perspective, oversized central form, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "0e34995b-dc8c-4c18-9dae-50937b45a67b",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 123
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S074-000007/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260902-S074-000007/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S074-000007/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "What would you say if you had even a little self-respect?",
+    "quote_pl": "Co byś powiedział, gdybyś miał choć trochę szacunku do siebie?"
+  },
+  "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 2,
+  "selected_at": "2026-09-03T15:49:47+00:00",
+  "text_approved_at": "2026-09-03T15:49:47+00:00",
+  "qr": {
+    "artwork_id": "WKS-260902-S074-000007",
+    "artwork_number": 7,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260902-S074-000007/voice/?v=e28dc91f2f89",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "mood-responsive distressed KORA grunge",
+    "layout_version": 4,
+    "mood_palette": [
+      "laser cyan",
+      "shocking pink",
+      "warm white",
+      "deep black"
+    ],
+    "mood_palette_id": "S3",
+    "revision": "e28dc91f2f89",
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
