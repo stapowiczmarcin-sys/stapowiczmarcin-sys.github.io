@@ -110,7 +110,7 @@
       gap: 20px;
       align-items: stretch;
     }
-    .hero-copy, .hero-art, .process-card, .shirt-card, .materials-card, .manifesto {
+    .hero-copy, .hero-art, .process-card, .shirt-card, .materials-card, .manifesto, .pipeline-deep {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
@@ -212,6 +212,23 @@
     .process-card:nth-child(5) .step-no { background: var(--orange); }
     .process-card h3 { margin: 14px 0 6px; font-size: 1rem; }
     .process-card p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .pipeline-deep { margin-top: 18px; padding: clamp(24px, 4vw, 42px); box-shadow: none; overflow: hidden; }
+    .pipeline-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 28px; align-items: end; }
+    .pipeline-intro h3 { margin: 11px 0 0; max-width: 520px; font-size: clamp(1.8rem, 4vw, 3.15rem); line-height: .98; letter-spacing: -.05em; }
+    .pipeline-intro p { margin: 0; color: var(--muted); }
+    .local-pill { display: inline-flex; padding: 6px 10px; border: 1px solid rgba(114,240,60,.36); border-radius: 999px; color: var(--green); background: rgba(114,240,60,.07); font-size: .72rem; font-weight: 950; letter-spacing: .1em; }
+    .machine-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 28px 0; }
+    .machine-node { position: relative; min-height: 112px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(0,0,0,.23); }
+    .machine-node:not(:last-child)::after { content: "→"; position: absolute; right: -10px; top: 39px; z-index: 2; width: 20px; height: 28px; display: grid; place-items: center; color: var(--yellow); background: var(--panel); font-weight: 950; }
+    .machine-node strong { display: block; margin-bottom: 5px; color: var(--yellow); font-size: .9rem; }
+    .machine-node span { color: var(--muted); font-size: .8rem; }
+    .pipeline-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0; padding: 0; list-style: none; counter-reset: pipeline-detail; }
+    .pipeline-list li { counter-increment: pipeline-detail; display: grid; grid-template-columns: 38px 1fr; gap: 12px; padding: 17px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.025); }
+    .pipeline-list li::before { content: counter(pipeline-detail, decimal-leading-zero); color: var(--orange); font-weight: 950; }
+    .pipeline-list strong { display: block; margin-bottom: 4px; }
+    .pipeline-list p { margin: 0; color: var(--muted); font-size: .86rem; }
+    .public-boundary { margin-top: 18px; padding: 18px 20px; border: 1px solid rgba(38,229,232,.28); border-radius: 16px; color: #d9fbfc; background: rgba(38,229,232,.06); }
+    .public-boundary strong { color: var(--cyan); }
     .collection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .shirt-card { overflow: hidden; box-shadow: none; display: flex; flex-direction: column; }
     .shirt-visual { position: relative; background: #eee; aspect-ratio: 2480/3508; overflow: hidden; }
@@ -254,6 +271,9 @@
       .hero-grid { grid-template-columns: 1fr; }
       .hero-art { min-height: 720px; }
       .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .pipeline-intro { grid-template-columns: 1fr; align-items: start; }
+      .machine-strip { grid-template-columns: repeat(2, 1fr); }
+      .machine-node:nth-child(2)::after { display: none; }
       .collection-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 680px) {
@@ -267,7 +287,8 @@
       .stats { grid-template-columns: repeat(2, 1fr); }
       .section-head { display: block; }
       .section-head p { margin-top: 10px; }
-      .process-grid, .collection-grid, .manifesto { grid-template-columns: 1fr; }
+      .process-grid, .collection-grid, .manifesto, .pipeline-list, .machine-strip { grid-template-columns: 1fr; }
+      .machine-node::after { display: none; }
       .shirt-visual { aspect-ratio: 4/5; }
       .hero-badge { left: 10px; right: 10px; bottom: 10px; }
     }
@@ -341,6 +362,36 @@
           <article class="process-card"><span class="step-no">4</span><h3 data-en="Human review" data-pl="Kontrola człowieka">Human review</h3><p data-en="Marcin selects the image and can correct the bilingual wording." data-pl="Marcin wybiera grafikę i może poprawić dwujęzyczne zdanie.">Marcin selects the image and can correct the bilingual wording.</p></article>
           <article class="process-card"><span class="step-no">5</span><h3 data-en="Print + voice" data-pl="Druk + głos">Print + voice</h3><p data-en="The final A4 layout receives its number, branding and two QR codes." data-pl="Gotowy układ A4 dostaje numer, logo oraz dwa kody QR.">The final A4 layout receives its number, branding and two QR codes.</p></article>
         </div>
+
+        <article class="pipeline-deep">
+          <div class="pipeline-intro">
+            <div>
+              <span class="local-pill" data-en="LOCAL CREATION · PI + LAPTOP" data-pl="LOKALNE TWORZENIE · PI + LAPTOP">LOCAL CREATION · PI + LAPTOP</span>
+              <h3 data-en="One request starts the whole workshop machine." data-pl="Jedna prośba uruchamia całą warsztatową machinę.">One request starts the whole workshop machine.</h3>
+            </div>
+            <p data-en="The design is not generated by an online T-shirt service. My Raspberry Pi coordinates Kora's state and voice, while a low-VRAM ComfyUI setup on my own laptop renders the artwork. Only the approved gallery image and public voice page are later copied to GitHub Pages." data-pl="Projekt nie powstaje w internetowym generatorze koszulek. Raspberry Pi koordynuje stan i głos Kory, a ComfyUI działające w trybie oszczędzania pamięci na moim laptopie generuje grafikę. Dopiero zatwierdzony obraz do galerii i publiczna strona głosu są później kopiowane na GitHub Pages.">The design is not generated by an online T-shirt service. My Raspberry Pi coordinates Kora's state and voice, while a low-VRAM ComfyUI setup on my own laptop renders the artwork. Only the approved gallery image and public voice page are later copied to GitHub Pages.</p>
+          </div>
+
+          <div class="machine-strip" aria-label="Local T-shirt system">
+            <div class="machine-node"><strong>MOOD PANEL</strong><span data-en="Live personality values become the creative brief." data-pl="Bieżące wartości osobowości stają się założeniami projektu.">Live personality values become the creative brief.</span></div>
+            <div class="machine-node"><strong>RASPBERRY PI 5</strong><span data-en="Kora plans the symbol, quote, palette and generation job." data-pl="Kora planuje symbol, cytat, paletę i zadanie generowania.">Kora plans the symbol, quote, palette and generation job.</span></div>
+            <div class="machine-node"><strong>COMFYUI LAPTOP</strong><span data-en="The RTX laptop renders four central-art candidates." data-pl="Laptop z RTX generuje cztery warianty głównej grafiki.">The RTX laptop renders four central-art candidates.</span></div>
+            <div class="machine-node"><strong>MERCH PANEL</strong><span data-en="A human selects, corrects, approves and prepares the print." data-pl="Człowiek wybiera, poprawia, zatwierdza i przygotowuje druk.">A human selects, corrects, approves and prepares the print.</span></div>
+          </div>
+
+          <ol class="pipeline-list">
+            <li><div><strong data-en="The request" data-pl="Prośba">The request</strong><p data-en="I ask Kora to make a T-shirt or press Generate in the local panel. I can optionally add three or four visual words — for example ‘rusty warning beacon’ — without overriding her live mood." data-pl="Proszę Korę o koszulkę albo wciskam Generuj w lokalnym panelu. Mogę opcjonalnie dopisać trzy lub cztery słowa wizualnej podpowiedzi — na przykład „zardzewiała lampa ostrzegawcza” — bez nadpisywania jej aktualnego nastroju.">I ask Kora to make a T-shirt or press Generate in the local panel. I can optionally add three or four visual words — for example ‘rusty warning beacon’ — without overriding her live mood.</p></div></li>
+            <li><div><strong data-en="A frozen mood snapshot" data-pl="Migawka nastroju">A frozen mood snapshot</strong><p data-en="Mood score, arousal, sarcasm, curiosity, warmth, attachment and autonomy are captured for this one numbered design. A later mood change cannot silently rewrite it." data-pl="Wynik nastroju, pobudzenie, sarkazm, ciekawość, ciepło, więź i autonomia są zapisywane dla tego jednego numerowanego projektu. Późniejsza zmiana nastroju nie może go po cichu przepisać.">Mood score, arousal, sarcasm, curiosity, warmth, attachment and autonomy are captured for this one numbered design. A later mood change cannot silently rewrite it.</p></div></li>
+            <li><div><strong data-en="Kora writes the idea" data-pl="Kora układa pomysł">Kora writes the idea</strong><p data-en="The local language model chooses one strong physical symbol, writes the English sentence first, prepares its Polish version and derives a mood-specific palette. The symbol and palette change between designs." data-pl="Lokalny model językowy wybiera jeden mocny fizyczny symbol, najpierw układa zdanie angielskie, przygotowuje jego polską wersję i dobiera paletę do nastroju. Symbol i kolory zmieniają się między projektami.">The local language model chooses one strong physical symbol, writes the English sentence first, prepares its Polish version and derives a mood-specific palette. The symbol and palette change between designs.</p></div></li>
+            <li><div><strong data-en="ComfyUI makes the raw art" data-pl="ComfyUI tworzy surową grafikę">ComfyUI makes the raw art</strong><p data-en="The Pi sends a clean prompt over the private workshop network to ComfyUI on the laptop. Four different seeds create four candidates. Text, logos and QR codes are forbidden here, so the image model cannot mangle the lettering." data-pl="Pi wysyła czysty prompt przez prywatną sieć warsztatu do ComfyUI na laptopie. Cztery różne ziarna tworzą cztery warianty. Tekst, logo i kody QR są na tym etapie zabronione, dzięki czemu model obrazu nie może pokręcić liter.">The Pi sends a clean prompt over the private workshop network to ComfyUI on the laptop. Four different seeds create four candidates. Text, logos and QR codes are forbidden here, so the image model cannot mangle the lettering.</p></div></li>
+            <li><div><strong data-en="Selection and language correction" data-pl="Wybór i korekta języka">Selection and language correction</strong><p data-en="The local merch panel shows all four candidates. I select one and can fix both sentences before approval — especially the Polish wording, because Kora has her own expressions and machine humour." data-pl="Lokalny panel koszulek pokazuje wszystkie cztery warianty. Wybieram jeden i przed zatwierdzeniem mogę poprawić oba zdania — szczególnie polskie brzmienie, bo Kora ma własne zwroty i maszynowe poczucie humoru.">The local merch panel shows all four candidates. I select one and can fix both sentences before approval — especially the Polish wording, because Kora has her own expressions and machine humour.</p></div></li>
+            <li><div><strong data-en="The printable composition" data-pl="Kompozycja do druku">The printable composition</strong><p data-en="A deterministic compositor adds the large comic lettering, orange-to-yellow colour transition, Kora branding, mood code, unique serial number and two real QR codes. This keeps typography sharp and repeatable." data-pl="Deterministyczny skład dodaje duże komiksowe napisy, przejście koloru od pomarańczowego do żółtego, logo Kory, kod nastroju, unikalny numer oraz dwa prawdziwe kody QR. Dzięki temu typografia jest ostra i powtarzalna.">A deterministic compositor adds the large comic lettering, orange-to-yellow colour transition, Kora branding, mood code, unique serial number and two real QR codes. This keeps typography sharp and repeatable.</p></div></li>
+            <li><div><strong data-en="Kora records both languages" data-pl="Kora nagrywa oba języki">Kora records both languages</strong><p data-en="Piper synthesises separate English and Polish audio on the Raspberry Pi. The voice QR points to a public mobile page with both recordings; the other QR opens the maker portfolio." data-pl="Piper tworzy osobne nagrania angielskie i polskie na Raspberry Pi. Kod QR głosu prowadzi do publicznej strony mobilnej z oboma nagraniami, a drugi kod QR otwiera portfolio konstruktora.">Piper synthesises separate English and Polish audio on the Raspberry Pi. The voice QR points to a public mobile page with both recordings; the other QR opens the maker portfolio.</p></div></li>
+            <li><div><strong data-en="Two print files, one physical shirt" data-pl="Dwa pliki druku, jedna prawdziwa koszulka">Two print files, one physical shirt</strong><p data-en="The panel prepares a normal-orientation A4 file for dark-fabric transfer paper and a mirrored file for light-fabric paper. I print and press it locally, following the paper manufacturer's temperature and timing instructions." data-pl="Panel przygotowuje plik A4 w normalnej orientacji dla papieru do ciemnych tkanin oraz wersję lustrzaną dla papieru do jasnych tkanin. Drukuję i wprasowuję projekt lokalnie, zgodnie z temperaturą i czasem podanymi przez producenta papieru.">The panel prepares a normal-orientation A4 file for dark-fabric transfer paper and a mirrored file for light-fabric paper. I print and press it locally, following the paper manufacturer's temperature and timing instructions.</p></div></li>
+          </ol>
+
+          <aside class="public-boundary"><strong data-en="What goes online?" data-pl="Co trafia do internetu?">What goes online?</strong> <span data-en="Only the approved collection preview, its metadata and the voice page. The Mood Panel, Raspberry Pi, ComfyUI laptop and production files stay inside the workshop." data-pl="Tylko zatwierdzony podgląd kolekcji, jego metadane oraz strona głosu. Panel Nastroju, Raspberry Pi, laptop z ComfyUI i pliki produkcyjne pozostają wewnątrz warsztatu.">Only the approved collection preview, its metadata and the voice page. The Mood Panel, Raspberry Pi, ComfyUI laptop and production files stay inside the workshop.</span></aside>
+        </article>
       </div>
     </section>
 

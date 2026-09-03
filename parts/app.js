@@ -131,7 +131,7 @@ function renderCards() {
     const view = viewPart(part);
     const imageSrc = window.PART_IMAGES && window.PART_IMAGES[part.id];
     const imageMarkup = imageSrc
-      ? '<img src="' + escapeHtml(imageSrc) + '" alt="' + escapeHtml(view.name) + '" loading="lazy">'
+      ? '<img src="' + escapeHtml(imageSrc) + '" alt="' + escapeHtml(view.name) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
       : '<div class="part-image-placeholder" role="img" aria-label="' + escapeHtml(ui[state.language].noPhoto + ": " + view.name) + '"><span>◇</span><small>' + escapeHtml(ui[state.language].noPhoto) + '</small></div>';
     return '<article class="part-card">' +
       '<div class="part-visual ' + escapeHtml(part.accent) + '">' +
@@ -150,6 +150,17 @@ function renderCards() {
       '</div>' +
     '</article>';
   }).join("");
+
+  document.querySelectorAll("#partsGrid img").forEach((image) => {
+    image.addEventListener("error", () => {
+      const placeholder = document.createElement("div");
+      placeholder.className = "part-image-placeholder";
+      placeholder.setAttribute("role", "img");
+      placeholder.setAttribute("aria-label", ui[state.language].noPhoto + ": " + image.alt);
+      placeholder.innerHTML = "<span>◇</span><small>" + escapeHtml(ui[state.language].noPhoto) + "</small>";
+      image.replaceWith(placeholder);
+    }, { once: true });
+  });
 }
 
 function fillSelect(selector, values, selected, label) {
