@@ -1,0 +1,40 @@
+{
+  "artwork_id": "WKS-260904-E023-000011",
+  "artwork_number": 11,
+  "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+  "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-E023-000011/voice/?v=e91622fa8175",
+  "fixed_heading_en": "WHAT WILL KORA SAY?",
+  "fixed_heading_pl": "CO POWIE KORA?",
+  "style": "mood-responsive distressed KORA grunge",
+  "layout_version": 4,
+  "mood_palette": [
+    "rust red",
+    "ashen gold",
+    "bone white",
+    "deep black"
+  ],
+  "mood_palette_id": "E2",
+  "revision": "e91622fa8175",
+  "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+  "qr_error_correction": "H",
+  "print_dpi": 300,
+  "preview_file": "print_sheet.png",
+  "transfer_outputs": {
+    "ppd_dark": {
+      "product": "PPD-4-10",
+      "file": "print_ppd_dark_normal.png",
+      "mirrored": false,
+      "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+      "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+    },
+    "ppd_light": {
+      "product": "PPD-1-10",
+      "file": "print_ppd_light_mirrored.png",
+      "mirrored": true,
+      "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+      "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+    }
+  },
+  "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+  "warning_en": "Do not print before publishing and testing both QR target URLs."
+}

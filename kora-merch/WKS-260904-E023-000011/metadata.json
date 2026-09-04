@@ -1,0 +1,158 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "ścianki komputera z poziomem}",
+  "quote_en": "Kora is a robot. Nobody told her she has to act like one.",
+  "quote_pl": "Kora to robot. Tylko nikt jej nie powiedział, że ma się tak zachowywać.",
+  "mood_code": "E",
+  "mood_score": 23,
+  "palette": [
+    "rust red",
+    "ashen gold",
+    "bone white",
+    "deep black"
+  ],
+  "image_prompt": "ścianki komputera z poziomem",
+  "palette_variant_id": "E2",
+  "artwork_number": 11,
+  "artwork_id": "WKS-260904-E023-000011",
+  "created_at": "2026-09-04T21:42:27+00:00",
+  "ollama_model": "qwen2.5:1.5b",
+  "seed_base": 1281507318406182734,
+  "positive_prompt": "one isolated ścianki komputera z poziomem}, ścianki komputera z poziomem, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of rust red, ashen gold, bone white, deep black, emotional energy wkurzona, mood intensity 23 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-04T21:40:23+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 1.2,
+    "mood_label": "wkurzona",
+    "mood_score": 23,
+    "arousal": 10.0,
+    "sarcasm": 94.0,
+    "curiosity": 92.0,
+    "warmth": 31.0,
+    "loneliness": 0.0,
+    "bond_owner": 11.0,
+    "autonomy": 89.0,
+    "talk_chance": 82.0,
+    "repeat_annoyance": 11.0,
+    "forgiveness": 63.0,
+    "mood_code": "E"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "text_status": "approved",
+  "creative_run_id": "3fe47a7e3bde",
+  "creative_starter": "a six-way compass made from servo horns pointing confidently in every wrong direction",
+  "recent_symbols_avoided": [
+    "robot crown with a dented, cable-tied frame and an defiantly",
+    "rażący żart zielony i czerwony",
+    "robot crown",
+    "spider 20 legs",
+    "metalowe mechaniczne serce",
+    "@",
+    "cracked_orange_warning_beacon"
+  ],
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 958832342037432373,
+      "creative_direction": "dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette",
+      "positive_prompt": "one isolated ścianki komputera z poziomem}, ścianki komputera z poziomem, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of rust red, ashen gold, bone white, deep black, emotional energy wkurzona, mood intensity 23 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 1, dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "a4d60033-e96a-47a1-81a8-7520e9f83760",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": null
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 7789808728203429401,
+      "creative_direction": "front-facing emblem, strong negative space, bold iconic geometry",
+      "positive_prompt": "one isolated ścianki komputera z poziomem}, ścianki komputera z poziomem, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of rust red, ashen gold, bone white, deep black, emotional energy wkurzona, mood intensity 23 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 2, front-facing emblem, strong negative space, bold iconic geometry, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "d883bc54-81ff-4c9c-b038-d58bd0f06868",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 84
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 2772084728458723196,
+      "creative_direction": "exploded mechanical construction, radial energy, visible bolts and sparks",
+      "positive_prompt": "one isolated ścianki komputera z poziomem}, ścianki komputera z poziomem, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of rust red, ashen gold, bone white, deep black, emotional energy wkurzona, mood intensity 23 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 3, exploded mechanical construction, radial energy, visible bolts and sparks, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "cdd55e51-e854-4f42-a53a-270e5020ff2c",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 69
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 5084284490106512821,
+      "creative_direction": "dramatic close-up crop, low-angle perspective, oversized central form",
+      "positive_prompt": "one isolated ścianki komputera z poziomem}, ścianki komputera z poziomem, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of rust red, ashen gold, bone white, deep black, emotional energy wkurzona, mood intensity 23 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 4, dramatic close-up crop, low-angle perspective, oversized central form, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "22ba17bf-14fe-46ba-9171-d7edcdc7e073",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 117
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-E023-000011/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260904-E023-000011/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-E023-000011/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "Kora is a robot. Nobody told her she has to act like one.",
+    "quote_pl": "Kora to robot. Tylko nikt jej nie powiedział, że ma się tak zachowywać."
+  },
+  "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 3,
+  "selected_at": "2026-09-04T21:54:57+00:00",
+  "text_approved_at": "2026-09-04T21:54:57+00:00",
+  "qr": {
+    "artwork_id": "WKS-260904-E023-000011",
+    "artwork_number": 11,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-E023-000011/voice/?v=e91622fa8175",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "mood-responsive distressed KORA grunge",
+    "layout_version": 4,
+    "mood_palette": [
+      "rust red",
+      "ashen gold",
+      "bone white",
+      "deep black"
+    ],
+    "mood_palette_id": "E2",
+    "revision": "e91622fa8175",
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
