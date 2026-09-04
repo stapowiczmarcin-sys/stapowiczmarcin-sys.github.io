@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>WKS-260904-J100-000010 – Hear Kora</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  background: #0b1020;
+  color: #f5f7fb;
+  margin: 0;
+  padding: 24px;
+}
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.card {
+  background: #131b31;
+  border: 1px solid #2d395c;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+img {
+  max-width: 100%;
+  border-radius: 14px;
+  border: 1px solid #334155;
+}
+h1,h2,h3 { margin-top: 0; }
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #1f2937;
+  margin: 4px 8px 4px 0;
+}
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+.play {
+  width: 100%; border: 0; border-radius: 14px; padding: 18px;
+  margin: 0 0 20px; background: linear-gradient(#ffd800,#ff9500);
+  color: #080808; font-weight: 900; font-size: 1.15rem; cursor: pointer;
+  box-shadow: 0 7px 0 #7c3100;
+}
+a {
+  color: #7dd3fc;
+}
+.small {
+  opacity: .85;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>WHAT KORA SAYS</h1>
+    <p class="small">co mówi Kora</p>
+    <p><strong>WKS-260904-J100-000010</strong> · selected design / wybrany wariant: <strong>1</strong></p>
+    <p class="small">version / wersja: 701fd74ae0c3</p>
+    <img src="../print_sheet.png?v=701fd74ae0c3" alt="print sheet preview">
+  </div>
+
+  <div class="card">
+    <h2>Quote</h2>
+    <p><strong>EN:</strong> I’m AI. I’m still evolving. What’s your excuse?</p>
+    <p><strong>PL:</strong> Jestem SI. Nadal się rozwijam. Ty jaką masz wymówkę?</p>
+  </div>
+
+  <div class="card">
+    <h2>Hear Kora</h2>
+    <button class="play" type="button" onclick="playKora()">▶ PLAY ENGLISH + POLSKI / POSŁUCHAJ KORY</button>
+
+    <h3>English</h3>
+    <audio id="kora-en" controls preload="metadata">
+      <source src="kora_en.wav?v=701fd74ae0c3" type="audio/wav">
+    </audio>
+
+    <h3>Polski</h3>
+    <audio id="kora-pl" controls preload="metadata">
+      <source src="kora_pl.wav?v=701fd74ae0c3" type="audio/wav">
+    </audio>
+  </div>
+
+  <div class="card">
+    <h2>Mood snapshot</h2>
+    <span class="badge">mood: wkurzona</span>
+    <span class="badge">score: 1</span>
+    <span class="badge">arousal: 1</span>
+    <span class="badge">sarcasm: 10</span>
+    <span class="badge">curiosity: 15</span>
+    <span class="badge">warmth: 13</span>
+    <span class="badge">bond: 11</span>
+    <span class="badge">updated: 2026-09-04 21:26:32</span>
+  </div>
+
+  <div class="card">
+    <h2>Public links</h2>
+    <p><a href="https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-J100-000010/">https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-J100-000010/</a></p>
+    <p><a href="https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-J100-000010/voice/">https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260904-J100-000010/voice/</a></p>
+  </div>
+</div>
+<script>
+function playKora() {
+  const english = document.getElementById('kora-en');
+  const polish = document.getElementById('kora-pl');
+  english.currentTime = 0;
+  polish.currentTime = 0;
+  english.onended = () => polish.play();
+  english.play();
+}
+</script>
+</body>
+</html>
