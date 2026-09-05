@@ -14,6 +14,17 @@
       lead: "Nie katalogowa teoria. Rzeczy, które wychodzą dopiero wtedy, kiedy naprawdę próbujesz to złożyć, przykręcić i uruchomić.",
       cards: [
         {
+          kicker: "PYTAŁEM AI TRZY RAZY. POKAZAŁEM NAWET PŁYTKĘ. PEWNOŚĆ ROSŁA, POPRAWNOŚĆ NIE.",
+          title: "AI kazało podłączyć krańcówkę do IN i 3.3 V. Miernik powiedział: IN i GND.",
+          body: "Kupiłem zestaw sześciu mikrowyłączników ECSiNG do stóp Kory, bo AI uznało je za dobry wybór. Sam wybór części był sensowny. Problem pojawił się przy podłączeniu do Servo 2040: trzy razy pytałem o piny i pokazałem nawet zdjęcie płytki, a mimo to dostałem błędną instrukcję IN + 3.3 V. Zwykły mikrowyłącznik jest pasywnym stykiem — nie trzeba go zasilać.",
+          discovery: "Co faktycznie działa",
+          discoveryText: "Przy wejściu z podciąganiem styk łączy IN z GND. W spoczynku wejście jest wysokie, po naciśnięciu niskie. Kolor przewodu nie jest dokumentacją: parę COM–NO albo COM–NC najpierw sprawdzam miernikiem. Ten przełącznik potwierdza kontakt z ziemią; oddzielny czujnik nacisku będzie mierzył obciążenie nogi.",
+          workaround: "Lekcja za cenę sześciu pstryczków",
+          workaroundText: "AI świetnie skraca szukanie, ale nie zastępuje schematu, testu ciągłości ani zdrowej podejrzliwości wobec odpowiedzi wypowiedzianej z przesadną pewnością. Kora dostała czucie w stopach. AI dostało czujnik pokory.",
+          link: "ECSiNG — 6 mikrowyłączników na Amazon UK →",
+          url: "https://www.amazon.co.uk/dp/B0CXSLG6MY?tag=marcinkorapro-21"
+        },
+        {
           kicker: "NA PAPIERZE: PASUJE. NA STOLE: AHA, JASNE.",
           title: "UPS X1203 + Raspberry Pi + HAT / Hailo — mechanika mówi: nie tak szybko.",
           body: "Sam UPS z Raspberry Pi da się złożyć sensownie. Problem zaczyna się przy dokładaniu Hailo AI HAT+: pełny stack potrzebuje dodatkowych dystansów M2.5 oraz wysokiego złącza GPIO 2×20. Standardowe piny nie sięgają przez wszystkie warstwy, a bez dodatkowego prześwitu płytki nie układają się poprawnie.",
@@ -70,6 +81,17 @@
       title: "What sellers and designers did not account for.",
       lead: "Not catalogue theory. These are the problems that only appear when you actually try to assemble, bolt together and run the hardware.",
       cards: [
+        {
+          kicker: "I ASKED AI THREE TIMES. I EVEN SHOWED IT THE BOARD. CONFIDENCE WENT UP. ACCURACY DID NOT.",
+          title: "AI told me to wire the switch to IN and 3.3 V. The multimeter voted for IN and GND.",
+          body: "I bought a six-pack of ECSiNG micro limit switches for Kora's feet because AI suggested they were a good fit. The component choice itself was sensible. The wiring advice was not: I asked about the pins three times and even supplied a photo of the Servo 2040 board, yet still received the wrong IN + 3.3 V instruction. A basic microswitch is a passive contact; it does not need a power supply.",
+          discovery: "What actually works",
+          discoveryText: "With an input pull-up, the switch connects IN to GND. The input reads high at rest and low when pressed. Wire colour is not documentation: I first identify COM–NO or COM–NC with a multimeter. This switch confirms ground contact; a separate pressure sensor will measure how much load the leg carries.",
+          workaround: "A lesson priced at six tiny clicks",
+          workaroundText: "AI is excellent for narrowing a search, but it is not a schematic, a continuity tester or a replacement for healthy suspicion when an answer sounds far too confident. Kora gained touch in her feet. AI gained a humility sensor.",
+          link: "ECSiNG — 6 micro limit switches on Amazon UK →",
+          url: "https://www.amazon.co.uk/dp/B0CXSLG6MY?tag=marcinkorapro-21"
+        },
         {
           kicker: "ON PAPER: COMPATIBLE. ON THE BENCH: YEAH, RIGHT.",
           title: "X1203 UPS + Raspberry Pi + HAT / Hailo — the mechanics say: not so fast.",
