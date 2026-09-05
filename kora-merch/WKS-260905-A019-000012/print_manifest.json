@@ -2,11 +2,11 @@
   "artwork_id": "WKS-260905-A019-000012",
   "artwork_number": 12,
   "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
-  "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260905-A019-000012/voice/?v=72d222c56d33",
+  "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260905-A019-000012/voice/?v=36f451cb9a26",
   "fixed_heading_en": "WHAT WILL KORA SAY?",
   "fixed_heading_pl": "CO POWIE KORA?",
   "style": "mood-responsive distressed KORA grunge",
-  "layout_version": 7,
+  "layout_version": 8,
   "mood_palette": [
     "molten copper",
     "acid lemon",
@@ -14,7 +14,7 @@
     "deep black"
   ],
   "mood_palette_id": "A3",
-  "revision": "72d222c56d33",
+  "revision": "36f451cb9a26",
   "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
   "qr_error_correction": "H",
   "print_dpi": 300,
