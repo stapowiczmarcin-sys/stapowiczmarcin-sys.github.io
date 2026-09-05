@@ -328,5 +328,23 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "epson-ecotank-et2861")) {
   });
 }
 
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "ecsing-micro-limit-switches-6pcs")) {
+  window.PARTS_CATALOG.push({
+    id: "ecsing-micro-limit-switches-6pcs",
+    name: "ECSiNG — 6× mikrowyłącznik krańcowy",
+    short: "Mechaniczne wykrywanie kontaktu sześciu stóp Kory z podłożem",
+    category: "Sensory",
+    supplier: "Amazon",
+    project: "Kora / VEGA",
+    status: "Mam",
+    accent: "orange",
+    spec: "6 szt. • styk chwilowy • sygnał: IN ↔ GND • wejście z pull-up • bez podłączania 3.3 V",
+    url: "https://www.amazon.co.uk/dp/B0CXSLG6MY?tag=marcinkorapro-21",
+    youtubePl: "Kora będzie wykrywać kontakt każdej stopy z podłożem za pomocą sześciu mikrowyłączników ECSiNG. Zwykły styk nie potrzebuje zasilania 3.3 V: po sprawdzeniu pary styków miernikiem łączę go między IN i GND, a wejście pracuje z podciąganiem. Mikrowyłącznik potwierdza kontakt; osobny czujnik nacisku będzie mierzył obciążenie nogi.",
+    youtubeEn: "Kora will detect each foot touching the ground with six ECSiNG micro limit switches. A passive switch does not need a 3.3 V supply: after checking the contact pair with a multimeter, I connect it between IN and GND and use an input pull-up. The microswitch confirms contact; a separate pressure sensor will measure leg load."
+  });
+}
+
 window.PART_IMAGES = window.PART_IMAGES || {};
 window.PART_IMAGES["neewer-lm2"] = "https://de.neewer.com/cdn/shop/files/1_42e1f1da-e75d-44cc-be2b-aa2225eb4d2a.jpg?v=1746761338&width=1600";
