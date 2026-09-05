@@ -75,5 +75,11 @@ Object.assign(window.CATALOG_I18N.parts, {
     name: "Epson EcoTank ET-2861 — A4 inkjet printer",
     short: "Refillable ink-tank printer used for Kora's T-shirt transfers",
     spec: "A4 • inkjet • EcoTank reservoirs • print / scan / copy • Wi-Fi • standard dye/pigment ink"
+
+  },
+  "ecsing-micro-limit-switches-6pcs": {
+    name: "ECSiNG — 6× micro limit switches",
+    short: "Mechanical ground-contact detection for Kora's six feet",
+    spec: "6 pieces • momentary contact • signal: IN ↔ GND • input pull-up • no 3.3 V connection"
   }
 });
