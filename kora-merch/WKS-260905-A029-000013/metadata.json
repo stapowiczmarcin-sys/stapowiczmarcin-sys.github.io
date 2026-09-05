@@ -1,0 +1,159 @@
+{
+  "title_en": "WHAT WILL KORA SAY?",
+  "title_pl": "CO POWIE KORA?",
+  "main_symbol": "workshop bulb with miniature electrical storm",
+  "quote_en": "I’m artificial. Are you?",
+  "quote_pl": "Jestem sztuczna. A ty?",
+  "mood_code": "A",
+  "mood_score": 29,
+  "palette": [
+    "hazard red",
+    "electric amber",
+    "bone white",
+    "deep black"
+  ],
+  "image_prompt": "workshop bulb with miniature electrical storm",
+  "palette_variant_id": "A2",
+  "artwork_number": 13,
+  "artwork_id": "WKS-260905-A029-000013",
+  "created_at": "2026-09-05T17:57:29+00:00",
+  "ollama_model": "qwen2.5:1.5b",
+  "seed_base": 1824120035768898516,
+  "positive_prompt": "one isolated workshop bulb with miniature electrical storm, workshop bulb with miniature electrical storm, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of hazard red, electric amber, bone white, deep black, emotional energy wkurzona, mood intensity 29 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print",
+  "negative_prompt": "text, words, letters, typography, numbers, digits, logo, brand mark, signature, watermark, QR code, barcode, caption, speech bubble, border, busy background, scenery, cityscape, pile of electronics, tiny details, photorealism, cute mascot",
+  "pipeline_version": 4,
+  "mood_snapshot": {
+    "captured_at": "2026-09-05T17:55:26+00:00",
+    "source": "/tmp/vega_state.json",
+    "source_age_seconds": 1.3,
+    "mood_label": "wkurzona",
+    "mood_score": 29,
+    "arousal": 95.0,
+    "sarcasm": 94.0,
+    "curiosity": 92.0,
+    "warmth": 31.0,
+    "loneliness": 0.0,
+    "bond_owner": 11.0,
+    "autonomy": 89.0,
+    "talk_chance": 82.0,
+    "repeat_annoyance": 11.0,
+    "forgiveness": 63.0,
+    "mood_code": "A"
+  },
+  "mood_panel_url": "http://100.119.24.1:8787/",
+  "kora_base_url": "https://vega-pi.tailfd0c05.ts.net/",
+  "selection_status": "ready_to_print",
+  "text_status": "approved",
+  "creative_run_id": "56742e3c38b6",
+  "creative_starter": "a burnt-out workshop bulb containing a miniature electrical storm of copper wire",
+  "recent_symbols_avoided": [
+    "assembled gears",
+    "ścianki komputera z poziomem}",
+    "robot crown with a dented, cable-tied frame and an defiantly",
+    "rażący żart zielony i czerwony",
+    "robot crown",
+    "spider 20 legs",
+    "metalowe mechaniczne serce",
+    "@"
+  ],
+  "candidates": [
+    {
+      "number": 1,
+      "file": "candidate_01.png",
+      "seed": 6734031244464184422,
+      "creative_direction": "dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette",
+      "positive_prompt": "one isolated workshop bulb with miniature electrical storm, workshop bulb with miniature electrical storm, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of hazard red, electric amber, bone white, deep black, emotional energy wkurzona, mood intensity 29 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 1, dynamic three-quarter view, hard diagonal motion, asymmetrical silhouette, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "c2283227-6baf-462a-a90a-5823ec84425d",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": null
+    },
+    {
+      "number": 2,
+      "file": "candidate_02.png",
+      "seed": 8106965643118508911,
+      "creative_direction": "front-facing emblem, strong negative space, bold iconic geometry",
+      "positive_prompt": "one isolated workshop bulb with miniature electrical storm, workshop bulb with miniature electrical storm, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of hazard red, electric amber, bone white, deep black, emotional energy wkurzona, mood intensity 29 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 2, front-facing emblem, strong negative space, bold iconic geometry, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "5b35809f-ca87-4fe4-91d3-4d7ad30c205a",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 123
+    },
+    {
+      "number": 3,
+      "file": "candidate_03.png",
+      "seed": 8122002833021460826,
+      "creative_direction": "exploded mechanical construction, radial energy, visible bolts and sparks",
+      "positive_prompt": "one isolated workshop bulb with miniature electrical storm, workshop bulb with miniature electrical storm, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of hazard red, electric amber, bone white, deep black, emotional energy wkurzona, mood intensity 29 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 3, exploded mechanical construction, radial energy, visible bolts and sparks, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "de030dc8-ab46-40f4-92b6-bff9702809cb",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 115
+    },
+    {
+      "number": 4,
+      "file": "candidate_04.png",
+      "seed": 8291986429873061878,
+      "creative_direction": "dramatic close-up crop, low-angle perspective, oversized central form",
+      "positive_prompt": "one isolated workshop bulb with miniature electrical storm, workshop bulb with miniature electrical storm, imagined by a sarcastic six-legged robot, dramatic grunge poster illustration, heavy black ink outlines, distressed screen print, scratches, paint splashes, bold simple shapes, limited palette of hazard red, electric amber, bone white, deep black, emotional energy wkurzona, mood intensity 29 of 100, sparse composition, transparent or plain black background, extremely high contrast, centered object, suitable for a T-shirt heat-transfer print, unique candidate 4, dramatic close-up crop, low-angle perspective, oversized central form, variation pass 1, recognizable physical object, not an abstract paint swatch, radically different camera angle and silhouette",
+      "comfy_prompt_id": "51cab623-ab04-4306-9ecc-fae7dc5e882f",
+      "render_attempts": 1,
+      "perceptual_distance_from_previous": 140
+    }
+  ],
+  "voice": {
+    "url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260905-A029-000013/voice/",
+    "bundle_dir": "public/kora-merch/WKS-260905-A029-000013/voice",
+    "public_checkout_copy": "/home/marcin/stapowiczmarcin-sys.github.io/kora-merch/WKS-260905-A029-000013/voice",
+    "git_published": false,
+    "files": [
+      "index.html",
+      "kora-en.wav",
+      "kora-pl.wav"
+    ],
+    "quote_en": "I’m artificial. Are you?",
+    "quote_pl": "Jestem sztuczna. A ty?"
+  },
+  "next_action_pl": "W panelu /merch popraw tekst EN/PL i wybierz wariant 1-4; dopiero zatwierdzenie tworzy głos, QR i print_sheet.png.",
+  "about_author": "",
+  "selected_candidate": 3,
+  "selected_at": "2026-09-05T18:25:48+00:00",
+  "text_approved_at": "2026-09-05T18:25:48+00:00",
+  "qr": {
+    "artwork_id": "WKS-260905-A029-000013",
+    "artwork_number": 13,
+    "portfolio_qr_url": "https://stapowiczmarcin-sys.github.io/",
+    "voice_qr_url": "https://stapowiczmarcin-sys.github.io/kora-merch/WKS-260905-A029-000013/voice/?v=a5a101371d5f",
+    "fixed_heading_en": "WHAT WILL KORA SAY?",
+    "fixed_heading_pl": "CO POWIE KORA?",
+    "style": "mood-responsive distressed KORA grunge",
+    "layout_version": 11,
+    "mood_palette": [
+      "hazard red",
+      "electric amber",
+      "bone white",
+      "deep black"
+    ],
+    "mood_palette_id": "A2",
+    "revision": "a5a101371d5f",
+    "poster_font": "/home/marcin/KORA-MASTER/merch/fonts/Anton-Regular.ttf",
+    "qr_error_correction": "H",
+    "print_dpi": 300,
+    "preview_file": "print_sheet.png",
+    "transfer_outputs": {
+      "ppd_dark": {
+        "product": "PPD-4-10",
+        "file": "print_ppd_dark_normal.png",
+        "mirrored": false,
+        "instruction_pl": "Ciemna koszulka: drukuj bez odbicia lustrzanego; usuń podkład i przenoś grafiką do góry.",
+        "instruction_en": "Dark shirt: print without mirroring; remove the backing and transfer image-side up."
+      },
+      "ppd_light": {
+        "product": "PPD-1-10",
+        "file": "print_ppd_light_mirrored.png",
+        "mirrored": true,
+        "instruction_pl": "Biała lub jasna koszulka: ten plik jest już odbity lustrzanie; drukuj go bez dodatkowego odbijania.",
+        "instruction_en": "White or light shirt: this file is already mirrored; do not mirror it again in the print dialog."
+      }
+    },
+    "warning_pl": "Nie drukować przed opublikowaniem i przetestowaniem obu adresów QR.",
+    "warning_en": "Do not print before publishing and testing both QR target URLs."
+  }
+}
