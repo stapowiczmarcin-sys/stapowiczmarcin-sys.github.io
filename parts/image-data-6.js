@@ -18,3 +18,7 @@ window.PART_IMAGES = Object.assign(window.PART_IMAGES || {}, {
   "ppd-light-a4-ppd1-10": "https://images-eu.ssl-images-amazon.com/images/I/617YxChp2YL._AC_UL495_SR495,495_.jpg",
   "epson-ecotank-et2861": "https://m.media-amazon.com/images/I/51zA-oZ++XL._AC_SL1000_.jpg"
 });
+
+
+// HC-SR04 photo: Botland, standard blue four-pin module (SEN-15569 listing).
+window.PART_IMAGES["hcsr04"] = "https://cdn3.botland.com.pl/96093-large_default/ultradzwiekowy-czujnik-odleglosci-hc-sr04-2-400cm-sparkfun-sen-15569.jpg";
