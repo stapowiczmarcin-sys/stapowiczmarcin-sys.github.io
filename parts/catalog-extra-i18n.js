@@ -83,3 +83,13 @@ Object.assign(window.CATALOG_I18N.parts, {
     spec: "6 pieces • momentary contact • signal: IN ↔ GND • input pull-up • no 3.3 V connection"
   }
 });
+
+
+Object.assign(window.CATALOG_I18N.parts, {
+  "bms-13s-48v-mnine": { name: "13S / 48 V BMS — e-bike", short: "Tested battery management board used in the M-Nine", spec: "13S • 48 V nominal • cell balancing • B− / P− / C−" },
+  "esp32-38pin-breakout-kit": { name: "ESP32 38-pin + terminal breakout board", short: "ESP32 development board with a screw-terminal base", spec: "ESP32-WROOM-32D • 38 pins • CP2102 • Wi-Fi and Bluetooth • terminal breakout base" },
+  "female-charging-lead": { name: "Female charging lead", short: "Detachable connection between charger and power system", spec: "Female power connector • charging lead • verify plug diameter and polarity before use" },
+  "oled12864-sh1106-13": { name: "1.3-inch OLED 128×64 — SH1106", short: "Monochrome display for information and simple animations", spec: "1.3 inch • 128×64 px • OLED • I²C • SH1106 controller" },
+  "anycubic-photon-mono-4": { name: "ANYCUBIC Photon Mono 4 — 10K resin printer", short: "Current 3D printer used to make Kora's plastic legs", spec: "7-inch 10K mono screen • build volume 153.4 × 87 × 165 mm • 405 nm resin printing" },
+  "anycubic-standard-resin-black-1kg": { name: "ANYCUBIC Standard Resin — black, 1 kg", short: "Resin used to print Kora's plastic legs", spec: "405 nm • standard photopolymer resin • black • 1 kg • LCD / DLP / SLA" }
+});

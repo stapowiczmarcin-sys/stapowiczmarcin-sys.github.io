@@ -643,3 +643,24 @@ main > section:nth-of-type(4n + 3) .quote { color: #f4f5f7 !important; }
   .quadruped-parts-grid { grid-template-columns: 1fr; }
   .release-actions .button { width: 100%; }
 }
+
+
+/* Audit 2026-09-08: nested light surfaces keep their own text colours. */
+main > section:nth-of-type(4n + 3) .panel .fact strong { color: #101112 !important; }
+main > section:nth-of-type(4n + 3) .panel .fact span { color: #565752 !important; }
+main > section:nth-of-type(4n + 3) .panel .process-index,
+main > section:nth-of-type(4n + 3) .next-card .status { color: #101112 !important; }
+main > section .about .panel:last-child :is(h3,li) { color: #101112 !important; }
+.merch-fact { color: #101112; background: #e7e4dc; }
+.wiring-table { color: #101112; background: #fff; }
+.wiring-table th { color: #101112; background: #d9ff57; }
+.wiring-table td, .wiring-table code { color: #101112; }
+main .calibration-warning span, main .quadruped-wiring .release-kicker { color: #42433f !important; }
+/* Keep complete print artwork visible, including both language blocks and QR codes. */
+.merch-spotlight-media { margin: 0; min-height: 0; display: flex; flex-direction: column; }
+.merch-spotlight-media img { height: auto; object-fit: contain; }
+.merch-spotlight-media figcaption { position: static; margin: 0; border-radius: 0; }
+.hero-grid > *, .project-grid > *, .about > *, .contact-panel > * { min-width: 0; }
+main :is(h1,h2,h3,h4), .contact-link { overflow-wrap: anywhere; }
+@media (min-width: 921px) { .hero h1 { font-size: clamp(3.2rem, 5.2vw, 5.2rem); line-height: 1.02; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

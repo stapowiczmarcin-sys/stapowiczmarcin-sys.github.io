@@ -60,7 +60,7 @@ function copyText(part, mode) {
   const view = viewPart(part);
   if (mode === "short") return view.name + " — " + view.spec;
   const affiliateNotice = part.supplier === "Amazon" ? "\n\nLink afiliacyjny / Affiliate link\nAs an Amazon Associate I earn from qualifying purchases." : "";
-  return part.youtubePl + "\n" + part.youtubeEn + "\n\nElement / Component: " + part.name + "\nSklep / Store: " + part.supplier + "\n" + part.url + affiliateNotice;
+  return part.youtubeEn + "\n" + part.youtubePl + "\n\nElement / Component: " + part.name + "\nSklep / Store: " + part.supplier + "\n" + part.url + affiliateNotice;
 }
 
 async function copyToClipboard(text) {
@@ -146,7 +146,7 @@ function renderCards() {
         '<div class="price-row"><span>' + escapeHtml(ui[state.language].price) + '</span><strong>' + escapeHtml(part.price || "—") + '</strong></div>' +
         '<div class="card-actions"><button type="button" class="copy-primary" data-copy="full" data-id="' + escapeHtml(part.id) + '">' + escapeHtml(ui[state.language].youtube) + '</button>' +
         '<button type="button" data-copy="short" data-id="' + escapeHtml(part.id) + '" aria-label="' + escapeHtml(ui[state.language].copyShort + " " + view.name) + '" title="' + escapeHtml(ui[state.language].copyShort) + '">⧉</button>' +
-        '<a href="' + escapeHtml(part.url) + '" target="_blank" rel="noreferrer" aria-label="' + escapeHtml(ui[state.language].open + " " + view.name) + '" title="' + escapeHtml(ui[state.language].open) + '">↗</a></div>' +
+        '<a href="' + escapeHtml(part.url) + '" target="_blank" rel="noreferrer' + (part.supplier === "Amazon" ? ' sponsored' : '') + '" aria-label="' + escapeHtml(ui[state.language].open + " " + view.name) + '" title="' + escapeHtml(ui[state.language].open) + '">↗</a></div>' +
       '</div>' +
     '</article>';
   }).join("");
@@ -219,8 +219,15 @@ $("#partsGrid").addEventListener("click", async (event) => {
   if (!button) return;
   const part = parts.find((item) => item.id === button.dataset.id);
   if (!part) return;
-  await copyToClipboard(copyText(part, button.dataset.copy));
+  try {
+    await copyToClipboard(copyText(part, button.dataset.copy));
+  } catch (error) {
+    button.textContent = state.language === "pl" ? "Nie skopiowano" : "Copy failed";
+    button.title = state.language === "pl" ? "Zaznacz i skopiuj tekst ręcznie." : "Select and copy the text manually.";
+    return;
+  }
   const previous = button.textContent;
   button.textContent = button.dataset.copy === "full" ? ui[state.language].copied : "✓";
   setTimeout(() => { button.textContent = previous; }, 1600);
 });
+

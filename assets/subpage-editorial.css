@@ -667,3 +667,9 @@ main .part-card .part-tag.part-tag * {
   color: #31421e !important;
 }
 main #rules .card .rule span { color: #5f605b !important; }
+
+
+/* Source links are on a dark section, so use the same readable light text. */
+main > section:nth-of-type(4n + 3) .source-list a { color: #d9e7ef !important; }
+.hero-grid > *, .grid > *, .grid3 > *, .bar > * { min-width: 0; }
+main :is(h1,h2,h3,h4), main code:not(pre code) { overflow-wrap: anywhere; }
