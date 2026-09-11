@@ -13,6 +13,8 @@ Scope: all 25 HTML pages, the dynamically rendered catalogue of 108 parts, local
 - Added visible Product / Search store labels. 85 catalogue URLs are store searches, so they are no longer presented as exact product pages. Affiliate URLs and tags were preserved.
 - Enlarged catalogue action text and category controls, and enabled keyboard activation of home-page gallery images.
 
+- Final live verification exposed failed YouTube thumbnails on the home page. Saved all five YouTube thumbnails used by the HTML pages locally, including the radio and aluminium update thumbnails. Downloaded the original images from `https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg`; video links remain unchanged.
+
 ## Validation
 
 - Loaded all 25 pages and their local JavaScript in a DOM test harness: no application script exceptions or missing referenced local files.
@@ -20,6 +22,7 @@ Scope: all 25 HTML pages, the dynamically rendered catalogue of 108 parts, local
 - Exercised English/Polish switching, search and clear, product/search labels, the gotchas link, return to the catalogue, and direct `#gotchas` entry.
 - Verified all four quadruped videos, their poster/source files, restored download links and their DOM nesting.
 - Inspected the existing home page and 11 distinct content pages in the cloud browser at desktop width. No horizontal document overflow was found. Mobile media rules were reviewed in source; a separate mobile viewport/device test was not available.
+- Confirmed successful GitHub Pages publication of the main repair, then checked the live catalogue image count (108), switch photograph loading, PL/EN controls, same-page gotchas navigation and the restored wiring anchor.
 - Historical unused corrupt image files remain in backups. They are not referenced by active pages and were not deleted.
 
 ## External-link limitations
