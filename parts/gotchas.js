@@ -33,8 +33,8 @@
           workaround: "Obejście",
           workaroundText: "Zastosowałem dodatkowe dystanse M2.5 oraz 40-pinowy, wysoki header 2×20 z zestawu Pi Hut. Specjalne cztery piny PoE nie były potrzebne. Najpierw przymierz warstwy, potem dokręcaj — młotek nadal nie jest standardem Raspberry Pi.",
           products: [
-            { name: "Dystanse M2.5 — zestaw 503 elementów", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://amzn.to/4y1Rvbf", cta: "Sklep →" },
-            { name: "Przedłużka GPIO 2×20 — extra-tall", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Sklep →" },
+            { name: "Dystanse M2.5 — zestaw 503 elementów", imageId: "bgtxingi-m25-standoff-kit-280", url: "https://amzn.to/4y1Rvbf", cta: "Sklep →" },
+            { name: "Przedłużka GPIO 2×20 — extra-tall", imageId: "poe-header", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Sklep →" },
             { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Sklep →" },
             { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Sklep →" },
             { name: "Raspberry Pi 5 — 16 GB", imageId: "rpi5-16", url: "https://amzn.to/4imKH38", cta: "Sklep →" }
@@ -101,8 +101,8 @@
           workaround: "Workaround",
           workaroundText: "I used extra M2.5 standoffs and the 40-pin, 2×20 extra-tall header from the Pi Hut kit. The special four PoE pins were not required. Dry-fit every layer before tightening — a hammer is still not part of the Raspberry Pi standard.",
           products: [
-            { name: "M2.5 standoffs — 503-piece kit", image: "https://m.media-amazon.com/images/I/51EsLOX+r1L._AC_SX679_.jpg", url: "https://amzn.to/4y1Rvbf", cta: "Shop →" },
-            { name: "2×20 extra-tall GPIO header", image: "https://thepihut.com/cdn/shop/products/extra-tall-push-fit-stacking-gpio-header-for-raspberry-pi-double-shroud-the-pi-hut-104260-29471102468291_1000x.jpg?v=1646555760", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Shop →" },
+            { name: "M2.5 standoffs — 503-piece kit", imageId: "bgtxingi-m25-standoff-kit-280", url: "https://amzn.to/4y1Rvbf", cta: "Shop →" },
+            { name: "2×20 extra-tall GPIO header", imageId: "poe-header", url: "https://thepihut.com/products/stacking-header-for-pi-a-b-pi-2-pi-3-2x20-extra-tall-header", cta: "Shop →" },
             { name: "SupTronics X1203 UPS", imageId: "x1203", url: "https://thepihut.com/products/suptronics-x1203-ups-add-on-for-raspberry-pi-5", cta: "Shop →" },
             { name: "Raspberry Pi AI HAT+ 2 — Hailo", imageId: "ai-hat-2", url: "https://thepihut.com/products/raspberry-pi-ai-hat-2", cta: "Shop →" },
             { name: "Raspberry Pi 5 — 16 GB", imageId: "rpi5-16", url: "https://amzn.to/4imKH38", cta: "Shop →" }
@@ -152,11 +152,11 @@
   }
 
   function ensurePanel() {
-    let panel = document.querySelector("#gotchaPanel");
+    let panel = document.querySelector("#gotchas");
     if (panel) return panel;
 
     panel = document.createElement("section");
-    panel.id = "gotchaPanel";
+    panel.id = "gotchas";
     panel.className = "gotcha-panel";
     panel.hidden = true;
     tabs.insertAdjacentElement("afterend", panel);
@@ -283,6 +283,21 @@
 
   ensureTab();
   renderPanel();
+  // Links on this page must open the notes too, without requiring a reload.
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#gotchas") {
+      showGotchas();
+      ensurePanel().scrollIntoView({ block: "start" });
+    } else {
+      hideGotchas();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href="#gotchas"]');
+    if (!link) return;
+    showGotchas();
+    ensurePanel().scrollIntoView({ block: "start" });
+  });
   if (location.hash === "#gotchas" || new URLSearchParams(location.search).get("view") === "gotchas") {
     showGotchas();
   }

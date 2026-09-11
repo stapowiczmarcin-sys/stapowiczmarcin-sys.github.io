@@ -1173,9 +1173,6 @@
           </article>
         </div>
 
-Warning: truncated output (original token count: 10300)
-Total output lines: 220
-
         <article class="system-panel">
           <span class="eyebrow" data-pl="System i oprogramowanie" data-en="System and software">System i oprogramowanie</span>
           <h3 data-pl="Od czujnika do decyzji — lokalnie" data-en="From sensor to decision — locally">Od czujnika do decyzji — lokalnie</h3>
@@ -1254,7 +1251,23 @@ Total output lines: 220
                   <img loading="eager" decoding="async" src="assets/kora/content/kora-quadruped-free-code-shorts.webp" alt="Kora Dancing Like Madonna — Free Code, web calibration and phone control">
                 </figure>
                 <div class="quadruped-release-copy">
-                  <span class="release-kicker" data-pl="DARMOWY KOD · WYDANIE PUBLICZNE" dat…1300 tokens truncated…ora/history/quadruped/kora-quadruped-first-steps-poster.webp" aria-label="Pierwsze kroki czteronożnej Kory na dywanie"><source src="assets/kora/history/quadruped/kora-quadruped-first-steps.mp4" type="video/mp4"></video>
+                  <span class="release-kicker" data-pl="DARMOWY KOD · WYDANIE PUBLICZNE" data-en="FREE CODE · PUBLIC RELEASE">FREE CODE · PUBLIC RELEASE</span>
+                  <h5>Kora Dancing Like Madonna</h5>
+                  <p data-en="Control the four-legged Kora from your phone, calibrate each servo in the web panel and save the settings on the ESP32. The Arduino sketch and build notes are available below." data-pl="Steruj czteronożną Korą z telefonu, skalibruj każde serwo w panelu WWW i zapisz ustawienia w ESP32. Poniżej znajdziesz szkic Arduino oraz opis konstrukcji.">Control the four-legged Kora from your phone, calibrate each servo in the web panel and save the settings on the ESP32. The Arduino sketch and build notes are available below.</p>
+                  <div class="release-features"><span data-en="Phone control" data-pl="Sterowanie z telefonu">Phone control</span><span data-en="Web calibration" data-pl="Kalibracja WWW">Web calibration</span><span>ESP32 + PCA9685</span></div>
+                  <div class="release-actions">
+                    <a class="button button-primary" href="code/kora-quadruped-web/KORA_QUADRUPED_WEB_FREE_CODE.ino" download data-en="Download free code ↓" data-pl="Pobierz darmowy kod ↓">Download free code ↓</a>
+                    <a class="button" href="#kora-quadruped-wiring" data-en="Wiring & calibration" data-pl="Połączenia i kalibracja">Wiring & calibration</a>
+                  </div>
+                </div>
+              </article>
+              <div class="prototype-video-grid">
+                <figure class="prototype-video">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/kora/history/quadruped/kora-quadruped-bench-poster.webp" aria-label="Czteronożna Kora podczas próby na stanowisku"><source src="assets/kora/history/quadruped/kora-quadruped-bench.mp4" type="video/mp4"></video>
+                  <figcaption data-pl="Próba na stanowisku — obserwacja pracy nóg i serw." data-en="Bench test — observing leg and servo movement.">Próba na stanowisku — obserwacja pracy nóg i serw.</figcaption>
+                </figure>
+                <figure class="prototype-video">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/kora/history/quadruped/kora-quadruped-first-steps-poster.webp" aria-label="Pierwsze kroki czteronożnej Kory na dywanie"><source src="assets/kora/history/quadruped/kora-quadruped-first-steps.mp4" type="video/mp4"></video>
                   <figcaption data-pl="Pierwsze kroki — krótka, prawdziwa próba na podłodze." data-en="First steps — a short, real test on the floor.">Pierwsze kroki — krótka, prawdziwa próba na podłodze.</figcaption>
                 </figure>
                 <figure class="prototype-video prototype-video--motion">
@@ -1867,10 +1880,20 @@ https://ko-fi.com/marcinstapowicz
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
     document.querySelectorAll('.gallery-card img').forEach((image) => {
-      image.addEventListener('click', () => {
+      image.tabIndex = 0;
+      image.setAttribute('role', 'button');
+      image.setAttribute('aria-haspopup', 'dialog');
+      const openImage = () => {
         lightboxImage.src = image.src;
         lightboxImage.alt = image.alt;
         lightbox.showModal();
+      };
+      image.addEventListener('click', openImage);
+      image.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openImage();
+        }
       });
     });
     lightbox.querySelector('.dialog-close').addEventListener('click', () => lightbox.close());
@@ -1917,4 +1940,3 @@ https://ko-fi.com/marcinstapowicz
   </script>
 </body>
 </html>
-

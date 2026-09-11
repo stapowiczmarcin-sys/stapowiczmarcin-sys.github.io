@@ -21,6 +21,7 @@ const ui = {
     allStores: "Wszystkie sklepy", results: "wyników", elements: "elementów", inUse: "w użyciu", stores: "sklepy", incoming: "w drodze",
     project: "Projekt", price: "Cena zakupu", youtube: "Opis na YouTube", copied: "Skopiowano ✓", copyShort: "Kopiuj krótki opis",
     open: "Otwórz produkt", noPhoto: "Zdjęcie jeszcze nie dodane", knownVisible: "Widoczne — znane ceny", knownPrices: "znanych cen", search: "Szukaj: lidar, ESP32, audio…",
+    productLink: "Produkt ↗", searchLink: "Szukaj w sklepie ↗", searchProduct: "Szukaj w sklepie:",
     searchLabel: "Szukaj części", clearLabel: "Wyczyść wyszukiwanie", projectLabel: "Filtruj według projektu", supplierLabel: "Filtruj według sklepu",
     statusLabel: "Filtruj według statusu", categoriesLabel: "Kategorie", languageLabel: "Zmień język na angielski",
     pageTitle: "Marcin — katalog części projektowych", pageDescription: "Katalog części używanych przez Marcina w projektach CNC, Kora, robotyce, elektronice i audio."
@@ -29,6 +30,7 @@ const ui = {
     allStores: "All stores", results: "results", elements: "components", inUse: "in use", stores: "stores", incoming: "in transit",
     project: "Project", price: "Purchase price", youtube: "YouTube copy", copied: "Copied ✓", copyShort: "Copy short description",
     open: "Open product", noPhoto: "Photo not added yet", knownVisible: "Visible — known prices", knownPrices: "known prices", search: "Search: lidar, ESP32, audio…",
+    productLink: "Product ↗", searchLink: "Search store ↗", searchProduct: "Search the store for:",
     searchLabel: "Search parts", clearLabel: "Clear search", projectLabel: "Filter by project", supplierLabel: "Filter by store",
     statusLabel: "Filter by status", categoriesLabel: "Categories", languageLabel: "Switch language to Polish",
     pageTitle: "Marcin — project parts catalogue", pageDescription: "Tested project parts used in Kora, CNC, robotics and electronics — with real build notes and hardware gotchas."
@@ -37,6 +39,12 @@ const ui = {
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (character) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[character]);
+}
+
+// A store search is useful, but is not an exact product listing.
+function isStoreSearch(value) {
+  const url = new URL(value, location.href);
+  return /(^|\/)(s|sch|search)(\/|$)/.test(url.pathname) || url.searchParams.has('_nkw');
 }
 
 function translate(mapping, value) {
@@ -129,6 +137,7 @@ function renderCards() {
   renderBudget(filtered);
   $("#partsGrid").innerHTML = filtered.map((part, index) => {
     const view = viewPart(part);
+    const storeSearch = isStoreSearch(part.url);
     const imageSrc = window.PART_IMAGES && window.PART_IMAGES[part.id];
     const imageMarkup = imageSrc
       ? '<img src="' + escapeHtml(imageSrc) + '" alt="' + escapeHtml(view.name) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
@@ -146,7 +155,7 @@ function renderCards() {
         '<div class="price-row"><span>' + escapeHtml(ui[state.language].price) + '</span><strong>' + escapeHtml(part.price || "—") + '</strong></div>' +
         '<div class="card-actions"><button type="button" class="copy-primary" data-copy="full" data-id="' + escapeHtml(part.id) + '">' + escapeHtml(ui[state.language].youtube) + '</button>' +
         '<button type="button" data-copy="short" data-id="' + escapeHtml(part.id) + '" aria-label="' + escapeHtml(ui[state.language].copyShort + " " + view.name) + '" title="' + escapeHtml(ui[state.language].copyShort) + '">⧉</button>' +
-        '<a href="' + escapeHtml(part.url) + '" target="_blank" rel="noreferrer' + (part.supplier === "Amazon" ? ' sponsored' : '') + '" aria-label="' + escapeHtml(ui[state.language].open + " " + view.name) + '" title="' + escapeHtml(ui[state.language].open) + '">↗</a></div>' +
+        '<a class="store-link" href="' + escapeHtml(part.url) + '" target="_blank" rel="noopener noreferrer' + (part.supplier === "Amazon" ? ' sponsored' : '') + '" aria-label="' + escapeHtml((storeSearch ? ui[state.language].searchProduct : ui[state.language].open) + " " + view.name) + '">' + escapeHtml(storeSearch ? ui[state.language].searchLink : ui[state.language].productLink) + '</a></div>' +
       '</div>' +
     '</article>';
   }).join("");
@@ -230,4 +239,3 @@ $("#partsGrid").addEventListener("click", async (event) => {
   button.textContent = button.dataset.copy === "full" ? ui[state.language].copied : "✓";
   setTimeout(() => { button.textContent = previous; }, 1600);
 });
-
