@@ -16,6 +16,10 @@ const catalogueOverrides = {
   "cam3-noir": {
     supplier: "Amazon",
     url: "https://amzn.to/4xgsdpC"
+  },
+  "x1203": {
+    supplier: "Amazon",
+    url: "https://amzn.to/4dd8pLS"
   }
 };
 
