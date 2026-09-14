@@ -39,11 +39,11 @@ try {
   if (actions) {
     const watch = document.createElement('a');
     watch.className = 'button button-primary';
-    watch.href = 'https://youtube.com/shorts/lTnTV2sUjIg';
+    watch.href = 'https://youtu.be/3m-Q8qqAJxA';
     watch.target = '_blank';
     watch.rel = 'noopener';
-    watch.dataset.en = 'Watch episode #3 ↗';
-    watch.dataset.pl = 'Obejrzyj odcinek #3 ↗';
+    watch.dataset.en = 'Watch episode #7 ↗';
+    watch.dataset.pl = 'Obejrzyj odcinek #7 ↗';
     watch.textContent = watch.dataset.en;
     actions.prepend(watch);
 
