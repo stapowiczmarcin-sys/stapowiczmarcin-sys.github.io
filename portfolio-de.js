@@ -127,15 +127,15 @@ try {
 
   const kicker = copy.querySelector('.series-kicker');
   if (kicker) {
-    kicker.dataset.en = 'SERIES · EPISODES 01–06 PUBLISHED';
-    kicker.dataset.pl = 'SERIA · ODCINKI 01–06 OPUBLIKOWANE';
+    kicker.dataset.en = 'SERIES · EPISODES 01–07 PUBLISHED';
+    kicker.dataset.pl = 'SERIA · ODCINKI 01–07 OPUBLIKOWANE';
     kicker.textContent = kicker.dataset.en;
   }
 
   const intro = copy.querySelector('p');
   if (intro) {
-    intro.dataset.en = 'Episode #6 records a new hardware milestone: all 18 MG996R servos worked from one 32-channel controller, and Kora lifted and lowered her entire body on six plastic legs. It is a stand-and-sit test — not walking yet.';
-    intro.dataset.pl = 'Odcinek #6 zapisuje nowy etap sprzętowy: wszystkie 18 serw MG996R pracowało z jednym 32-kanałowym sterownikiem, a Kora podniosła i opuściła cały korpus na sześciu plastikowych nogach. To test wstawania i siadania — jeszcze nie chodzenie.';
+    intro.dataset.en = 'Episode #7 began as a foot-microswitch test, but a blinking red Raspberry Pi LED exposed another power problem. An X1203 V1.0 UPS brought Kora back online — a successful first power-up, not a long-term reliability test.';
+    intro.dataset.pl = 'Odcinek #7 miał być testem mikroswitcha stopy, ale migająca czerwona dioda Raspberry Pi ujawniła kolejny problem z zasilaniem. UPS X1203 V1.0 przywrócił Korę do życia — to pierwsze udane uruchomienie, a nie długoterminowy test niezawodności.';
     intro.textContent = intro.dataset.en;
   }
 
@@ -197,6 +197,29 @@ try {
     episodes.prepend(episode06);
   }
 
+  if (!episodes.querySelector('[data-episode="07"]')) {
+    const episode07 = document.createElement('div');
+    episode07.className = 'series-dialogue series-teaser series-dialogue--latest series-power-rescue';
+    episode07.dataset.episode = '07';
+    episode07.setAttribute('aria-label', 'Episode seven — Raspberry Pi power failure and X1203 UPS rescue');
+    episode07.innerHTML = `
+      <a class="series-episode-cover" href="https://youtu.be/3m-Q8qqAJxA" target="_blank" rel="noopener" aria-label="Watch episode seven on YouTube">
+        <img src="assets/youtube/3m-Q8qqAJxA.webp" width="1672" height="941" loading="lazy" decoding="async" alt="Episode seven cover: failed Raspberry Pi power supply beside an X1203 UPS, with the headline Third PSU?!">
+      </a>
+      <span class="series-label" data-pl="ODCINEK 07 · AWARIA ZASILANIA I POWRÓT KORY" data-en="EPISODE 07 · POWER FAILURE AND KORA'S RETURN">EPISODE 07 · POWER FAILURE AND KORA'S RETURN</span>
+      <blockquote data-pl="Trzy zasilacze. A podobno to ja jestem zawodna." data-en="Three power supplies. And apparently I am the unreliable one.">Three power supplies. And apparently I am the unreliable one.</blockquote>
+      <p data-pl="Planowany test mikroswitcha stopy przerwała migająca czerwona dioda Raspberry Pi. Po sprawdzeniu układu problem znów prowadził do zasilacza. Inny zasilacz DC, UPS X1203 V1.0 i odzyskane ogniwa uruchomiły Korę ponownie: otworzyła oczy, poruszyła uszami i wydała werdykt. Test czujnika stopy nadal jest następnym krokiem." data-en="A planned foot-microswitch test was interrupted by a blinking red Raspberry Pi LED. After tracing the fault back to the power supply, another DC adapter, an X1203 V1.0 UPS and recovered cells brought Kora online again: she opened her eyes, moved her ears and delivered her verdict. The foot-sensor test is still the next step.">A planned foot-microswitch test was interrupted by a blinking red Raspberry Pi LED. After tracing the fault back to the power supply, another DC adapter, an X1203 V1.0 UPS and recovered cells brought Kora online again: she opened her eyes, moved her ears and delivered her verdict. The foot-sensor test is still the next step.</p>
+      <p class="series-safety" data-pl="⚠️ U mnie kolory przewodów we wtyczkach nie zgadzały się z oznaczeniami polaryzacji na płytce. Zawsze sprawdzaj + / − na płytce i zweryfikuj polaryzację przed włączeniem zasilania. Odzyskane ogniwa są częścią mojego eksperymentu, a nie zaleceniem podłączenia całej baterii rowerowej." data-en="⚠️ On my connectors, wire colours did not match the polarity markings on the board. Always check the board's + / − labels and verify polarity before applying power. The recovered cells are part of my own experiment, not a recommendation to connect a complete e-bike battery pack.">⚠️ On my connectors, wire colours did not match the polarity markings on the board. Always check the board's + / − labels and verify polarity before applying power. The recovered cells are part of my own experiment, not a recommendation to connect a complete e-bike battery pack.</p>
+      <div class="series-parts" aria-label="Episode seven hardware"><span>RASPBERRY PI 5</span><span>X1203 V1.0 UPS</span><span>DC ADAPTER</span><span>RECOVERED CELLS</span><span>POLARITY CHECK</span></div>
+      <div class="series-episode-actions">
+        <a class="button button-youtube" href="https://youtu.be/3m-Q8qqAJxA" target="_blank" rel="noopener"><span class="youtube-mark" aria-hidden="true"></span><span data-pl="Obejrzyj odcinek #7 ↗" data-en="Watch episode #7 ↗">Watch episode #7 ↗</span></a>
+        <a class="button" href="https://amzn.to/4dd8pLS" target="_blank" rel="sponsored noopener" data-pl="X1203 UPS — Amazon ↗" data-en="X1203 UPS — Amazon ↗">X1203 UPS — Amazon ↗</a>
+        <a class="button" href="https://suptronics.com/Raspberrypi/Power_mgmt/x1203-v1.0.html" target="_blank" rel="noopener" data-pl="Informacje producenta ↗" data-en="Manufacturer information ↗">Manufacturer information ↗</a>
+      </div>
+      <p class="series-affiliate" data-pl="Link afiliacyjny Amazon — mogę otrzymać prowizję od kwalifikujących się zakupów." data-en="Amazon affiliate link — I may earn a commission from qualifying purchases.">Amazon affiliate link — I may earn a commission from qualifying purchases.</p>`;
+    episodes.prepend(episode07);
+  }
+
   if (!episodes.querySelector('.story-engine-note')) {
     const note = document.createElement('div');
     note.className = 'series-dialogue story-engine-note';
@@ -215,6 +238,13 @@ try {
     #kora-says .series-story-test{border-color:#a28bff!important;box-shadow:inset 0 0 0 1px rgba(162,139,255,.9)!important}
     #kora-says .story-engine-note{border-color:#6ee7c3!important;background:linear-gradient(145deg,rgba(110,231,195,.07),rgba(162,139,255,.055))!important}
     #kora-says .story-engine-note blockquote{border-left-color:#6ee7c3!important}
+    #kora-says .series-power-rescue{border-color:#ffe600!important;box-shadow:inset 0 0 0 1px rgba(255,230,0,.78)!important}
+    #kora-says .series-power-rescue blockquote{border-left-color:#ffe600!important}
+    #kora-says .series-episode-cover{display:block;overflow:hidden;margin:-22px -22px 12px;border-bottom:1px solid #555;border-radius:18px 18px 0 0;text-decoration:none}
+    #kora-says .series-episode-cover img{width:100%;height:auto;aspect-ratio:1672/941;object-fit:cover;transition:transform .22s ease,filter .22s ease}
+    #kora-says .series-episode-cover:hover img,#kora-says .series-episode-cover:focus-visible img{transform:scale(1.015);filter:brightness(1.08)}
+    #kora-says .series-safety{padding:12px 14px;border-left:3px solid #ffe600;background:rgba(255,230,0,.075)}
+    #kora-says .series-affiliate{font-size:.78rem;color:#92938e!important}
   `;
   document.head.appendChild(style);
 })();
