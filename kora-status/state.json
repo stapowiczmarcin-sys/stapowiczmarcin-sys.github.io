@@ -1,6 +1,6 @@
 {
   "schema": "kora.source_of_truth.v1",
-  "updated": "2026-08-23T18:58:52+01:00",
+  "updated": "2026-09-16T22:44:00+01:00",
   "project": "Kora",
   "rule": {
     "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
@@ -43,10 +43,10 @@
     "ROLLED_BACK": "The failed change was reverted to the previous known state."
   },
   "current_priority": {
-    "title": "Complete spoken-answer path and begin controlled walking tests",
+    "title": "Develop mood-driven body language after confirmed walking",
     "status": "TESTING",
-    "details_pl": "Wake word uruchamia odpowiedź wstępną, ReSpeaker XVF3800 nagrywa, ale pełna odpowiedź po pytaniu głosowym nadal wymaga potwierdzenia. Metalowe nogi wykonały pierwszy widoczny ruch; chodzenie nie jest jeszcze potwierdzone.",
-    "details_en": "The wake word triggers an acknowledgement and ReSpeaker XVF3800 records, but the full answer after a spoken question still needs confirmation. The metal legs produced their first visible movement; walking is not confirmed yet."
+    "details_pl": "Chodzenie Kory jest juz potwierdzone. Aktualne proby dotycza powiazania jej nastroju z mowa ciala: ruchami calego korpusu i nog, tak aby sposob poruszania zmienial sie razem z mood, zamiast byc tylko osobnym zestawem gestow. Rownolegle pozostaja testy toru glosowego.",
+    "details_en": "Kora's walking is now confirmed. Current tests focus on linking mood to body language: whole-body and leg movement should change with her current mood instead of being a separate set of canned gestures. Voice-path testing continues in parallel."
   },
   "recent_content_work": {
     "id": "what_will_kora_say_04_2s4p_published_2026_08_23",
@@ -98,9 +98,9 @@
       "summary": "Wake acknowledgement works, but the full reply after a spoken question still needs a confirmed end-to-end test."
     },
     {
-      "id": "controlled_walking_tests",
+      "id": "mood_driven_body_language_2026_09_16",
       "status": "TESTING",
-      "summary": "Metal legs produced a visible twitch/movement; gait and walking are not yet confirmed."
+      "summary": "Walking is confirmed. Current work maps Kora's mood to coordinated whole-body and leg movement so posture and motion reflect her emotional state."
     },
     {
       "id": "en_secretary_guard",
@@ -133,11 +133,11 @@
     ]
   },
   "next_test": [
-    "Confirm a complete wake → spoken question → answer cycle in Polish.",
-    "Confirm a complete wake → spoken question → answer cycle in English.",
-    "Verify neutral positions and the direction of every leg-servo channel.",
-    "Run controlled gait tests only after the power path and individual channels remain stable.",
-    "Record the confirmed result in the Master Panel, Live, Live JSON and this public Source of Truth."
+    "Verify that the confirmed walking gait remains stable after mood-driven body motion is enabled.",
+    "Map happy, curious, irritated and sleepy states to clearly different but safe whole-body movements.",
+    "Check transitions between moods so body movement remains smooth and does not destabilize the gait.",
+    "Confirm a complete wake → spoken question → answer cycle in Polish and English.",
+    "Record confirmed results in the Master Panel, Live, Live JSON and this public Source of Truth."
   ],
   "hardware_status": {
     "raspberry_pi_ai_hat_plus_2_hailo_10h": "WORKING",
@@ -145,6 +145,6 @@
     "x1203_ups": "OWNED_TESTING",
     "mpr121": "OWNED_AWAITING_CONFIRMED_INTEGRATION",
     "rplidar_c1": "SEPARATE_TEST_HARDWARE",
-    "metal_leg_system": "FIRST_MOVEMENT_CONFIRMED_NOT_WALKING"
+    "metal_leg_system": "WALKING_CONFIRMED"
   }
 }
