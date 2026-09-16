@@ -1,12 +1,12 @@
 # Kora — durable project history
 
 > **Żelazna zasada / Iron rule**  
-> Każda istotna zmiana, test, awaria, rollback, nowy moduł, nowa część i decyzja projektowa trafia na WWW. Nie polegamy na pamięci czatu.  
+> Każda istotna zmiana, test, awaria, rollback, nowy moduł, nowa część i decyzja projektowa trafia na WWW. Pamięć czatu nie jest źródłem prawdy.  
 > Every significant change, test, failure, rollback, new module, new part and project decision goes to the web. Chat memory is not the source of truth.
 
 ## Mandatory WWW mirrors
 
-Po każdej istotnej pracy aktualizujemy opis i prawdziwy status — bez publikowania kodu — w następujących miejscach:
+Po każdej istotnej pracy aktualizuję opis i prawdziwy status — bez publikowania kodu — w następujących miejscach:
 
 - Public Source of Truth: https://stapowiczmarcin-sys.github.io/kora-status/
 - Kora Master Panel: https://vega-pi.tailfd0c05.ts.net/

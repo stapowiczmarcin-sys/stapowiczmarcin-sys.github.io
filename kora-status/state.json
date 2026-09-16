@@ -3,7 +3,7 @@
   "updated": "2026-09-16T22:44:00+01:00",
   "project": "Kora",
   "rule": {
-    "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Nie polegamy na pamieci czatu.",
+    "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Pamiec czatu nie jest zrodlem prawdy.",
     "en": "Every significant change, test, failure, rollback, new module, new part and project decision is documented on the web. Chat memory is not the source of truth.",
     "secrets_excluded": true
   },
@@ -31,7 +31,7 @@
   ],
   "documentation_sync_rule": {
     "required": true,
-    "pl": "Po kazdej istotnej pracy aktualizujemy publiczny Source of Truth, Master Panel, Live i Live JSON. Na WWW publikujemy opis i status, bez wklejania kodu.",
+    "pl": "Po kazdej istotnej pracy publiczny Source of Truth, Master Panel, Live i Live JSON musza zostac zaktualizowane. Na WWW trafia opis i status, bez wklejania kodu.",
     "en": "After every significant work item, update the public Source of Truth, Master Panel, Live and Live JSON. Publish summaries and status on the web, not source code.",
     "tailnet_live_integration_status": "PENDING_SAFE_DATA_PATH"
   },
