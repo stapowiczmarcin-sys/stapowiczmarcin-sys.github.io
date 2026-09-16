@@ -15,11 +15,11 @@ This snapshot documents the Servo 2040 migration and the new Kora desktop contro
 
 - Desktop GUI: `kora_remote_2040.py`.
 - Direction controls: forward, backward, left, right, rotate left, rotate right, base position, servo off.
-- Gait controls: Freenove gait 1 / gait 2, speed, step length, turn strength.
-- Six-leg calibration window using Freenove-style X/Y/Z values.
-- Each X/Y/Z correction changes by one unit and recalculates Freenove calibration/IK.
+- Gait controls: gait 1 / gait 2, speed, step length, turn strength.
+- Six-leg calibration window using X/Y/Z values.
+- Each X/Y/Z correction changes by one unit and recalculates calibration/IK.
 - Save operation writes `point.txt` and creates a timestamped backup first.
-- Motion path: Freenove `control.py` -> replacement `servo.py` -> USB bridge -> Servo 2040.
+- Motion path: `control.py` -> `servo.py` -> USB bridge -> Servo 2040.
 
 ## NOT YET MARKED WORKING
 
@@ -36,30 +36,19 @@ Forward/backward/sideways/rotation through the new Servo 2040 output path must n
 | Left middle | 13 | 14 | 15 | SENSOR 5 |
 | Left rear | 16 | 17 | 18 | SENSOR 6 |
 
-## Local source paths
+## Core local files
 
 ```text
-/home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/kora_remote_2040.py
-/home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/control.py
-/home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/servo.py
-/home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/point.txt
-/home/marcin/kora_servo2040_bridge.py
+kora_remote_2040.py
+control.py
+servo.py
+point.txt
+kora_servo2040_bridge.py
 ```
 
-## Recommended local backup command
+## Backup policy
 
-```bash
-STAMP=$(date +%Y%m%d_%H%M%S)
-DEST="/home/marcin/KORA_BACKUPS/master_control_$STAMP"
-mkdir -p "$DEST"
-cp -a /home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/kora_remote_2040.py "$DEST/"
-cp -a /home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/control.py "$DEST/"
-cp -a /home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/servo.py "$DEST/"
-cp -a /home/marcin/Freenove_Big_Hexapod_Robot_Kit_for_Raspberry_Pi/Code/Server/point.txt "$DEST/"
-cp -a /home/marcin/kora_servo2040_bridge.py "$DEST/"
-printf '%s\n' "Kora Master Control snapshot: $STAMP" > "$DEST/README.txt"
-echo "BACKUP: $DEST"
-```
+Create a timestamped local snapshot containing the five core files above plus a README with the verified state at the time of backup.
 
 ## Public documentation
 
