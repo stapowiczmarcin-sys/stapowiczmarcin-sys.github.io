@@ -1,0 +1,78 @@
+name: One-off solo author voice cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/oneoff-solo-author-voice.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Replace team-style wording
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              Path('kora-status/index.html'): [
+                  ('Nie polegamy na pamięci czatu.', 'Pamięć czatu nie jest źródłem prawdy.'),
+                  ('Teraz testujemy mowę ciała zależną od nastroju —', 'Teraz trwają testy mowy ciała zależnej od nastroju —'),
+                  ('Dokładnej wypowiedzi Kory nie zapisujemy jako potwierdzonej bez transkrypcji filmu.', 'Dokładna wypowiedź Kory nie jest oznaczana jako potwierdzona bez transkrypcji filmu.'),
+                  ('Nie naprawiamy ich, dopóki podstawowy nasłuch nie zostanie przywrócony.', 'Dalsze poprawki są wstrzymane do czasu przywrócenia podstawowego nasłuchu.'),
+                  ('Co zawsze dokumentujemy', 'Co zawsze dokumentuję'),
+                  ('Nie publikujemy kluczy API, haseł, tokenów ani prywatnych danych.', 'Klucze API, hasła, tokeny ani prywatne dane nie są publikowane.'),
+              ],
+              Path('kora-status/history.md'): [
+                  ('Nie polegamy na pamięci czatu.', 'Pamięć czatu nie jest źródłem prawdy.'),
+                  ('Po każdej istotnej pracy aktualizujemy opis i prawdziwy status — bez publikowania kodu — w następujących miejscach:', 'Po każdej istotnej pracy aktualizuję opis i prawdziwy status — bez publikowania kodu — w następujących miejscach:'),
+              ],
+              Path('kora-status/state.json'): [
+                  ('Nie polegamy na pamieci czatu.', 'Pamiec czatu nie jest zrodlem prawdy.'),
+                  ('Po kazdej istotnej pracy aktualizujemy publiczny Source of Truth, Master Panel, Live i Live JSON. Na WWW publikujemy opis i status, bez wklejania kodu.', 'Po kazdej istotnej pracy publiczny Source of Truth, Master Panel, Live i Live JSON musza zostac zaktualizowane. Na WWW trafia opis i status, bez wklejania kodu.'),
+              ],
+              Path('kora-brain/index.html'): [
+                  ('Nie przechylamy się. Zabijamy czas.', 'Bez przechylania. Tylko zabijanie czasu.'),
+                  ('We are not tipping over. We are killing time.', 'No tipping over. Just killing time.'),
+              ],
+              Path('parts/index.html'): [
+                  ('Najważniejsza różnica: papier jasny drukujemy lustrzanie, a ciemny normalnie.', 'Najważniejsza różnica: na papierze do jasnych tkanin druk jest lustrzany, a na papierze do ciemnych — normalny.'),
+              ],
+          }
+
+          changed = []
+          for path, pairs in replacements.items():
+              text = path.read_text(encoding='utf-8')
+              original = text
+              for old, new in pairs:
+                  text = text.replace(old, new)
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          print('Changed files:')
+          for p in changed:
+              print(' -', p)
+          PY
+
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kora-status/index.html kora-status/history.md kora-status/state.json kora-brain/index.html parts/index.html
+          git commit -m "fix: remove team-style wording from portfolio"
+          git push origin HEAD:main
