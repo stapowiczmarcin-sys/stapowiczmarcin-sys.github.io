@@ -1,6 +1,6 @@
 {
   "schema": "kora.source_of_truth.v1",
-  "updated": "2026-09-16T22:44:00+01:00",
+  "updated": "2026-09-20T20:30:00+01:00",
   "project": "Kora",
   "rule": {
     "pl": "Kazda istotna zmiana, test, awaria, rollback, nowy modul, nowa czesc i decyzja projektowa trafia na WWW. Pamiec czatu nie jest zrodlem prawdy.",
@@ -43,64 +43,68 @@
     "ROLLED_BACK": "The failed change was reverted to the previous known state."
   },
   "current_priority": {
-    "title": "Develop mood-driven body language after confirmed walking",
+    "title": "Stabilise the head, then test foot contact and LiDAR reactions",
     "status": "TESTING",
-    "details_pl": "Chodzenie Kory jest juz potwierdzone. Aktualne proby dotycza powiazania jej nastroju z mowa ciala: ruchami calego korpusu i nog, tak aby sposob poruszania zmienial sie razem z mood, zamiast byc tylko osobnym zestawem gestow. Rownolegle pozostaja testy toru glosowego.",
-    "details_en": "Kora's walking is now confirmed. Current tests focus on linking mood to body language: whole-body and leg movement should change with her current mood instead of being a separate set of canned gestures. Voice-path testing continues in parallel."
+    "details_pl": "Chodzenie Kory jest potwierdzone i opublikowane. Glowa, ruchome oczy i rozowe futerko sa juz zamontowane. Jedno serwo glowy wyraznie skrzeczy i ma zostac wymienione. Nastepne testy obejmuja switche w stopach oraz reakcje ruchowe wykorzystujace dzialajacy LiDAR; integracja nastroju z mowa ciala pozostaje kolejnym celem.",
+    "details_en": "Kora's walking is confirmed and published. The head, moving eyes and pink fur are now installed. One head servo audibly squeaks and is marked for replacement. The next tests cover foot switches and movement reactions using the working LiDAR; mood-driven body language remains the next behaviour layer."
   },
   "recent_content_work": {
-    "id": "what_will_kora_say_04_2s4p_published_2026_08_23",
+    "id": "kora_walking_and_head_2026_09_20",
     "status": "PUBLISHED",
-    "summary_pl": "Odcinek #4 o budowie pakietu 2S4P z ośmiu odzyskanych ogniw dla mózgu Kory jest opublikowany. Portfolio zawiera pełny schemat, drogę przewodów i uczciwe ograniczenia pomiaru miernikiem.",
-    "summary_en": "Episode #4 about building an eight-cell 2S4P pack for Kora's brain is published. The portfolio contains the full diagram, cable path and honest limits of a multimeter-only check.",
+    "summary_pl": "Opublikowano dwa kolejne etapy Kory: pierwszy film potwierdza chodzenie i skrecanie szesciodroznego korpusu bez glowy, a drugi pokazuje zamontowana glowe, ruchome oczy i dodatkowe rozowe futerko. Jedno serwo glowy skrzeczy i jest przeznaczone do wymiany.",
+    "summary_en": "Two new Kora milestones are published: the first video confirms walking and turning with the six-legged body before the head was installed; the second shows the installed head, moving eyes and additional pink fur. One head servo squeaks and is marked for replacement.",
     "public_targets": [
       "YouTube Shorts",
-      "Main Portfolio",
-      "Kora Brain",
+      "Portfolio update page",
       "Public Source of Truth",
-      "Facebook copy ready",
-      "Ko-fi copy ready"
+      "Facebook",
+      "Ko-fi"
     ],
     "links": {
-      "youtube_short": "https://youtube.com/shorts/EDdY38zSmYM",
-      "portfolio_guide": "https://stapowiczmarcin-sys.github.io/kora-brain/#episode-4-power"
+      "walking_short": "https://youtube.com/shorts/fH9TkHZzB3E",
+      "head_and_eyes_short": "https://youtube.com/shorts/UwT1YXnt-oo",
+      "portfolio_update": "https://stapowiczmarcin-sys.github.io/updates/kora-walking-2026-09-20/"
     },
     "fact_status": {
-      "cell_voltage_and_polarity": "CHECKED_WITH_MULTIMETER",
-      "capacity_internal_resistance_and_runtime": "NOT_CONFIRMED",
-      "kora_exact_spoken_line": "NOT_TRANSCRIBED"
+      "walking_and_turning": "CONFIRMED_ON_VIDEO",
+      "head_and_moving_eyes": "INSTALLED_AND_SHOWN_ON_VIDEO",
+      "noisy_head_servo": "REPLACEMENT_REQUIRED",
+      "foot_switch_functional_test": "PENDING",
+      "lidar_hardware": "WORKING",
+      "lidar_to_movement_reaction": "NEXT_INTEGRATION_STAGE"
     },
     "pi_sync": {
       "master_panel": "PENDING_DIRECT_PI_WRITE",
       "live": "PENDING_SAFE_DATA_PATH",
       "live_json": "PENDING_SAFE_DATA_PATH",
-      "payload": "PENDING_EPISODE_04_PUBLICATION_SYNC"
-    },
-    "private_registry_sync": {
-      "status": "SYNCED",
-      "source_of_truth": "KORA-MASTER",
-      "scope": [
-        "README status",
-        "changelog",
-        "content pipeline",
-        "project registry",
-        "Kora quote memory",
-        "public links",
-        "canonical content record"
-      ],
-      "head_commit": "878716e63692bcccfd6f04169c33186190b9bec7"
+      "payload": "PENDING_2026_09_20_PUBLICATION_SYNC"
     }
   },
   "active_issues": [
     {
-      "id": "spoken_question_no_answer_2026_08_20",
+      "id": "noisy_head_servo_2026_09_20",
       "status": "TESTING",
-      "summary": "Wake acknowledgement works, but the full reply after a spoken question still needs a confirmed end-to-end test."
+      "summary": "One head servo audibly squeaks during operation and is marked for replacement before treating the head mechanism as fully healthy."
+    },
+    {
+      "id": "foot_switch_ground_contact_2026_09_20",
+      "status": "TESTING",
+      "summary": "Foot switches are the next gait-sensing test so each leg can confirm ground contact before more advanced terrain behaviour."
+    },
+    {
+      "id": "lidar_movement_reactions_2026_09_20",
+      "status": "TESTING",
+      "summary": "LiDAR is working; the next stage is linking obstacle/environment readings to deliberate movement reactions."
     },
     {
       "id": "mood_driven_body_language_2026_09_16",
       "status": "TESTING",
       "summary": "Walking is confirmed. Current work maps Kora's mood to coordinated whole-body and leg movement so posture and motion reflect her emotional state."
+    },
+    {
+      "id": "spoken_question_no_answer_2026_08_20",
+      "status": "TESTING",
+      "summary": "Wake acknowledgement works, but the full reply after a spoken question still needs a confirmed end-to-end test."
     },
     {
       "id": "en_secretary_guard",
@@ -133,9 +137,10 @@
     ]
   },
   "next_test": [
+    "Replace the noisy head servo and confirm quiet, repeatable head motion.",
+    "Run controlled foot-switch tests one leg at a time before using contact sensing in gait.",
+    "Link working LiDAR readings to a safe stop/turn/avoidance reaction.",
     "Verify that the confirmed walking gait remains stable after mood-driven body motion is enabled.",
-    "Map happy, curious, irritated and sleepy states to clearly different but safe whole-body movements.",
-    "Check transitions between moods so body movement remains smooth and does not destabilize the gait.",
     "Confirm a complete wake → spoken question → answer cycle in Polish and English.",
     "Record confirmed results in the Master Panel, Live, Live JSON and this public Source of Truth."
   ],
@@ -144,7 +149,11 @@
     "respeaker_xvf3800_capture_and_wake": "WORKING",
     "x1203_ups": "OWNED_TESTING",
     "mpr121": "OWNED_AWAITING_CONFIRMED_INTEGRATION",
+    "rplidar_a2": "WORKING",
     "rplidar_c1": "SEPARATE_TEST_HARDWARE",
-    "metal_leg_system": "WALKING_CONFIRMED"
+    "metal_leg_system": "WALKING_CONFIRMED",
+    "head_and_moving_eyes": "INSTALLED_TESTING",
+    "head_servo_noise": "REPLACEMENT_REQUIRED",
+    "foot_switches": "INSTALLED_TEST_PENDING"
   }
 }
