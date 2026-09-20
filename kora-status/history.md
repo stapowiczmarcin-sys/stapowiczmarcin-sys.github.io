@@ -29,7 +29,7 @@ Master Panel ma już trwałe dane projektu w `state.json`, `modules.json` i `cha
 
 **Status: VERIFIED / PUBLISHED**
 
-PL: Chodzenie Kory zostało pokazane publicznie na filmie. Sześciノżne ciało, jeszcze bez głowy, potrafi chodzić i skręcać po wcześniejszej kalibracji, testach serw i pracy nad ruchem. To potwierdzony etap funkcjonalny, nie tylko test pojedynczej nogi lub serw na stole.
+PL: Chodzenie Kory zostało pokazane publicznie na filmie. Korpus na sześciu nogach, jeszcze bez głowy, potrafi chodzić i skręcać po wcześniejszej kalibracji, testach serw i pracy nad ruchem. To potwierdzony etap funkcjonalny, nie tylko test pojedynczej nogi lub serw na stole.
 
 EN: Kora's walking has now been published on video. The six-legged body, still without the head in this clip, can walk and turn after the earlier calibration, servo testing and gait work. This is a confirmed functional milestone, not only a single-leg or bench-servo test.
 
