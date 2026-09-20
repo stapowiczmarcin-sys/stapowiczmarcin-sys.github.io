@@ -1,0 +1,2 @@
+Pre-update main commit: 73fa6233f19c346383d327e97be95dc5f2f480b5
+This commit is the rollback point captured before the Kora walking/head portfolio updates were added.
