@@ -63,4 +63,64 @@
     latest.textContent = latest.dataset.en;
     buttons.prepend(latest);
   }
+
+  /* Make the new walking milestone visible without hunting through the page. */
+  const mainHeroButtons = document.querySelector('.hero .hero-copy .hero-buttons');
+  if (mainHeroButtons) {
+    let topUpdate = mainHeroButtons.querySelector('[data-kora-top-update="20260920"]');
+    if (!topUpdate) {
+      topUpdate = Array.from(mainHeroButtons.querySelectorAll('a')).find((a) => a.getAttribute('href') === 'updates/kora-aluminium-2026-08-11/');
+    }
+    if (topUpdate) {
+      topUpdate.href = 'updates/kora-walking-2026-09-20/';
+      topUpdate.dataset.koraTopUpdate = '20260920';
+      topUpdate.dataset.en = 'NEW · KORA WALKS →';
+      topUpdate.dataset.pl = 'NOWE · KORA CHODZI →';
+      topUpdate.textContent = topUpdate.dataset.en;
+      topUpdate.classList.add('kora-walk-highlight');
+      mainHeroButtons.prepend(topUpdate);
+    }
+  }
+
+  const siteNav = document.querySelector('.site-nav');
+  if (siteNav && !siteNav.querySelector('[data-kora-walk-nav="20260920"]')) {
+    const navLink = document.createElement('a');
+    navLink.href = 'updates/kora-walking-2026-09-20/';
+    navLink.dataset.koraWalkNav = '20260920';
+    navLink.dataset.en = 'NEW · Kora walks';
+    navLink.dataset.pl = 'NOWE · Kora chodzi';
+    navLink.textContent = navLink.dataset.en;
+    navLink.className = 'kora-walk-nav';
+    const koraLink = Array.from(siteNav.querySelectorAll('a')).find((a) => a.getAttribute('href') === '#kora');
+    if (koraLink && koraLink.nextSibling) siteNav.insertBefore(navLink, koraLink.nextSibling);
+    else siteNav.appendChild(navLink);
+  }
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .kora-walk-highlight{
+      color:#160710!important;
+      border-color:#ff5ea8!important;
+      background:#ff5ea8!important;
+      box-shadow:0 10px 28px rgba(255,94,168,.28)!important;
+      font-weight:950!important;
+    }
+    .kora-walk-highlight:hover,.kora-walk-highlight:focus-visible{
+      color:#0a0d12!important;
+      border-color:#ff8cc6!important;
+      background:#ff8cc6!important;
+    }
+    .site-nav .kora-walk-nav{
+      color:#ff8cc6!important;
+      border-color:rgba(255,94,168,.58)!important;
+      background:rgba(255,94,168,.10)!important;
+      font-weight:900!important;
+    }
+    .site-nav .kora-walk-nav:hover,.site-nav .kora-walk-nav:focus-visible{
+      color:#13050c!important;
+      background:#ff5ea8!important;
+      border-color:#ff5ea8!important;
+    }
+  `;
+  document.head.appendChild(style);
 })();
