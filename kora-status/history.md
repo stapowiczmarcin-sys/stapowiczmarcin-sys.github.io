@@ -25,6 +25,32 @@ Master Panel ma już trwałe dane projektu w `state.json`, `modules.json` i `cha
 
 ---
 
+## 2026-09-20 — Kora walking published
+
+**Status: VERIFIED / PUBLISHED**
+
+PL: Chodzenie Kory zostało pokazane publicznie na filmie. Sześciノżne ciało, jeszcze bez głowy, potrafi chodzić i skręcać po wcześniejszej kalibracji, testach serw i pracy nad ruchem. To potwierdzony etap funkcjonalny, nie tylko test pojedynczej nogi lub serw na stole.
+
+EN: Kora's walking has now been published on video. The six-legged body, still without the head in this clip, can walk and turn after the earlier calibration, servo testing and gait work. This is a confirmed functional milestone, not only a single-leg or bench-servo test.
+
+YouTube: https://youtube.com/shorts/fH9TkHZzB3E
+
+Portfolio update: https://stapowiczmarcin-sys.github.io/updates/kora-walking-2026-09-20/
+
+## 2026-09-20 — Head, moving eyes and pink fur added
+
+**Status: INSTALLED / TESTING**
+
+PL: Kolejny publiczny film pokazuje Korę z zamontowaną głową, ruchomymi oczami i dodatkowym różowym futerkiem. Kora chodzi i rozgląda się. Jedno serwo głowy wyraźnie skrzeczy podczas pracy i jest przeznaczone do wymiany; nie oznaczam tego elementu jako w pełni sprawnego.
+
+EN: The next public video shows Kora with the head installed, moving eyes and additional pink fur. Kora can walk and look around. One head servo audibly squeaks during operation and is marked for replacement; that component is not being labelled fully healthy.
+
+Next: replace the noisy servo, refine head movement, test the foot switches and connect movement decisions with LiDAR reactions.
+
+YouTube: https://youtube.com/shorts/UwT1YXnt-oo
+
+Portfolio update: https://stapowiczmarcin-sys.github.io/updates/kora-walking-2026-09-20/
+
 ## 2026-08-22 — Kora/Alexa social cover corrected
 
 **Status: ASSET_READY**
