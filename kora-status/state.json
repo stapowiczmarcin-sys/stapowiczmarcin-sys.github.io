@@ -45,13 +45,13 @@
   "current_priority": {
     "title": "Stabilise the head, then test foot contact and LiDAR reactions",
     "status": "TESTING",
-    "details_pl": "Chodzenie Kory jest potwierdzone i opublikowane. Glowa, ruchome oczy i rozowe futerko sa juz zamontowane. Jedno serwo glowy wyraznie skrzeczy i ma zostac wymienione. Nastepne testy obejmuja switche w stopach oraz reakcje ruchowe wykorzystujace dzialajacy LiDAR; integracja nastroju z mowa ciala pozostaje kolejnym celem.",
+    "details_pl": "Chodzenie Kory jest juz potwierdzone i opublikowane. Glowa, ruchome oczy i rozowe futerko sa juz zamontowane. Jedno serwo glowy wyraznie skrzeczy i ma zostac wymienione. Nastepne testy obejmuja switche w stopach oraz reakcje ruchowe wykorzystujace dzialajacy LiDAR; integracja nastroju z mowa ciala pozostaje kolejnym celem.",
     "details_en": "Kora's walking is confirmed and published. The head, moving eyes and pink fur are now installed. One head servo audibly squeaks and is marked for replacement. The next tests cover foot switches and movement reactions using the working LiDAR; mood-driven body language remains the next behaviour layer."
   },
   "recent_content_work": {
     "id": "kora_walking_and_head_2026_09_20",
     "status": "PUBLISHED",
-    "summary_pl": "Opublikowano dwa kolejne etapy Kory: pierwszy film potwierdza chodzenie i skrecanie szesciodroznego korpusu bez glowy, a drugi pokazuje zamontowana glowe, ruchome oczy i dodatkowe rozowe futerko. Jedno serwo glowy skrzeczy i jest przeznaczone do wymiany.",
+    "summary_pl": "Opublikowano dwa kolejne etapy Kory: pierwszy film potwierdza chodzenie i skrecanie korpusu na szesciu nogach bez glowy, a drugi pokazuje zamontowana glowe, ruchome oczy i dodatkowe rozowe futerko. Jedno serwo glowy skrzeczy i jest przeznaczone do wymiany.",
     "summary_en": "Two new Kora milestones are published: the first video confirms walking and turning with the six-legged body before the head was installed; the second shows the installed head, moving eyes and additional pink fur. One head servo squeaks and is marked for replacement.",
     "public_targets": [
       "YouTube Shorts",
