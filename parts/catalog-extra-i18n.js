@@ -93,3 +93,16 @@ Object.assign(window.CATALOG_I18N.parts, {
   "anycubic-photon-mono-4": { name: "ANYCUBIC Photon Mono 4 — 10K resin printer", short: "Current 3D printer used to make Kora's plastic legs", spec: "7-inch 10K mono screen • build volume 153.4 × 87 × 165 mm • 405 nm resin printing" },
   "anycubic-standard-resin-black-1kg": { name: "ANYCUBIC Standard Resin — black, 1 kg", short: "Resin used to print Kora's plastic legs", spec: "405 nm • standard photopolymer resin • black • 1 kg • LCD / DLP / SLA" }
 });
+
+Object.assign(window.CATALOG_I18N.parts, {
+  "diymore-dm996-6pcs": {
+    "name": "diymore DM996 — 6-servo set",
+    "short": "New servos for the Kora project",
+    "spec": "6 pieces • metal gears • digital servos"
+  },
+  "fasient-speakers-b08cky18c5": {
+    "name": "fasient — 8-ohm / 5 W speakers",
+    "short": "New speakers for Kora's voice",
+    "spec": "8 Ω • rated 5 W • compact enclosure"
+  }
+});
