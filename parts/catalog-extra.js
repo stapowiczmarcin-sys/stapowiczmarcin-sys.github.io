@@ -352,3 +352,38 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "ecsing-micro-limit-switche
 
 window.PART_IMAGES = window.PART_IMAGES || {};
 window.PART_IMAGES["neewer-lm2"] = "https://de.neewer.com/cdn/shop/files/1_42e1f1da-e75d-44cc-be2b-aa2225eb4d2a.jpg?v=1746761338&width=1600";
+
+// Kora parts added 2026-09-22; keep exact owner-supplied affiliate links.
+if (!window.PARTS_CATALOG.some((part) => part.id === "diymore-dm996-6pcs")) {
+  window.PARTS_CATALOG.push({
+  "id": "diymore-dm996-6pcs",
+  "name": "diymore DM996 — zestaw 6 serw",
+  "short": "Nowe serwa do projektu Kora",
+  "category": "Napędy",
+  "supplier": "Amazon",
+  "project": "Kora / VEGA",
+  "status": "Mam",
+  "accent": "green",
+  "spec": "6 szt. • metalowe przekładnie • serwomechanizmy cyfrowe",
+  "url": "https://amzn.to/46CUTh6",
+  "youtubePl": "Do projektu Kora kupiłem zestaw sześciu serw diymore DM996 z metalowymi przekładniami.",
+  "youtubeEn": "For the Kora project I bought a set of six diymore DM996 digital servos with metal gears."
+});
+}
+
+if (!window.PARTS_CATALOG.some((part) => part.id === "fasient-speakers-b08cky18c5")) {
+  window.PARTS_CATALOG.push({
+  "id": "fasient-speakers-b08cky18c5",
+  "name": "fasient — głośniki 8 Ω / 5 W",
+  "short": "Nowe głośniki do głosu Kory",
+  "category": "Audio",
+  "supplier": "Amazon",
+  "project": "Kora / VEGA",
+  "status": "Mam",
+  "accent": "pink",
+  "spec": "8 Ω • deklarowane 5 W • kompaktowa obudowa",
+  "url": "https://amzn.to/4AvlZo8",
+  "youtubePl": "Do głosu Kory kupiłem kompaktowe głośniki fasient 8 Ω / 5 W.",
+  "youtubeEn": "For Kora's voice I bought compact fasient 8-ohm / 5 W speakers."
+});
+}
