@@ -1,6 +1,6 @@
 "use strict";
 
-// Local product photographs; source information is in image-sources.json.
+// Product photographs: local sources in image-sources.json; new Amazon sources noted below.
 window.PART_IMAGES = {
   "rpi5-16": "assets/catalog/rpi5-16.webp",
   "ai-hat-2": "assets/catalog/ai-hat-2.webp",
@@ -111,3 +111,7 @@ window.PART_IMAGES = {
   "epson-ecotank-et2861": "assets/catalog/epson-ecotank-et2861.jpg",
   "ecsing-micro-limit-switches-6pcs": "assets/catalog/ecsing-micro-limit-switches-6pcs.jpg"
 };
+
+// Product photos from Amazon listings B09KZRPJ41 and B08CKY18C5 (2026-09-22).
+window.PART_IMAGES["diymore-dm996-6pcs"] = "https://m.media-amazon.com/images/I/717Wd+zhYEL._AC_SL1500_.jpg";
+window.PART_IMAGES["fasient-speakers-b08cky18c5"] = "https://m.media-amazon.com/images/I/615GGdaEHiL._AC_SL1001_.jpg";
