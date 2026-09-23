@@ -68,6 +68,12 @@
     .mini-stack{display:grid;gap:18px}
     .mini{position:relative;border-radius:30px;overflow:hidden;min-height:206px;background:#ddd}
     .mini img{height:100%;position:absolute;inset:0;object-fit:cover}
+    .bouquet-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}
+    .bouquet-gallery .card{padding:0;text-align:left;color:inherit;font:inherit}
+    .bouquet-gallery .photo{display:block;aspect-ratio:3/4}
+    .bouquet-gallery .card-body,.bouquet-gallery .meta{display:block}
+    .bouquet-gallery .title{display:block;font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.2;margin-bottom:6px}
+    @media(max-width:560px){.bouquet-gallery{grid-template-columns:1fr}}
     .about{background:#342920;color:#fff}
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
     .about h2{font-size:clamp(44px,5vw,70px);margin-bottom:22px}.about p{color:#e8ddd5;font-size:17px}
@@ -140,6 +146,16 @@
       <div class="feature">
         <div class="feature-copy"><div class="eyebrow">Floral collection</div><h2>Bouquets that never fade.</h2><p>Colourful crochet flowers turn a familiar gift into something permanent. Every petal, leaf and stem is shaped by hand, one stitch at a time.</p><div class="actions"><a class="btn" href="#contact">Enquire about a bouquet</a></div></div>
         <div class="feature-img"><img src="assets/crochet-17.webp" alt="Colourful handmade crochet flower bouquet"></div>
+      </div>
+      <div class="bouquet-gallery" aria-label="Pink and cream crochet bouquet photographs">
+        <button type="button" class="card" data-full="assets/pink-cream-bouquet-1.jpg" aria-label="Enlarge pink rose bouquet photograph">
+          <span class="photo"><img src="assets/pink-cream-bouquet-1.jpg" alt="Pink crochet rose and tall pink and cream flowers with green leaves in an amber vase" loading="lazy" width="1152" height="1536"></span>
+          <span class="card-body"><span class="title">Pink &amp; Cream Bouquet</span><span class="meta">Crochet flowers · Pink rose view</span></span>
+        </button>
+        <button type="button" class="card" data-full="assets/pink-cream-bouquet-2.jpg" aria-label="Enlarge cream rose bouquet photograph">
+          <span class="photo"><img src="assets/pink-cream-bouquet-2.jpg" alt="The same handmade bouquet from another angle, showing a cream crochet rose beside pink flowers in an amber vase" loading="lazy" width="1152" height="1536"></span>
+          <span class="card-body"><span class="title">A Different View</span><span class="meta">Same bouquet · Cream rose detail</span></span>
+        </button>
       </div>
       <div class="ocean-strip">
         <div class="wide-card"><img src="assets/crochet-18.webp" alt="Handmade crochet shark"><div class="wide-copy"><h3>Ocean Friends</h3><p>Playful sea creatures with individual expressions and plenty of personality.</p></div></div>
