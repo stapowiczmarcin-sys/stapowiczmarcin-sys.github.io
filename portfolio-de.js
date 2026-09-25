@@ -64,7 +64,6 @@
     buttons.prepend(latest);
   }
 
-  /* Make the new walking milestone visible without hunting through the page. */
   const mainHeroButtons = document.querySelector('.hero .hero-copy .hero-buttons');
   if (mainHeroButtons) {
     let topUpdate = mainHeroButtons.querySelector('[data-kora-top-update="20260920"]');
@@ -96,7 +95,6 @@
     else siteNav.appendChild(navLink);
   }
 
-  /* Permanent menu entry for downloadable public code. */
   if (siteNav && !siteNav.querySelector('[data-free-code-nav="20260925"]')) {
     const freeCodeLink = document.createElement('a');
     freeCodeLink.href = 'eyes/?lang=en#download';
@@ -115,7 +113,6 @@
     else siteNav.appendChild(freeCodeLink);
   }
 
-  /* New 2026-09-20 Kora hero. Keep the previous image as a fallback until all chunks load. */
   const mainHeroImage = document.querySelector('.hero .hero-media img');
   if (mainHeroImage && mainHeroImage.dataset.koraHero20260920 !== '1') {
     mainHeroImage.dataset.koraHero20260920 = '1';
@@ -163,6 +160,40 @@
       color:#13050c!important;
       background:#ff5ea8!important;
       border-color:#ff5ea8!important;
+    }
+
+    /* Stable two-row desktop navigation: main links on top, utilities below. */
+    @media (min-width:1081px){
+      .topbar-inner{
+        align-items:center!important;
+      }
+      .top-actions.nav-shell{
+        flex:1 1 auto!important;
+        display:flex!important;
+        flex-wrap:wrap!important;
+        justify-content:flex-end!important;
+        gap:6px 10px!important;
+        padding:6px 0!important;
+      }
+      .site-nav{
+        flex:1 1 100%!important;
+        width:100%!important;
+        display:flex!important;
+        flex-wrap:wrap!important;
+        justify-content:flex-end!important;
+        gap:3px!important;
+      }
+      .nav-separator{
+        display:none!important;
+      }
+      .nav-utilities{
+        flex:1 1 100%!important;
+        width:100%!important;
+        display:flex!important;
+        flex-wrap:wrap!important;
+        justify-content:flex-end!important;
+        gap:3px!important;
+      }
     }
   `;
   document.head.appendChild(style);
