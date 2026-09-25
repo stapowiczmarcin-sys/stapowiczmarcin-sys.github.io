@@ -1,0 +1,73 @@
+name: Install GA4 tracking
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-ga4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install-ga4:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject Google Analytics tag into public HTML pages
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          measurement_id = "G-69T4HZBSG8"
+          tag = '''
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-69T4HZBSG8"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-69T4HZBSG8');
+            </script>
+          '''
+
+          changed = []
+          skipped = []
+          for path in Path('.').rglob('*.html'):
+              rel = path.as_posix()
+              low = rel.lower()
+              if any(part in low for part in ('backup', '/archive/', '/.git/')):
+                  skipped.append(rel)
+                  continue
+
+              text = path.read_text(encoding='utf-8')
+              if measurement_id in text:
+                  continue
+              match = re.search(r'<head(?:\s[^>]*)?>', text, flags=re.I)
+              if not match:
+                  skipped.append(rel)
+                  continue
+
+              new_text = text[:match.end()] + '\n' + tag.rstrip() + text[match.end():]
+              path.write_text(new_text, encoding='utf-8')
+              changed.append(rel)
+
+          print(f"GA4 added to {len(changed)} HTML files")
+          for p in changed:
+              print(f"  + {p}")
+          if skipped:
+              print(f"Skipped {len(skipped)} files without a suitable public <head> or matching exclusion")
+
+      - name: Commit tracked HTML changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No HTML changes needed."
+            exit 0
+          fi
+          git commit -m "feat: add Google Analytics 4 to portfolio"
+          git push
