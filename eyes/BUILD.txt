@@ -1,0 +1,17 @@
+KORA TFT EYES V7.4 PUBLIC — publication checks, 25 September 2026
+Target: ESP32-WROOM / one ST7789V 240x320, rotated to 320x240.
+
+The public sketch was reviewed against the supplied V7.4 source.
+renderEye(), applyCrtMask() and drawFace() remain unchanged.
+Fixed AP/OTA credentials removed; Wi-Fi is disabled by default.
+
+ESP32 compilation: NOT COMPLETED. The publication environment could not
+retrieve the required ESP32 toolchain (network download failure).
+This is a source release, not a compiled or hardware-validated binary.
+Use Arduino IDE Verify with Espressif ESP32 core 3.x before uploading.
+No physical ESP32, display or servo test was performed for this public copy.
+
+Weryfikacja: renderer porownano z dostarczonym V7.4; usunieto stale hasla.
+Kompilacji ESP32 nie ukonczono: pobranie narzedzi zablokowal blad sieci.
+Przed wgraniem uzyj Sprawdz/Verify w Arduino IDE z pakietem ESP32 3.x.
+Ta publikacja nie potwierdza testu na fizycznym sprzecie.

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Kora eyes — rendering concept</title>
+  <desc id="desc">Two cyan eyes on one rectangular display. A conceptual illustration, not hardware footage.</desc>
+  <defs>
+    <radialGradient id="iris"><stop stop-color="#e1fdff"/><stop offset=".45" stop-color="#7af1ff"/><stop offset=".72" stop-color="#17bdd3"/><stop offset="1" stop-color="#103440"/></radialGradient>
+    <linearGradient id="white" x2="0" y2="1"><stop stop-color="#e5ffff"/><stop offset="1" stop-color="#70d6df"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="12"/></filter>
+    <clipPath id="lid"><path d="M58 206 Q147 113 256 191 L257 258 Q160 287 61 254Z"/></clipPath>
+    <g id="eye">
+      <path d="M58 206 Q147 113 256 191 L257 258 Q160 287 61 254Z" fill="#2ee6ff" filter="url(#glow)" opacity=".5"/>
+      <g clip-path="url(#lid)">
+        <rect x="45" y="130" width="225" height="180" fill="url(#white)"/>
+        <circle cx="168" cy="217" r="48" fill="#061318"/>
+        <circle cx="168" cy="217" r="44" fill="url(#iris)"/>
+        <circle cx="168" cy="217" r="32" fill="none" stroke="#10343c" stroke-width="9" stroke-dasharray="2 6"/>
+        <circle cx="168" cy="217" r="22" fill="#050d11"/>
+        <circle cx="151" cy="197" r="9" fill="#fff"/>
+        <circle cx="182" cy="231" r="4" fill="#fff"/>
+      </g>
+      <path d="M58 206 Q147 113 256 191 M61 254 Q160 287 257 258" fill="none" stroke="#74f0fb" stroke-width="3"/>
+    </g>
+  </defs>
+  <rect width="640" height="480" rx="8" fill="#060d12"/>
+  <g fill="none" stroke="#1d333c" stroke-width="1">
+    <rect x="22" y="22" width="596" height="436" rx="3"/>
+    <path d="M22 82H618M22 399H618M320 82V399" stroke-dasharray="4 6"/>
+  </g>
+  <use href="#eye"/>
+  <use href="#eye" transform="translate(640 0) scale(-1 1)"/>
+  <g font-family="monospace" font-size="13" fill="#819ca6" letter-spacing="2">
+    <text x="43" y="57">KORA / TFT EYES</text>
+    <text x="470" y="57">ST7789</text>
+    <text x="43" y="432">1 DISPLAY</text>
+    <text x="484" y="432">2 EYES</text>
+  </g>
+  <circle cx="591" cy="52" r="4" fill="#60e6ee"/>
+</svg>
