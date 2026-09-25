@@ -96,6 +96,25 @@
     else siteNav.appendChild(navLink);
   }
 
+  /* Permanent menu entry for downloadable public code. */
+  if (siteNav && !siteNav.querySelector('[data-free-code-nav="20260925"]')) {
+    const freeCodeLink = document.createElement('a');
+    freeCodeLink.href = 'eyes/?lang=en#download';
+    freeCodeLink.dataset.freeCodeNav = '20260925';
+    freeCodeLink.dataset.en = 'Free Code';
+    freeCodeLink.dataset.pl = 'Darmowe kody';
+    freeCodeLink.textContent = freeCodeLink.dataset.en;
+    freeCodeLink.addEventListener('click', () => {
+      const selectedLanguage = document.getElementById('languageSelect')?.value;
+      freeCodeLink.href = selectedLanguage === 'pl'
+        ? 'eyes/?lang=pl#download'
+        : 'eyes/?lang=en#download';
+    });
+    const koraLink = Array.from(siteNav.querySelectorAll('a')).find((a) => a.getAttribute('href') === '#kora');
+    if (koraLink && koraLink.nextSibling) siteNav.insertBefore(freeCodeLink, koraLink.nextSibling);
+    else siteNav.appendChild(freeCodeLink);
+  }
+
   /* New 2026-09-20 Kora hero. Keep the previous image as a fallback until all chunks load. */
   const mainHeroImage = document.querySelector('.hero .hero-media img');
   if (mainHeroImage && mainHeroImage.dataset.koraHero20260920 !== '1') {
