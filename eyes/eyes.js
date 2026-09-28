@@ -36,8 +36,8 @@
       ? 'Oczy Kory — piękne oczy bez makeupu | Darmowy kod ESP32'
       : 'Kora Eyes — Beautiful eyes, no makeup required | Free ESP32 code';
     document.querySelector('.hero-visual img').alt = next === 'pl'
-      ? 'Dwoje turkusowych oczu na jednym prostokątnym ekranie — ilustracja'
-      : 'Two cyan eyes on one rectangular display — concept illustration';
+      ? 'Kora z dwoma okrągłymi wyświetlaczami i niebieskimi oczami'
+      : 'Kora with two round displays showing blue eyes';
     updateStatus();
   }
 
