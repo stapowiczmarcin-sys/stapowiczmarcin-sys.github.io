@@ -1,0 +1,25 @@
+KORA V18 / verification / 2026-09-28
+
+Full private sketches compiled with Arduino CLI, ESP32 core 3.3.12.
+FQBN: esp32:esp32:esp32s3:PSRAM=opi,FlashSize=16M,PartitionScheme=app3M_fat9M_16MB,CDCOnBoot=cdc
+Libraries: Adafruit GFX 1.12.6, Adafruit GC9A01A 1.1.1, ESP32Servo 3.2.1.
+Public copies differ only in password placeholders, corresponding messages and README references.
+No physical device upload, servo test or device FPS measurement was performed.
+
+KoraHumanMetalV18_S3: PASS, program 1434366 B, globals 64436 B.
+Native renderer/controller tests (human): original exact; six colours preserve lids/sclera/pupil across 54 poses; buffer guards; white reflection; adaptation, hysteresis, manual hold, stale light, time wrap. Checksum 25017300
+
+KoraMetalEyesV18_S3: PASS, program 1436254 B, globals 64540 B.
+Native renderer/controller tests (metal): original exact; six colours preserve lids/sclera/pupil across 54 poses; buffer guards; white reflection; adaptation, hysteresis, manual hold, stale light, time wrap. Checksum 25015500
+
+KoraMonsterEyesV18_S3: PASS, program 1436254 B, globals 64540 B.
+Native renderer/controller tests (monster): original exact; six colours preserve lids/sclera/pupil across 54 poses; buffer guards; white reflection; adaptation, hysteresis, manual hold, stale light, time wrap. Checksum 17028000
+
+Tests compare original output exactly and protect eyelids, sclera and pupils for both eyes across 54 poses × 6 colours per variant.
+Existing servo/sleep functions and all embedded texture arrays were compared against their bases unchanged.
+The human variant preserves the already-published 500 ms manual blink.
+One shared RGB565 PSRAM framebuffer is retained. Added colour LUT: 512 B, no per-colour bitmap.
+Host timing is a desktop diagnostic, not ESP32 FPS: optimized monster sample medians baseline ~0.624 ms/frame, original mode ~0.629, blue ~0.649.
+Colour processing has a small measured host cost. Device FPS must be checked using STATUS fps/renderMs; unchanged device FPS is not claimed.
+ADC pin configuration remains -1/-1. Dual sensor normalization/mean, 350 ms low-pass, 2% hysteresis, asymmetric adaptation and stale serial fallback are documented.
+Package validation covers ZIP CRCs, folder/sketch matching names, source completeness, local links and SHA-256.
