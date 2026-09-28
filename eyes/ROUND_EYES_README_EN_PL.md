@@ -8,6 +8,18 @@ This is the dual round-display release, derived from KoraEyesCyber_S3_V13_BLINK5
 
 Hardware: ESP32-S3 N16R8, two 240 × 240 GC9A01 SPI displays. Arduino board: ESP32S3 Dev Module; 16 MB flash; OPI PSRAM enabled; ESP32 Arduino core 3.x. Libraries: Adafruit GFX, Adafruit GC9A01A, ESP32Servo compatible with ESP32-S3 and their dependencies.
 
+### Arduino IDE settings confirmed on Kora's working build
+
+Use these settings for the **ESP32-S3 N16R8 configuration used in Kora's dual-eye build**:
+
+- **Board:** ESP32S3 Dev Module
+- **Flash Size:** 16 MB (128 Mb)
+- **PSRAM:** OPI PSRAM
+- **Partition Scheme:** Huge APP (3MB No OTA / 1MB SPIFFS)
+- **ESP32 Arduino core:** 3.x
+
+The two realistic eyes use a canvas/framebuffer in external PSRAM. **OPI PSRAM is therefore the important RAM setting.** `Huge APP` changes the flash partition available to the compiled program; it does not create extra RAM. If your ESP32-S3 module is not N16R8, check its exact flash/PSRAM type instead of copying these settings blindly.
+
 1. Extract the ZIP and open KoraEyesCyber_S3_V13_PUBLIC/KoraEyesCyber_S3_V13_PUBLIC.ino. Keep the folder and sketch names identical.
 2. Before upload, replace AP_PASS and OTA_PASSWORD with your own different passwords (12–63 characters for AP_PASS). The public file contains placeholders, not the original passwords.
 3. Connect the displays using the table below. Supply voltage and backlight wiring depend on your actual display module; GPIO signals are 3.3 V.
@@ -34,6 +46,18 @@ Public-copy changes: replace AP and OTA passwords with placeholders; correct the
 To wersja na dwa okrągłe wyświetlacze, na podstawie KoraEyesCyber_S3_V13_BLINK500.zip z 27 września 2026. Jest osobnym programem od V7.4 na jeden prostokątny ST7789.
 
 Sprzęt: ESP32-S3 N16R8 i dwa ekrany GC9A01 SPI 240 × 240. W Arduino IDE: ESP32S3 Dev Module, flash 16 MB, włączona pamięć OPI PSRAM, rdzeń ESP32 3.x. Biblioteki: Adafruit GFX, Adafruit GC9A01A, ESP32Servo zgodne z S3 oraz ich zależności.
+
+### Ustawienia Arduino IDE potwierdzone na działającej Korze
+
+Dla konfiguracji **ESP32-S3 N16R8 użytej w dwóch realistycznych oczach Kory** ustaw:
+
+- **Board:** ESP32S3 Dev Module
+- **Flash Size:** 16 MB (128 Mb)
+- **PSRAM:** OPI PSRAM
+- **Partition Scheme:** Huge APP (3MB No OTA / 1MB SPIFFS)
+- **ESP32 Arduino core:** 3.x
+
+Dwa realistyczne oczy korzystają z canvasu/framebuffera w zewnętrznym PSRAM. **OPI PSRAM jest więc kluczowym ustawieniem pamięci RAM.** `Huge APP` zmienia podział pamięci flash dostępnej dla programu — nie dodaje RAM-u. Jeżeli masz inny moduł ESP32-S3 niż N16R8, sprawdź jego dokładny typ flash/PSRAM zamiast kopiować te ustawienia w ciemno.
 
 1. Rozpakuj ZIP i otwórz KoraEyesCyber_S3_V13_PUBLIC/KoraEyesCyber_S3_V13_PUBLIC.ino. Nazwy folderu i szkicu muszą być takie same.
 2. Przed wgraniem ustaw własne, różne hasła AP_PASS i OTA_PASSWORD (AP_PASS: 12–63 znaki). Publiczny plik zawiera symbole zastępcze, a nie oryginalne hasła.
