@@ -19,6 +19,82 @@
       '4 / 4 · Powieki, potem kopiowanie. Oba ekrany pokazują gotowe nowe oko.']
   };
 
+  function installPiDirectorSection() {
+    const nav = document.querySelector('.top nav');
+    const languages = nav && nav.querySelector('.languages');
+    if (nav && languages && !nav.querySelector('a[href="#pi-control"]')) {
+      const link = document.createElement('a');
+      link.href = '#pi-control';
+      link.dataset.en = 'Pi director';
+      link.dataset.pl = 'Panel na Pi';
+      link.textContent = 'Pi director';
+      nav.insertBefore(link, languages);
+    }
+
+    const canvas = document.getElementById('canvas');
+    if (canvas && !document.getElementById('pi-control')) {
+      const section = document.createElement('section');
+      section.className = 'section';
+      section.id = 'pi-control';
+      section.innerHTML = `
+        <div class="wrap">
+          <div class="kicker" data-en="RASPBERRY PI / USB EYE DIRECTOR / 29 SEP 2026" data-pl="RASPBERRY PI / PANEL USB DO OCZU / 29 WRZ 2026">RASPBERRY PI / USB EYE DIRECTOR / 29 SEP 2026</div>
+          <h2 data-en="One panel. Four eye personalities. One USB cable." data-pl="Jeden panel. Cztery osobowości oczu. Jeden kabel USB.">One panel. Four eye personalities. One USB cable.</h2>
+          <p class="section-intro" data-en="Kora Eye Film Show is the Raspberry Pi panel used to demonstrate and film the Human, Metal, Monster and Animal eye builds. It sends simple serial commands to the ESP32-S3 and gives each eye set a repeatable SHORT or LONG performance." data-pl="Kora Eye Film Show to panel na Raspberry Pi używany do prezentowania i nagrywania oczu Human, Metal, Monster i Animal. Wysyła proste komendy szeregowe do ESP32-S3 i daje każdej wersji powtarzalny pokaz SHORT albo LONG.">Kora Eye Film Show is the Raspberry Pi panel used to demonstrate and film the Human, Metal, Monster and Animal eye builds. It sends simple serial commands to the ESP32-S3 and gives each eye set a repeatable SHORT or LONG performance.</p>
+
+          <div class="facts">
+            <div class="fact"><b>115200 USB</b><span data-en="Pi ↔ ESP32-S3 serial" data-pl="Serial Pi ↔ ESP32-S3">Pi ↔ ESP32-S3 serial</span></div>
+            <div class="fact"><b>SHORT / LONG</b><span data-en="Four ready-made filming routines" data-pl="Cztery gotowe sekwencje nagrań">Four ready-made filming routines</span></div>
+            <div class="fact"><b>GPIO3 / GPIO4</b><span data-en="Real light sensors — no fake demo" data-pl="Prawdziwe czujniki światła — bez udawania">Real light sensors — no fake demo</span></div>
+          </div>
+
+          <div class="split">
+            <div>
+              <h3 data-en="What the panel controls" data-pl="Co steruje panel">What the panel controls</h3>
+              <p data-en="WAKE and SLEEP, manual blink, nine gaze directions, precise LOOK X Y control and a live serial log. Human, Metal and Monster V18 also get iris controls; Animal keeps its own amber animal-eye character." data-pl="WAKE i SLEEP, ręczne mrugnięcie, dziewięć kierunków patrzenia, precyzyjne LOOK X Y i podgląd logu serial. Human, Metal i Monster V18 mają także sterowanie tęczówką; Animal zachowuje własny bursztynowy, zwierzęcy charakter.">WAKE and SLEEP, manual blink, nine gaze directions, precise LOOK X Y control and a live serial log. Human, Metal and Monster V18 also get iris controls; Animal keeps its own amber animal-eye character.</p>
+              <p data-en="SHORT moves quickly through the strongest expressions for vertical video. LONG slows the same ideas down, adds more gaze and iris shots and finishes with a real light-sensor demonstration." data-pl="SHORT szybko pokazuje najmocniejsze reakcje do pionowego filmu. LONG zwalnia te same ruchy, dodaje więcej ujęć spojrzenia i tęczówek, a na końcu wykonuje prawdziwy pokaz czujników światła.">SHORT moves quickly through the strongest expressions for vertical video. LONG slows the same ideas down, adds more gaze and iris shots and finishes with a real light-sensor demonstration.</p>
+            </div>
+            <div>
+              <h3 data-en="Safe by design" data-pl="Bezpieczny z założenia">Safe by design</h3>
+              <p data-en="The panel does not open a serial port or send an eye command at startup. You choose the device and press CONNECT yourself. Names that look like Servo2040 / MicroPython / Pimoroni are filtered from the eye candidates." data-pl="Po uruchomieniu panel nie otwiera portu i nie wysyła żadnej komendy do oczu. Sam wybierasz urządzenie i naciskasz CONNECT. Nazwy wyglądające na Servo2040 / MicroPython / Pimoroni są filtrowane z kandydatów na port oczu.">The panel does not open a serial port or send an eye command at startup. You choose the device and press CONNECT yourself. Names that look like Servo2040 / MicroPython / Pimoroni are filtered from the eye candidates.</p>
+              <p class="notice" data-en="This is an eye-display tool only. It does not control Kora’s mechanical head, legs or Servo2040. USB tty numbers can change after reconnecting hardware, so always verify the selected port." data-pl="To narzędzie wyłącznie do wyświetlanych oczu. Nie steruje mechaniczną głową Kory, nogami ani Servo2040. Numery tty mogą zmienić się po przepięciu USB, dlatego zawsze sprawdź wybrany port.">This is an eye-display tool only. It does not control Kora’s mechanical head, legs or Servo2040. USB tty numbers can change after reconnecting hardware, so always verify the selected port.</p>
+            </div>
+          </div>
+
+          <div class="code-box">
+            <div class="code-label">RASPBERRY PI · RUN</div>
+            <pre><code>sudo apt install -y python3-serial
+cd /home/marcin/vega_robot
+python3 kora_eye_film_show.py</code></pre>
+          </div>
+
+          <p data-en="LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on GPIO3/GPIO4 or cover the sensors and let the firmware react: pupils change size and strong light progressively squints the eyelids." data-pl="LIGHT DEMO celowo nie wysyła sztucznej wartości LIGHT. Poświeć prawdziwą latarką na czujniki GPIO3/GPIO4 albo je zasłoń i pozwól firmware’owi zareagować: źrenice zmieniają rozmiar, a mocne światło stopniowo mruży powieki.">LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on GPIO3/GPIO4 or cover the sensors and let the firmware react: pupils change size and strong light progressively squints the eyelids.</p>
+
+          <div class="buttons">
+            <a class="btn primary" href="kora_eye_film_show.py" download data-en="Download Pi panel ↓" data-pl="Pobierz panel na Pi ↓">Download Pi panel ↓</a>
+            <a class="btn" href="KORA_EYE_FILM_SHOW_EN_PL.md" data-en="EN / PL setup guide →" data-pl="Instrukcja EN / PL →">EN / PL setup guide →</a>
+          </div>
+        </div>`;
+      canvas.parentNode.insertBefore(section, canvas);
+    }
+
+    const v18NoteEn = 'Light sensors: GPIO3 left / GPIO4 right. Automatic pupils, strong-light squint and LOOK control are enabled. Set your own AP/OTA passwords before upload.';
+    const v18NotePl = 'Czujniki światła: GPIO3 lewy / GPIO4 prawy. Działają automatyczne źrenice, mrużenie przy mocnym świetle i sterowanie LOOK. Przed wgraniem ustaw własne hasła AP/OTA.';
+    ['realistic', 'metal', 'monster'].forEach(id => {
+      const note = document.querySelector(`#${id} .small`);
+      if (note) {
+        note.dataset.en = v18NoteEn;
+        note.dataset.pl = v18NotePl;
+      }
+    });
+
+    const animalNote = document.querySelector('#animal-v14 .small');
+    if (animalNote) {
+      animalNote.dataset.en = 'Animal V14: GPIO3/GPIO4 light sensors, automatic pupil response, strong-light squint and LOOK X Y control. USB control is ready; set your own AP/OTA passwords before enabling Wi-Fi.';
+      animalNote.dataset.pl = 'Animal V14: czujniki światła GPIO3/GPIO4, automatyczna reakcja źrenic, mrużenie przy mocnym świetle i sterowanie LOOK X Y. USB działa od razu; przed włączeniem Wi-Fi ustaw własne hasła AP/OTA.';
+    }
+  }
+
   function updateStatus() {
     document.getElementById('demoStatus').textContent = messages[language][step];
   }
@@ -40,6 +116,8 @@
       : 'Kora with two round displays showing blue eyes';
     updateStatus();
   }
+
+  installPiDirectorSection();
 
   document.querySelectorAll('[data-language]').forEach(link => {
     link.addEventListener('click', event => {
