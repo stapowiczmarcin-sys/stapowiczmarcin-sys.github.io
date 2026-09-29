@@ -14723,6 +14723,18 @@ static bool lightLocalReady = false;
 static bool lightFilterReady = false;
 static float lightFiltered01 = 0.5f;
 static float lightPupilOffset = 0.0f;
+// Bright-light reflex: above 65% ambient the lids progressively squint.
+// 65-80% = slight squint, 80-92% = clear squint, 92-100% = nearly closed.
+static float lightSquint = 0.0f;
+static uint32_t lightSquintAt = 0;
+static float lightSquintTarget(float pct) {
+  if (pct < 0.0f) pct = 0.0f;
+  if (pct > 100.0f) pct = 100.0f;
+  if (pct <= 65.0f) return 0.0f;
+  if (pct <= 80.0f) return 0.25f * (pct - 65.0f) / 15.0f;
+  if (pct <= 92.0f) return 0.25f + 0.35f * (pct - 80.0f) / 12.0f;
+  return 0.60f + 0.30f * (pct - 92.0f) / 8.0f;
+}
 static uint32_t lightSampleAt = 0;
 
 static float normalizeLight01(int raw, int dark, int bright) {
@@ -14761,6 +14773,14 @@ static void updateLightPupil() {
   // Bright -> smaller pupil, dark -> larger pupil.
   // Offset preserves Animal mood and breathing.
   lightPupilOffset = (0.5f - lightFiltered01) * 0.70f;
+// Natural photophobia reflex: close faster in glare, reopen more gently.
+const float squintTarget = lightSquintTarget(lightFiltered01 * 100.0f);
+float squintDt = lightSquintAt ? float(uint32_t(now - lightSquintAt)) * 0.001f : 0.0f;
+lightSquintAt = now;
+if (squintDt > 0.10f) squintDt = 0.10f;
+const float squintTau = (squintTarget > lightSquint) ? 0.16f : 0.70f;
+if (squintDt > 0.0f) lightSquint += (squintTarget - lightSquint) * (squintDt / (squintTau + squintDt));
+else lightSquint = squintTarget;
 }
 
 // ---------- OTA / AP ----------
@@ -15697,6 +15717,13 @@ static void drawFace() {
   oL *= (1.0f - 0.80f * sqL);
   oR *= (1.0f - 0.80f * sqR);
 
+// Ambient-light squint is independent from the FSR squash reflex.
+// At maximum glare only about 10% eyelid opening remains.
+if (!quietMode && crtState != 2) {
+  oL *= (1.0f - lightSquint);
+  oR *= (1.0f - lightSquint);
+}
+
   oL *= displayPower.lid; oR *= displayPower.lid;
   float tiltLx = faceNow.tiltL + sqL * 0.90f;
   float tiltRx = faceNow.tiltR + sqR * 0.90f;
@@ -16000,6 +16027,31 @@ static void handleSerialLine(String line) {
                    " enabled=" + String(fsrEnabled ? 1 : 0));
     return;
   }
+
+if (upper.startsWith("LOOK ")) {
+  String arg = upper.substring(5);
+  arg.trim();
+  int sep = arg.indexOf(' ');
+  if (sep <= 0) { Serial.println("ERR LOOK x y (-1.0..1.0)"); return; }
+  String sx = arg.substring(0, sep);
+  String sy = arg.substring(sep + 1);
+  sx.trim(); sy.trim();
+  char *endX = nullptr, *endY = nullptr;
+  float x = strtof(sx.c_str(), &endX);
+  float y = strtof(sy.c_str(), &endY);
+  if (!sx.length() || !sy.length() || *endX || *endY || x < -1.0f || x > 1.0f || y < -1.0f || y > 1.0f) {
+    Serial.println("ERR LOOK x y (-1.0..1.0)");
+    return;
+  }
+  if (quietMode) wakeFromPi(0, "idle_watch");
+  lastInteractionMs = millis();
+  autoSlept = false;
+  Kora3D::centeredGaze = false;
+  faceTarget.lookX = x;
+  faceTarget.lookY = y;
+  Serial.println("OK LOOK " + String(x, 2) + " " + String(y, 2));
+  return;
+}
 
   lastInteractionMs = millis();
   autoSlept = false;
@@ -16505,7 +16557,7 @@ void setup() {
   initWiFi();
 
   Serial.println("READY KORA_EYES_V14 SPHERICAL_3D + TWO_MOUTH_SERVOS (S3-N16R8)");
-  Serial.println("GAZE CENTER (default) / GAZE FREE");
+  Serial.println("GAZE CENTER (default) / GAZE FREE | LOOK x y (-1.0..1.0)");
   Serial.println("LIDS NATURAL / PINK / LILAC / TURQUOISE | MOOD flirty");
   Serial.println("WAKE <ms> / SLEEP / STATUS / LIST / M / U / N");
   Serial.println("MOOD ... | TALK ... | EYESCFG blinkmin=.. blinkmax=.. fsrlo=.. fsrhi=..");
