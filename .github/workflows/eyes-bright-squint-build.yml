@@ -82,6 +82,8 @@ jobs:
             eyes/KoraAnimalEyesV14_S3_PUBLIC.zip \
             eyes/SHA256_V18.json > /tmp/eyes-bright-reflex.patch
           test -s /tmp/eyes-bright-reflex.patch
+          git reset --hard HEAD
+          git clean -fd
           git fetch origin main
           current=$(git rev-parse origin/main)
           test "$current" = "$BASE" || { echo "MAIN MOVED: $current != $BASE"; exit 1; }
