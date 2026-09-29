@@ -1,0 +1,33 @@
+name: Audit LOOK and IRIS integration
+on:
+  push:
+    branches: [tmp/eyes-bright-squint-audit-2026-09-29]
+    paths: ['.github/workflows/eyes-look-iris-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect three V18 command parsers and gaze state
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=(
+            eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino
+            eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino
+            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino
+          )
+          for f in "${files[@]}"; do
+            echo "===== $f ====="
+            grep -n -E 'handleIrisPupil|Serial\.available|readString|readBytes|processCommand|handleCommand|serialLine|Serial\.read|face(Target|Now)\.look|lookX|lookY|KoraIris|IRIS |setBaseFace|centeredGaze|MOOD |startsWith\("' "$f" | tail -n 240
+            echo '--- parser context ---'
+            n=$(grep -n 'handleIrisPupil' "$f" | tail -1 | cut -d: -f1)
+            sed -n "$((n-30)),$((n+90))p" "$f"
+            echo '--- serial dispatch context ---'
+            n=$(grep -n 'Serial.available' "$f" | tail -1 | cut -d: -f1)
+            sed -n "$((n-35)),$((n+90))p" "$f"
+            echo '--- gaze write sites ---'
+            grep -n -E 'faceTarget\.lookX|faceTarget\.lookY|faceNow\.lookX|faceNow\.lookY|centeredGaze' "$f" | tail -120
+          done
