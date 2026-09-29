@@ -1,0 +1,112 @@
+name: Validate bright-light eye reflex
+on:
+  push:
+    branches: [tmp/eyes-bright-squint-audit-2026-09-29]
+    paths: ['.github/workflows/eyes-bright-squint-build.yml']
+permissions:
+  contents: write
+jobs:
+  validate-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply byte-preserving patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/eyes_bright_squint_patch.py
+          git diff --check
+          echo '--- changed files ---'
+          git status --short
+          python3 - <<'PY'
+          import subprocess
+          expected={
+            'eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino',
+            'eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino',
+            'eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino',
+            'eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino',
+            'eyes/KoraHumanMetalV18_S3_PUBLIC.zip',
+            'eyes/KoraMetalEyesV18_S3_PUBLIC.zip',
+            'eyes/KoraMonsterEyesV18_S3_PUBLIC.zip',
+            'eyes/KoraAnimalEyesV14_S3_PUBLIC.zip',
+            'eyes/SHA256_V18.json',
+          }
+          changed=set(subprocess.check_output(['git','diff','--name-only'], text=True).splitlines())
+          if changed != expected:
+              raise SystemExit(f'Unexpected changed files: {sorted(changed ^ expected)}')
+          print('CHANGED FILE SET OK')
+          PY
+      - name: Install Arduino CLI and ESP32 toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+          sudo install -m 0755 bin/arduino-cli /usr/local/bin/arduino-cli
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32
+          arduino-cli lib update-index
+          arduino-cli lib install 'Adafruit GFX Library'
+          arduino-cli lib install 'Adafruit GC9A01A'
+          arduino-cli lib install 'ESP32Servo'
+          arduino-cli version
+          arduino-cli core list
+      - name: Compile all four sketches
+        shell: bash
+        run: |
+          set -euo pipefail
+          FQBN='esp32:esp32:esp32s3:FlashSize=16M,PartitionScheme=huge_app,PSRAM=opi'
+          for d in \
+            eyes/KoraHumanMetalV18_S3_PUBLIC \
+            eyes/KoraMetalEyesV18_S3_PUBLIC \
+            eyes/KoraMonsterEyesV18_S3_PUBLIC \
+            eyes/KoraAnimalEyesV14_S3_PUBLIC
+          do
+            echo "===== COMPILE $d ====="
+            arduino-cli compile --fqbn "$FQBN" "$d"
+          done
+      - name: Reapply exact validated patch onto main and push one clean commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='ea3d51e2223ee0a25b58b8fbba7737b2747698f0'
+          git diff --binary -- \
+            eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
+            eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
+            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino \
+            eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino \
+            eyes/KoraHumanMetalV18_S3_PUBLIC.zip \
+            eyes/KoraMetalEyesV18_S3_PUBLIC.zip \
+            eyes/KoraMonsterEyesV18_S3_PUBLIC.zip \
+            eyes/KoraAnimalEyesV14_S3_PUBLIC.zip \
+            eyes/SHA256_V18.json > /tmp/eyes-bright-reflex.patch
+          test -s /tmp/eyes-bright-reflex.patch
+          git fetch origin main
+          current=$(git rev-parse origin/main)
+          test "$current" = "$BASE" || { echo "MAIN MOVED: $current != $BASE"; exit 1; }
+          git switch -C main origin/main
+          git apply --index --binary /tmp/eyes-bright-reflex.patch
+          git diff --cached --check
+          python3 - <<'PY'
+          import subprocess
+          expected={
+            'eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino',
+            'eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino',
+            'eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino',
+            'eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino',
+            'eyes/KoraHumanMetalV18_S3_PUBLIC.zip',
+            'eyes/KoraMetalEyesV18_S3_PUBLIC.zip',
+            'eyes/KoraMonsterEyesV18_S3_PUBLIC.zip',
+            'eyes/KoraAnimalEyesV14_S3_PUBLIC.zip',
+            'eyes/SHA256_V18.json',
+          }
+          changed=set(subprocess.check_output(['git','diff','--cached','--name-only'], text=True).splitlines())
+          if changed != expected:
+              raise SystemExit(f'Publish file set mismatch: {sorted(changed ^ expected)}')
+          print('PUBLISH FILE SET OK')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Add bright-light squint reflex to all four eye variants'
+          git push origin main
