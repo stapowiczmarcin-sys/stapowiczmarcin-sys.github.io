@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect three V18 command parsers and gaze state
+      - name: Inspect gaze override context
         shell: bash
         run: |
           set -euo pipefail
@@ -21,13 +21,13 @@ jobs:
           )
           for f in "${files[@]}"; do
             echo "===== $f ====="
-            grep -n -E 'handleIrisPupil|Serial\.available|readString|readBytes|processCommand|handleCommand|serialLine|Serial\.read|face(Target|Now)\.look|lookX|lookY|KoraIris|IRIS |setBaseFace|centeredGaze|MOOD |startsWith\("' "$f" | tail -n 240
-            echo '--- parser context ---'
-            n=$(grep -n 'handleIrisPupil' "$f" | tail -1 | cut -d: -f1)
-            sed -n "$((n-30)),$((n+90))p" "$f"
-            echo '--- serial dispatch context ---'
-            n=$(grep -n 'Serial.available' "$f" | tail -1 | cut -d: -f1)
-            sed -n "$((n-35)),$((n+90))p" "$f"
-            echo '--- gaze write sites ---'
-            grep -n -E 'faceTarget\.lookX|faceTarget\.lookY|faceNow\.lookX|faceNow\.lookY|centeredGaze' "$f" | tail -120
+            echo '--- IRIS parser ---'
+            n=$(grep -n 'static bool handleIrisPupil' "$f" | cut -d: -f1)
+            sed -n "$n,$((n+28))p" "$f"
+            echo '--- automatic gaze context ---'
+            n=$(grep -n 'faceTarget.lookX = clampF(faceTarget.lookX +' "$f" | cut -d: -f1)
+            sed -n "$((n-45)),$((n+65))p" "$f"
+            echo '--- serial parser entry ---'
+            n=$(grep -n 'static void handleSerialLine' "$f" | cut -d: -f1)
+            sed -n "$n,$((n+55))p" "$f"
           done
