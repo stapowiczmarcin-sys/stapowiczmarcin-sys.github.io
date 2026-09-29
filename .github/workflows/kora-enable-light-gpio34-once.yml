@@ -11,154 +11,72 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Enable dual light sensors and refresh downloads
+      - name: Update eye sources and download ZIPs
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path, PurePosixPath
-          import hashlib, json, zipfile, shutil, re
-
-          root = Path('.')
+          import base64, hashlib, json, shutil, zipfile
           v18 = [
               Path('eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino'),
               Path('eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino'),
               Path('eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino'),
           ]
           animal = Path('eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino')
-
-          # ---- V18: only activate the already-existing light module on GPIO3/GPIO4 ----
           for p in v18:
               s = p.read_text(encoding='utf-8')
               old = 'static constexpr int PIN_LIGHT_L=-1, PIN_LIGHT_R=-1;'
               new = 'static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;'
               if s.count(old) != 1:
-                  raise SystemExit(f'{p}: expected exactly one disabled light-pin declaration, got {s.count(old)}')
+                  raise SystemExit(f'{p}: disabled light declaration count={s.count(old)}')
               s = s.replace(old, new, 1)
-              s = s.replace(
-                  '// Disabled until the actual sensor GPIOs and divider calibration are supplied.',
-                  '// Ambient light sensors / czujniki swiatla: LEFT GPIO3, RIGHT GPIO4.',
-                  1,
-              )
-              if s.count(new) != 1 or old in s:
-                  raise SystemExit(f'{p}: GPIO3/GPIO4 replacement validation failed')
-              if 'analogRead(PIN_LIGHT_L)' not in s or 'analogRead(PIN_LIGHT_R)' not in s:
-                  raise SystemExit(f'{p}: dual ADC reads missing')
+              s = s.replace('// Disabled until the actual sensor GPIOs and divider calibration are supplied.', '// Ambient light sensors / czujniki swiatla: LEFT GPIO3, RIGHT GPIO4.', 1)
+              if s.count(new) != 1 or 'analogRead(PIN_LIGHT_L)' not in s or 'analogRead(PIN_LIGHT_R)' not in s:
+                  raise SystemExit(f'{p}: dual light validation failed')
               if s.count('{') != s.count('}'):
                   raise SystemExit(f'{p}: brace balance failed')
-              p.write_text(s, encoding='utf-8', newline='\n')
-              print('V18 OK:', p)
-
-          # ---- Animal V14: it already has a pupil variable but had no light module. ----
+              p.write_text(s, encoding='utf-8')
+              print('V18 OK', p)
           s = animal.read_text(encoding='utf-8')
           if 'PIN_LIGHT_L' in s or 'updateLightPupil()' in s:
-              raise SystemExit('Animal V14 already contains a light module; refusing a duplicate insertion')
-
+              raise SystemExit('Animal already has light module; refusing duplicate')
           pin_anchor = 'static constexpr int PIN_FSR_R = 2;    // ADC1_CH1 - right / prawa\n'
           if s.count(pin_anchor) != 1:
-              raise SystemExit(f'Animal: FSR pin anchor count={s.count(pin_anchor)}')
-
-          animal_light_block = r'''
-
-// ---------- ambient light sensors / czujniki swiatla ----------
-// Same public wiring as V18: LEFT = GPIO3, RIGHT = GPIO4.
-// The two readings are averaged so both pupils react together.
-static constexpr int PIN_LIGHT_L = 3;
-static constexpr int PIN_LIGHT_R = 4;
-static constexpr int LIGHT_DARK_L = 0, LIGHT_BRIGHT_L = 4095;
-static constexpr int LIGHT_DARK_R = 0, LIGHT_BRIGHT_R = 4095;
-static bool lightLocalReady = false;
-static bool lightFilterReady = false;
-static float lightFiltered01 = 0.5f;
-static float lightPupilOffset = 0.0f;
-static uint32_t lightSampleAt = 0;
-
-static float normalizeLight01(int raw, int dark, int bright) {
-  if (dark == bright) return 0.5f;
-  float v = float(raw - dark) / float(bright - dark);
-  if (v < 0.0f) v = 0.0f;
-  if (v > 1.0f) v = 1.0f;
-  return v;
-}
-
-static void setupLightSensors() {
-  pinMode(PIN_LIGHT_L, INPUT);
-  pinMode(PIN_LIGHT_R, INPUT);
-  analogSetPinAttenuation(PIN_LIGHT_L, ADC_11db);
-  analogSetPinAttenuation(PIN_LIGHT_R, ADC_11db);
-  lightLocalReady = true;
-}
-
-static void updateLightPupil() {
-  if (!lightLocalReady) return;
-  const uint32_t now = millis();
-  if (uint32_t(now - lightSampleAt) < 50u) return;
-  lightSampleAt = now;
-
-  const float l = normalizeLight01(analogRead(PIN_LIGHT_L), LIGHT_DARK_L, LIGHT_BRIGHT_L);
-  const float r = normalizeLight01(analogRead(PIN_LIGHT_R), LIGHT_DARK_R, LIGHT_BRIGHT_R);
-  const float ambient = (l + r) * 0.5f;
-
-  if (!lightFilterReady) {
-    lightFiltered01 = ambient;
-    lightFilterReady = true;
-  } else {
-    // Smooth enough for filming; avoids visible pupil jitter from ADC noise.
-    lightFiltered01 += (ambient - lightFiltered01) * 0.16f;
-  }
-
-  // Bright -> smaller pupil, dark -> larger pupil.
-  // This is an offset, not a replacement, so Animal mood + breathing remain intact.
-  lightPupilOffset = (0.5f - lightFiltered01) * 0.70f;
-}
-'''
-          s = s.replace(pin_anchor, pin_anchor + animal_light_block, 1)
-
+              raise SystemExit(f'Animal FSR anchor count={s.count(pin_anchor)}')
+          block_b64 = 'Ci8vIC0tLS0tLS0tLS0gYW1iaWVudCBsaWdodCBzZW5zb3JzIC8gY3p1am5pa2kgc3dpYXRsYSAtLS0tLS0tLS0tCi8vIFNhbWUgcHVibGljIHdpcmluZyBhcyBWMTg6IExFRlQgPSBHUElPMywgUklHSFQgPSBHUElPNC4KLy8gVGhlIHR3byByZWFkaW5ncyBhcmUgYXZlcmFnZWQgc28gYm90aCBwdXBpbHMgcmVhY3QgdG9nZXRoZXIuCnN0YXRpYyBjb25zdGV4cHIgaW50IFBJTl9MSUdIVF9MID0gMzsKc3RhdGljIGNvbnN0ZXhwciBpbnQgUElOX0xJR0hUX1IgPSA0OwpzdGF0aWMgY29uc3RleHByIGludCBMSUdIVF9EQVJLX0wgPSAwLCBMSUdIVF9CUklHSFRfTCA9IDQwOTU7CnN0YXRpYyBjb25zdGV4cHIgaW50IExJR0hUX0RBUktfUiA9IDAsIExJR0hUX0JSSUdIVF9SID0gNDA5NTsKc3RhdGljIGJvb2wgbGlnaHRMb2NhbFJlYWR5ID0gZmFsc2U7CnN0YXRpYyBib29sIGxpZ2h0RmlsdGVyUmVhZHkgPSBmYWxzZTsKc3RhdGljIGZsb2F0IGxpZ2h0RmlsdGVyZWQwMSA9IDAuNWY7CnN0YXRpYyBmbG9hdCBsaWdodFB1cGlsT2Zmc2V0ID0gMC4wZjsKc3RhdGljIHVpbnQzMl90IGxpZ2h0U2FtcGxlQXQgPSAwOwoKc3RhdGljIGZsb2F0IG5vcm1hbGl6ZUxpZ2h0MDEoaW50IHJhdywgaW50IGRhcmssIGludCBicmlnaHQpIHsKICBpZiAoZGFyayA9PSBicmlnaHQpIHJldHVybiAwLjVmOwogIGZsb2F0IHYgPSBmbG9hdChyYXcgLSBkYXJrKSAvIGZsb2F0KGJyaWdodCAtIGRhcmspOwogIGlmICh2IDwgMC4wZikgdiA9IDAuMGY7CiAgaWYgKHYgPiAxLjBmKSB2ID0gMS4wZjsKICByZXR1cm4gdjsKfQoKc3RhdGljIHZvaWQgc2V0dXBMaWdodFNlbnNvcnMoKSB7CiAgcGluTW9kZShQSU5fTElHSFRfTCwgSU5QVVQpOwogIHBpbk1vZGUoUElOX0xJR0hUX1IsIElOUFVUKTsKICBhbmFsb2dTZXRQaW5BdHRlbnVhdGlvbihQSU5fTElHSFRfTCwgQURDXzExZGIpOwogIGFuYWxvZ1NldFBpbkF0dGVudWF0aW9uKFBJTl9MSUdIVF9SLCBBRENfMTFkYik7CiAgbGlnaHRMb2NhbFJlYWR5ID0gdHJ1ZTsKfQoKc3RhdGljIHZvaWQgdXBkYXRlTGlnaHRQdXBpbCgpIHsKICBpZiAoIWxpZ2h0TG9jYWxSZWFkeSkgcmV0dXJuOwogIGNvbnN0IHVpbnQzMl90IG5vdyA9IG1pbGxpcygpOwogIGlmICh1aW50MzJfdChub3cgLSBsaWdodFNhbXBsZUF0KSA8IDUwdSkgcmV0dXJuOwogIGxpZ2h0U2FtcGxlQXQgPSBub3c7CgogIGNvbnN0IGZsb2F0IGwgPSBub3JtYWxpemVMaWdodDAxKGFuYWxvZ1JlYWQoUElOX0xJR0hUX0wpLCBMSUdIVF9EQVJLX0wsIExJR0hUX0JSSUdIVF9MKTsKICBjb25zdCBmbG9hdCByID0gbm9ybWFsaXplTGlnaHQwMShhbmFsb2dSZWFkKFBJTl9MSUdIVF9SKSwgTElHSFRfREFSS19SLCBMSUdIVF9CUklHSFRfUik7CiAgY29uc3QgZmxvYXQgYW1iaWVudCA9IChsICsgcikgKiAwLjVmOwoKICBpZiAoIWxpZ2h0RmlsdGVyUmVhZHkpIHsKICAgIGxpZ2h0RmlsdGVyZWQwMSA9IGFtYmllbnQ7CiAgICBsaWdodEZpbHRlclJlYWR5ID0gdHJ1ZTsKICB9IGVsc2UgewogICAgbGlnaHRGaWx0ZXJlZDAxICs9IChhbWJpZW50IC0gbGlnaHRGaWx0ZXJlZDAxKSAqIDAuMTZmOwogIH0KCiAgLy8gQnJpZ2h0IC0+IHNtYWxsZXIgcHVwaWwsIGRhcmsgLT4gbGFyZ2VyIHB1cGlsLgogIC8vIE9mZnNldCBwcmVzZXJ2ZXMgQW5pbWFsIG1vb2QgYW5kIGJyZWF0aGluZy4KICBsaWdodFB1cGlsT2Zmc2V0ID0gKDAuNWYgLSBsaWdodEZpbHRlcmVkMDEpICogMC43MGY7Cn0K'
+          light_block = base64.b64decode(block_b64).decode('utf-8')
+          s = s.replace(pin_anchor, pin_anchor + light_block, 1)
           render_old = 'float pupilL = clampF(faceNow.pupil + pupilBreath - sqL * 0.30f, 0.05f, 1.0f);'
           render_new = 'float pupilL = clampF(faceNow.pupil + pupilBreath + lightPupilOffset - sqL * 0.30f, 0.05f, 1.0f);'
           if s.count(render_old) != 1:
-              raise SystemExit(f'Animal: pupil render anchor count={s.count(render_old)}')
+              raise SystemExit(f'Animal pupil render anchor count={s.count(render_old)}')
           s = s.replace(render_old, render_new, 1)
-
           setup_anchor = 'analogSetPinAttenuation(PIN_FSR_R, ADC_11db);\n'
           if s.count(setup_anchor) != 1:
-              raise SystemExit(f'Animal: setup anchor count={s.count(setup_anchor)}')
+              raise SystemExit(f'Animal setup anchor count={s.count(setup_anchor)}')
           s = s.replace(setup_anchor, setup_anchor + '  setupLightSensors();\n', 1)
-
           loop_anchor = 'void loop() {\n'
           if s.count(loop_anchor) != 1:
-              raise SystemExit(f'Animal: loop anchor count={s.count(loop_anchor)}')
+              raise SystemExit(f'Animal loop anchor count={s.count(loop_anchor)}')
           s = s.replace(loop_anchor, loop_anchor + '  updateLightPupil();\n', 1)
-
-          required_animal = [
-              'static constexpr int PIN_LIGHT_L = 3;',
-              'static constexpr int PIN_LIGHT_R = 4;',
-              'analogRead(PIN_LIGHT_L)',
-              'analogRead(PIN_LIGHT_R)',
-              'setupLightSensors();',
-              'updateLightPupil();',
-              '+ lightPupilOffset - sqL * 0.30f',
-          ]
-          for needle in required_animal:
+          for needle in ['static constexpr int PIN_LIGHT_L = 3;', 'static constexpr int PIN_LIGHT_R = 4;', 'analogRead(PIN_LIGHT_L)', 'analogRead(PIN_LIGHT_R)', '+ lightPupilOffset - sqL * 0.30f']:
               if needle not in s:
-                  raise SystemExit(f'Animal validation missing: {needle}')
+                  raise SystemExit(f'Animal missing {needle}')
           if s.count('{') != s.count('}'):
-              raise SystemExit('Animal: brace balance failed')
-          animal.write_text(s, encoding='utf-8', newline='\n')
-          print('ANIMAL OK:', animal)
-
-          # ---- Refresh existing public ZIPs without changing their internal layout ----
+              raise SystemExit('Animal brace balance failed')
+          animal.write_text(s, encoding='utf-8')
+          print('ANIMAL OK', animal)
           zip_map = {
               Path('eyes/KoraHumanMetalV18_S3_PUBLIC.zip'): v18[0],
               Path('eyes/KoraMetalEyesV18_S3_PUBLIC.zip'): v18[1],
               Path('eyes/KoraMonsterEyesV18_S3_PUBLIC.zip'): v18[2],
               Path('eyes/KoraAnimalEyesV14_S3_PUBLIC.zip'): animal,
           }
-
-          def replace_ino_in_zip(zpath: Path, ino: Path):
+          for zpath, ino in zip_map.items():
               if not zpath.exists():
-                  raise SystemExit(f'Missing public ZIP: {zpath}')
-              tmp = zpath.with_suffix('.zip.tmp')
+                  raise SystemExit(f'Missing ZIP {zpath}')
+              tmp = zpath.with_name(zpath.name + '.tmp')
               replaced = 0
               with zipfile.ZipFile(zpath, 'r') as src, zipfile.ZipFile(tmp, 'w') as dst:
                   for info in src.infolist():
@@ -166,92 +84,38 @@ static void updateLightPupil() {
                       if PurePosixPath(info.filename).name == ino.name:
                           data = ino.read_bytes()
                           replaced += 1
-                      # Re-create entry with its original metadata where possible.
                       dst.writestr(info, data)
               if replaced != 1:
                   tmp.unlink(missing_ok=True)
-                  raise SystemExit(f'{zpath}: expected one {ino.name}, replaced={replaced}')
+                  raise SystemExit(f'{zpath}: INO replacement count={replaced}')
               shutil.move(tmp, zpath)
-              with zipfile.ZipFile(zpath, 'r') as z:
-                  bad = z.testzip()
-                  if bad is not None:
-                      raise SystemExit(f'{zpath}: CRC failure in {bad}')
-              print('ZIP OK:', zpath)
-
-          for z, ino in zip_map.items():
-              replace_ino_in_zip(z, ino)
-
-          # ---- Refresh V18 SHA256 manifest to match the actual download ZIPs ----
+              with zipfile.ZipFile(zpath, 'r') as check:
+                  if check.testzip() is not None:
+                      raise SystemExit(f'{zpath}: CRC validation failed')
+              print('ZIP OK', zpath)
           manifest_path = Path('eyes/SHA256_V18.json')
           manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-          for z in list(zip_map)[:3]:
-              digest = hashlib.sha256(z.read_bytes()).hexdigest()
-              manifest[z.name] = digest
-              print('SHA256', z.name, digest)
+          for zpath in list(zip_map.keys())[:3]:
+              manifest[zpath.name] = hashlib.sha256(zpath.read_bytes()).hexdigest()
+              print('SHA256', zpath.name, manifest[zpath.name])
           manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
-
-          # ---- If the download page still says GPIOs are unassigned, correct that statement. ----
-          index = Path('eyes/index.html')
-          page = index.read_text(encoding='utf-8')
-          replacements = [
-              (
-                  'Current public release ships the sensor GPIOs as unassigned',
-                  'Current public release uses GPIO3 for the left light sensor and GPIO4 for the right light sensor'
-              ),
-              (
-                  'Aktualne publiczne wydanie ma nieprzypisane piny GPIO czujników',
-                  'Aktualne publiczne wydanie używa GPIO3 dla lewego czujnika światła i GPIO4 dla prawego'
-              ),
-          ]
-          changed = False
-          for old, new in replacements:
-              if old in page:
-                  page = page.replace(old, new)
-                  changed = True
-          if changed:
-              index.write_text(page, encoding='utf-8', newline='\n')
-              print('PAGE NOTE UPDATED')
-          else:
-              print('PAGE NOTE: no matching old unassigned-pin sentence found; left untouched')
-
-          # ---- Final source validation ----
           for p in v18:
               t = p.read_text(encoding='utf-8')
               assert t.count('static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;') == 1
               assert 'PIN_LIGHT_L=-1' not in t and 'PIN_LIGHT_R=-1' not in t
-          t = animal.read_text(encoding='utf-8')
-          assert t.count('static constexpr int PIN_LIGHT_L = 3;') == 1
-          assert t.count('static constexpr int PIN_LIGHT_R = 4;') == 1
-          print('ALL SOURCE VALIDATION PASSED')
+          print('ALL VALIDATION PASSED')
           PY
-
-          echo '--- SOURCE DIFF SUMMARY ---'
+          git diff --check
           git diff --stat
-          echo '--- LIGHT PIN LINES ---'
-          grep -n 'PIN_LIGHT_L' \
-            eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
-            eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
-            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino \
-            eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino | head -20
-
-      - name: Commit update and remove helper workflow
+          grep -n 'PIN_LIGHT_L' eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino | head -20
+      - name: Commit update and remove helper
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/kora-enable-light-gpio34-once.yml
-          git add \
-            eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
-            eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
-            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino \
-            eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino \
-            eyes/KoraHumanMetalV18_S3_PUBLIC.zip \
-            eyes/KoraMetalEyesV18_S3_PUBLIC.zip \
-            eyes/KoraMonsterEyesV18_S3_PUBLIC.zip \
-            eyes/KoraAnimalEyesV14_S3_PUBLIC.zip \
-            eyes/SHA256_V18.json
-          git add eyes/index.html || true
+          git add eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino eyes/KoraHumanMetalV18_S3_PUBLIC.zip eyes/KoraMetalEyesV18_S3_PUBLIC.zip eyes/KoraMonsterEyesV18_S3_PUBLIC.zip eyes/KoraAnimalEyesV14_S3_PUBLIC.zip eyes/SHA256_V18.json
           git diff --cached --check
           git commit -m "Enable dual eye light sensors on GPIO3 and GPIO4"
           git push
