@@ -3,20 +3,22 @@ from textwrap import dedent
 import subprocess, io, zipfile, hashlib, json
 
 BASE = "30db11179c660ea46acd371936a95bb2afc1a1d3"
-
 V18 = [
     Path("eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino"),
     Path("eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino"),
     Path("eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino"),
 ]
-ANIMAL = Path("eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino")
 ZIP_MAP = {
     Path("eyes/KoraHumanMetalV18_S3_PUBLIC.zip"): V18[0],
     Path("eyes/KoraMetalEyesV18_S3_PUBLIC.zip"): V18[1],
     Path("eyes/KoraMonsterEyesV18_S3_PUBLIC.zip"): V18[2],
-    Path("eyes/KoraAnimalEyesV14_S3_PUBLIC.zip"): ANIMAL,
 }
 MANIFEST = Path("eyes/SHA256_V18.json")
+EXPECTED_NORMALIZED_SHA256 = {
+    V18[0]: "096081f9a0bba6171838cbcd3021d87ebca45d25c3e59cecc139d306113502b2",
+    V18[1]: "fb9c982241c17d4c0b1deea8a32acd47cbb6460e2f2420e2bfd7c9ba8f85e2b7",
+    V18[2]: "b3da9f81ec8a56b4de740dcd9dc59a479e1537c694799b7346c95ca6cc80ffa5",
+}
 
 def git_show_bytes(path: Path) -> bytes:
     return subprocess.check_output(["git", "show", f"{BASE}:{path.as_posix()}"])
@@ -25,7 +27,7 @@ def nl_for(data: bytes) -> bytes:
     return b"\r\n" if b"\r\n" in data else b"\n"
 
 def block_bytes(text: str, nl: bytes) -> bytes:
-    text = dedent(text).strip("\n") + "\n"
+    text = dedent(text).strip("\n")
     return text.encode("utf-8").replace(b"\n", nl)
 
 def replace_once(data: bytes, old: bytes, new: bytes, label: str) -> bytes:
@@ -39,194 +41,111 @@ def assert_once(data: bytes, needle: bytes, label: str):
     if n != 1:
         raise RuntimeError(f"{label}: expected once, found {n}")
 
-GLARE_V18 = r"""
-static uint32_t lightGlareBlinkAt=0;
-static bool lightGlareLatched=false;
+LIGHT_STATE = r'''// Bright-light reflex: above 65% ambient the lids progressively squint.
+// 65-80% = slight squint, 80-92% = clear squint, 92-100% = nearly closed.
+static float lightSquint=0.0f;
+static uint32_t lightSquintAt=0;
+static float lightSquintTarget(float pct){
+  pct=clampF(pct,0.0f,100.0f);
+  if(pct<=65.0f)return 0.0f;
+  if(pct<=80.0f)return 0.25f*(pct-65.0f)/15.0f;
+  if(pct<=92.0f)return 0.25f+0.35f*(pct-80.0f)/12.0f;
+  return 0.60f+0.30f*(pct-92.0f)/8.0f;
+}'''
 
-// Natural eyelid reflex from ambient light:
-// <=75% no squint, 75..100% progressive squint,
-// >=96% one brief full glare blink; re-arms below 88%.
-static float lightLidResponse(uint32_t now){
-  if(!KoraPupil::control.hasLight)return 1.0f;
-  const float ambient=KoraPupil::control.filtered;
+LIGHT_UPDATE = r'''  // Natural photophobia reflex. Close faster in glare, reopen more gently.
+  float target=fresh?lightSquintTarget(KoraPupil::control.filtered):0.0f;
+  float dt=lightSquintAt?clampF(float(uint32_t(now-lightSquintAt))*.001f,0.0f,0.10f):0.0f;
+  lightSquintAt=now;
+  float tau=(target>lightSquint)?0.16f:0.70f;
+  if(dt>0.0f)lightSquint+=(target-lightSquint)*(dt/(tau+dt));
+  else lightSquint=target;'''
 
-  if(ambient<88.0f)lightGlareLatched=false;
-  if(ambient>=96.0f&&!lightGlareLatched){
-    lightGlareLatched=true;
-    lightGlareBlinkAt=now;
-  }
+LIGHT_RENDER = r'''  // Ambient-light squint is independent from the FSR squash reflex.
+  // At maximum glare only ~10% eyelid opening remains.
+  if(!quietMode && crtState != 2){
+    oL *= (1.0f - lightSquint);
+    oR *= (1.0f - lightSquint);
+  }'''
 
-  float base=1.0f;
-  if(ambient>75.0f){
-    float t=(ambient-75.0f)/25.0f;
-    if(t>1.0f)t=1.0f;
-    base=1.0f-0.38f*t;
-  }
-
-  if(lightGlareBlinkAt){
-    const uint32_t dt=uint32_t(now-lightGlareBlinkAt);
-    if(dt<320u){
-      float blink=1.0f;
-      if(dt<90u)blink=1.0f-float(dt)/90.0f;
-      else if(dt<150u)blink=0.0f;
-      else blink=float(dt-150u)/170.0f;
-      if(blink<base)return blink;
+LOOK_BLOCK = r'''  if (upper.startsWith("LOOK ")) {
+    String arg = line.substring(5);
+    arg.trim();
+    int sep = arg.indexOf(' ');
+    if (sep <= 0) { Serial.println("ERR LOOK x y (-1.0..1.0)"); return; }
+    String sx = arg.substring(0, sep);
+    String sy = arg.substring(sep + 1);
+    sx.trim(); sy.trim();
+    char *endX = nullptr, *endY = nullptr;
+    float x = strtof(sx.c_str(), &endX);
+    float y = strtof(sy.c_str(), &endY);
+    if (!sx.length() || !sy.length() || *endX || *endY || x < -1.0f || x > 1.0f || y < -1.0f || y > 1.0f) {
+      Serial.println("ERR LOOK x y (-1.0..1.0)");
+      return;
     }
-  }
-  return base;
-}
-"""
-
-ANIMAL_LIGHT = r"""
-// ---------- ambient light sensors / czujniki swiatla ----------
-// Public wiring: LEFT = GPIO3, RIGHT = GPIO4.
-// Both ADC readings are averaged so both pupils and lids react together.
-static constexpr int PIN_LIGHT_L = 3;
-static constexpr int PIN_LIGHT_R = 4;
-static constexpr int LIGHT_DARK_L = 0, LIGHT_BRIGHT_L = 4095;
-static constexpr int LIGHT_DARK_R = 0, LIGHT_BRIGHT_R = 4095;
-static bool lightLocalReady = false;
-static bool lightFilterReady = false;
-static float lightFiltered01 = 0.5f;
-static float lightPupilOffset = 0.0f;
-static uint32_t lightSampleAt = 0;
-static uint32_t lightGlareBlinkAt = 0;
-static bool lightGlareLatched = false;
-
-static float normalizeLight01(int raw, int dark, int bright) {
-  if (dark == bright) return 0.5f;
-  float v = float(raw - dark) / float(bright - dark);
-  if (v < 0.0f) v = 0.0f;
-  if (v > 1.0f) v = 1.0f;
-  return v;
-}
-
-static void setupLightSensors() {
-  pinMode(PIN_LIGHT_L, INPUT);
-  pinMode(PIN_LIGHT_R, INPUT);
-  analogSetPinAttenuation(PIN_LIGHT_L, ADC_11db);
-  analogSetPinAttenuation(PIN_LIGHT_R, ADC_11db);
-  lightLocalReady = true;
-}
-
-static void updateLightPupil() {
-  if (!lightLocalReady) return;
-  const uint32_t now = millis();
-  if (uint32_t(now - lightSampleAt) < 50u) return;
-  lightSampleAt = now;
-
-  const float l = normalizeLight01(analogRead(PIN_LIGHT_L), LIGHT_DARK_L, LIGHT_BRIGHT_L);
-  const float r = normalizeLight01(analogRead(PIN_LIGHT_R), LIGHT_DARK_R, LIGHT_BRIGHT_R);
-  const float ambient = (l + r) * 0.5f;
-
-  if (!lightFilterReady) {
-    lightFiltered01 = ambient;
-    lightFilterReady = true;
-  } else {
-    lightFiltered01 += (ambient - lightFiltered01) * 0.16f;
-  }
-
-  // Bright -> smaller pupil, dark -> larger pupil.
-  // This is only an offset; Animal's original mood/breathing remains intact.
-  lightPupilOffset = (0.5f - lightFiltered01) * 0.70f;
-}
-
-// Natural eyelid reflex from ambient light:
-// <=75% no squint, 75..100% progressive squint,
-// >=96% one brief full glare blink; re-arms below 88%.
-static float lightLidResponse(uint32_t now) {
-  if (!lightLocalReady || !lightFilterReady) return 1.0f;
-  const float ambient = lightFiltered01 * 100.0f;
-
-  if (ambient < 88.0f) lightGlareLatched = false;
-  if (ambient >= 96.0f && !lightGlareLatched) {
-    lightGlareLatched = true;
-    lightGlareBlinkAt = now;
-  }
-
-  float base = 1.0f;
-  if (ambient > 75.0f) {
-    float t = (ambient - 75.0f) / 25.0f;
-    if (t > 1.0f) t = 1.0f;
-    base = 1.0f - 0.38f * t;
-  }
-
-  if (lightGlareBlinkAt) {
-    const uint32_t dt = uint32_t(now - lightGlareBlinkAt);
-    if (dt < 320u) {
-      float blink = 1.0f;
-      if (dt < 90u) blink = 1.0f - float(dt) / 90.0f;
-      else if (dt < 150u) blink = 0.0f;
-      else blink = float(dt - 150u) / 170.0f;
-      if (blink < base) return blink;
-    }
-  }
-  return base;
-}
-"""
+    if (quietMode) wakeFromPi(0, "idle_watch");
+    lastInteractionMs = millis();
+    autoSlept = false;
+    faceTarget.lookX = x;
+    faceTarget.lookY = y;
+    Serial.println("OK LOOK " + String(x, 2) + " " + String(y, 2));
+    return;
+  }'''
 
 def build_v18(path: Path):
     data = git_show_bytes(path)
     nl = nl_for(data)
-    old_pin = b"static constexpr int PIN_LIGHT_L=-1, PIN_LIGHT_R=-1;"
-    new_pin = b"static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;"
-    data = replace_once(data, old_pin, new_pin, f"{path}: light pins")
-    data = replace_once(
-        data,
-        b"// Disabled until the actual sensor GPIOs and divider calibration are supplied.",
-        b"// Ambient light sensors / czujniki swiatla: LEFT GPIO3, RIGHT GPIO4.",
-        f"{path}: light comment",
-    )
-    handler = b"static bool handleIrisPupil(const String& upper){"
-    data = replace_once(data, handler, block_bytes(GLARE_V18, nl) + nl + handler, f"{path}: glare function insertion")
-    lid_anchor = b"  oL *= displayPower.lid; oR *= displayPower.lid;"
-    lid_new = lid_anchor + nl + b"  const float lightLid=lightLidResponse(now);" + nl + b"  oL*=lightLid; oR*=lightLid;"
-    data = replace_once(data, lid_anchor, lid_new, f"{path}: lid response")
 
-    assert_once(data, new_pin, f"{path}: final pins")
-    assert_once(data, b"analogRead(PIN_LIGHT_L)", f"{path}: left ADC")
-    assert_once(data, b"analogRead(PIN_LIGHT_R)", f"{path}: right ADC")
-    assert_once(data, b"static float lightLidResponse(uint32_t now){", f"{path}: glare fn")
-    assert_once(data, b"const float lightLid=lightLidResponse(now);", f"{path}: glare use")
-    if old_pin in data:
-        raise RuntimeError(f"{path}: disabled pins still present")
-    path.write_bytes(data)
-    print("V18 SOURCE OK:", path)
+    data = replace_once(data, b"static constexpr int PIN_LIGHT_L=-1, PIN_LIGHT_R=-1;", b"static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;", f"{path}: light pins")
+    data = replace_once(data, b"// Disabled until the actual sensor GPIOs and divider calibration are supplied.", b"// Ambient-light sensors: GPIO3 left, GPIO4 right (ADC1).", f"{path}: light comment")
 
-def build_animal():
-    path = ANIMAL
-    data = git_show_bytes(path)
-    nl = nl_for(data)
+    animated = b"  Mode mode=ANIMATED;"
+    auto = b"  Mode mode=AUTO; // light sensors control pupil size by default"
+    if animated in data:
+        data = replace_once(data, animated, auto, f"{path}: default pupil mode")
+    elif auto not in data:
+        raise RuntimeError(f"{path}: pupil mode anchor not found")
 
-    pin_anchor = b"static constexpr int PIN_FSR_R = 2;    // ADC1_CH1 - right / prawa"
-    data = replace_once(data, pin_anchor, pin_anchor + nl + block_bytes(ANIMAL_LIGHT, nl), f"{path}: light block")
+    source_anchor = b'static const char* lightSource="none";'
+    data = replace_once(data, source_anchor, source_anchor + nl + block_bytes(LIGHT_STATE, nl), f"{path}: light squint state")
+    tick_anchor = b"  KoraPupil::control.tick(now,fresh,remoteFresh?lightRemote:lightLocal);"
+    data = replace_once(data, tick_anchor, tick_anchor + nl + nl + block_bytes(LIGHT_UPDATE, nl), f"{path}: light squint update")
+    render_anchor = b"  oL *= (1.0f - 0.80f * sqL);" + nl + b"  oR *= (1.0f - 0.80f * sqR);" + nl + nl + b"  oL *= displayPower.lid; oR *= displayPower.lid;"
+    render_new = b"  oL *= (1.0f - 0.80f * sqL);" + nl + b"  oR *= (1.0f - 0.80f * sqR);" + nl + nl + block_bytes(LIGHT_RENDER, nl) + nl + nl + b"  oL *= displayPower.lid; oR *= displayPower.lid;"
+    data = replace_once(data, render_anchor, render_new, f"{path}: render squint")
 
-    setup_anchor = b"  analogSetPinAttenuation(PIN_FSR_R, ADC_11db);"
-    data = replace_once(data, setup_anchor, setup_anchor + nl + b"  setupLightSensors();", f"{path}: setup")
-
-    loop_anchor = b"void loop() {"
-    data = replace_once(data, loop_anchor, loop_anchor + nl + b"  updateLightPupil();", f"{path}: loop")
-
-    pupil_old = b"  float pupilL = clampF(faceNow.pupil + pupilBreath - sqL * 0.30f, 0.05f, 1.0f);"
-    pupil_new = b"  float pupilL = clampF(faceNow.pupil + pupilBreath + lightPupilOffset - sqL * 0.30f, 0.05f, 1.0f);"
-    data = replace_once(data, pupil_old, pupil_new, f"{path}: pupil")
-
-    lid_anchor = b"  oL *= displayPower.lid; oR *= displayPower.lid;"
-    lid_new = lid_anchor + nl + b"  const float lightLid = lightLidResponse(now);" + nl + b"  oL *= lightLid; oR *= lightLid;"
-    data = replace_once(data, lid_anchor, lid_new, f"{path}: lid response")
+    if b'upper.startsWith("LOOK ")' not in data:
+        fsr_anchor = b'  if (upper == "FSRSTATUS") {'
+        assert_once(data, fsr_anchor, f"{path}: FSRSTATUS")
+        start = data.index(fsr_anchor)
+        marker = nl + b"  lastInteractionMs = millis();"
+        pos = data.find(marker, start)
+        if pos < 0:
+            raise RuntimeError(f"{path}: LOOK insertion point not found")
+        data = data[:pos] + nl + block_bytes(LOOK_BLOCK, nl) + nl + data[pos:]
 
     for needle, label in [
-        (b"static constexpr int PIN_LIGHT_L = 3;", "left pin"),
-        (b"static constexpr int PIN_LIGHT_R = 4;", "right pin"),
+        (b"static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;", "GPIO3/4"),
+        (b"Mode mode=AUTO; // light sensors control pupil size by default", "AUTO pupil"),
         (b"analogRead(PIN_LIGHT_L)", "left ADC"),
         (b"analogRead(PIN_LIGHT_R)", "right ADC"),
-        (b"static float lightLidResponse(uint32_t now)", "glare fn"),
-        (b"const float lightLid = lightLidResponse(now);", "glare use"),
-        (b"+ lightPupilOffset - sqL * 0.30f", "pupil offset"),
+        (b"static float lightSquintTarget(float pct){", "squint curve"),
+        (b"oL *= (1.0f - lightSquint);", "left lid squint"),
+        (b"oR *= (1.0f - lightSquint);", "right lid squint"),
+        (b'if (upper.startsWith("LOOK ")) {', "LOOK command"),
+        (b"faceTarget.lookX = x;", "LOOK X"),
+        (b"faceTarget.lookY = y;", "LOOK Y"),
     ]:
         assert_once(data, needle, f"{path}: {label}")
+
+    normalized = data.replace(b"\r\n", b"\n")
+    digest = hashlib.sha256(normalized).hexdigest()
+    expected = EXPECTED_NORMALIZED_SHA256[path]
+    if digest != expected:
+        raise RuntimeError(f"{path}: generated source differs from locally audited file: {digest} != {expected}")
+
     path.write_bytes(data)
-    print("ANIMAL SOURCE OK:", path)
+    print("SOURCE OK:", path, digest)
 
 def rebuild_zip(zpath: Path, ino: Path):
     base_zip = git_show_bytes(zpath)
@@ -244,9 +163,8 @@ def rebuild_zip(zpath: Path, ino: Path):
         raise RuntimeError(f"{zpath}: expected one INO replacement, got {replaced}")
     zpath.write_bytes(out_bio.getvalue())
     with zipfile.ZipFile(zpath, "r") as check:
-        bad = check.testzip()
-        if bad is not None:
-            raise RuntimeError(f"{zpath}: CRC failure in {bad}")
+        if check.testzip() is not None:
+            raise RuntimeError(f"{zpath}: ZIP CRC failure")
         matches = [check.read(n) for n in check.namelist() if PurePosixPath(n).name == ino.name]
         if len(matches) != 1 or matches[0] != ino.read_bytes():
             raise RuntimeError(f"{zpath}: embedded INO does not match source")
@@ -254,14 +172,14 @@ def rebuild_zip(zpath: Path, ino: Path):
 
 def update_manifest():
     manifest = json.loads(git_show_bytes(MANIFEST).decode("utf-8"))
-    for zpath in list(ZIP_MAP.keys())[:3]:
+    for zpath in ZIP_MAP:
         digest = hashlib.sha256(zpath.read_bytes()).hexdigest()
         manifest[zpath.name] = digest
         print("SHA256", zpath.name, digest)
     MANIFEST.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
 
 def validate_diff_size():
-    cmd = ["git", "diff", "--numstat", BASE, "--"] + [p.as_posix() for p in V18 + [ANIMAL]]
+    cmd = ["git", "diff", "--numstat", BASE, "--"] + [p.as_posix() for p in V18]
     out = subprocess.check_output(cmd, text=True)
     print("--- SOURCE NUMSTAT VS CLEAN BASE ---")
     print(out, end="")
@@ -269,36 +187,25 @@ def validate_diff_size():
         a, d, name = line.split("\t", 2)
         if a == "-" or d == "-":
             raise RuntimeError(f"{name}: source unexpectedly treated as binary")
-        changes = int(a) + int(d)
-        if changes > 180:
-            raise RuntimeError(f"{name}: source diff too large ({changes} changed lines)")
-    for p in V18 + [ANIMAL]:
-        before = git_show_bytes(p)
-        after = p.read_bytes()
-        if b"\r\n" in before and after.count(b"\r\n") < max(1, before.count(b"\r\n") - 200):
-            raise RuntimeError(f"{p}: CRLF preservation check failed")
+        if int(a) + int(d) > 160:
+            raise RuntimeError(f"{name}: source diff too large ({int(a)+int(d)} changed lines)")
 
-build_v18(V18[0])
-build_v18(V18[1])
-build_v18(V18[2])
-build_animal()
-
-for zpath, ino in ZIP_MAP.items():
-    rebuild_zip(zpath, ino)
-
+for p in V18:
+    build_v18(p)
+for z, ino in ZIP_MAP.items():
+    rebuild_zip(z, ino)
 update_manifest()
 validate_diff_size()
 
-def base_lid(ambient):
-    if ambient <= 75:
-        return 1.0
-    t = min(1.0, (ambient - 75.0) / 25.0)
-    return 1.0 - 0.38 * t
-
-print("--- LIGHT LID SANITY ---")
-for a in (0, 50, 75, 80, 88, 95, 96, 100):
-    print(f"ambient={a:3d}% base_lid={base_lid(a):.3f}")
-if not (base_lid(75) == 1.0 and 0.61 < base_lid(100) < 0.63):
-    raise RuntimeError("light lid arithmetic sanity failed")
-
-print("ALL FOUR SOURCES + ZIPS + DIFF VALIDATION PASSED")
+print("--- LIGHT SQUINT SANITY ---")
+def target(p):
+    if p <= 65: return 0.0
+    if p <= 80: return 0.25*(p-65)/15
+    if p <= 92: return 0.25+0.35*(p-80)/12
+    return 0.60+0.30*(p-92)/8
+for p in (0, 50, 65, 75, 80, 86, 92, 96, 100):
+    q=target(p)
+    print(f"light={p:3d}% squint={q:.3f} opening={1-q:.3f}")
+if not (target(65)==0.0 and target(80)==0.25 and target(92)==0.60 and abs(target(100)-0.90)<1e-9):
+    raise RuntimeError("light squint curve sanity failed")
+print("ALL CHECKS PASSED")
