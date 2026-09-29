@@ -11044,7 +11044,7 @@ static float sizeFromPercent(float p){return MIN_SIZE+(MAX_SIZE-MIN_SIZE)*clamp(
 static float percentFromSize(float p){return clamp((p-MIN_SIZE)*100/(MAX_SIZE-MIN_SIZE),0,100);}
 static float normalize(int adc,int dark,int bright){return clamp(100.f*(adc-dark)/(bright-dark),0,100);}
 struct Controller {
-  Mode mode=ANIMATED;
+  Mode mode=AUTO; // light sensors control pupil size by default
   float value=.5f,target=.5f,filtered=50,accepted=50;
   bool hasLight=false,filterReady=false,started=false;
   uint32_t at=0;
@@ -11385,6 +11385,17 @@ static bool lightLocalReady=false,lightRemoteSeen=false,lightLocalSeen=false;
 static float lightLocal=50,lightRemote=50;
 static uint32_t lightRemoteAt=0,lightSampleAt=0;
 static const char* lightSource="none";
+// Bright-light reflex: above 65% ambient the lids progressively squint.
+// 65-80% = slight squint, 80-92% = clear squint, 92-100% = nearly closed.
+static float lightSquint=0.0f;
+static uint32_t lightSquintAt=0;
+static float lightSquintTarget(float pct){
+  pct=clampF(pct,0.0f,100.0f);
+  if(pct<=65.0f)return 0.0f;
+  if(pct<=80.0f)return 0.25f*(pct-65.0f)/15.0f;
+  if(pct<=92.0f)return 0.25f+0.35f*(pct-80.0f)/12.0f;
+  return 0.60f+0.30f*(pct-92.0f)/8.0f;
+}
 static bool lightPinValid(int p){
   // ADC1 only: Wi-Fi remains usable. Reject every already-assigned pin.
   const int occupied[]={PIN_SCK,PIN_MOSI,PIN_CS_L,PIN_DC_L,PIN_RST_L,PIN_CS_R,PIN_DC_R,PIN_RST_R,PIN_EAR_L,PIN_EAR_R,PIN_MOUTH_L,PIN_MOUTH_R,PIN_FSR_L,PIN_FSR_R};
@@ -11411,6 +11422,14 @@ static void updateLightPupil(){
   bool fresh=remoteFresh||lightLocalSeen;
   lightSource=remoteFresh?"serial":(lightLocalSeen?"adc_mean":(lightRemoteSeen?"serial_stale":"none"));
   KoraPupil::control.tick(now,fresh,remoteFresh?lightRemote:lightLocal);
+
+// Natural photophobia reflex. Close faster in glare, reopen more gently.
+float target=fresh?lightSquintTarget(KoraPupil::control.filtered):0.0f;
+float dt=lightSquintAt?clampF(float(uint32_t(now-lightSquintAt))*.001f,0.0f,0.10f):0.0f;
+lightSquintAt=now;
+float tau=(target>lightSquint)?0.16f:0.70f;
+if(dt>0.0f)lightSquint+=(target-lightSquint)*(dt/(tau+dt));
+else lightSquint=target;
 }
 static bool handleIrisPupil(const String& upper){
   if(upper.startsWith("IRIS ")){
@@ -12150,6 +12169,13 @@ static void drawFace() {
   oL *= (1.0f - 0.80f * sqL);
   oR *= (1.0f - 0.80f * sqR);
 
+// Ambient-light squint is independent from the FSR squash reflex.
+// At maximum glare only ~10% eyelid opening remains.
+if(!quietMode && crtState != 2){
+  oL *= (1.0f - lightSquint);
+  oR *= (1.0f - lightSquint);
+}
+
   oL *= displayPower.lid; oR *= displayPower.lid;
   float tiltLx = faceNow.tiltL + sqL * 0.90f;
   float tiltRx = faceNow.tiltR + sqR * 0.90f;
@@ -12447,6 +12473,30 @@ static void handleSerialLine(String line) {
                    " enabled=" + String(fsrEnabled ? 1 : 0));
     return;
   }
+
+if (upper.startsWith("LOOK ")) {
+  String arg = line.substring(5);
+  arg.trim();
+  int sep = arg.indexOf(' ');
+  if (sep <= 0) { Serial.println("ERR LOOK x y (-1.0..1.0)"); return; }
+  String sx = arg.substring(0, sep);
+  String sy = arg.substring(sep + 1);
+  sx.trim(); sy.trim();
+  char *endX = nullptr, *endY = nullptr;
+  float x = strtof(sx.c_str(), &endX);
+  float y = strtof(sy.c_str(), &endY);
+  if (!sx.length() || !sy.length() || *endX || *endY || x < -1.0f || x > 1.0f || y < -1.0f || y > 1.0f) {
+    Serial.println("ERR LOOK x y (-1.0..1.0)");
+    return;
+  }
+  if (quietMode) wakeFromPi(0, "idle_watch");
+  lastInteractionMs = millis();
+  autoSlept = false;
+  faceTarget.lookX = x;
+  faceTarget.lookY = y;
+  Serial.println("OK LOOK " + String(x, 2) + " " + String(y, 2));
+  return;
+}
 
   lastInteractionMs = millis();
   autoSlept = false;
