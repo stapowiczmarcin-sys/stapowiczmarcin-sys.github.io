@@ -14711,6 +14711,58 @@ static constexpr bool EAR_R_REVERSED = true;
 static constexpr int PIN_FSR_L = 1;    // ADC1_CH0 - left / lewa
 static constexpr int PIN_FSR_R = 2;    // ADC1_CH1 - right / prawa
 
+
+// ---------- ambient light sensors / czujniki swiatla ----------
+// Same public wiring as V18: LEFT = GPIO3, RIGHT = GPIO4.
+// The two readings are averaged so both pupils react together.
+static constexpr int PIN_LIGHT_L = 3;
+static constexpr int PIN_LIGHT_R = 4;
+static constexpr int LIGHT_DARK_L = 0, LIGHT_BRIGHT_L = 4095;
+static constexpr int LIGHT_DARK_R = 0, LIGHT_BRIGHT_R = 4095;
+static bool lightLocalReady = false;
+static bool lightFilterReady = false;
+static float lightFiltered01 = 0.5f;
+static float lightPupilOffset = 0.0f;
+static uint32_t lightSampleAt = 0;
+
+static float normalizeLight01(int raw, int dark, int bright) {
+  if (dark == bright) return 0.5f;
+  float v = float(raw - dark) / float(bright - dark);
+  if (v < 0.0f) v = 0.0f;
+  if (v > 1.0f) v = 1.0f;
+  return v;
+}
+
+static void setupLightSensors() {
+  pinMode(PIN_LIGHT_L, INPUT);
+  pinMode(PIN_LIGHT_R, INPUT);
+  analogSetPinAttenuation(PIN_LIGHT_L, ADC_11db);
+  analogSetPinAttenuation(PIN_LIGHT_R, ADC_11db);
+  lightLocalReady = true;
+}
+
+static void updateLightPupil() {
+  if (!lightLocalReady) return;
+  const uint32_t now = millis();
+  if (uint32_t(now - lightSampleAt) < 50u) return;
+  lightSampleAt = now;
+
+  const float l = normalizeLight01(analogRead(PIN_LIGHT_L), LIGHT_DARK_L, LIGHT_BRIGHT_L);
+  const float r = normalizeLight01(analogRead(PIN_LIGHT_R), LIGHT_DARK_R, LIGHT_BRIGHT_R);
+  const float ambient = (l + r) * 0.5f;
+
+  if (!lightFilterReady) {
+    lightFiltered01 = ambient;
+    lightFilterReady = true;
+  } else {
+    lightFiltered01 += (ambient - lightFiltered01) * 0.16f;
+  }
+
+  // Bright -> smaller pupil, dark -> larger pupil.
+  // Offset preserves Animal mood and breathing.
+  lightPupilOffset = (0.5f - lightFiltered01) * 0.70f;
+}
+
 // ---------- OTA / AP ----------
 static const char* OTA_PASSWORD = "SET_YOUR_OTA_PASSWORD";
 static constexpr char* AP_SSID = (char*)"Kora-Eyes-Setup";
@@ -15652,7 +15704,7 @@ static void drawFace() {
   float curveRx = faceNow.curveR - sqR * 0.35f;
   float lookYx = faceNow.lookY + (sqL + sqR) * 0.28f;
   float pupilBreath = 0.06f*sinf(now*0.0010f)+0.02f*sinf(now*0.00037f);
-  float pupilL = clampF(faceNow.pupil + pupilBreath - sqL * 0.30f, 0.05f, 1.0f);
+  float pupilL = clampF(faceNow.pupil + pupilBreath + lightPupilOffset - sqL * 0.30f, 0.05f, 1.0f);
   float pupilR = pupilL; // Matched pupil size for a consistent binocular gaze.
   uint16_t colL = mixWhite(faceNow.color, sqL * 0.70f);
   uint16_t colR = mixWhite(faceNow.color, sqR * 0.70f);
@@ -16367,6 +16419,7 @@ void setup() {
   analogReadResolution(12);
   analogSetPinAttenuation(PIN_FSR_L, ADC_11db);
   analogSetPinAttenuation(PIN_FSR_R, ADC_11db);
+  setupLightSensors();
   Serial.println("FSR READY pins GPIO1(L)/GPIO2(R) ADC1, divider 10k to GND");
 
   Serial.printf("HEAP start: %u\n", (unsigned)ESP.getFreeHeap());
@@ -16461,6 +16514,7 @@ void setup() {
 }
 
 void loop() {
+  updateLightPupil();
   esp_task_wdt_reset();
 
   if (wifiReady && !apMode && !WiFi.isConnected() &&

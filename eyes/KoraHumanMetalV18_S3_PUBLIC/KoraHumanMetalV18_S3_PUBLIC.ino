@@ -11377,8 +11377,8 @@ static bool parsePercent(String s,int& value) {
   if(*end||parsed<0||parsed>100)return false;
   value=int(parsed);return true;
 }
-// Disabled until the actual sensor GPIOs and divider calibration are supplied.
-static constexpr int PIN_LIGHT_L=-1, PIN_LIGHT_R=-1;
+// Ambient light sensors / czujniki swiatla: LEFT GPIO3, RIGHT GPIO4.
+static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;
 static constexpr int LIGHT_DARK_L=0,LIGHT_BRIGHT_L=4095;
 static constexpr int LIGHT_DARK_R=0,LIGHT_BRIGHT_R=4095;
 static bool lightLocalReady=false,lightRemoteSeen=false,lightLocalSeen=false;
