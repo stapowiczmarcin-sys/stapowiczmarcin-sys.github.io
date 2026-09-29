@@ -36,7 +36,21 @@ OPS = [
       autoSlept = true;
       Serial.println("OK AUTO_SLEEP timeout=" + String(elapsedTimeoutMs));
 ''')),
-    (C('    lastInteractionMs = now;\n'), C('    // Only incoming TALK/AUDIO activity refreshes the idle timer, not this animation.\n')),
+    (C('''  if (talkMode && !quietMode && now >= nextTalkMs) {
+    nextTalkMs = now + (uint32_t)random(120, 240);
+    faceTarget.lookX = clampF(faceTarget.lookX + (float)random(-10, 11) / 100.0f, -0.55f, 0.55f);
+    faceTarget.lookY = clampF(faceTarget.lookY + (float)random(-7, 8) / 100.0f, -0.30f, 0.30f);
+    setEarLogicalTargets(10 + random(-6, 7), 10 + random(-6, 7));
+    lastInteractionMs = now;
+  }
+'''), C('''  if (talkMode && !quietMode && now >= nextTalkMs) {
+    nextTalkMs = now + (uint32_t)random(120, 240);
+    faceTarget.lookX = clampF(faceTarget.lookX + (float)random(-10, 11) / 100.0f, -0.55f, 0.55f);
+    faceTarget.lookY = clampF(faceTarget.lookY + (float)random(-7, 8) / 100.0f, -0.30f, 0.30f);
+    setEarLogicalTargets(10 + random(-6, 7), 10 + random(-6, 7));
+    // Only incoming TALK/AUDIO activity refreshes the idle timer, not this animation.
+  }
+''')),
     (C('''static void wakeFromPi(uint32_t ms = 0, const String &moodName = "idle_watch") {
   wakeTimeoutMs = ms;
 '''), C('''static void wakeFromPi(uint32_t ms = DEFAULT_IDLE_SLEEP_MS, const String &moodName = "idle_watch") {
@@ -67,7 +81,7 @@ for target, expected in TARGETS.items():
     for old, new in OPS:
         count = b.count(old)
         if count != 1:
-            raise SystemExit(f'Anchor count {count}, expected 1: {target}: {old[:80]!r}')
+            raise SystemExit(f'Anchor count {count}, expected 1: {target}: {old[:100]!r}')
         b = b.replace(old, new, 1)
     b = HEADER + b
     got = hashlib.sha256(b).hexdigest()
