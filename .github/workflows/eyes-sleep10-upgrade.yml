@@ -21,3 +21,4 @@ jobs:
           git add eyes .github
           git commit -m "Update Kora eye sketches with SLEEP10 versions"
           git push
+# retry: exact TALK timer anchor
