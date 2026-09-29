@@ -25,6 +25,13 @@ def replace_once(data: bytes, old: bytes, new: bytes, label: str) -> bytes:
     return data.replace(old, new, 1)
 
 
+def regex_sub_once(data: bytes, pattern: bytes, repl, label: str) -> bytes:
+    out, count = re.subn(pattern, repl, data, count=1)
+    if count != 1:
+        raise SystemExit(f'{label}: expected one regex match, got {count}')
+    return out
+
+
 # Restore original bytes first, then make only the intended V18 replacements.
 for p in V18:
     data = base_bytes(p)
@@ -105,19 +112,45 @@ static void updateLightPupil() {
 }
 '''
 block = block_text.replace('\n', nl.decode('ascii')).encode('utf-8')
-pin_anchor = b'static constexpr int PIN_FSR_R = 2;    // ADC1_CH1 - right / prawa' + nl
-data = replace_once(data, pin_anchor, pin_anchor + block, 'Animal light block')
-data = replace_once(
+
+# Match Animal anchors by meaning, not by exact spaces/comments.
+data = regex_sub_once(
     data,
-    b'float pupilL = clampF(faceNow.pupil + pupilBreath - sqL * 0.30f, 0.05f, 1.0f);',
-    b'float pupilL = clampF(faceNow.pupil + pupilBreath + lightPupilOffset - sqL * 0.30f, 0.05f, 1.0f);',
+    rb'(?m)^(static constexpr int PIN_FSR_R\s*=\s*2;[^\r\n]*)(\r?\n)',
+    lambda m: m.group(1) + m.group(2) + block,
+    'Animal light block',
+)
+
+data = regex_sub_once(
+    data,
+    rb'(?m)^([ \t]*)float\s+pupilL\s*=\s*clampF\(faceNow\.pupil\s*\+\s*pupilBreath\s*-\s*sqL\s*\*\s*0\.30f\s*,\s*0\.05f\s*,\s*1\.0f\s*\);',
+    lambda m: m.group(1) + b'float pupilL = clampF(faceNow.pupil + pupilBreath + lightPupilOffset - sqL * 0.30f, 0.05f, 1.0f);',
     'Animal pupil render',
 )
-setup_anchor = b'analogSetPinAttenuation(PIN_FSR_R, ADC_11db);' + nl
-data = replace_once(data, setup_anchor, setup_anchor + b'  setupLightSensors();' + nl, 'Animal setup')
-loop_anchor = b'void loop() {' + nl
-data = replace_once(data, loop_anchor, loop_anchor + b'  updateLightPupil();' + nl, 'Animal loop')
-for needle in [b'static constexpr int PIN_LIGHT_L = 3;', b'static constexpr int PIN_LIGHT_R = 4;', b'analogRead(PIN_LIGHT_L)', b'analogRead(PIN_LIGHT_R)', b'+ lightPupilOffset - sqL * 0.30f']:
+
+data = regex_sub_once(
+    data,
+    rb'(?m)^([ \t]*analogSetPinAttenuation\(\s*PIN_FSR_R\s*,\s*ADC_11db\s*\);)(\r?\n)',
+    lambda m: m.group(1) + m.group(2) + b'  setupLightSensors();' + m.group(2),
+    'Animal setup',
+)
+
+data = regex_sub_once(
+    data,
+    rb'(?m)^(void\s+loop\s*\(\s*\)\s*\{)(\r?\n)',
+    lambda m: m.group(1) + m.group(2) + b'  updateLightPupil();' + m.group(2),
+    'Animal loop',
+)
+
+for needle in [
+    b'static constexpr int PIN_LIGHT_L = 3;',
+    b'static constexpr int PIN_LIGHT_R = 4;',
+    b'analogRead(PIN_LIGHT_L)',
+    b'analogRead(PIN_LIGHT_R)',
+    b'setupLightSensors();',
+    b'updateLightPupil();',
+    b'+ lightPupilOffset - sqL * 0.30f',
+]:
     if needle not in data:
         raise SystemExit(f'Animal validation missing {needle!r}')
 ANIMAL.write_bytes(data)
@@ -156,11 +189,18 @@ manifest_path = Path('eyes/SHA256_V18.json')
 manifest = base_bytes(manifest_path).decode('utf-8')
 for zpath in list(zip_map)[:3]:
     digest = hashlib.sha256(zpath.read_bytes()).hexdigest()
-    pattern = rf'("{re.escape(zpath.name)}"\s*:\s*")[0-9a-f]{{64}}(")'
-    manifest, n = re.subn(pattern, rf'\g<1>{digest}\g<2>', manifest, count=1)
-    if n != 1:
+    manifest_pattern = rf'("{re.escape(zpath.name)}"\s*:\s*")[0-9a-f]{{64}}(")'
+    manifest, count = re.subn(manifest_pattern, rf'\g<1>{digest}\g<2>', manifest, count=1)
+    if count != 1:
         raise SystemExit(f'Manifest entry replacement failed for {zpath.name}')
     print('SHA256', zpath.name, digest)
 manifest_path.write_bytes(manifest.encode('utf-8'))
+
+for p in V18:
+    t = p.read_bytes()
+    if t.count(b'static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;') != 1:
+        raise SystemExit(f'{p}: final GPIO declaration validation failed')
+    if b'PIN_LIGHT_L=-1' in t or b'PIN_LIGHT_R=-1' in t:
+        raise SystemExit(f'{p}: disabled GPIO declaration still present')
 
 print('BYTE-PRESERVING CLEANUP VALIDATION PASSED')
