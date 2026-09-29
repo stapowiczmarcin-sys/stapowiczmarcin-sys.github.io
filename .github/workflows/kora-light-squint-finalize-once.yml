@@ -1,47 +1,18 @@
-name: Kora V18 light squint finalizer once
+name: Kora V18 eye source audit once
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/kora-light-squint-finalize-once.yml'
 permissions:
-  contents: write
+  contents: read
 jobs:
-  finalize:
+  audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Build three audited Kora V18 eye packages
+      - name: Audit current three V18 eye sources
         shell: bash
         run: |
           set -euo pipefail
           python3 .github/scripts/kora_light_squint_finalize_once.py
-          git diff --check
-          echo '--- source diff vs clean baseline ---'
-          git diff --numstat 30db11179c660ea46acd371936a95bb2afc1a1d3 -- \
-            eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
-            eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
-            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino
-      - name: Commit eye sources, ZIPs and manifest
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm -f --ignore-unmatch .github/workflows/kora_gpio34_lineendings_fix.yml
-          git rm -f --ignore-unmatch .github/scripts/kora_gpio34_lineendings_fix.py
-          git rm -f --ignore-unmatch .github/workflows/kora-light-squint-finalize-once.yml
-          git rm -f --ignore-unmatch .github/scripts/kora_light_squint_finalize_once.py
-          git add \
-            eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
-            eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
-            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino \
-            eyes/KoraHumanMetalV18_S3_PUBLIC.zip \
-            eyes/KoraMetalEyesV18_S3_PUBLIC.zip \
-            eyes/KoraMonsterEyesV18_S3_PUBLIC.zip \
-            eyes/SHA256_V18.json
-          git diff --cached --check
-          git commit -m "Add GPIO3/4 light pupil and progressive squint to Kora V18 eyes"
-          git push
