@@ -1,4 +1,4 @@
-name: Kora light squint finalizer once
+name: Kora V18 light squint finalizer once
 on:
   push:
     branches: [main]
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Build four eye packages from clean baseline
+      - name: Build three audited Kora V18 eye packages
         shell: bash
         run: |
           set -euo pipefail
@@ -23,9 +23,8 @@ jobs:
           git diff --numstat 30db11179c660ea46acd371936a95bb2afc1a1d3 -- \
             eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
             eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
-            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino \
-            eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino
-      - name: Commit final eye update and remove temporary helpers
+            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino
+      - name: Commit eye sources, ZIPs and manifest
         shell: bash
         run: |
           set -euo pipefail
@@ -39,12 +38,10 @@ jobs:
             eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
             eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
             eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino \
-            eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino \
             eyes/KoraHumanMetalV18_S3_PUBLIC.zip \
             eyes/KoraMetalEyesV18_S3_PUBLIC.zip \
             eyes/KoraMonsterEyesV18_S3_PUBLIC.zip \
-            eyes/KoraAnimalEyesV14_S3_PUBLIC.zip \
             eyes/SHA256_V18.json
           git diff --cached --check
-          git commit -m "Add natural bright-light squint to Kora eyes"
+          git commit -m "Add GPIO3/4 light pupil and progressive squint to Kora V18 eyes"
           git push
