@@ -1,3 +1,4 @@
+// SLEEP10 update 2026-09-29: default inactivity sleep = 10000 ms.
 // KORA V18: runtime iris colours + filtered ambient pupils. Base: KoraEyesTerminatorMotion_S3
 // V18: SLEEP freezes eye -> vertical collapse -> CRT line -> fading dot -> sleep.
 // WAKE / WAKE UP: restore image and open lids; stays awake. All Pi/servo controls retained.
@@ -11271,7 +11272,8 @@ uint32_t earDroopUntil = 0;
 uint32_t earAlertUntil = 0;
 
 // ---------- sleep / wake ----------
-static uint32_t wakeTimeoutMs = 0;
+static constexpr uint32_t DEFAULT_IDLE_SLEEP_MS = 10000; // 10 s without external activity.
+static uint32_t wakeTimeoutMs = DEFAULT_IDLE_SLEEP_MS;
 static bool autoSlept = false;
 static uint32_t wakeAnimStart = 0;
 
@@ -11380,7 +11382,7 @@ static constexpr int MOUTH_R_CLOSED=90,MOUTH_R_OPEN=65;
 static constexpr int MOUTH_MIN_ANGLE=65,MOUTH_MAX_ANGLE=115;
 static constexpr int MOUTH_MIN_US=1000,MOUTH_MAX_US=2000;
 static constexpr uint32_t TALK_TIMEOUT_MS=120000;
-static constexpr uint32_t BOOT_AWAKE_MS=0; // 0 = stay awake until Pi requests sleep.
+static constexpr uint32_t BOOT_AWAKE_MS=DEFAULT_IDLE_SLEEP_MS; // Auto-sleep after 10 s idle.
 static constexpr bool ENABLE_CRT_FX=false; // Legacy effect disabled; V18 KoraCRT handles sleep independently.
 Servo mouthL,mouthR;
 static portMUX_TYPE mouthMux=portMUX_INITIALIZER_UNLOCKED;
@@ -11958,11 +11960,14 @@ static void updateFsr() {
   fsrPressed = (tL > 0.04f || tR > 0.04f);
 
   if (fsrPressed) {
-    lastInteractionMs = now;
-    autoSlept = false;
+    // A new press is activity; a continuously held HIGH must not hold the eyes open forever.
+    if (!wasPressed) {
+      lastInteractionMs = now;
+      autoSlept = false;
+    }
 
     if (quietMode && !wasPressed) {
-      wakeFromPi(5000, "surprised");
+      wakeFromPi(DEFAULT_IDLE_SLEEP_MS, "surprised");
     }
 
     if ((tL > 0.35f || tR > 0.35f) && !wasPressed) {
@@ -11978,11 +11983,12 @@ static void updateFsr() {
 static void updateAutonomy() {
   uint32_t now = millis();
 
-  if (!quietMode && wakeTimeoutMs > 0 && now - lastInteractionMs > wakeTimeoutMs) {
+  if (!quietMode && wakeTimeoutMs > 0 && now - lastInteractionMs >= wakeTimeoutMs) {
+    const uint32_t elapsedTimeoutMs = wakeTimeoutMs;
     enterPiSleep(true);
     if (!autoSlept) {
       autoSlept = true;
-      Serial.println("OK AUTO_SLEEP timeout=" + String(wakeTimeoutMs));
+      Serial.println("OK AUTO_SLEEP timeout=" + String(elapsedTimeoutMs));
     }
     return;
   }
@@ -12002,7 +12008,7 @@ static void updateAutonomy() {
     faceTarget.lookX = clampF(faceTarget.lookX + (float)random(-10, 11) / 100.0f, -0.55f, 0.55f);
     faceTarget.lookY = clampF(faceTarget.lookY + (float)random(-7, 8) / 100.0f, -0.30f, 0.30f);
     setEarLogicalTargets(10 + random(-6, 7), 10 + random(-6, 7));
-    lastInteractionMs = now;
+    // Only incoming TALK/AUDIO activity refreshes the idle timer, not this animation.
   }
 
   if (thinkMode && !quietMode && now >= nextThinkMs) {
@@ -12268,8 +12274,8 @@ static void drawFace() {
 // ============================================================
 // Control helpers
 // ============================================================
-static void wakeFromPi(uint32_t ms = 0, const String &moodName = "idle_watch") {
-  wakeTimeoutMs = ms;
+static void wakeFromPi(uint32_t ms = DEFAULT_IDLE_SLEEP_MS, const String &moodName = "idle_watch") {
+  wakeTimeoutMs = ms ? ms : DEFAULT_IDLE_SLEEP_MS; // WAKE / HTTP ms=0 uses the default.
   quietMode = false;
   talkMode = false;
   thinkMode = false;
@@ -12300,7 +12306,7 @@ static void enterPiSleep(bool forcePose = true) {
   thinkMode = false;
   blinkActive = false;
   earPerkMs = 0;
-  wakeTimeoutMs = 0;
+  wakeTimeoutMs = DEFAULT_IDLE_SLEEP_MS; // Also arm direct MOOD/API wake paths.
   wakeAnimStart = 0;
   currentMood = "full_sleep";
   applyMood("full_sleep");
@@ -12343,7 +12349,7 @@ static void setThinkMode(bool on) {
 static void handlePersonFound() {
   personDetected = true;
   if (quietMode) {
-    wakeFromPi(8000, "human_found");
+    wakeFromPi(DEFAULT_IDLE_SLEEP_MS, "human_found");
   } else {
     lastInteractionMs = millis();
     applyMood("human_found");
@@ -12535,7 +12541,7 @@ static void handleSerialLine(String line) {
     Serial.println("OK BLINKPROFILE " + trimCopy(line.substring(13))); return;
   }
   if (upper == "M" || upper == ".") {
-    if (quietMode) wakeFromPi(8000, "idle_watch");
+    if (quietMode) wakeFromPi(DEFAULT_IDLE_SLEEP_MS, "idle_watch");
     startBlink(180); Serial.println("OK BLINK"); return;
   }
   if (upper == "U") { handlePersonFound(); Serial.println("OK PERSON_FOUND"); return; }
