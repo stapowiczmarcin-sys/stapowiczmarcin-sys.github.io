@@ -68,7 +68,7 @@ cd /home/marcin/vega_robot
 python3 kora_eye_film_show.py</code></pre>
           </div>
 
-          <p data-en="LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on GPIO3/GPIO4 or cover the sensors and let the firmware react: pupils change size and strong light progressively squints the eyelids." data-pl="LIGHT DEMO celowo nie wysyła sztucznej wartości LIGHT. Poświeć prawdziwą latarką na czujniki GPIO3/GPIO4 albo je zasłoń i pozwól firmware’owi zareagować: źrenice zmieniają rozmiar, a mocne światło stopniowo mruży powieki.">LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on GPIO3/GPIO4 or cover the sensors and let the firmware react: pupils change size and strong light progressively squints the eyelids.</p>
+          <p data-en="LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on the GPIO3/GPIO4 sensors or cover them and let the firmware react. The automatic pupils change size from the real sensor readings." data-pl="LIGHT DEMO celowo nie wysyła sztucznej wartości LIGHT. Poświeć prawdziwą latarką na czujniki GPIO3/GPIO4 albo je zasłoń i pozwól firmware’owi zareagować. Automatyczne źrenice zmieniają rozmiar na podstawie prawdziwych odczytów czujników.">LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on the GPIO3/GPIO4 sensors or cover them and let the firmware react. The automatic pupils change size from the real sensor readings.</p>
 
           <div class="buttons">
             <a class="btn primary" href="kora_eye_film_show.py" download data-en="Download Pi panel ↓" data-pl="Pobierz panel na Pi ↓">Download Pi panel ↓</a>
@@ -78,20 +78,38 @@ python3 kora_eye_film_show.py</code></pre>
       canvas.parentNode.insertBefore(section, canvas);
     }
 
-    const v18NoteEn = 'Light sensors: GPIO3 left / GPIO4 right. Automatic pupils, strong-light squint and LOOK control are enabled. Set your own AP/OTA passwords before upload.';
-    const v18NotePl = 'Czujniki światła: GPIO3 lewy / GPIO4 prawy. Działają automatyczne źrenice, mrużenie przy mocnym świetle i sterowanie LOOK. Przed wgraniem ustaw własne hasła AP/OTA.';
+    const testedEn = '✓ HARDWARE TESTED ON KORA — 30 SEP 2026';
+    const testedPl = '✓ SPRAWDZONE NA KORZE — 30 WRZ 2026';
+    ['realistic', 'metal', 'monster', 'animal-v14'].forEach(id => {
+      const card = document.getElementById(id);
+      if (!card || card.querySelector('.kora-tested-badge')) return;
+      const title = card.querySelector('h3');
+      if (!title) return;
+      const badge = document.createElement('p');
+      badge.className = 'small kora-tested-badge';
+      badge.dataset.en = testedEn;
+      badge.dataset.pl = testedPl;
+      badge.textContent = testedEn;
+      badge.style.fontWeight = '800';
+      badge.style.letterSpacing = '.04em';
+      badge.style.color = '#79e7e4';
+      title.insertAdjacentElement('afterend', badge);
+    });
+
+    const v18NoteEn = 'Hardware-tested on Kora: light sensors GPIO3 left / GPIO4 right, automatic pupils and LOOK control. Set your own AP/OTA passwords before upload.';
+    const v18NotePl = 'Sprawdzone na Korie: czujniki światła GPIO3 lewy / GPIO4 prawy, automatyczne źrenice i sterowanie LOOK. Przed wgraniem ustaw własne hasła AP/OTA.';
     ['realistic', 'metal', 'monster'].forEach(id => {
-      const note = document.querySelector(`#${id} .small`);
+      const note = document.querySelector(`#${id} .small:not(.kora-tested-badge)`);
       if (note) {
         note.dataset.en = v18NoteEn;
         note.dataset.pl = v18NotePl;
       }
     });
 
-    const animalNote = document.querySelector('#animal-v14 .small');
+    const animalNote = document.querySelector('#animal-v14 .small:not(.kora-tested-badge)');
     if (animalNote) {
-      animalNote.dataset.en = 'Animal V14: GPIO3/GPIO4 light sensors, automatic pupil response, strong-light squint and LOOK X Y control. USB control is ready; set your own AP/OTA passwords before enabling Wi-Fi.';
-      animalNote.dataset.pl = 'Animal V14: czujniki światła GPIO3/GPIO4, automatyczna reakcja źrenic, mrużenie przy mocnym świetle i sterowanie LOOK X Y. USB działa od razu; przed włączeniem Wi-Fi ustaw własne hasła AP/OTA.';
+      animalNote.dataset.en = 'Hardware-tested Animal V14: GPIO3/GPIO4 light sensors, automatic pupil response and LOOK X Y control. USB control is ready; set your own AP/OTA passwords before enabling Wi-Fi.';
+      animalNote.dataset.pl = 'Sprawdzone Animal V14: czujniki światła GPIO3/GPIO4, automatyczna reakcja źrenic i sterowanie LOOK X Y. USB działa od razu; przed włączeniem Wi-Fi ustaw własne hasła AP/OTA.';
     }
   }
 
