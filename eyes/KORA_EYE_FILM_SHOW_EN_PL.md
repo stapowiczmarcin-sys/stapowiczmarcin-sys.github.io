@@ -2,7 +2,7 @@
 
 A small desktop control panel for filming and demonstrating Kora's digital eyes from a Raspberry Pi over USB serial.
 
-**Supported eye families:**
+**Hardware-tested on Kora — 30 Sep 2026:**
 - Human V18
 - Metal V18
 - Monster V18
@@ -29,7 +29,7 @@ The current round-eye builds use the physical light inputs:
 - **GPIO3 — left light sensor**
 - **GPIO4 — right light sensor**
 
-The film panel does **not** fake the effect by sending a brightness value. During LIGHT DEMO you physically shine a light on the sensors or cover them. The eye firmware itself changes pupil size and, in strong light, progressively squints the eyelids.
+The film panel does **not** fake the effect by sending a brightness value. During LIGHT DEMO you physically shine a light on the sensors or cover them. The automatic pupils change size from the real sensor readings.
 
 ## Safety by design
 
@@ -72,7 +72,7 @@ The optional Kora configuration path `/home/marcin/vega_robot/config/ports.json`
 4. Choose the correct eye serial device and press **CONNECT**.
 5. Record `HUMAN SHORT`, `METAL SHORT`, `MONSTER SHORT` or `ANIMAL SHORT` for vertical video.
 6. Record the matching **LONG** sequence for a full YouTube video.
-7. Record **LIGHT DEMO** close-up to show that the pupils and eyelids react to real ambient light.
+7. Record **LIGHT DEMO** close-up to show the real ambient-light pupil response.
 8. Stop the panel before reconnecting or changing USB devices.
 
 ## Serial commands used by the panel
@@ -93,7 +93,7 @@ The exact iris names supported by a firmware build should be checked in that bui
 
 Mały panel okienkowy do nagrywania i prezentowania cyfrowych oczu Kory. Raspberry Pi steruje ESP32-S3 przez USB/serial.
 
-**Obsługiwane wersje:**
+**Sprawdzone na prawdziwej Korze — 30 września 2026:**
 - Human V18
 - Metal V18
 - Monster V18
@@ -120,7 +120,7 @@ Aktualne wersje okrągłych oczu używają:
 - **GPIO3 — lewy czujnik światła**
 - **GPIO4 — prawy czujnik światła**
 
-Panel nie udaje zmiany światła przez wysyłanie wartości programowej. W LIGHT DEMO naprawdę świecisz latarką na czujniki albo je zasłaniasz. Firmware oczu sam zmienia rozmiar źrenic, a przy mocnym świetle dodatkowo stopniowo mruży powieki.
+Panel nie udaje zmiany światła przez wysyłanie wartości programowej. W LIGHT DEMO naprawdę świecisz latarką na czujniki albo je zasłaniasz. Automatyczne źrenice zmieniają rozmiar na podstawie prawdziwych odczytów czujników.
 
 ## Bezpieczeństwo
 
@@ -163,7 +163,7 @@ Opcjonalna ścieżka Kory `/home/marcin/vega_robot/config/ports.json` jest używ
 4. Wybierz właściwy port oczu i naciśnij **CONNECT**.
 5. Do pionowego filmu nagraj odpowiedni `HUMAN / METAL / MONSTER / ANIMAL SHORT`.
 6. Do pełnego filmu nagraj odpowiadającą mu sekwencję **LONG**.
-7. Osobno nagraj **LIGHT DEMO**, najlepiej blisko oczu, żeby było widać prawdziwą reakcję źrenic i powiek.
+7. Osobno nagraj **LIGHT DEMO**, najlepiej blisko oczu, żeby było widać prawdziwą reakcję źrenic na światło.
 8. Przed przepinaniem USB zatrzymaj sekwencję i rozłącz panel.
 
 ## Komendy używane przez panel
