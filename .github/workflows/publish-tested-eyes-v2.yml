@@ -1,0 +1,136 @@
+name: Publish tested Kora eyes v2
+
+on:
+  push:
+    paths:
+      - '.github/eye-patches/TRIGGER2'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply exact hardware-tested sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d .github/eye-patches/final-tested.patch.b64 | bzip2 -dc > /tmp/final-tested.patch
+          patch -p1 --batch --forward < /tmp/final-tested.patch || true
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, re
+
+          human_light = base64.b64decode('Ly8gLS0tLS0tLS0tLSBhbWJpZW50IGxpZ2h0IHNlbnNvcnMgLyBjenVqbmlraSBzd2lhdGxhIC0tLS0tLS0tLS0KLy8gTEVGVCA9IEdQSU8zLCBSSUdIVCA9IEdQSU80LgovLyBQdXBpbHMgdXNlIHRoZSBhdmVyYWdlZCBhbWJpZW50IGxldmVsLgovLyBFeWVsaWRzIHVzZSB0aGUgU0FNRSByZXNwb25zZSBjdXJ2ZS9zbW9vdGhpbmcgdGhhdCBwcmV2aW91c2x5IHByb2R1Y2VkCi8vIHRoZSBnb29kICJzcUwvc3FSIiBzcXVpbnQsIGJ1dCBub3cgdGhlIHNvdXJjZSBpcyBsaWdodCBvbmx5LgpzdGF0aWMgY29uc3RleHByIGludCBQSU5fTElHSFRfTD0zLCBQSU5fTElHSFRfUj00OwpzdGF0aWMgY29uc3RleHByIGludCBMSUdIVF9EQVJLX0w9MCxMSUdIVF9CUklHSFRfTD00MDk1OwpzdGF0aWMgY29uc3RleHByIGludCBMSUdIVF9EQVJLX1I9MCxMSUdIVF9CUklHSFRfUj00MDk1OwoKLy8gVGhlc2UgdGhyZXNob2xkcyBpbnRlbnRpb25hbGx5IG1hdGNoIHRoZSBwcmV2aW91cyBwcm92ZW4gc3F1aW50IHJlc3BvbnNlLgovLyBJZiB5b3VyIGRpdmlkZXIgaXMgbGF0ZXIgY2FsaWJyYXRlZCBkaWZmZXJlbnRseSwgb25seSB0aGVzZSB0d28gdmFsdWVzIG5lZWQgY2hhbmdpbmcuCnN0YXRpYyBjb25zdGV4cHIgdWludDMyX3QgTElHSFRfU1FVSU5UX1NUQVJUX1JBVz0xMjA7CnN0YXRpYyBjb25zdGV4cHIgdWludDMyX3QgTElHSFRfU1FVSU5UX0ZVTExfUkFXPTE2MDA7CgpzdGF0aWMgYm9vbCBsaWdodExvY2FsUmVhZHk9ZmFsc2UsbGlnaHRSZW1vdGVTZWVuPWZhbHNlLGxpZ2h0TG9jYWxTZWVuPWZhbHNlOwpzdGF0aWMgZmxvYXQgbGlnaHRMb2NhbD01MCxsaWdodFJlbW90ZT01MDsKc3RhdGljIHVpbnQzMl90IGxpZ2h0UmVtb3RlQXQ9MCxsaWdodFNhbXBsZUF0PTA7CnN0YXRpYyBjb25zdCBjaGFyKiBsaWdodFNvdXJjZT0ibm9uZSI7CnN0YXRpYyB1aW50MzJfdCBsaWdodFJhd0w9MCxsaWdodFJhd1I9MDsKc3RhdGljIGZsb2F0IGxpZ2h0U3F1aW50TD0wLjBmLGxpZ2h0U3F1aW50Uj0wLjBmOwoKc3RhdGljIGZsb2F0IGxpZ2h0UmF3VG9TcXVpbnQodWludDMyX3QgcmF3KXsKICBpZihyYXc8PUxJR0hUX1NRVUlOVF9TVEFSVF9SQVcpcmV0dXJuIDAuMGY7CiAgaWYocmF3Pj1MSUdIVF9TUVVJTlRfRlVMTF9SQVcpcmV0dXJuIDEuMGY7CiAgcmV0dXJuIGZsb2F0KHJhdy1MSUdIVF9TUVVJTlRfU1RBUlRfUkFXKS9mbG9hdChMSUdIVF9TUVVJTlRfRlVMTF9SQVctTElHSFRfU1FVSU5UX1NUQVJUX1JBVyk7Cn0KCnN0YXRpYyB1aW50MzJfdCByZWFkTGlnaHRSYXcoaW50IHBpbil7CiAgdWludDMyX3QgYWNjPTA7CiAgZm9yKGludCBpPTA7aTw0O2krKyl7CiAgICBhY2MrPWFuYWxvZ1JlYWQocGluKTsKICAgIGRlbGF5TWljcm9zZWNvbmRzKDQwMCk7CiAgfQogIHJldHVybiBhY2MvNDsKfQoKc3RhdGljIGJvb2wgbGlnaHRQaW5WYWxpZChpbnQgcCl7CiAgLy8gQURDMSBvbmx5OiBXaS1GaSByZW1haW5zIHVzYWJsZS4gUmVqZWN0IGV2ZXJ5IGFscmVhZHktYXNzaWduZWQgcGluLgogIGNvbnN0IGludCBvY2N1cGllZFtdPXtQSU5fU0NLLFBJTl9NT1NJLFBJTl9DU19MLFBJTl9EQ19MLFBJTl9SU1RfTCxQSU5fQ1NfUixQSU5fRENfUixQSU5fUlNUX1IsUElOX0VBUl9MLFBJTl9FQVJfUixQSU5fTU9VVEhfTCxQSU5fTU9VVEhfUn07CiAgaWYocDwxfHxwPjEwKXJldHVybiBmYWxzZTsKICBmb3IoaW50IHVzZWQ6b2NjdXBpZWQpaWYocD09dXNlZClyZXR1cm4gZmFsc2U7CiAgcmV0dXJuIHRydWU7Cn0KCnN0YXRpYyB2b2lkIHNldHVwTGlnaHRTZW5zb3JzKCl7CiAgbGlnaHRMb2NhbFJlYWR5PWxpZ2h0UGluVmFsaWQoUElOX0xJR0hUX0wpJiZsaWdodFBpblZhbGlkKFBJTl9MSUdIVF9SKSYmUElOX0xJR0hUX0whPVBJTl9MSUdIVF9SJiZMSUdIVF9EQVJLX0whPUxJR0hUX0JSSUdIVF9MJiZMSUdIVF9EQVJLX1IhPUxJR0hUX0JSSUdIVF9SOwogIGlmKCFsaWdodExvY2FsUmVhZHkpe1NlcmlhbC5wcmludGxuKCJFUlIgTElHSFQgY29uZmlndXJhdGlvbjsgQURDIGRpc2FibGVkIik7cmV0dXJuO30KICBwaW5Nb2RlKFBJTl9MSUdIVF9MLElOUFVUKTsKICBwaW5Nb2RlKFBJTl9MSUdIVF9SLElOUFVUKTsKICBhbmFsb2dTZXRQaW5BdHRlbnVhdGlvbihQSU5fTElHSFRfTCxBRENfMTFkYik7CiAgYW5hbG9nU2V0UGluQXR0ZW51YXRpb24oUElOX0xJR0hUX1IsQURDXzExZGIpOwogIFNlcmlhbC5wcmludGxuKCJMSUdIVCBSRUFEWSBHUElPMyhMKS9HUElPNChSKSIpOwp9CgpzdGF0aWMgdm9pZCB1cGRhdGVMaWdodFB1cGlsKCl7CiAgdWludDMyX3Qgbm93PW1pbGxpcygpOwogIGlmKGxpZ2h0TG9jYWxSZWFkeSYmKCFsaWdodExvY2FsU2Vlbnx8dWludDMyX3Qobm93LWxpZ2h0U2FtcGxlQXQpPj0yNSkpewogICAgbGlnaHRTYW1wbGVBdD1ub3c7CiAgICBsaWdodExvY2FsU2Vlbj10cnVlOwoKICAgIGxpZ2h0UmF3TD1yZWFkTGlnaHRSYXcoUElOX0xJR0hUX0wpOwogICAgbGlnaHRSYXdSPXJlYWRMaWdodFJhdyhQSU5fTElHSFRfUik7CgogICAgZmxvYXQgbD1Lb3JhUHVwaWw6Om5vcm1hbGl6ZShsaWdodFJhd0wsTElHSFRfREFSS19MLExJR0hUX0JSSUdIVF9MKTsKICAgIGZsb2F0IHI9S29yYVB1cGlsOjpub3JtYWxpemUobGlnaHRSYXdSLExJR0hUX0RBUktfUixMSUdIVF9CUklHSFRfUik7CiAgICBsaWdodExvY2FsPShsK3IpKjAuNWY7CgogICAgLy8gU2FtZSBmYXN0LWNsb3NlIC8gZ2VudGxlLXJlbGVhc2UgY2hhcmFjdGVyIGFzIHRoZSBwcmV2aW91cyBnb29kIHNxdWludC4KICAgIGZsb2F0IHRMPWxpZ2h0UmF3VG9TcXVpbnQobGlnaHRSYXdMKTsKICAgIGZsb2F0IHRSPWxpZ2h0UmF3VG9TcXVpbnQobGlnaHRSYXdSKTsKICAgIGZsb2F0IGs9KHRMPmxpZ2h0U3F1aW50THx8dFI+bGlnaHRTcXVpbnRSKT8wLjQ1ZjowLjE4ZjsKICAgIGxpZ2h0U3F1aW50TCs9KHRMLWxpZ2h0U3F1aW50TCkqazsKICAgIGxpZ2h0U3F1aW50Uis9KHRSLWxpZ2h0U3F1aW50UikqazsKICB9CgogIGJvb2wgcmVtb3RlRnJlc2g9bGlnaHRSZW1vdGVTZWVuJiZ1aW50MzJfdChub3ctbGlnaHRSZW1vdGVBdCk8PTIwMDA7CiAgYm9vbCBmcmVzaD1yZW1vdGVGcmVzaHx8bGlnaHRMb2NhbFNlZW47CiAgbGlnaHRTb3VyY2U9cmVtb3RlRnJlc2g/InNlcmlhbCI6KGxpZ2h0TG9jYWxTZWVuPyJhZGNfbWVhbiI6KGxpZ2h0UmVtb3RlU2Vlbj8ic2VyaWFsX3N0YWxlIjoibm9uZSIpKTsKICBLb3JhUHVwaWw6OmNvbnRyb2wudGljayhub3csZnJlc2gscmVtb3RlRnJlc2g/bGlnaHRSZW1vdGU6bGlnaHRMb2NhbCk7Cn0K')
+          metal_light = base64.b64decode('Ly8gLS0tLS0tLS0tLSBhbWJpZW50IGxpZ2h0IHNlbnNvcnMgLyBjenVqbmlraSBzd2lhdGxhIC0tLS0tLS0tLS0KLy8gTEVGVCA9IEdQSU8zLCBSSUdIVCA9IEdQSU80LgovLyBQdXBpbHMgdXNlIHRoZSBhdmVyYWdlZCBhbWJpZW50IGxldmVsLgovLyBFeWVsaWRzIHVzZSB0aGUgU0FNRSByZXNwb25zZSBjdXJ2ZS9zbW9vdGhpbmcgdGhhdCBwcmV2aW91c2x5IHByb2R1Y2VkCi8vIHRoZSBnb29kICJzcUwvc3FSIiBzcXVpbnQsIGJ1dCBub3cgdGhlIHNvdXJjZSBpcyBsaWdodCBvbmx5LgpzdGF0aWMgY29uc3RleHByIGludCBQSU5fTElHSFRfTD00LCBQSU5fTElHSFRfUj0zOwpzdGF0aWMgY29uc3RleHByIGludCBMSUdIVF9EQVJLX0w9MCxMSUdIVF9CUklHSFRfTD00MDk1OwpzdGF0aWMgY29uc3RleHByIGludCBMSUdIVF9EQVJLX1I9MCxMSUdIVF9CUklHSFRfUj00MDk1OwoKLy8gVGhlc2UgdGhyZXNob2xkcyBpbnRlbnRpb25hbGx5IG1hdGNoIHRoZSBwcmV2aW91cyBwcm92ZW4gc3F1aW50IHJlc3BvbnNlLgovLyBJZiB5b3VyIGRpdmlkZXIgaXMgbGF0ZXIgY2FsaWJyYXRlZCBkaWZmZXJlbnRseSwgb25seSB0aGVzZSB0d28gdmFsdWVzIG5lZWQgY2hhbmdpbmcuCnN0YXRpYyBjb25zdGV4cHIgdWludDMyX3QgTElHSFRfU1FVSU5UX1NUQVJUX1JBVz0xMjA7CnN0YXRpYyBjb25zdGV4cHIgdWludDMyX3QgTElHSFRfU1FVSU5UX0ZVTExfUkFXPTE2MDA7CgpzdGF0aWMgYm9vbCBsaWdodExvY2FsUmVhZHk9ZmFsc2UsbGlnaHRSZW1vdGVTZWVuPWZhbHNlLGxpZ2h0TG9jYWxTZWVuPWZhbHNlOwpzdGF0aWMgZmxvYXQgbGlnaHRMb2NhbD01MCxsaWdodFJlbW90ZT01MDsKc3RhdGljIHVpbnQzMl90IGxpZ2h0UmVtb3RlQXQ9MCxsaWdodFNhbXBsZUF0PTA7CnN0YXRpYyBjb25zdCBjaGFyKiBsaWdodFNvdXJjZT0ibm9uZSI7CnN0YXRpYyB1aW50MzJfdCBsaWdodFJhd0w9MCxsaWdodFJhd1I9MDsKc3RhdGljIGZsb2F0IGxpZ2h0U3F1aW50TD0wLjBmLGxpZ2h0U3F1aW50Uj0wLjBmOwoKc3RhdGljIGZsb2F0IGxpZ2h0UmF3VG9TcXVpbnQodWludDMyX3QgcmF3KXsKICBpZihyYXc8PUxJR0hUX1NRVUlOVF9TVEFSVF9SQVcpcmV0dXJuIDAuMGY7CiAgaWYocmF3Pj1MSUdIVF9TUVVJTlRfRlVMTF9SQVcpcmV0dXJuIDEuMGY7CiAgcmV0dXJuIGZsb2F0KHJhdy1MSUdIVF9TUVVJTlRfU1RBUlRfUkFXKS9mbG9hdChMSUdIVF9TUVVJTlRfRlVMTF9SQVctTElHSFRfU1FVSU5UX1NUQVJUX1JBVyk7Cn0KCnN0YXRpYyB1aW50MzJfdCByZWFkTGlnaHRSYXcoaW50IHBpbil7CiAgdWludDMyX3QgYWNjPTA7CiAgZm9yKGludCBpPTA7aTw0O2krKyl7CiAgICBhY2MrPWFuYWxvZ1JlYWQocGluKTsKICAgIGRlbGF5TWljcm9zZWNvbmRzKDQwMCk7CiAgfQogIHJldHVybiBhY2MvNDsKfQoKc3RhdGljIGJvb2wgbGlnaHRQaW5WYWxpZChpbnQgcCl7CiAgLy8gQURDMSBvbmx5OiBXaS1GaSByZW1haW5zIHVzYWJsZS4gUmVqZWN0IGV2ZXJ5IGFscmVhZHktYXNzaWduZWQgcGluLgogIGNvbnN0IGludCBvY2N1cGllZFtdPXtQSU5fU0NLLFBJTl9NT1NJLFBJTl9DU19MLFBJTl9EQ19MLFBJTl9SU1RfTCxQSU5fQ1NfUixQSU5fRENfUixQSU5fUlNUX1IsUElOX0VBUl9MLFBJTl9FQVJfUixQSU5fTU9VVEhfTCxQSU5fTU9VVEhfUn07CiAgaWYocDwxfHxwPjEwKXJldHVybiBmYWxzZTsKICBmb3IoaW50IHVzZWQ6b2NjdXBpZWQpaWYocD09dXNlZClyZXR1cm4gZmFsc2U7CiAgcmV0dXJuIHRydWU7Cn0KCnN0YXRpYyB2b2lkIHNldHVwTGlnaHRTZW5zb3JzKCl7CiAgbGlnaHRMb2NhbFJlYWR5PWxpZ2h0UGluVmFsaWQoUElOX0xJR0hUX0wpJiZsaWdodFBpblZhbGlkKFBJTl9MSUdIVF9SKSYmUElOX0xJR0hUX0whPVBJTl9MSUdIVF9SJiZMSUdIVF9EQVJLX0whPUxJR0hUX0JSSUdIVF9MJiZMSUdIVF9EQVJLX1IhPUxJR0hUX0JSSUdIVF9SOwogIGlmKCFsaWdodExvY2FsUmVhZHkpe1NlcmlhbC5wcmludGxuKCJFUlIgTElHSFQgY29uZmlndXJhdGlvbjsgQURDIGRpc2FibGVkIik7cmV0dXJuO30KICBwaW5Nb2RlKFBJTl9MSUdIVF9MLElOUFVUKTsKICBwaW5Nb2RlKFBJTl9MSUdIVF9SLElOUFVUKTsKICBhbmFsb2dTZXRQaW5BdHRlbnVhdGlvbihQSU5fTElHSFRfTCxBRENfMTFkYik7CiAgYW5hbG9nU2V0UGluQXR0ZW51YXRpb24oUElOX0xJR0hUX1IsQURDXzExZGIpOwogIFNlcmlhbC5wcmludGxuKCJMSUdIVCBSRUFEWSBHUElPMyhMKS9HUElPNChSKSIpOwp9CgpzdGF0aWMgdm9pZCB1cGRhdGVMaWdodFB1cGlsKCl7CiAgdWludDMyX3Qgbm93PW1pbGxpcygpOwogIGlmKGxpZ2h0TG9jYWxSZWFkeSYmKCFsaWdodExvY2FsU2Vlbnx8dWludDMyX3Qobm93LWxpZ2h0U2FtcGxlQXQpPj0yNSkpewogICAgbGlnaHRTYW1wbGVBdD1ub3c7CiAgICBsaWdodExvY2FsU2Vlbj10cnVlOwoKICAgIGxpZ2h0UmF3TD1yZWFkTGlnaHRSYXcoUElOX0xJR0hUX0wpOwogICAgbGlnaHRSYXdSPXJlYWRMaWdodFJhdyhQSU5fTElHSFRfUik7CgogICAgZmxvYXQgbD1Lb3JhUHVwaWw6Om5vcm1hbGl6ZShsaWdodFJhd0wsTElHSFRfREFSS19MLExJR0hUX0JSSUdIVF9MKTsKICAgIGZsb2F0IHI9S29yYVB1cGlsOjpub3JtYWxpemUobGlnaHRSYXdSLExJR0hUX0RBUktfUixMSUdIVF9CUklHSFRfUik7CiAgICBsaWdodExvY2FsPShsK3IpKjAuNWY7CgogICAgLy8gU2FtZSBmYXN0LWNsb3NlIC8gZ2VudGxlLXJlbGVhc2UgY2hhcmFjdGVyIGFzIHRoZSBwcmV2aW91cyBnb29kIHNxdWludC4KICAgIGZsb2F0IHRMPWxpZ2h0UmF3VG9TcXVpbnQobGlnaHRSYXdMKTsKICAgIGZsb2F0IHRSPWxpZ2h0UmF3VG9TcXVpbnQobGlnaHRSYXdSKTsKICAgIGZsb2F0IGs9KHRMPmxpZ2h0U3F1aW50THx8dFI+bGlnaHRTcXVpbnRSKT8wLjQ1ZjowLjE4ZjsKICAgIGxpZ2h0U3F1aW50TCs9KHRMLWxpZ2h0U3F1aW50TCkqazsKICAgIGxpZ2h0U3F1aW50Uis9KHRSLWxpZ2h0U3F1aW50UikqazsKICB9CgogIGJvb2wgcmVtb3RlRnJlc2g9bGlnaHRSZW1vdGVTZWVuJiZ1aW50MzJfdChub3ctbGlnaHRSZW1vdGVBdCk8PTIwMDA7CiAgYm9vbCBmcmVzaD1yZW1vdGVGcmVzaHx8bGlnaHRMb2NhbFNlZW47CiAgbGlnaHRTb3VyY2U9cmVtb3RlRnJlc2g/InNlcmlhbCI6KGxpZ2h0TG9jYWxTZWVuPyJhZGNfbWVhbiI6KGxpZ2h0UmVtb3RlU2Vlbj8ic2VyaWFsX3N0YWxlIjoibm9uZSIpKTsKICBLb3JhUHVwaWw6OmNvbnRyb2wudGljayhub3csZnJlc2gscmVtb3RlRnJlc2g/bGlnaHRSZW1vdGU6bGlnaHRMb2NhbCk7Cn0K')
+          draw = base64.b64decode('ICBmbG9hdCBzcUwgPSAocXVpZXRNb2RlIHx8IGNydFN0YXRlID09IDIpID8gMC4wZiA6IGxpZ2h0U3F1aW50TDsKICBmbG9hdCBzcVIgPSAocXVpZXRNb2RlIHx8IGNydFN0YXRlID09IDIpID8gMC4wZiA6IGxpZ2h0U3F1aW50UjsKCiAgb0wgKj0gKDEuMGYgLSAwLjgwZiAqIHNxTCk7CiAgb1IgKj0gKDEuMGYgLSAwLjgwZiAqIHNxUik7CgoK')
+          serial = base64.b64decode('ICBpZiAodXBwZXIgPT0gIkxJU1QiKSB7IHByaW50QmVoYXZpb3JMaXN0KCk7IHJldHVybjsgfQoKaWYgKHVwcGVyLnN0YXJ0c1dpdGgoIkxPT0sgIikpIHsKICBTdHJpbmcgYXJnID0gbGluZS5zdWJzdHJpbmcoNSk7CiAgYXJnLnRyaW0oKTsKICBpbnQgc2VwID0gYXJnLmluZGV4T2YoJyAnKTsKICBpZiAoc2VwIDw9IDApIHsgU2VyaWFsLnByaW50bG4oIkVSUiBMT09LIHggeSAoLTEuMC4uMS4wKSIpOyByZXR1cm47IH0KICBTdHJpbmcgc3ggPSBhcmcuc3Vic3RyaW5nKDAsIHNlcCk7CiAgU3RyaW5nIHN5ID0gYXJnLnN1YnN0cmluZyhzZXAgKyAxKTsKICBzeC50cmltKCk7IHN5LnRyaW0oKTsKICBjaGFyICplbmRYID0gbnVsbHB0ciwgKmVuZFkgPSBudWxscHRyOwogIGZsb2F0IHggPSBzdHJ0b2Yoc3guY19zdHIoKSwgJmVuZFgpOwogIGZsb2F0IHkgPSBzdHJ0b2Yoc3kuY19zdHIoKSwgJmVuZFkpOwogIGlmICghc3gubGVuZ3RoKCkgfHwgIXN5Lmxlbmd0aCgpIHx8ICplbmRYIHx8ICplbmRZIHx8IHggPCAtMS4wZiB8fCB4ID4gMS4wZiB8fCB5IDwgLTEuMGYgfHwgeSA+IDEuMGYpIHsKICAgIFNlcmlhbC5wcmludGxuKCJFUlIgTE9PSyB4IHkgKC0xLjAuLjEuMCkiKTsKICAgIHJldHVybjsKICB9CiAgaWYgKHF1aWV0TW9kZSkgd2FrZUZyb21QaSgwLCAiaWRsZV93YXRjaCIpOwogIGxhc3RJbnRlcmFjdGlvbk1zID0gbWlsbGlzKCk7CiAgYXV0b1NsZXB0ID0gZmFsc2U7CiAgZmFjZVRhcmdldC5sb29rWCA9IHg7CiAgZmFjZVRhcmdldC5sb29rWSA9IHk7CiAgU2VyaWFsLnByaW50bG4oIk9LIExPT0sgIiArIFN0cmluZyh4LCAyKSArICIgIiArIFN0cmluZyh5LCAyKSk7CiAgcmV0dXJuOwp9CgogIGxhc3RJbnRlcmFjdGlvbk1zID0gbWlsbGlzKCk7CiAgYXV0b1NsZXB0ID0gZmFsc2U7CiAgdHJpZ2dlckVhclBlcmsoKTsK')
+
+          targets = {
+              Path('eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino'): human_light,
+              Path('eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino'): metal_light,
+              Path('eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino'): metal_light,
+          }
+
+          patterns = [
+              re.compile(rb'(?ms)^// Ambient-light sensors:.*?(?=^static bool handleIrisPupil)'),
+              re.compile(rb'(?ms)^  float sqL = .*?(?=^  oL \*= displayPower\.lid;)'),
+              re.compile(rb'(?ms)^  if \(upper == "LIST"\) \{ printBehaviorList\(\); return; \}\n.*?^  triggerEarPerk\(\);\n'),
+          ]
+
+          for path, light in targets.items():
+              data = path.read_bytes()
+              for pat, replacement, label in zip(patterns, [light, draw, serial], ['light', 'draw', 'serial']):
+                  data, n = pat.subn(lambda _m, r=replacement: r, data, count=1)
+                  if n != 1:
+                      raise SystemExit(f'{path}: expected one {label} region, found {n}')
+              path.write_bytes(data)
+
+          for rej in Path('eyes').rglob('*.rej'):
+              rej.unlink()
+          PY
+
+      - name: Verify exact tested source hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/eyes.sha256 <<'EOF'
+          cf620a04d0c655c9a1d82bb14203252fcefd16a2fec45b9f592d710ece6af030  eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino
+          fadeefb0f9acaedcb9a58d17b743165260b37021eaf3d9487a094c01ae051853  eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino
+          c469400b230b5cb2bab4897ae1bd711c498ec3ec750dcf95a2a1bb68721f4c88  eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino
+          109b7e376f34329aa5831ba43a451932e6f49efee88af0572480ee39e2c58133  eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino
+          EOF
+          sha256sum -c /tmp/eyes.sha256
+
+      - name: Rebuild download ZIPs and V18 manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path, PurePosixPath
+          import hashlib, re, shutil, zipfile
+
+          pairs = {
+              Path('eyes/KoraHumanMetalV18_S3_PUBLIC.zip'): Path('eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino'),
+              Path('eyes/KoraMetalEyesV18_S3_PUBLIC.zip'): Path('eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino'),
+              Path('eyes/KoraMonsterEyesV18_S3_PUBLIC.zip'): Path('eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino'),
+              Path('eyes/KoraAnimalEyesV14_S3_PUBLIC.zip'): Path('eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino'),
+          }
+
+          for zpath, ino in pairs.items():
+              tmp = zpath.with_suffix(zpath.suffix + '.tmp')
+              replaced = 0
+              with zipfile.ZipFile(zpath, 'r') as src, zipfile.ZipFile(tmp, 'w') as dst:
+                  for info in src.infolist():
+                      data = src.read(info.filename)
+                      if PurePosixPath(info.filename).name == ino.name:
+                          data = ino.read_bytes()
+                          replaced += 1
+                      dst.writestr(info, data)
+              if replaced != 1:
+                  tmp.unlink(missing_ok=True)
+                  raise SystemExit(f'{zpath}: expected exactly one {ino.name}, found {replaced}')
+              shutil.move(tmp, zpath)
+              with zipfile.ZipFile(zpath, 'r') as check:
+                  bad = check.testzip()
+                  if bad:
+                      raise SystemExit(f'{zpath}: CRC failure in {bad}')
+              print('ZIP OK', zpath, hashlib.sha256(zpath.read_bytes()).hexdigest())
+
+          manifest = Path('eyes/SHA256_V18.json')
+          text = manifest.read_text(encoding='utf-8')
+          for zpath in list(pairs)[:3]:
+              digest = hashlib.sha256(zpath.read_bytes()).hexdigest()
+              pat = rf'("{re.escape(zpath.name)}"\s*:\s*")[0-9a-f]{{64}}(")'
+              text, n = re.subn(pat, rf'\g<1>{digest}\g<2>', text, count=1)
+              if n != 1:
+                  raise SystemExit(f'manifest entry not found: {zpath.name}')
+          manifest.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit tested builds
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            eyes/KoraHumanMetalV18_S3_PUBLIC/KoraHumanMetalV18_S3_PUBLIC.ino \
+            eyes/KoraMetalEyesV18_S3_PUBLIC/KoraMetalEyesV18_S3_PUBLIC.ino \
+            eyes/KoraMonsterEyesV18_S3_PUBLIC/KoraMonsterEyesV18_S3_PUBLIC.ino \
+            eyes/KoraAnimalEyesV14_S3_PUBLIC/KoraAnimalEyesV14_S3_PUBLIC.ino \
+            eyes/KoraHumanMetalV18_S3_PUBLIC.zip \
+            eyes/KoraMetalEyesV18_S3_PUBLIC.zip \
+            eyes/KoraMonsterEyesV18_S3_PUBLIC.zip \
+            eyes/KoraAnimalEyesV14_S3_PUBLIC.zip \
+            eyes/SHA256_V18.json
+          git diff --cached --quiet && { echo 'No changes to publish'; exit 0; }
+          git commit -m 'Publish four hardware-tested Kora eye builds (LIGHT5S)'
+          git push
