@@ -7,7 +7,7 @@
 // Board: ESP32-S3 N16R8; Arduino ESP32 core 3.x; PSRAM: OPI; flash: 16MB.
 // Libraries: Adafruit GFX, Adafruit GC9A01A, ESP32Servo (S3 compatible).
 // SPI SCK12 MOSI11. Left CS10 DC9 RST8; right CS7 DC6 RST5.
-// Existing ears GPIO15/16; FSR GPIO1/2. NEW mouth: left17, right18.
+// Existing ears GPIO15/16. Ambient light sensors: GPIO3/4. NEW mouth: left17, right18.
 // Mouth servos need a suitable external supply and GND shared with ESP32.
 // Calibrate MOUTH_*_CLOSED/OPEN with mechanical linkage disconnected first.
 // Serial 115200: TALK ON, TALK OFF, AUDIO 0..100, MOUTH 0..100, STATUS.
@@ -11121,7 +11121,7 @@ struct Motion {
 // ESP32-S3-N16R8 + 2x 1.28" round LCD GC9A01 240x240 (SPI)
 // V18: spherical iris projection, pupil dilation, detailed fibers and soft lids.
 //      Two mouth servos: automatic TALK motion or external AUDIO 0..100.
-//      Existing ears, FSR, serial/HTTP commands, WiFi setup and OTA retained.
+//      Existing ears, light sensors, serial/HTTP commands, WiFi setup and OTA retained.
 // ============================================================
 
 #define EYE_BLACK 0x0000
@@ -11152,10 +11152,6 @@ static constexpr int EAR_MAX_R = 125;
 static constexpr bool EAR_L_REVERSED = false;
 static constexpr bool EAR_R_REVERSED = true;
 
-// ---------- FSR pressure sensors ----------
-// ADC1 = GPIO1..10 on S3. Wiring: 3.3V -- FSR --+-- GPIO ; GPIO -- 10k -- GND
-static constexpr int PIN_FSR_L = 1;    // ADC1_CH0 - left / lewa
-static constexpr int PIN_FSR_R = 2;    // ADC1_CH1 - right / prawa
 
 // ---------- OTA / AP ----------
 static const char* OTA_PASSWORD = "SET_YOUR_OWN_OTA_PASSWORD";
@@ -11218,7 +11214,7 @@ uint32_t earDroopUntil = 0;
 uint32_t earAlertUntil = 0;
 
 // ---------- sleep / wake ----------
-static constexpr uint32_t DEFAULT_IDLE_SLEEP_MS = 10000; // 10 s without external activity.
+static constexpr uint32_t DEFAULT_IDLE_SLEEP_MS = 5000; // 5 s without external activity.
 static uint32_t wakeTimeoutMs = DEFAULT_IDLE_SLEEP_MS;
 static bool autoSlept = false;
 static uint32_t wakeAnimStart = 0;
@@ -11235,16 +11231,6 @@ static float crtFreezeOpenR = 1.0f;
 static uint32_t blinkMinMs = 1800;
 static uint32_t blinkMaxMs = 5200;
 
-// ---------- FSR state ----------
-static bool fsrEnabled = true;
-static uint32_t fsrRawL = 0;
-static uint32_t fsrRawR = 0;
-static float squashL = 0.0f;
-static float squashR = 0.0f;
-static uint32_t fsrLo = 120;
-static uint32_t fsrHi = 1600;
-static uint32_t lastFsrMs = 0;
-static bool fsrPressed = false;
 
 // ---------- blink patterns ----------
 static float blinkMinOpen = 0.0f;
@@ -11328,7 +11314,7 @@ static constexpr int MOUTH_R_CLOSED=90,MOUTH_R_OPEN=68;
 static constexpr int MOUTH_MIN_ANGLE=65,MOUTH_MAX_ANGLE=115;
 static constexpr int MOUTH_MIN_US=1000,MOUTH_MAX_US=2000;
 static constexpr uint32_t TALK_TIMEOUT_MS=120000;
-static constexpr uint32_t BOOT_AWAKE_MS=DEFAULT_IDLE_SLEEP_MS; // Auto-sleep after 10 s idle.
+static constexpr uint32_t BOOT_AWAKE_MS=DEFAULT_IDLE_SLEEP_MS; // Auto-sleep after 5 s idle.
 static constexpr bool ENABLE_CRT_FX=false; // Natural lids by default; optional legacy effect.
 Servo mouthL,mouthR;
 static portMUX_TYPE mouthMux=portMUX_INITIALIZER_UNLOCKED;
@@ -11377,59 +11363,85 @@ static bool parsePercent(String s,int& value) {
   if(*end||parsed<0||parsed>100)return false;
   value=int(parsed);return true;
 }
-// Ambient light sensors / czujniki swiatla: LEFT GPIO3, RIGHT GPIO4.
+// ---------- ambient light sensors / czujniki swiatla ----------
+// LEFT = GPIO3, RIGHT = GPIO4.
+// Pupils use the averaged ambient level.
+// Eyelids use the SAME response curve/smoothing that previously produced
+// the good "sqL/sqR" squint, but now the source is light only.
 static constexpr int PIN_LIGHT_L=3, PIN_LIGHT_R=4;
 static constexpr int LIGHT_DARK_L=0,LIGHT_BRIGHT_L=4095;
 static constexpr int LIGHT_DARK_R=0,LIGHT_BRIGHT_R=4095;
+
+// These thresholds intentionally match the previous proven squint response.
+// If your divider is later calibrated differently, only these two values need changing.
+static constexpr uint32_t LIGHT_SQUINT_START_RAW=120;
+static constexpr uint32_t LIGHT_SQUINT_FULL_RAW=1600;
+
 static bool lightLocalReady=false,lightRemoteSeen=false,lightLocalSeen=false;
 static float lightLocal=50,lightRemote=50;
 static uint32_t lightRemoteAt=0,lightSampleAt=0;
 static const char* lightSource="none";
-// Bright-light reflex: above 65% ambient the lids progressively squint.
-// 65-80% = slight squint, 80-92% = clear squint, 92-100% = nearly closed.
-static float lightSquint=0.0f;
-static uint32_t lightSquintAt=0;
-static float lightSquintTarget(float pct){
-  pct=clampF(pct,0.0f,100.0f);
-  if(pct<=65.0f)return 0.0f;
-  if(pct<=80.0f)return 0.25f*(pct-65.0f)/15.0f;
-  if(pct<=92.0f)return 0.25f+0.35f*(pct-80.0f)/12.0f;
-  return 0.60f+0.30f*(pct-92.0f)/8.0f;
+static uint32_t lightRawL=0,lightRawR=0;
+static float lightSquintL=0.0f,lightSquintR=0.0f;
+
+static float lightRawToSquint(uint32_t raw){
+  if(raw<=LIGHT_SQUINT_START_RAW)return 0.0f;
+  if(raw>=LIGHT_SQUINT_FULL_RAW)return 1.0f;
+  return float(raw-LIGHT_SQUINT_START_RAW)/float(LIGHT_SQUINT_FULL_RAW-LIGHT_SQUINT_START_RAW);
 }
+
+static uint32_t readLightRaw(int pin){
+  uint32_t acc=0;
+  for(int i=0;i<4;i++){
+    acc+=analogRead(pin);
+    delayMicroseconds(400);
+  }
+  return acc/4;
+}
+
 static bool lightPinValid(int p){
   // ADC1 only: Wi-Fi remains usable. Reject every already-assigned pin.
-  const int occupied[]={PIN_SCK,PIN_MOSI,PIN_CS_L,PIN_DC_L,PIN_RST_L,PIN_CS_R,PIN_DC_R,PIN_RST_R,PIN_EAR_L,PIN_EAR_R,PIN_MOUTH_L,PIN_MOUTH_R,PIN_FSR_L,PIN_FSR_R};
+  const int occupied[]={PIN_SCK,PIN_MOSI,PIN_CS_L,PIN_DC_L,PIN_RST_L,PIN_CS_R,PIN_DC_R,PIN_RST_R,PIN_EAR_L,PIN_EAR_R,PIN_MOUTH_L,PIN_MOUTH_R};
   if(p<1||p>10)return false;
   for(int used:occupied)if(p==used)return false;
   return true;
 }
+
 static void setupLightSensors(){
-  if(PIN_LIGHT_L==-1&&PIN_LIGHT_R==-1)return;
   lightLocalReady=lightPinValid(PIN_LIGHT_L)&&lightPinValid(PIN_LIGHT_R)&&PIN_LIGHT_L!=PIN_LIGHT_R&&LIGHT_DARK_L!=LIGHT_BRIGHT_L&&LIGHT_DARK_R!=LIGHT_BRIGHT_R;
   if(!lightLocalReady){Serial.println("ERR LIGHT configuration; ADC disabled");return;}
-  pinMode(PIN_LIGHT_L,INPUT);pinMode(PIN_LIGHT_R,INPUT);
-  analogSetPinAttenuation(PIN_LIGHT_L,ADC_11db);analogSetPinAttenuation(PIN_LIGHT_R,ADC_11db);
+  pinMode(PIN_LIGHT_L,INPUT);
+  pinMode(PIN_LIGHT_R,INPUT);
+  analogSetPinAttenuation(PIN_LIGHT_L,ADC_11db);
+  analogSetPinAttenuation(PIN_LIGHT_R,ADC_11db);
+  Serial.println("LIGHT READY GPIO3(L)/GPIO4(R)");
 }
+
 static void updateLightPupil(){
   uint32_t now=millis();
-  if(lightLocalReady&&(!lightLocalSeen||uint32_t(now-lightSampleAt)>=50)){
-    lightSampleAt=now;lightLocalSeen=true;
-    float l=KoraPupil::normalize(analogRead(PIN_LIGHT_L),LIGHT_DARK_L,LIGHT_BRIGHT_L);
-    float r=KoraPupil::normalize(analogRead(PIN_LIGHT_R),LIGHT_DARK_R,LIGHT_BRIGHT_R);
-    lightLocal=(l+r)*.5f;
+  if(lightLocalReady&&(!lightLocalSeen||uint32_t(now-lightSampleAt)>=25)){
+    lightSampleAt=now;
+    lightLocalSeen=true;
+
+    lightRawL=readLightRaw(PIN_LIGHT_L);
+    lightRawR=readLightRaw(PIN_LIGHT_R);
+
+    float l=KoraPupil::normalize(lightRawL,LIGHT_DARK_L,LIGHT_BRIGHT_L);
+    float r=KoraPupil::normalize(lightRawR,LIGHT_DARK_R,LIGHT_BRIGHT_R);
+    lightLocal=(l+r)*0.5f;
+
+    // Same fast-close / gentle-release character as the previous good squint.
+    float tL=lightRawToSquint(lightRawL);
+    float tR=lightRawToSquint(lightRawR);
+    float k=(tL>lightSquintL||tR>lightSquintR)?0.45f:0.18f;
+    lightSquintL+=(tL-lightSquintL)*k;
+    lightSquintR+=(tR-lightSquintR)*k;
   }
+
   bool remoteFresh=lightRemoteSeen&&uint32_t(now-lightRemoteAt)<=2000;
   bool fresh=remoteFresh||lightLocalSeen;
   lightSource=remoteFresh?"serial":(lightLocalSeen?"adc_mean":(lightRemoteSeen?"serial_stale":"none"));
   KoraPupil::control.tick(now,fresh,remoteFresh?lightRemote:lightLocal);
-
-// Natural photophobia reflex. Close faster in glare, reopen more gently.
-float target=fresh?lightSquintTarget(KoraPupil::control.filtered):0.0f;
-float dt=lightSquintAt?clampF(float(uint32_t(now-lightSquintAt))*.001f,0.0f,0.10f):0.0f;
-lightSquintAt=now;
-float tau=(target>lightSquint)?0.16f:0.70f;
-if(dt>0.0f)lightSquint+=(target-lightSquint)*(dt/(tau+dt));
-else lightSquint=target;
 }
 static bool handleIrisPupil(const String& upper){
   if(upper.startsWith("IRIS ")){
@@ -11623,11 +11635,6 @@ static void updateEars() {
   if (now < earAlertUntil) {
     baseL += 16.0f;
     baseR += 16.0f;
-  }
-
-  if (!quietMode) {
-    baseL -= 16.0f * squashL;
-    baseR -= 16.0f * squashR;
   }
 
   if (wakeAnimStart && now - wakeAnimStart < 1800) {
@@ -11871,71 +11878,6 @@ static float easeToward(float now, float target, float k) {
   return now + (target - now) * k;
 }
 
-// ============================================================
-// FSR pressure sensors
-// ============================================================
-static float fsrToSquash(uint32_t raw) {
-  if (raw <= fsrLo) return 0.0f;
-  if (raw >= fsrHi) return 1.0f;
-  return (float)(raw - fsrLo) / (float)(fsrHi - fsrLo);
-}
-
-static uint32_t readFsrRaw(int pin) {
-  uint32_t acc = 0;
-  for (int i = 0; i < 4; i++) {
-    acc += analogRead(pin);
-    delayMicroseconds(400);
-  }
-  return acc / 4;
-}
-
-static void updateFsr() {
-  uint32_t now = millis();
-
-  if (!fsrEnabled) {
-    squashL = easeToward(squashL, 0.0f, 0.2f);
-    squashR = easeToward(squashR, 0.0f, 0.2f);
-    fsrPressed = false;
-    return;
-  }
-
-  if (now - lastFsrMs < 25) return;
-  lastFsrMs = now;
-
-  fsrRawL = readFsrRaw(PIN_FSR_L);
-  fsrRawR = readFsrRaw(PIN_FSR_R);
-
-  float tL = fsrToSquash(fsrRawL);
-  float tR = fsrToSquash(fsrRawR);
-
-  float k = (tL > squashL || tR > squashR) ? 0.45f : 0.18f;
-  squashL = easeToward(squashL, tL, k);
-  squashR = easeToward(squashR, tR, k);
-
-  bool wasPressed = fsrPressed;
-  fsrPressed = (tL > 0.04f || tR > 0.04f);
-
-  if (fsrPressed) {
-    // A new press is activity; a continuously held HIGH must not hold the eyes open forever.
-    if (!wasPressed) {
-      lastInteractionMs = now;
-      autoSlept = false;
-    }
-
-    if (quietMode && !wasPressed) {
-      wakeFromPi(DEFAULT_IDLE_SLEEP_MS, "surprised");
-    }
-
-    if ((tL > 0.35f || tR > 0.35f) && !wasPressed) {
-      triggerEarPerk();
-    }
-
-    if (tL > 0.85f && tR > 0.85f) {
-      earDroopUntil = now + 900;
-    }
-  }
-}
-
 static void updateAutonomy() {
   uint32_t now = millis();
 
@@ -12163,18 +12105,12 @@ static void drawFace() {
   float oL = (crtState == 2) ? crtFreezeOpenL : clampF(faceNow.openL * envL, 0.0f, 1.05f);
   float oR = (crtState == 2) ? crtFreezeOpenR : clampF(faceNow.openR * envR, 0.0f, 1.05f);
 
-  float sqL = (quietMode || crtState == 2) ? 0.0f : squashL;
-  float sqR = (quietMode || crtState == 2) ? 0.0f : squashR;
+  float sqL = (quietMode || crtState == 2) ? 0.0f : lightSquintL;
+  float sqR = (quietMode || crtState == 2) ? 0.0f : lightSquintR;
 
   oL *= (1.0f - 0.80f * sqL);
   oR *= (1.0f - 0.80f * sqR);
 
-// Ambient-light squint is independent from the FSR squash reflex.
-// At maximum glare only ~10% eyelid opening remains.
-if(!quietMode && crtState != 2){
-  oL *= (1.0f - lightSquint);
-  oR *= (1.0f - lightSquint);
-}
 
   oL *= displayPower.lid; oR *= displayPower.lid;
   float tiltLx = faceNow.tiltL + sqL * 0.90f;
@@ -12320,8 +12256,6 @@ static void saveCfg() {
   prefs.begin("koraeyes", false);
   prefs.putULong("bmin", blinkMinMs);
   prefs.putULong("bmax", blinkMaxMs);
-  prefs.putULong("fsrlo", fsrLo);
-  prefs.putULong("fsrhi", fsrHi);
   prefs.end();
 }
 
@@ -12329,11 +12263,8 @@ static void loadCfg() {
   prefs.begin("koraeyes", true);
   blinkMinMs = prefs.getULong("bmin", 1800);
   blinkMaxMs = prefs.getULong("bmax", 5200);
-  fsrLo = prefs.getULong("fsrlo", 120);
-  fsrHi = prefs.getULong("fsrhi", 1600);
   prefs.end();
   if (blinkMaxMs < blinkMinMs) blinkMaxMs = blinkMinMs;
-  if (fsrHi <= fsrLo + 50) fsrHi = fsrLo + 500;
 }
 
 static void handleEyesCfg(const String &args) {
@@ -12350,16 +12281,11 @@ static void handleEyesCfg(const String &args) {
     long val = pair.substring(eq + 1).toInt();
     if (key == "blinkmin" && val >= 300 && val <= 30000) { blinkMinMs = (uint32_t)val; changed = true; }
     else if (key == "blinkmax" && val >= 300 && val <= 60000) { blinkMaxMs = (uint32_t)val; changed = true; }
-    else if (key == "fsrlo" && val >= 30 && val <= 4000) { fsrLo = (uint32_t)val; changed = true; }
-    else if (key == "fsrhi" && val >= 150 && val <= 4095) { fsrHi = (uint32_t)val; changed = true; }
   }
   if (blinkMaxMs < blinkMinMs) blinkMaxMs = blinkMinMs;
-  if (fsrHi <= fsrLo + 50) fsrHi = fsrLo + 500;
   if (changed) saveCfg();
   Serial.println("OK EYESCFG blinkmin=" + String(blinkMinMs) +
-                 " blinkmax=" + String(blinkMaxMs) +
-                 " fsrlo=" + String(fsrLo) +
-                 " fsrhi=" + String(fsrHi) + (changed ? " saved" : ""));
+                 " blinkmax=" + String(blinkMaxMs) + (changed ? " saved" : ""));
 }
 
 // ============================================================
@@ -12382,11 +12308,10 @@ static void printStatus() {
   Serial.print(" idle="); Serial.print(quietMode ? 0 : (int)(millis() - lastInteractionMs));
   Serial.print(" earsL="); Serial.print((int)earLNow);
   Serial.print(" earsR="); Serial.print((int)earRNow);
-  Serial.print(" fsrL="); Serial.print(fsrRawL);
-  Serial.print(" fsrR="); Serial.print(fsrRawR);
-  Serial.print(" sqL="); Serial.print(squashL, 2);
-  Serial.print(" sqR="); Serial.print(squashR, 2);
-  Serial.print(" fsrEnabled="); Serial.print(fsrEnabled ? 1 : 0);
+  Serial.print(" lightRawL="); Serial.print(lightRawL);
+  Serial.print(" lightRawR="); Serial.print(lightRawR);
+  Serial.print(" lightSqL="); Serial.print(lightSquintL, 2);
+  Serial.print(" lightSqR="); Serial.print(lightSquintR, 2);
   Serial.print(" heap="); Serial.print((int)ESP.getFreeHeap());
   Serial.print(" uptime="); Serial.print((unsigned long)(millis() / 1000));
   Serial.print(" reset="); Serial.print((int)esp_reset_reason());
@@ -12463,16 +12388,6 @@ static void handleSerialLine(String line) {
     setTalkMode(false,"");testMouthLevel(value);Serial.println("OK MOUTH test 800ms");return;
   }
   if (upper == "LIST") { printBehaviorList(); return; }
-
-  if (upper == "FSR ON") { fsrEnabled = true; Serial.println("OK FSR ON"); return; }
-  if (upper == "FSR OFF") { fsrEnabled = false; squashL = squashR = 0.0f; Serial.println("OK FSR OFF"); return; }
-  if (upper == "FSRSTATUS") {
-    Serial.println("FSR rawL=" + String(fsrRawL) + " rawR=" + String(fsrRawR) +
-                   " sqL=" + String(squashL, 2) + " sqR=" + String(squashR, 2) +
-                   " lo=" + String(fsrLo) + " hi=" + String(fsrHi) +
-                   " enabled=" + String(fsrEnabled ? 1 : 0));
-    return;
-  }
 
 if (upper.startsWith("LOOK ")) {
   String arg = line.substring(5);
@@ -12624,11 +12539,10 @@ static void handleState() {
                 ",\"wakeTimeout\":" + String(wakeTimeoutMs) +
                 ",\"earsL\":" + String((int)earLNow) +
                 ",\"earsR\":" + String((int)earRNow) +
-                ",\"fsrL\":" + String(fsrRawL) +
-                ",\"fsrR\":" + String(fsrRawR) +
-                ",\"sqL\":" + String(squashL, 2) +
-                ",\"sqR\":" + String(squashR, 2) +
-                ",\"fsrEnabled\":" + String(fsrEnabled ? "true" : "false") +
+                ",\"lightRawL\":" + String(lightRawL) +
+                ",\"lightRawR\":" + String(lightRawR) +
+                ",\"lightSqL\":" + String(lightSquintL, 2) +
+                ",\"lightSqR\":" + String(lightSquintR, 2) +
                 ",\"uptime\":" + String((unsigned long)(millis() / 1000)) +
                 ",\"ap\":" + String(apMode ? "true" : "false") +
                 ",\"ip\":\"" + (WiFi.isConnected() ? WiFi.localIP().toString() : String(apMode ? WiFi.softAPIP().toString() : String("none"))) + "\"}";
@@ -12765,20 +12679,6 @@ static void setupHttpApi() {
     if (server.hasArg("now") || server.arg("cmd") == "now") nextSoulMs = 0;
     sendJsonOk();
   });
-  server.on("/api/fsr", HTTP_GET, [](){
-    if (server.hasArg("on")) {
-      fsrEnabled = server.arg("on") == "1";
-      if (!fsrEnabled) { squashL = squashR = 0.0f; }
-    }
-    String json = "{\"ok\":true,\"enabled\":" + String(fsrEnabled ? "true" : "false") +
-                  ",\"rawL\":" + String(fsrRawL) +
-                  ",\"rawR\":" + String(fsrRawR) +
-                  ",\"sqL\":" + String(squashL, 2) +
-                  ",\"sqR\":" + String(squashR, 2) +
-                  ",\"lo\":" + String(fsrLo) +
-                  ",\"hi\":" + String(fsrHi) + "}";
-    server.send(200, "application/json", json);
-  });
   server.on("/api/blinkProfile", HTTP_GET, [](){ sendJsonOk(); });
 
   auto wakeHandler = [](){
@@ -12906,13 +12806,8 @@ void setup() {
 
   loadCfg();
 
-  pinMode(PIN_FSR_L, INPUT);
-  pinMode(PIN_FSR_R, INPUT);
   analogReadResolution(12);
   setupLightSensors();
-  analogSetPinAttenuation(PIN_FSR_L, ADC_11db);
-  analogSetPinAttenuation(PIN_FSR_R, ADC_11db);
-  Serial.println("FSR READY pins GPIO1(L)/GPIO2(R) ADC1, divider 10k to GND");
 
   Serial.printf("HEAP start: %u\n", (unsigned)ESP.getFreeHeap());
   Serial.printf("PSRAM total=%u free=%u\n",
@@ -12977,7 +12872,7 @@ void setup() {
   }
 
   // V9.2 BOOT VISIBILITY: show eyes immediately, before WiFi can block.
-  // V18 stays awake on boot; Pi can still request WAKE <ms> or SLEEP.
+  // V18 wakes on boot and auto-sleeps after 5 s without external activity.
   faceNow.openL=faceNow.openR=0;
   wakeFromPi(BOOT_AWAKE_MS, "idle_watch");
   scheduleNextSoul();
@@ -12998,8 +12893,8 @@ void setup() {
 
   Serial.println("READY KORA_EYES_V18 SPHERICAL_3D + TWO_MOUTH_SERVOS (S3-N16R8)");
   Serial.println("WAKE <ms> / SLEEP / STATUS / LIST / M / U / N");
-  Serial.println("MOOD ... | TALK ... | EYESCFG blinkmin=.. blinkmax=.. fsrlo=.. fsrhi=..");
-  Serial.println("FSRSTATUS / FSR ON / FSR OFF | AUDIO 0..100 | MOUTH 0..100");
+  Serial.println("MOOD ... | TALK ... | EYESCFG blinkmin=.. blinkmax=..");
+  Serial.println("LIGHT GPIO3(L)/GPIO4(R) | AUDIO 0..100 | MOUTH 0..100");
   Serial.println("OTA: ArduinoOTA, host kora-eyes, password configured privately");
 }
 
@@ -13023,10 +12918,10 @@ void loop() {
     lastHbMs = millis();
     Serial.println("HB state=" + String(quietMode ? "sleep" : "awake") +
                    " mood=" + currentMood +
-                   " fsrL=" + String(fsrRawL) +
-                   " fsrR=" + String(fsrRawR) +
-                   " sqL=" + String(squashL, 2) +
-                   " sqR=" + String(squashR, 2) +
+                   " lightRawL=" + String(lightRawL) +
+                   " lightRawR=" + String(lightRawR) +
+                   " lightSqL=" + String(lightSquintL, 2) +
+                   " lightSqR=" + String(lightSquintR, 2) +
                    " heap=" + String((int)ESP.getFreeHeap()) +
                    " ms=" + String((unsigned long)millis()));
   }
@@ -13036,7 +12931,6 @@ void loop() {
   if(talkMode&&millis()-lastTalkSignalMs>TALK_TIMEOUT_MS) {
     setTalkMode(false,"");Serial.println("TALK TIMEOUT: mouth closed");
   }
-  updateFsr();
   updateAutonomy();
   updateFaceMotion();
   updateEars();
