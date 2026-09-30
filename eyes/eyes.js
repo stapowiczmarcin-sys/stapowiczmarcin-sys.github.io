@@ -45,7 +45,7 @@
           <div class="facts">
             <div class="fact"><b>115200 USB</b><span data-en="Pi ↔ ESP32-S3 serial" data-pl="Serial Pi ↔ ESP32-S3">Pi ↔ ESP32-S3 serial</span></div>
             <div class="fact"><b>SHORT / LONG</b><span data-en="Four ready-made filming routines" data-pl="Cztery gotowe sekwencje nagrań">Four ready-made filming routines</span></div>
-            <div class="fact"><b>GPIO3 / GPIO4</b><span data-en="Real light sensors — no fake demo" data-pl="Prawdziwe czujniki światła — bez udawania">Real light sensors — no fake demo</span></div>
+            <div class="fact"><b>GPIO3 / GPIO4</b><span data-en="Real light sensors — mapping follows each sketch" data-pl="Prawdziwe czujniki światła — mapowanie zgodne z danym szkicem">Real light sensors — mapping follows each sketch</span></div>
           </div>
 
           <div class="split">
@@ -68,7 +68,7 @@ cd /home/marcin/vega_robot
 python3 kora_eye_film_show.py</code></pre>
           </div>
 
-          <p data-en="LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on the GPIO3/GPIO4 sensors or cover them and let the firmware react. The automatic pupils change size from the real sensor readings." data-pl="LIGHT DEMO celowo nie wysyła sztucznej wartości LIGHT. Poświeć prawdziwą latarką na czujniki GPIO3/GPIO4 albo je zasłoń i pozwól firmware’owi zareagować. Automatyczne źrenice zmieniają rozmiar na podstawie prawdziwych odczytów czujników.">LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on the GPIO3/GPIO4 sensors or cover them and let the firmware react. The automatic pupils change size from the real sensor readings.</p>
+          <p data-en="LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on the GPIO3/GPIO4 sensors or cover them and let the firmware react. The automatic pupils change size from the real sensor readings, while the eyelids progressively squint in strong light. GPIO3/GPIO4 left-right assignment follows the specific sketch." data-pl="LIGHT DEMO celowo nie wysyła sztucznej wartości LIGHT. Poświeć prawdziwą latarką na czujniki GPIO3/GPIO4 albo je zasłoń i pozwól firmware’owi zareagować. Automatyczne źrenice zmieniają rozmiar na podstawie prawdziwych odczytów, a przy mocnym świetle powieki stopniowo się przymykają. Przypisanie lewy/prawy dla GPIO3/GPIO4 jest zgodne z konkretnym szkicem.">LIGHT DEMO deliberately does not send a synthetic LIGHT value. Shine a real flashlight on the GPIO3/GPIO4 sensors or cover them and let the firmware react. The automatic pupils change size from the real sensor readings, while the eyelids progressively squint in strong light. GPIO3/GPIO4 left-right assignment follows the specific sketch.</p>
 
           <div class="buttons">
             <a class="btn primary" href="kora_eye_film_show.py" download data-en="Download Pi panel ↓" data-pl="Pobierz panel na Pi ↓">Download Pi panel ↓</a>
@@ -96,8 +96,8 @@ python3 kora_eye_film_show.py</code></pre>
       title.insertAdjacentElement('afterend', badge);
     });
 
-    const v18NoteEn = 'Hardware-tested on Kora: light sensors GPIO3 left / GPIO4 right, automatic pupils and LOOK control. Set your own AP/OTA passwords before upload.';
-    const v18NotePl = 'Sprawdzone na Korie: czujniki światła GPIO3 lewy / GPIO4 prawy, automatyczne źrenice i sterowanie LOOK. Przed wgraniem ustaw własne hasła AP/OTA.';
+    const v18NoteEn = 'Hardware-tested on Kora: automatic sleep after 5 seconds of inactivity, real GPIO3/GPIO4 light sensors, automatic pupil response, strong-light eyelid squint and LOOK X Y control. Left/right GPIO3/GPIO4 assignment follows the specific sketch. Set your own AP/OTA passwords before upload.';
+    const v18NotePl = 'Sprawdzone na Korie: automatyczne uśpienie po 5 sekundach bezczynności, prawdziwe czujniki światła GPIO3/GPIO4, automatyczna reakcja źrenic, przymykanie powiek przy mocnym świetle i sterowanie LOOK X Y. Przypisanie lewy/prawy GPIO3/GPIO4 jest zgodne z konkretnym szkicem. Przed wgraniem ustaw własne hasła AP/OTA.';
     ['realistic', 'metal', 'monster'].forEach(id => {
       const note = document.querySelector(`#${id} .small:not(.kora-tested-badge)`);
       if (note) {
@@ -108,8 +108,8 @@ python3 kora_eye_film_show.py</code></pre>
 
     const animalNote = document.querySelector('#animal-v14 .small:not(.kora-tested-badge)');
     if (animalNote) {
-      animalNote.dataset.en = 'Hardware-tested Animal V14: GPIO3/GPIO4 light sensors, automatic pupil response and LOOK X Y control. USB control is ready; set your own AP/OTA passwords before enabling Wi-Fi.';
-      animalNote.dataset.pl = 'Sprawdzone Animal V14: czujniki światła GPIO3/GPIO4, automatyczna reakcja źrenic i sterowanie LOOK X Y. USB działa od razu; przed włączeniem Wi-Fi ustaw własne hasła AP/OTA.';
+      animalNote.dataset.en = 'Hardware-tested Animal V14: automatic sleep after 5 seconds of inactivity, GPIO3/GPIO4 light sensors, automatic pupil response, strong-light eyelid squint and LOOK X Y control. Left/right GPIO assignment follows this sketch. USB control is ready; set your own AP/OTA passwords before enabling Wi-Fi.';
+      animalNote.dataset.pl = 'Sprawdzone Animal V14: automatyczne uśpienie po 5 sekundach bezczynności, czujniki światła GPIO3/GPIO4, automatyczna reakcja źrenic, przymykanie powiek przy mocnym świetle i sterowanie LOOK X Y. Przypisanie lewy/prawy GPIO jest zgodne z tym szkicem. USB działa od razu; przed włączeniem Wi-Fi ustaw własne hasła AP/OTA.';
     }
   }
 
