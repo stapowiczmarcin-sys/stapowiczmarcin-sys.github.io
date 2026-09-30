@@ -8,6 +8,8 @@ A small desktop control panel for filming and demonstrating Kora's digital eyes 
 - Monster V18
 - Animal V14
 
+All four currently published eye builds use **5-second automatic sleep after inactivity**. They read real ambient-light sensors on **GPIO3 and GPIO4**, adjust pupil size from the real sensor values, progressively squint the eyelids in strong light, and support `LOOK X Y` gaze control. The exact left/right assignment of GPIO3 and GPIO4 follows the individual sketch, so use the pin definitions inside the firmware you download.
+
 The panel is intentionally separate from Kora's main robot control. It does **not** control the mechanical head, legs or Servo2040.
 
 ## What it can do
@@ -24,12 +26,9 @@ The panel is intentionally separate from Kora's main robot control. It does **no
 
 ## Real light demo
 
-The current round-eye builds use the physical light inputs:
+The current round-eye builds use the physical light inputs **GPIO3 and GPIO4**. The left/right assignment is defined by each individual sketch.
 
-- **GPIO3 — left light sensor**
-- **GPIO4 — right light sensor**
-
-The film panel does **not** fake the effect by sending a brightness value. During LIGHT DEMO you physically shine a light on the sensors or cover them. The automatic pupils change size from the real sensor readings.
+The film panel does **not** fake the effect by sending a brightness value. During LIGHT DEMO you physically shine a light on the sensors or cover them. The automatic pupils change size from the real sensor readings, and strong light progressively closes the eyelids.
 
 ## Safety by design
 
@@ -72,7 +71,7 @@ The optional Kora configuration path `/home/marcin/vega_robot/config/ports.json`
 4. Choose the correct eye serial device and press **CONNECT**.
 5. Record `HUMAN SHORT`, `METAL SHORT`, `MONSTER SHORT` or `ANIMAL SHORT` for vertical video.
 6. Record the matching **LONG** sequence for a full YouTube video.
-7. Record **LIGHT DEMO** close-up to show the real ambient-light pupil response.
+7. Record **LIGHT DEMO** close-up to show the real ambient-light pupil and eyelid response.
 8. Stop the panel before reconnecting or changing USB devices.
 
 ## Serial commands used by the panel
@@ -99,6 +98,8 @@ Mały panel okienkowy do nagrywania i prezentowania cyfrowych oczu Kory. Raspber
 - Monster V18
 - Animal V14
 
+Wszystkie cztery aktualnie opublikowane wersje mają **automatyczne uśpienie po 5 sekundach bezczynności**. Odczytują prawdziwe czujniki światła na **GPIO3 i GPIO4**, zmieniają rozmiar źrenic na podstawie rzeczywistych odczytów, przy mocnym świetle stopniowo przymykają powieki i obsługują sterowanie spojrzeniem `LOOK X Y`. Dokładne przypisanie lewy/prawy dla GPIO3 i GPIO4 jest zapisane w konkretnym szkicu, dlatego korzystaj z definicji pinów w pobranym firmware.
+
 Panel jest celowo oddzielony od głównego sterowania robotem. **Nie steruje mechaniczną głową, nogami ani Servo2040.**
 
 ## Co potrafi
@@ -115,12 +116,9 @@ Panel jest celowo oddzielony od głównego sterowania robotem. **Nie steruje mec
 
 ## Prawdziwy test światła
 
-Aktualne wersje okrągłych oczu używają:
+Aktualne wersje okrągłych oczu używają fizycznych wejść **GPIO3 i GPIO4**. Przypisanie lewy/prawy jest określone osobno w każdym szkicu.
 
-- **GPIO3 — lewy czujnik światła**
-- **GPIO4 — prawy czujnik światła**
-
-Panel nie udaje zmiany światła przez wysyłanie wartości programowej. W LIGHT DEMO naprawdę świecisz latarką na czujniki albo je zasłaniasz. Automatyczne źrenice zmieniają rozmiar na podstawie prawdziwych odczytów czujników.
+Panel nie udaje zmiany światła przez wysyłanie wartości programowej. W LIGHT DEMO naprawdę świecisz latarką na czujniki albo je zasłaniasz. Automatyczne źrenice zmieniają rozmiar na podstawie prawdziwych odczytów, a przy mocnym świetle powieki stopniowo się przymykają.
 
 ## Bezpieczeństwo
 
@@ -163,7 +161,7 @@ Opcjonalna ścieżka Kory `/home/marcin/vega_robot/config/ports.json` jest używ
 4. Wybierz właściwy port oczu i naciśnij **CONNECT**.
 5. Do pionowego filmu nagraj odpowiedni `HUMAN / METAL / MONSTER / ANIMAL SHORT`.
 6. Do pełnego filmu nagraj odpowiadającą mu sekwencję **LONG**.
-7. Osobno nagraj **LIGHT DEMO**, najlepiej blisko oczu, żeby było widać prawdziwą reakcję źrenic na światło.
+7. Osobno nagraj **LIGHT DEMO**, najlepiej blisko oczu, żeby było widać prawdziwą reakcję źrenic i powiek na światło.
 8. Przed przepinaniem USB zatrzymaj sekwencję i rozłącz panel.
 
 ## Komendy używane przez panel
