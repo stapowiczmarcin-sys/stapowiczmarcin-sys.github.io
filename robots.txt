@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stapowiczmarcin-sys.github.io/sitemap.xml
