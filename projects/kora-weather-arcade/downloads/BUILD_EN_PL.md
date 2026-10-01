@@ -15,3 +15,17 @@ Compile: ESP32 package 3.3.12, flash 2242309 bytes (71%), globals 41456 bytes (1
 
 ## SM5308 — provisional / identyfikacja wstępna
 Single-cell holder → module BAT terminals; module USB-A 5V output → ESP32 USB. Module USB-C is the charge input. Verify your board markings and polarity first. Exact module identity is not confirmed. / Koszyk do BAT, USB-A 5V do USB ESP32, USB-C modułu do ładowania. Najpierw sprawdź oznaczenia własnej płytki.
+
+
+## Pełna instrukcja / Full illustrated setup guide
+https://stapowiczmarcin-sys.github.io/projects/kora-weather-arcade/?lang=pl#setup
+
+Open-Meteo: https://open-meteo.com/en/docs — no API key / bez klucza. Wi-Fi 2.4 GHz.
+
+Tools: ESP32C3 Dev Module; USB CDC On Boot Enabled; CPU 160MHz (WiFi); Flash 4MB; Huge APP (3MB No OTA/1MB SPIFFS); default QIO / 80MHz; Upload Speed 115200; Core Debug None; Erase All Flash Disabled; Port = your board USB port, not a fixed COM number.
+
+First upload / pierwsze wgranie: hold BOOT, press and release RESET, release BOOT, select the new USB port, Upload, then RESET. / Trzymaj BOOT, naciśnij i puść RESET, puść BOOT, wybierz port USB, Wgraj, potem RESET.
+
+Boards manager URL: https://espressif.github.io/arduino-esp32/package_esp32_index.json
+Package / pakiet: esp32 by Espressif Systems (tested / testowano 3.3.12).
+Libraries / biblioteki: Adafruit GFX Library, Adafruit ILI9341, Adafruit BusIO, ArduinoJson 7.x.
