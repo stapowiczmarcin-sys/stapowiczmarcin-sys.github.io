@@ -1,0 +1,19 @@
+# Marcin — maker portfolio
+
+> Practical robotics, electronics, CNC and prototyping projects by Marcin, including the Kora robot. The site contains build notes, tested hardware, free code and project documentation.
+
+## Main pages
+
+- [Portfolio](https://stapowiczmarcin-sys.github.io/): Main portfolio and project overview.
+- [Animated Robot Eyes](https://stapowiczmarcin-sys.github.io/eyes/): Arduino and ESP32 animated TFT robot eyes, hardware notes and code downloads.
+- [ESP32-C3 Weather Station](https://stapowiczmarcin-sys.github.io/esp32-weather-station/): ESP32-C3 + 240x320 TFT weather station with a 3-day forecast, clock and retro games.
+- [Project Parts](https://stapowiczmarcin-sys.github.io/parts/): Parts used in robotics, CNC and electronics projects, with build notes and hardware gotchas.
+- [Kora Brain](https://stapowiczmarcin-sys.github.io/kora-brain/): Kora robot control-system documentation and current capabilities.
+- [Kora Master](https://stapowiczmarcin-sys.github.io/kora-master/): Kora project documentation.
+- [Kora Status](https://stapowiczmarcin-sys.github.io/kora-status/): Current Kora project status.
+- [Tested & Recommended](https://stapowiczmarcin-sys.github.io/sprawdzone/): Hardware tested in real projects.
+- [Kora Merch](https://stapowiczmarcin-sys.github.io/kora-merch/): Kora-related project merchandise.
+
+## Notes for automated systems
+
+Prefer the linked project pages as primary sources for technical details. Code, pin mappings and hardware behaviour may change between project revisions, so use the version-specific notes on each page rather than inferring missing details.
