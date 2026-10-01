@@ -97,7 +97,7 @@
 
   if (siteNav && !siteNav.querySelector('[data-free-code-nav="20260925"]')) {
     const freeCodeLink = document.createElement('a');
-    freeCodeLink.href = 'eyes/?lang=en#download';
+    freeCodeLink.href = 'free-code/?lang=en';
     freeCodeLink.dataset.freeCodeNav = '20260925';
     freeCodeLink.dataset.en = 'Free Code';
     freeCodeLink.dataset.pl = 'Darmowe kody';
@@ -105,8 +105,8 @@
     freeCodeLink.addEventListener('click', () => {
       const selectedLanguage = document.getElementById('languageSelect')?.value;
       freeCodeLink.href = selectedLanguage === 'pl'
-        ? 'eyes/?lang=pl#download'
-        : 'eyes/?lang=en#download';
+        ? 'free-code/?lang=pl'
+        : 'free-code/?lang=en';
     });
     const koraLink = Array.from(siteNav.querySelectorAll('a')).find((a) => a.getAttribute('href') === '#kora');
     if (koraLink && koraLink.nextSibling) siteNav.insertBefore(freeCodeLink, koraLink.nextSibling);
