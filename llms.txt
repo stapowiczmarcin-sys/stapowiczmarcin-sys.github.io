@@ -6,7 +6,6 @@
 
 - [Portfolio](https://stapowiczmarcin-sys.github.io/): Main portfolio and project overview.
 - [Animated Robot Eyes](https://stapowiczmarcin-sys.github.io/eyes/): Arduino and ESP32 animated TFT robot eyes, hardware notes and code downloads.
-- [ESP32-C3 Weather Station](https://stapowiczmarcin-sys.github.io/esp32-weather-station/): ESP32-C3 + 240x320 TFT weather station with a 3-day forecast, clock and retro games.
 - [Project Parts](https://stapowiczmarcin-sys.github.io/parts/): Parts used in robotics, CNC and electronics projects, with build notes and hardware gotchas.
 - [Kora Brain](https://stapowiczmarcin-sys.github.io/kora-brain/): Kora robot control-system documentation and current capabilities.
 - [Kora Master](https://stapowiczmarcin-sys.github.io/kora-master/): Kora project documentation.
