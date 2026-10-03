@@ -95,7 +95,7 @@
     else siteNav.appendChild(navLink);
   }
 
-  if (siteNav && !siteNav.querySelector('[data-free-code-nav="20260925"]')) {
+  if (siteNav && !siteNav.querySelector('a[href^="free-code/"]')) {
     const freeCodeLink = document.createElement('a');
     freeCodeLink.href = 'free-code/?lang=en';
     freeCodeLink.dataset.freeCodeNav = '20260925';
@@ -113,28 +113,7 @@
     else siteNav.appendChild(freeCodeLink);
   }
 
-  const mainHeroImage = document.querySelector('.hero .hero-media img');
-  if (mainHeroImage && mainHeroImage.dataset.koraHero20260920 !== '1') {
-    mainHeroImage.dataset.koraHero20260920 = '1';
-    Promise.all(
-      Array.from({ length: 9 }, (_, index) => {
-        const number = String(index + 1).padStart(2, '0');
-        return fetch(`assets/kora/hero-2026-09-20/chunk-${number}.txt?v=20260920-1`)
-          .then((response) => {
-            if (!response.ok) throw new Error(`Kora hero chunk ${number}: ${response.status}`);
-            return response.text();
-          });
-      })
-    ).then((parts) => {
-      mainHeroImage.src = `data:image/webp;base64,${parts.join('')}`;
-      mainHeroImage.width = 900;
-      mainHeroImage.height = 507;
-      mainHeroImage.style.objectPosition = 'center center';
-      mainHeroImage.alt = 'Kora — six-legged robot with moving eyes, black and pink fur, and custom electronics';
-    }).catch((error) => {
-      console.warn('Kora hero 2026-09-20 fallback:', error);
-    });
-  }
+  // Keep the complete, validated hero photo from HTML. The old fragmented WebP was corrupt.
 
   const style = document.createElement('style');
   style.textContent = `
