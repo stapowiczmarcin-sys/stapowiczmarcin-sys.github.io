@@ -24,7 +24,7 @@ const ui = {
     productLink: "Produkt ↗", searchLink: "Szukaj w sklepie ↗", searchProduct: "Szukaj w sklepie:",
     searchLabel: "Szukaj części", clearLabel: "Wyczyść wyszukiwanie", projectLabel: "Filtruj według projektu", supplierLabel: "Filtruj według sklepu",
     statusLabel: "Filtruj według statusu", categoriesLabel: "Kategorie", languageLabel: "Zmień język na angielski",
-    pageTitle: "Marcin — katalog części projektowych", pageDescription: "Katalog części używanych przez Marcina w projektach CNC, Kora, robotyce, elektronice i audio."
+    pageTitle: "Części do ESP32, Raspberry Pi i CNC | Marcin Stapowicz", pageDescription: "Części używane w projektach ESP32, robocie Kora i CNC: Raspberry Pi, ekrany, czujniki i zasilanie. Zdjęcia, uwagi o podłączeniu i błędach sprzętowych."
   },
   en: {
     allStores: "All stores", results: "results", elements: "components", inUse: "in use", stores: "stores", incoming: "in transit",
@@ -33,7 +33,7 @@ const ui = {
     productLink: "Product ↗", searchLink: "Search store ↗", searchProduct: "Search the store for:",
     searchLabel: "Search parts", clearLabel: "Clear search", projectLabel: "Filter by project", supplierLabel: "Filter by store",
     statusLabel: "Filter by status", categoriesLabel: "Categories", languageLabel: "Switch language to Polish",
-    pageTitle: "Marcin — project parts catalogue", pageDescription: "Tested project parts used in Kora, CNC, robotics and electronics — with real build notes and hardware gotchas."
+    pageTitle: "Electronics Parts for ESP32, Raspberry Pi & CNC | Marcin", pageDescription: "Parts used in ESP32, Kora robotics and CNC projects: Raspberry Pi, displays, sensors and power modules, with wiring notes and common hardware mistakes."
   }
 };
 
