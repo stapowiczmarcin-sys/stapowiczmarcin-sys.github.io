@@ -1,8 +1,8 @@
 # KORA Weather WOW 5.5 / ESP32-C3 + ILI9341
 
-PL: Otwórz KoraWeatherWOW55.ino. Wpisz własne WIFI_SSID i WIFI_PASS. Cały folder musi pozostać razem ze wszystkimi plikami .h. ESP32C3 Dev Module, flash 4 MB, Huge APP (3MB No OTA/1MB SPIFFS), USB CDC On Boot Enabled. Biblioteki: Adafruit GFX, Adafruit ILI9341, Adafruit BusIO, ArduinoJson 7. Pogoda z Open-Meteo, bez klucza API. Cztery widoki: pogoda, 3 dni prognozy, ciśnienie/wiatr/wilgotność, zegar. PL/EN, cztery kraje, Snake, Breakout, Pac-Man, Space Invaders, Lucky Reels oraz generator Lotto. Przycisk enkodera: wybór/start/pauza; dodatkowy BAK: powrót. Ekran 240x320 pionowo.
+PL: Otwórz KoraWeatherWOW591.ino. Wpisz własne WIFI_SSID i WIFI_PASS. Cały folder musi pozostać razem ze wszystkimi plikami .h. ESP32C3 Dev Module, flash 4 MB, Huge APP (3MB No OTA/1MB SPIFFS), USB CDC On Boot Enabled. Biblioteki: Adafruit GFX, Adafruit ILI9341, Adafruit BusIO, ArduinoJson 7. Pogoda z Open-Meteo, bez klucza API. Cztery widoki: pogoda, 3 dni prognozy, ciśnienie/wiatr/wilgotność, zegar. PL/EN, cztery kraje, Snake, Breakout, Pac-Man, Space Invaders, Neon Blocks (Tetris), Lucky Reels oraz generator Lotto. Przycisk enkodera: wybór/start/pauza; dodatkowy BAK: powrót. Ekran 240x320 pionowo.
 
-EN: Open KoraWeatherWOW55.ino and enter your own WIFI_SSID / WIFI_PASS. Keep every .h file next to the sketch. Select ESP32C3 Dev Module, 4 MB flash, Huge APP, USB CDC On Boot Enabled. Install Adafruit GFX, Adafruit ILI9341, Adafruit BusIO and ArduinoJson 7. Open-Meteo requires no API key. Weather, three-day forecast, pressure/wind/humidity and local clock; PL/EN; four city presets and six games/tools.
+EN: Open KoraWeatherWOW591.ino and enter your own WIFI_SSID / WIFI_PASS. Keep every .h file next to the sketch. Select ESP32C3 Dev Module, 4 MB flash, Huge APP, USB CDC On Boot Enabled. Install Adafruit GFX, Adafruit ILI9341, Adafruit BusIO and ArduinoJson 7. Open-Meteo requires no API key. Weather, three-day forecast, pressure/wind/humidity and local clock; PL/EN; four city presets and seven games/tools.
 
 ## Wiring / Połączenia
 TFT: VCC and LED 3.3V (verify your module), GND-GND, CS-GPIO10, RESET-GPIO5, DC-GPIO4, SDI/MOSI-GPIO7, SCK-GPIO6, SDO/MISO-GPIO2 (optional if SDO absent). SD card is not used.
@@ -11,7 +11,7 @@ Encoder: A/CLK-GPIO0, B/DT-GPIO1, SW-GPIO9, common-GND. If encoder module requir
 PL: Schemat na stronie dotyczy wersji USB. Obudowa ma miejsce na koszyk 18650, lecz model modułu zasilania baterii nie został jeszcze potwierdzony. Nie podłączaj ogniwa bezpośrednio do 3V3. Zdjęcia strony to opisany prototyp i podglądy programowe z przykładowymi danymi. Model STL nie był fizycznie drukowany.
 EN: Wiring covers USB power. Enclosure fits an 18650 holder; the battery power/charging module is not yet specified. Do not connect a cell directly to 3V3. Software previews use sample weather data. STL geometry was verified; no physical test print yet.
 
-Compile: ESP32 package 3.3.12, flash 2242309 bytes (71%), globals 41456 bytes (12%). The public version only replaces Wi-Fi credentials and documentation; rendering code is unchanged. Photo sources: ZRODLA.md. Software-rendered previews are not measured display performance.
+Compile: ESP32 package 3.3.12, flash 2311571 bytes (73%), globals 41736 bytes (12%). The public version only replaces Wi-Fi credentials and documentation; rendering code is unchanged. Photo sources: ZRODLA.md. Software-rendered previews are not measured display performance.
 
 ## SM5308 — provisional / identyfikacja wstępna
 Single-cell holder → module BAT terminals; module USB-A 5V output → ESP32 USB. Module USB-C is the charge input. Verify your board markings and polarity first. Exact module identity is not confirmed. / Koszyk do BAT, USB-A 5V do USB ESP32, USB-C modułu do ładowania. Najpierw sprawdź oznaczenia własnej płytki.
@@ -29,3 +29,9 @@ First upload / pierwsze wgranie: hold BOOT, press and release RESET, release BOO
 Boards manager URL: https://espressif.github.io/arduino-esp32/package_esp32_index.json
 Package / pakiet: esp32 by Espressif Systems (tested / testowano 3.3.12).
 Libraries / biblioteki: Adafruit GFX Library, Adafruit ILI9341, Adafruit BusIO, ArduinoJson 7.x.
+
+
+# 5.9.1 — encoder-only exit / wyjście samym enkoderem
+EN: In Neon Blocks, hold the encoder button for 1.3 seconds to return to the menu from play, pause, start or game over. A medium hold (0.65–1.24 seconds), then release, toggles pause. Short click rotates/starts, double-click drops; BAK still returns to the menu. Exit suppresses the release click so it cannot reopen the game.
+
+PL: W Neon Blocks przytrzymaj przycisk enkodera przez 1,3 sekundy, aby wyjść do menu podczas gry, pauzy, przed startem lub po przegranej. Przytrzymanie 0,65–1,24 s i puszczenie przełącza pauzę. Krótki klik obraca/startuje, dwuklik zrzuca; BAK nadal wraca do menu. Puszczenie po wyjściu nie wybiera gry ponownie.
