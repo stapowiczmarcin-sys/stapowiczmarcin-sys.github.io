@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+<title id="title">VEGA ESP8266 reference wiring / Połączenia referencyjne</title><desc id="desc">D2 GPIO4 to the LED strip through a recommended level shifter and resistor. D5 GPIO14 SDA and D6 GPIO12 SCL to SSD1306. Separate LED supply and common ground.</desc>
+<rect width="1200" height="660" rx="22" fill="#0b1017"/>
+<style>text{font-family:Arial,sans-serif;fill:#edf4ff;font-size:18px}.sub{fill:#bcc9da;font-size:14px}.title{font-size:26px;font-weight:700}.pin{font-size:17px;font-weight:700}.wire{fill:none;stroke-width:4;stroke-linejoin:round}.box{fill:#141f2e;stroke:#34465d;stroke-width:2}</style>
+<text x="45" y="48" class="title">VEGA / REFERENCE WIRING</text><text x="45" y="75" class="sub">POŁĄCZENIA Z KODU + ZALECANE ELEMENTY ZASILANIA / CODE PINS + RECOMMENDED POWER COMPONENTS</text>
+<path class="wire" stroke="#a587ff" d="M360 298 H400 V164 H830"/><path class="wire" stroke="#50eacb" d="M360 210 H830"/><path class="wire" stroke="#4db8ff" d="M360 252 H830"/>
+<path class="wire" stroke="#ffd072" d="M360 367 H450 M660 367 H700 M755 367 H830"/>
+<path class="wire" stroke="#91a1b5" d="M80 535 H1130 M210 430 V535 M1000 315 V535 M555 470 V535"/>
+<path class="wire" stroke="#ff758f" d="M480 580 H1130 M685 580 V443 H660 M1110 580 V485"/>
+<rect class="box" x="60" y="130" width="300" height="300" rx="15"/><text x="86" y="166" class="title">ESP8266</text><text x="86" y="190" class="sub">NodeMCU pin aliases / nazwy pinów</text>
+<text x="86" y="222" class="pin">D5 / GPIO14 · SDA</text><text x="86" y="264" class="pin">D6 / GPIO12 · SCL</text><text x="86" y="306" class="pin">3V3 → OLED VCC</text><text x="86" y="378" class="pin">D2 / GPIO4 · LED DATA</text><text x="86" y="408" class="sub">USB power / zasilanie przez USB</text>
+<rect class="box" x="830" y="130" width="310" height="185" rx="15"/><text x="851" y="163" class="title">SSD1306 OLED</text><text x="851" y="188" class="sub">128 × 64 · I²C · 0x3C · VCC 3.3 V</text><text x="851" y="222" class="pin">SDA ← D5</text><text x="851" y="264" class="pin">SCL ← D6</text><text x="851" y="295" class="sub">GND → common ground / wspólna masa</text>
+<rect class="box" x="450" y="340" width="210" height="130" rx="15"/><text x="472" y="370" class="pin">3.3 V → 5 V</text><text x="472" y="399">74AHCT125</text><text x="472" y="425" class="sub">recommended / zalecany</text><text x="472" y="447" class="sub">VCC +5 V · GND · /OE=0</text>
+<rect x="700" y="357" width="55" height="20" fill="#272334" stroke="#ffd072" stroke-width="2"/><text x="695" y="408" class="pin">330–470 Ω</text>
+<rect class="box" x="830" y="340" width="310" height="145" rx="15"/><text x="851" y="377" class="title" style="font-size:21px">137 × ADDRESSABLE LED</text><text x="851" y="406" class="sub">DIN ← data / dane · GRB · 800 kHz</text><text x="851" y="432" class="sub">5 V compatible strip / taśma zgodna z 5 V</text><text x="851" y="462" class="sub">+5 V and GND / zasilanie i masa</text>
+<text x="60" y="505" class="sub">DATA PINS ARE PRESERVED FROM THE SKETCH / PINY DANYCH ZACHOWANE Z KODU</text>
+<path class="wire" stroke="#aebcd0" d="M1080 535 V550 M1080 565 V580"/><path stroke="#aebcd0" stroke-width="3" d="M1068 550 H1092 M1068 565 H1092"/><text x="790" y="562" class="sub">500–1000 µF · ≥6.3 V</text>
+<text x="60" y="561" class="pin">COMMON GROUND / WSPÓLNA MASA</text><text x="60" y="603" class="pin">EXTERNAL LED SUPPLY / OSOBNE ZASILANIE LED</text>
+<text x="500" y="608" class="sub">Regulated 5 V · fuse · sized for the actual strip / stabilizowane 5 V · bezpiecznik · odpowiedni prąd</text>
+<text x="45" y="640" class="sub">Reference layout: board and LED part numbers must match your build. / Schemat referencyjny: dopasuj płytkę i taśmę do konstrukcji.</text>
+</svg>
