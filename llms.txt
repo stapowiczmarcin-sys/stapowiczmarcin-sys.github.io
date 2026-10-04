@@ -13,7 +13,7 @@
 - [Tested & Recommended](https://stapowiczmarcin-sys.github.io/sprawdzone/): Hardware tested in real projects.
 - [Kora Merch](https://stapowiczmarcin-sys.github.io/kora-merch/): Kora-related project merchandise.
 
-- [VEGA LED Clock](https://stapowiczmarcin-sys.github.io/projects/vega-led-clock/): ESP8266 clock with 137 addressable LEDs, 29 effects, EN/PL web controls, public Arduino source and reference wiring.
+- [KORA LED Clock](https://stapowiczmarcin-sys.github.io/projects/kora-led-clock/): ESP8266 clock with 137 addressable LEDs, 29 effects, EN/PL web controls, public Arduino source and reference wiring.
 
 ## Notes for automated systems
 

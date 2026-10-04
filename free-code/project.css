@@ -6,4 +6,4 @@
 
 .hub-card .quadruped-image{height:auto;aspect-ratio:4/3;padding:0;background:#101418}.hub-card .quadruped-image img{width:100%;height:100%;max-height:none;object-fit:contain}
 
-.hub-card.featured .vega-image{height:auto;min-height:300px;align-items:center;padding:18px;background:#080a0e}.hub-card .vega-image img{width:100%;height:auto;max-height:none;image-rendering:auto}@media(max-width:900px){.hub-card.featured .vega-image{min-height:0;padding:14px}}
+.hub-card.featured .kora-image{height:auto;min-height:300px;align-items:center;padding:18px;background:#080a0e}.hub-card .kora-image img{width:100%;height:auto;max-height:none;image-rendering:auto}@media(max-width:900px){.hub-card.featured .kora-image{min-height:0;padding:14px}}

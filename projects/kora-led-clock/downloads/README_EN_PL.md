@@ -1,4 +1,4 @@
-# VEGA LED Clock 2.0 — ESP8266
+# KORA LED Clock 2.0 — ESP8266
 
 ## English
 
@@ -18,8 +18,8 @@ The clock keeps the original 137-LED layout, twelve calibrated hour positions, U
 
 ### Upload
 
-1. Extract the entire `VEGA_Clock_2_0` folder. Open **VEGA_Clock_2_0.ino** in Arduino IDE, keeping all `.h` files next to it.
-2. This sketch targets **ESP8266**, as in the supplied VEGA code. Select your actual ESP8266 board. Verification used **NodeMCU 1.0 (ESP-12E Module)** with ESP8266 core **3.1.2**.
+1. Extract the entire `KORA_Clock_2_0` folder. Open **KORA_Clock_2_0.ino** in Arduino IDE, keeping all `.h` files next to it.
+2. This sketch targets **ESP8266**, as in the supplied KORA code. Select your actual ESP8266 board. Verification used **NodeMCU 1.0 (ESP-12E Module)** with ESP8266 core **3.1.2**.
 3. Install the libraries listed below using Library Manager. Use **SinricPro**, rather than the separate SinricPro_Generic library.
 4. **Config.h contains placeholders.** Enter your own Wi-Fi name/password, SinricPro App Key, App Secret and Switch Device ID, and choose your own OTA password before uploading. Keep the completed personal file out of a public repository.
 5. Select the USB serial port and upload. To preserve calibration, avoid the ESP8266 **Erase Flash → All Flash Contents** option; use **Only Sketch**.
@@ -51,9 +51,9 @@ The panel works without external fonts, CDNs or an internet connection once the 
 
 ### Files and validation
 
-- `VegaFirmware.h`: firmware logic, original hardware configuration and preserved EEPROM layout.
+- `KoraFirmware.h`: firmware logic, original hardware configuration and preserved EEPROM layout.
 - `ClockRender.h`: independent visual-layer composition and time contrast protection.
-- `VegaTime.h`: asynchronous core time synchronisation.
+- `KoraTime.h`: asynchronous core time synchronisation.
 - `WebPanel.html`: editable web panel source.
 - `WebUI.h`: the same panel stored in flash. Run `build_web_panel.py` after editing the HTML.
 - `Config.h`: connection placeholders to complete before uploading.
@@ -78,8 +78,8 @@ Zegar zachowuje oryginalny układ 137 LED, dwanaście skalibrowanych pozycji god
 
 ### Wgranie
 
-1. Rozpakuj cały folder `VEGA_Clock_2_0`. W Arduino IDE otwórz **VEGA_Clock_2_0.ino**. Wszystkie pliki `.h` muszą zostać obok szkicu.
-2. Ten kod jest dla **ESP8266**, zgodnie z przesłanym szkicem VEGA. Wybierz model swojej płytki ESP8266. Kompilację sprawdziłem dla **NodeMCU 1.0 (ESP-12E Module)** z pakietem ESP8266 **3.1.2**.
+1. Rozpakuj cały folder `KORA_Clock_2_0`. W Arduino IDE otwórz **KORA_Clock_2_0.ino**. Wszystkie pliki `.h` muszą zostać obok szkicu.
+2. Ten kod jest dla **ESP8266**, zgodnie z przesłanym szkicem KORA. Wybierz model swojej płytki ESP8266. Kompilację sprawdziłem dla **NodeMCU 1.0 (ESP-12E Module)** z pakietem ESP8266 **3.1.2**.
 3. Zainstaluj biblioteki z tabeli w części angielskiej przez menedżer bibliotek. Wybierz **SinricPro**, zamiast osobnej biblioteki SinricPro_Generic.
 4. **Config.h zawiera pola do uzupełnienia.** Przed wgraniem wpisz swoją nazwę i hasło Wi-Fi, App Key, App Secret oraz Device ID przełącznika SinricPro, a także ustaw własne hasło OTA. Uzupełnionego osobistego pliku nie dodawaj do publicznego repozytorium.
 5. Wybierz port USB i wgraj szkic. Aby zachować kalibrację, w ustawieniu ESP8266 **Erase Flash** wybierz **Only Sketch**, zamiast **All Flash Contents**.
@@ -99,9 +99,9 @@ Panel nie wymaga zewnętrznych czcionek, CDN ani internetu, gdy urządzenie jest
 
 ### Pliki i sprawdzenie
 
-- `VegaFirmware.h`: działanie zegara, oryginalne połączenia i zachowany układ EEPROM.
+- `KoraFirmware.h`: działanie zegara, oryginalne połączenia i zachowany układ EEPROM.
 - `ClockRender.h`: osobne warstwy obrazu i ochrona czytelności godziny.
-- `VegaTime.h`: synchronizacja czasu w tle.
+- `KoraTime.h`: synchronizacja czasu w tle.
 - `WebPanel.html`: źródło panelu WWW do edycji.
 - `WebUI.h`: ten sam panel zapisany w pamięci flash. Po edycji HTML uruchom `build_web_panel.py`.
 - `Config.h`: pola na Twoje dane połączenia do uzupełnienia przed wgraniem.
@@ -110,7 +110,7 @@ Kompilacja dla ESP8266 NodeMCU przeszła poprawnie. Testy na komputerze objęły
 
 ## Project page / Strona projektu
 
-https://stapowiczmarcin-sys.github.io/projects/vega-led-clock/
+https://stapowiczmarcin-sys.github.io/projects/kora-led-clock/
 
 Video / Film: **YOUTUBE_LINK_TO_ADD / LINK_YOUTUBE_DO_DODANIA**
 
