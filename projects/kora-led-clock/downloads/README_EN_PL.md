@@ -60,6 +60,14 @@ The panel works without external fonts, CDNs or an internet connection once the 
 
 Build passed for ESP8266 NodeMCU. Host tests exercised all 29 animations, calibrated mapping, time-only/effects-only modes, independent brightness, effect-history isolation, comet priority, EEPROM migration, schedules and UK daylight-saving boundaries. Browser tests checked both languages, mobile layout and controls against a simulated device API. Screenshots are software previews. The physical clock has not been flashed or measured in this session.
 
+### LED wiring diagram
+
+Full EN/PL illustrated guide: https://stapowiczmarcin-sys.github.io/projects/kora-led-clock/#wiring
+
+For a compatible 5 V addressable strip, use D2 / GPIO4 → 74AHCT125 input pin 2; output pin 3 → 330–470 Ω → first LED DIN. Buffer pin 14 → +5 V, pins 7 and 1 → common GND; add 100 nF across pins 14 and 7. Unused /OE pins 4, 10, 13 → +5 V; unused inputs 5, 9, 12 → GND; outputs 6, 8, 11 unconnected. Add a 500–1000 µF / ≥10 V electrolytic at the strip input (+ to +5 V, − to GND). ESP uses USB; LED power comes directly from a suitable fused external supply, with shared ground. Never apply 5 V to GPIO or 3V3.
+
+See docs/wiring.svg and docs/wiring.png. Standard 14-pin chip packages only; match the board and strip voltage.
+
 ## Polski
 
 Zegar zachowuje oryginalny układ 137 LED, dwanaście skalibrowanych pozycji godzin, czas UK GMT/BST, OLED, SinricPro i obie metody aktualizacji OTA.
@@ -122,3 +130,11 @@ Sources / Źródła:
 - NeoPixel wiring recommendations: https://learn.adafruit.com/adafruit-neopixel-uberguide/best-practices
 - SinricPro SDK: https://github.com/sinricpro/esp8266-esp32-sdk
 - SinricPro account/device setup: https://help.sinric.pro/pages/tutorials/general/device-creation-wizard
+
+### Schemat podłączenia LED
+
+Pełna ilustrowana instrukcja EN/PL: https://stapowiczmarcin-sys.github.io/projects/kora-led-clock/?lang=pl#wiring
+
+Dla zgodnej taśmy adresowalnej 5 V: D2 / GPIO4 → pin 2 wejścia 74AHCT125; pin 3 wyjścia → 330–470 Ω → DIN pierwszej diody. Pin 14 → +5 V, piny 7 i 1 → wspólna masa GND; 100 nF między pinami 14 i 7. Nieużywane /OE 4, 10, 13 → +5 V; wejścia 5, 9, 12 → GND; wyjścia 6, 8, 11 niepodłączone. Przy wejściu taśmy dodaj elektrolit 500–1000 µF / ≥10 V (+ do +5 V, − do GND). ESP zasilane przez USB; taśma bezpośrednio z odpowiedniego zasilacza z bezpiecznikiem, ze wspólną masą. Nie podawaj 5 V na GPIO ani 3V3.
+
+Pliki: docs/wiring.svg i docs/wiring.png. Numery dotyczą standardowej obudowy układu 14-pinowego. Sprawdź model płytki i napięcie taśmy.
