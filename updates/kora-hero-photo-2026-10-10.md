@@ -1,0 +1,17 @@
+# Kora portfolio hero photo — 2026-10-10
+
+User request: replace the gloomy Kora photo beside “Kora — a working robot in constant development, with custom mechanics, electronics, senses and character.”
+
+Change: only the hero image tag in index.html: new versioned WebP path, matching dimensions, descriptive alt text and centered positioning. The existing caption, page copy, links, styles, scripts, hardware files and all other page sections are preserved.
+
+Asset: assets/kora/kora-portfolio-hero-20261010-v2.webp (1122 × 1402).
+Previous asset: assets/kora/kora-portfolio-hero-2026-08.webp (retained).
+Backup: backups/index-before-kora-hero-20261010.html.
+
+The replacement is a photographic retouch generated with built-in Imagegen from the previous hero and the existing kora-main.webp construction reference. It is a portfolio visual, not evidence of a new hardware configuration or hardware test. Main visual changes: both mechanical eyes open, level head, brighter natural workshop light and a centered portrait composition. Original DIY identity is retained.
+
+Validation before publication: exact single-tag diff; caption and all remaining HTML byte-for-byte preserved; decoded WebP and dimensions verified. No application logic changed. Browser layout review unavailable in this environment; the existing responsive image rules remain in effect.
+
+## Image prompt
+
+Use case: identity-preserve / precise-object-edit. Asset: replacement hero photo for Marcin's actual Kora robotics portfolio. EDIT IMAGE 1, the old portfolio photograph. IMAGE 2 is a supporting mechanical construction reference for the SAME six-legged robot's chassis and leg count, not another robot to insert. The owner dislikes the old picture because Kora looks sick and gloomy. Make one much nicer professional but honest workshop portrait of this SAME robot. Keep her unmistakable exact DIY hardware identity: black round metallic body, precisely SIX slim silver articulated metal legs (three each side) with black servos, real exposed orange/red/yellow wires, silver brackets, the two original white mechanical spherical eyeballs with blue irises mounted in their white rectangular brackets above the rectangular white-framed TFT display. Keep all existing parts and proportions; do not invent upgrades, fur, a mouth, arms, wheels, antennas, futuristic armor, extra screens or extra sensors. Changes: BOTH existing mechanical eyes fully open, both blue irises looking directly towards camera; head assembly level and upright, an alert confident lively expression without a cartoon face. Keep natural physically plausible stable leg posture and the actual chassis. Improve photographic lighting substantially: soft bright warm workshop key light and subtle cool fill, clear clean silver metal detail, normal healthy whites, bright blue irises, real textures, tasteful soft shadow. Workshop background simplified by shallow depth of field and tidying visual distractions, dark slate and warm wood palette, no other robots or people. Clean editorial product portrait, natural photorealism, no overly dramatic darkness, no grimy depressed look, no glossy science-fiction redesign. Portrait 4:5 framing, robot centered, complete head and complete chassis/leg footprint visible with comfortable 12% breathing room on all sides; important features centered for responsive web crops; leave lower margin for existing external caption. No text, logos, watermarks, labels or graphic overlays. This is a careful photographic retouch of the real referenced build, not a new robot design.
