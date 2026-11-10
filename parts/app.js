@@ -14,7 +14,7 @@ const state = {
 const $ = (selector) => document.querySelector(selector);
 const categories = ["Wszystkie", ...new Set(parts.map((part) => part.category))];
 const projects = ["Wszystkie projekty", ...new Set(parts.map((part) => part.project))];
-const suppliers = ["Wszystkie sklepy", ...new Set(parts.map((part) => part.supplier))];
+const suppliers = ["Wszystkie sklepy", ...new Set(parts.map((part) => part.supplier).filter(Boolean))];
 const statuses = ["Wszystkie statusy", ...new Set(parts.map((part) => part.status))];
 const ui = {
   pl: {
@@ -68,7 +68,9 @@ function copyText(part, mode) {
   const view = viewPart(part);
   if (mode === "short") return view.name + " — " + view.spec;
   const affiliateNotice = part.supplier === "Amazon" ? "\n\nLink afiliacyjny / Affiliate link\nAs an Amazon Associate I earn from qualifying purchases." : "";
-  return part.youtubeEn + "\n" + part.youtubePl + "\n\nElement / Component: " + part.name + "\nSklep / Store: " + part.supplier + "\n" + part.url + affiliateNotice;
+  const store = part.supplier ? "\nSklep / Store: " + part.supplier : "";
+  const link = part.url ? "\n" + part.url : "";
+  return part.youtubeEn + "\n" + part.youtubePl + "\n\nElement / Component: " + part.name + store + link + affiliateNotice;
 }
 
 async function copyToClipboard(text) {
@@ -137,7 +139,10 @@ function renderCards() {
   renderBudget(filtered);
   $("#partsGrid").innerHTML = filtered.map((part, index) => {
     const view = viewPart(part);
-    const storeSearch = isStoreSearch(part.url);
+    const storeSearch = part.url && isStoreSearch(part.url);
+    const storeLink = part.url
+      ? '<a class="store-link" href="' + escapeHtml(part.url) + '" target="_blank" rel="noopener noreferrer' + (part.supplier === "Amazon" ? ' sponsored' : '') + '" aria-label="' + escapeHtml((storeSearch ? ui[state.language].searchProduct : ui[state.language].open) + " " + view.name) + '">' + escapeHtml(storeSearch ? ui[state.language].searchLink : ui[state.language].productLink) + '</a>'
+      : "";
     const imageSrc = window.PART_IMAGES && window.PART_IMAGES[part.id];
     const imageMarkup = imageSrc
       ? '<img src="' + escapeHtml(imageSrc) + '" alt="' + escapeHtml(view.name) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
@@ -149,13 +154,13 @@ function renderCards() {
         '<span class="status" data-status="' + escapeHtml(part.status) + '">' + escapeHtml(view.statusLabel) + '</span>' +
       '</div>' +
       '<div class="part-body">' +
-        '<div class="meta-row"><span>' + escapeHtml(view.categoryLabel) + '</span><span>' + escapeHtml(part.supplier === "Amazon" ? (state.language === "en" ? "Amazon · affiliate link" : "Amazon · link afiliacyjny") : part.supplier) + '</span></div>' +
+        '<div class="meta-row"><span>' + escapeHtml(view.categoryLabel) + '</span><span>' + escapeHtml(part.supplier === "Amazon" ? (state.language === "en" ? "Amazon · affiliate link" : "Amazon · link afiliacyjny") : part.supplier || "—") + '</span></div>' +
         '<h3>' + escapeHtml(view.name) + '</h3><p class="part-short">' + escapeHtml(view.short) + '</p><p class="spec">' + escapeHtml(view.spec) + '</p>' +
         '<div class="project-row"><span>' + escapeHtml(ui[state.language].project) + '</span><strong>' + escapeHtml(view.projectLabel) + '</strong></div>' +
         '<div class="price-row"><span>' + escapeHtml(ui[state.language].price) + '</span><strong>' + escapeHtml(part.price || "—") + '</strong></div>' +
         '<div class="card-actions"><button type="button" class="copy-primary" data-copy="full" data-id="' + escapeHtml(part.id) + '">' + escapeHtml(ui[state.language].youtube) + '</button>' +
         '<button type="button" data-copy="short" data-id="' + escapeHtml(part.id) + '" aria-label="' + escapeHtml(ui[state.language].copyShort + " " + view.name) + '" title="' + escapeHtml(ui[state.language].copyShort) + '">⧉</button>' +
-        '<a class="store-link" href="' + escapeHtml(part.url) + '" target="_blank" rel="noopener noreferrer' + (part.supplier === "Amazon" ? ' sponsored' : '') + '" aria-label="' + escapeHtml((storeSearch ? ui[state.language].searchProduct : ui[state.language].open) + " " + view.name) + '">' + escapeHtml(storeSearch ? ui[state.language].searchLink : ui[state.language].productLink) + '</a></div>' +
+        storeLink + '</div>' +
       '</div>' +
     '</article>';
   }).join("");
@@ -181,7 +186,7 @@ function fillSelect(selector, values, selected, label) {
 function renderStats() {
   const activeCount = parts.filter((part) => part.status === "Używam").length;
   const incomingCount = parts.filter((part) => part.status === "W drodze").length;
-  $("#stats").innerHTML = '<div><strong>' + parts.length + '</strong><span>' + ui[state.language].elements + '</span></div><div><strong>' + activeCount + '</strong><span>' + ui[state.language].inUse + '</span></div><div><strong>' + new Set(parts.map((part) => part.supplier)).size + '</strong><span>' + ui[state.language].stores + '</span></div><div><strong>' + incomingCount + '</strong><span>' + ui[state.language].incoming + '</span></div>';
+  $("#stats").innerHTML = '<div><strong>' + parts.length + '</strong><span>' + ui[state.language].elements + '</span></div><div><strong>' + activeCount + '</strong><span>' + ui[state.language].inUse + '</span></div><div><strong>' + (suppliers.length - 1) + '</strong><span>' + ui[state.language].stores + '</span></div><div><strong>' + incomingCount + '</strong><span>' + ui[state.language].incoming + '</span></div>';
 }
 
 function translateStatic() {

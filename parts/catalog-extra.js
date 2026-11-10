@@ -387,3 +387,20 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "fasient-speakers-b08cky18c
   "youtubeEn": "For Kora's voice I bought compact fasient 8-ohm / 5 W speakers."
 });
 }
+
+// Reference hardware for the H-01 prototype.
+if (!window.PARTS_CATALOG.some((part) => part.id === "kora-h01-presence-20x10")) {
+  window.PARTS_CATALOG.push({
+    "id": "kora-h01-presence-20x10",
+    "name": "Czujnik obecności 20 × 10 mm — Kora H-01",
+    "short": "Moduł przewidziany do wymiennej wkładki w głowie Kory. Model płytki do potwierdzenia.",
+    "category": "Sensory",
+    "supplier": "",
+    "project": "Kora / VEGA",
+    "status": "Prototyp",
+    "accent": "cyan",
+    "spec": "PCB ok. 20 × 10 mm • kieszeń CAD 20,5 × 10,4 mm",
+    "youtubeEn": "The Kora H-01 prototype head has a removable holder for an approximately 20 × 10 mm presence sensor. The exact part number is pending.",
+    "youtubePl": "Prototyp głowy Kory H-01 ma wymienną wkładkę na czujnik obecności o obrysie około 20 × 10 mm. Oznaczenie płytki jest do potwierdzenia."
+  });
+}

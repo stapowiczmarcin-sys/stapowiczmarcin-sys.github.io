@@ -106,3 +106,10 @@ Object.assign(window.CATALOG_I18N.parts, {
     "spec": "8 Ω • rated 5 W • compact enclosure"
   }
 });
+
+window.CATALOG_I18N.statuses["Prototyp"] = "Prototype";
+window.CATALOG_I18N.parts["kora-h01-presence-20x10"] = {
+  "name": "Presence sensor 20 × 10 mm — Kora H-01",
+  "short": "Module planned for the removable holder in Kora's head. Exact part number pending.",
+  "spec": "PCB about 20 × 10 mm • CAD pocket 20.5 × 10.4 mm"
+};
