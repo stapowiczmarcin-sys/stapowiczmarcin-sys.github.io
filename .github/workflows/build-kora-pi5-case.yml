@@ -24,7 +24,7 @@ jobs:
       - name: Install model generation libraries
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "cadquery>=2.5,<3" "trimesh>=4,<5" "numpy>=1.24" "lxml>=5"
+          python -m pip install "cadquery>=2.5,<3" "trimesh>=4,<5" "numpy>=1.24" "lxml>=5" "networkx>=3"
       - name: Generate and validate 3MF
         run: python projects/kora-pi5-hailo-case/generate_3mf.py
       - name: Commit generated 3MF to public download directory
