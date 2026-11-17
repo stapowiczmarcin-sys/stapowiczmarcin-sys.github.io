@@ -1,4 +1,4 @@
-"""KORA Pi5 + Hailo-10H enclosure V2: five-part, three-colour 3MF.
+"""KORA Pi5 + Hailo-10H enclosure V3: rear LED ring, five-part, three-colour 3MF.
 Source dimensions provided by the owner; mounting/fan/LED positions require physical fitting.
 """
 from pathlib import Path
@@ -16,7 +16,7 @@ PLATEAU, OPEN_FRONT, SLOPE_DROP = 74.0, 33.0, 16.0
 X_BREAK = L - OPEN_FRONT
 WALL, FLOOR, WALL_TOP = 2.8, 3.2, 95.0
 FAN_X, FAN_Y = 37.0, 35.5
-LED_X, LED_Z, LED_BOLT_RAD = 37.0, 60.0, 28.5
+LED_Y, LED_Z, LED_BOLT_RAD = 35.5, 60.0, 28.5
 
 def box(x,y,z,l,w,h):
     return cq.Workplane('XY').box(l,w,h,centered=(False,False,False)).translate((x,y,z))
@@ -27,8 +27,8 @@ def profile(points,y0,width):
 def hole_z(x,y,z,r,length):
     return cq.Workplane('XY').center(x,y).circle(r).extrude(length).translate((0,0,z))
 
-def hole_y(x,y,z,r,length):
-    return cq.Workplane(obj=cq.Solid.makeCylinder(r,length,cq.Vector(x,y,z),cq.Vector(0,1,0)))
+def hole_x(x,y,z,r,length):
+    return cq.Workplane(obj=cq.Solid.makeCylinder(r,length,cq.Vector(x,y,z),cq.Vector(1,0,0)))
 
 # Silver shell: 117.9 x 71 x 95; white cap brings overall case to 98.
 body = box(0,0,0,L,W,FLOOR)
@@ -36,8 +36,9 @@ side = [(0,0),(L,0),(L,19),(X_BREAK,19),(X_BREAK,WALL_TOP-SLOPE_DROP),
         (PLATEAU,WALL_TOP),(0,WALL_TOP)]
 body = body.union(profile(side,0,WALL)).union(profile(side,W-WALL,WALL))
 body = body.union(box(0,0,0,WALL,W,WALL_TOP))
+# Rear ventilation slots are below the LED recess (not hidden by the light ring).
 for y in (13.,31.,49.):
-    body=body.cut(box(-.5,y,42,4.,10.,4.3))
+    body=body.cut(box(-.5,y,19,4.,10.,4.3))
 for x in (14.,30.,46.,62.):
     for z in (15.,23.):
         body=body.cut(box(x,-.5,z,10.,3.8,4.))
@@ -55,12 +56,18 @@ lid_screws=[(7,6),(67,6),(7,65),(67,65)]
 for x,y in lid_screws:
     body=body.union(box(x-4,.8 if y<30 else W-9,86.4,8,8.2,8.6))
     body=body.cut(hole_z(x,y,86.2,1.15,10.))
-# Side LED ring: 47 mm board diameter, 8.5 mm ring width, 0.6 mm diffuser.
-body=body.cut(hole_y(LED_X,-1,LED_Z,24.1,WALL+2))
-body=body.cut(hole_y(LED_X,-.05,LED_Z,26.2,.70))
-for x,z in [(LED_X+LED_BOLT_RAD,LED_Z),(LED_X-LED_BOLT_RAD,LED_Z),
-            (LED_X,LED_Z+LED_BOLT_RAD),(LED_X,LED_Z-LED_BOLT_RAD)]:
-    body=body.cut(hole_y(x,-.5,z,1.42,WALL+1))
+# Rear-facing LED ring on the short end wall (x=0), centered across the 71 mm width.
+# PCB diameter 47 mm, optical diffuser wall 0.6 mm = three 0.2 mm print layers.
+# The red retainer mounts on the back; its outer diameter 62.8 mm fits in 71 mm.
+body=body.cut(hole_x(-1,LED_Y,LED_Z,24.1,WALL+2))
+body=body.cut(hole_x(-.05,LED_Y,LED_Z,26.2,.70))
+for y,z in [(LED_Y+LED_BOLT_RAD,LED_Z),(LED_Y-LED_BOLT_RAD,LED_Z),
+            (LED_Y,LED_Z+LED_BOLT_RAD),(LED_Y,LED_Z-LED_BOLT_RAD)]:
+    body=body.cut(hole_x(-.5,y,z,1.42,WALL+1))
+# Geometry guards: physical LED board and screw positions must fit rear panel.
+assert LED_Y-31.4>0 and LED_Y+31.4<W
+assert LED_Z-31.4>0 and LED_Z+31.4<WALL_TOP
+assert 23.3 < LED_Z - 24.1, 'Rear vents must not overlap the LED aperture.'
 
 # White roof, flat rear 74 mm, 16 mm descent until x=84.9, no roof for last 33 mm.
 roof=profile([(0,95),(PLATEAU,95),(X_BREAK,79),(X_BREAK,82),(PLATEAU,98),(0,98)],0,W)
@@ -150,7 +157,7 @@ for obj in resources.findall('{%s}object'%NS):
     obj.set('pid','9000')
     obj.set('pindex',str(0 if 'SILVER' in name else 1 if 'WHITE' in name else 2))
 members['3D/3dmodel.model']=etree.tostring(xml,encoding='utf-8',xml_declaration=True)
-target=OUT/'KORA_Pi5_Hailo10H_V2.3mf'
+target=OUT/'KORA_Pi5_Hailo10H_V3_REAR_LED.3mf'
 with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:
     for name,data in members.items():
         z.writestr(name,data)
