@@ -1,4 +1,4 @@
-name: Build KORA Pi5 Hailo V2 3MF
+name: Build KORA Pi5 Hailo 3MF
 
 on:
   push:
@@ -31,11 +31,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add projects/kora-pi5-hailo-case/KORA_Pi5_Hailo10H_V2.3mf
+          git add projects/kora-pi5-hailo-case/*.3mf
           if git diff --cached --quiet; then
             echo "3MF unchanged"
           else
-            git commit -m "Publish KORA Pi5 Hailo V2 3MF download"
+            git commit -m "Publish KORA Pi5 Hailo 3MF downloads"
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main
