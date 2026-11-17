@@ -36,5 +36,7 @@ jobs:
             echo "3MF unchanged"
           else
             git commit -m "Publish KORA Pi5 Hailo V2 3MF download"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
