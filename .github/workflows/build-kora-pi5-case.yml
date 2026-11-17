@@ -1,0 +1,40 @@
+name: Build KORA Pi5 Hailo V2 3MF
+
+on:
+  push:
+    paths:
+      - 'projects/kora-pi5-hailo-case/generate_3mf.py'
+      - '.github/workflows/build-kora-pi5-case.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install model generation libraries
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "cadquery>=2.5,<3" "trimesh>=4,<5" "numpy>=1.24" "lxml>=5"
+      - name: Generate and validate 3MF
+        run: python projects/kora-pi5-hailo-case/generate_3mf.py
+      - name: Commit generated 3MF to public download directory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects/kora-pi5-hailo-case/KORA_Pi5_Hailo10H_V2.3mf
+          if git diff --cached --quiet; then
+            echo "3MF unchanged"
+          else
+            git commit -m "Publish KORA Pi5 Hailo V2 3MF download"
+            git push origin HEAD:main
+          fi
