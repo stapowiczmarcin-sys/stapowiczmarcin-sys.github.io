@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KORA Pi5 + Hailo-10H — case V2 · 3MF download</title>
+<meta name="description" content="Download the prototype 3MF case for Raspberry Pi 5 and Hailo-10H, with a 26mm fan seat and side LED-ring diffuser.">
+<style>
+:root{color-scheme:dark;--bg:#090d13;--panel:#141a23;--ink:#f4f5f7;--muted:#b7c0cc;--red:#e8494b;--line:#343c4b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 77% 6%,#263243 0,transparent 40%),var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
+main{max-width:1040px;padding:32px 20px 90px;margin:auto}a{color:inherit}.breadcrumb{color:var(--muted);text-decoration:none}.header{display:grid;grid-template-columns:minmax(280px,1fr) minmax(250px,.85fr);gap:32px;align-items:center;margin:38px 0 36px}.eyebrow{font-weight:700;color:var(--red);letter-spacing:.12em;text-transform:uppercase;font-size:.75rem}
+h1{font-size:clamp(2.1rem,5vw,4.5rem);line-height:1.07;margin:16px 0}h2{margin-top:0}p{color:var(--muted)}.lead{font-size:1.12rem;max-width:670px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 28px}.pill{padding:6px 11px;border:1px solid var(--line);border-radius:50px;font-size:.85rem}
+.download{display:inline-block;background:var(--red);color:white;border-radius:12px;padding:16px 20px;text-decoration:none;font-weight:800;box-shadow:0 14px 35px #0005}.download:hover{background:#ff5a5b}
+.small{font-size:.85rem;margin-top:13px;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px}
+.render{display:flex;align-items:center;justify-content:center;min-height:260px;background:linear-gradient(160deg,#151c29,#0c1017);overflow:hidden}
+svg{max-width:100%;filter:drop-shadow(0 20px 20px #0006)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+table{border-collapse:collapse;width:100%}td{border-bottom:1px solid var(--line);padding:9px 4px}td:last-child{text-align:right;font-weight:650}
+.warn{border-left:3px solid var(--red);padding:4px 0 4px 16px;margin:24px 0;color:var(--muted)}
+footer{margin-top:40px;color:var(--muted);font-size:.9rem}
+@media(max-width:720px){.header,.grid{grid-template-columns:1fr}.header{gap:12px}.card{padding:18px}}
+</style>
+</head>
+<body><main>
+<a class="breadcrumb" href="/">← Back to Marcin's portfolio / Powrót do portfolio</a>
+<div class="header">
+<div>
+<div class="eyebrow">KORA WORKSHOP / 3D PRINT · V2</div>
+<h1>Pi 5 + Hailo-10H<br>Case V2</h1>
+<p class="lead">Prototype enclosure for Raspberry Pi 5 and AI HAT+ 2. Three-colour 3MF, open front for USB, sloped roof, 26 × 26 mm top fan and side LED ring.</p>
+<p>Prototypowa obudowa Raspberry Pi 5 i Hailo-10H. Plik 3MF w trzech kolorach, otwarty przód na USB, wentylator 26 × 26 mm i boczny pierścień LED.</p>
+<div class="pills"><span class="pill">SILVER · body</span><span class="pill">WHITE · lid + diffuser</span><span class="pill">RED · logo + ring mount</span></div>
+<a class="download" href="./KORA_Pi5_Hailo10H_V2.3mf" download="KORA_Pi5_Hailo10H_V2.3mf">⬇ Download / Pobierz 3MF</a>
+<div class="small">Five independent parts · 256 × 256 mm build-plate layout<br>5 osobnych części · rozmieszczenie na stole 256 × 256 mm</div>
+</div>
+<div class="card render" aria-label="Technical outline illustration of the case">
+<svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of sloped case with fan, LED and open USB front">
+<defs><linearGradient id="silver" x1="0" x2="1" y1="0" y2=".8"><stop stop-color="#c5cbd2"/><stop offset="1" stop-color="#657381"/></linearGradient><linearGradient id="top" x1="0" x2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#cfd5dd"/></linearGradient></defs>
+<path d="M52 114 L272 92 L383 136 L163 164Z" fill="url(#top)" stroke="#475463" stroke-width="2"/>
+<path d="M52 114 L163 164 L163 290 L52 241Z" fill="url(#silver)" stroke="#475463" stroke-width="3"/>
+<path d="M163 164 L383 136 L383 243 L330 255 L330 204 L302 198 L272 180 L163 202Z" fill="#7b8996" stroke="#475463" stroke-width="2"/>
+<path d="M52 114 L272 92 L383 136 L163 164Z" fill="none" stroke="#f6f7fa" stroke-width="5" stroke-linejoin="round"/>
+<path d="M220 108 L273 102 L302 116 L247 123Z" fill="#e3e6ea" stroke="#6e7882" stroke-width="2"/>
+<path d="M249 111 L271 108 L284 115 L263 118Z" fill="#444e5c"/>
+<circle cx="107" cy="194" r="45" fill="#c6cbd1" stroke="#e6484c" stroke-width="9"/>
+<circle cx="107" cy="194" r="29" fill="#a0aab4" stroke="#f0f0f0" stroke-width="6"/>
+<path d="M331 201 L383 188 L383 241 L331 255Z" fill="#111924" stroke="#89929c" stroke-width="3" />
+<text x="175" y="84" fill="#cdd3dc" font-size="16">FAN 26 × 26</text>
+<text x="55" y="307" fill="#f4f5f7" font-size="17">LED Ø47</text>
+<text x="302" y="280" fill="#f4f5f7" font-size="17">USB OPEN</text>
+</svg>
+</div>
+</div>
+<div class="grid">
+<section class="card"><h2>Specifications / Wymiary</h2><table>
+<tr><td>Length / Długość</td><td>117.90 mm</td></tr>
+<tr><td>Width / Szerokość</td><td>71 mm</td></tr>
+<tr><td>Height / Wysokość</td><td>98 mm shell</td></tr>
+<tr><td>Top rear / Górny tył</td><td>74 mm</td></tr>
+<tr><td>Slope drop / Spadek</td><td>16 mm</td></tr>
+<tr><td>Open front / Otwarty przód</td><td>33 mm</td></tr>
+<tr><td>Fan / Wiatrak</td><td>26 × 26 mm</td></tr>
+<tr><td>LED PCB</td><td>Ø47 mm / 8.5 mm wide</td></tr>
+<tr><td>Diffuser / Klosz</td><td>0.60 mm (3 × 0.20 mm)</td></tr>
+</table></section>
+<section class="card"><h2>Print &amp; assembly / Druk</h2>
+<p><strong>PETG:</strong> 0.20 mm layer, 3–4 walls, 20–25% infill. Assign three material colours in the slicer before printing.</p>
+<p><strong>PETG:</strong> warstwa 0,20 mm, 3–4 ścianki, wypełnienie 20–25%. Przed drukiem przypisz kolory do obiektów.</p>
+<p><a href="./generate_3mf.py">CAD generation source / Kod generatora</a></p>
+<p><strong>Fan:</strong> on top of the housing; overall height including the physical fan can exceed 98 mm.</p>
+<p><strong>LED:</strong> translucent/milky white PETG recommended for better light diffusion.</p>
+</section>
+</div>
+<div class="warn"><strong>Prototype / Prototyp.</strong> The file was checked for closed meshes, but not physically fitted to a specific NVMe adapter, Hailo spacer stack, LED PCB or fan hole pitch. Make a fit test before committing to the full print. / Model sprawdzony geometrycznie, ale nieprzymierzony fizycznie do Twojego NVMe, Hailo i pierścienia LED.</div>
+<footer>Marcin · KORA Workshop · <a href="/">Portfolio</a> · <a href="https://github.com/stapowiczmarcin-sys/stapowiczmarcin-sys.github.io/tree/main/projects/kora-pi5-hailo-case">GitHub source</a></footer>
+</main></body></html>
