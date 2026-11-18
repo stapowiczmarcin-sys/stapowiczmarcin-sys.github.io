@@ -1,0 +1,161 @@
+{
+  "status": "approval prototype; physical fit and acoustic performance untested",
+  "outer_diameter_mm": 112,
+  "assembled_height_mm": 26.8,
+  "body_height_without_pi_support_mm": 20.2,
+  "pi_air_gap_mm": 6.6,
+  "pcb_mounts_mm": [
+    [
+      -21.355,
+      24.5008
+    ],
+    [
+      21.3533,
+      24.5008
+    ],
+    [
+      -0.0008,
+      -33.9992
+    ]
+  ],
+  "microphone_centres_mm": [
+    [
+      -32.9808,
+      -33.0192
+    ],
+    [
+      33.0192,
+      -32.9808
+    ],
+    [
+      -33.0192,
+      32.9808
+    ],
+    [
+      32.9808,
+      33.0192
+    ]
+  ],
+  "led_radius_mm": 40,
+  "led_angles_deg": [
+    15,
+    45,
+    75,
+    105,
+    135,
+    165,
+    195,
+    225,
+    255,
+    285,
+    315,
+    345
+  ],
+  "minimum_led_to_diffuser_gap_mm": 0.565,
+  "sound_channel_to_pcb_gap_mm": 0.24,
+  "shell_intersection_mm3": 0.0,
+  "diffuser_shell_intersection_mm3": 2.5344000000000055,
+  "notes": [
+    "Diffuser ribs intentionally interfere slightly with slot walls.",
+    "Official standard 100 mm 12 LED board STEP with optional XIAO; revision v1.1 not explicitly certified by manufacturer file.",
+    "M2 x 6 screws x3 for PCB; M2.5 x 12 x4 for enclosure, verify screw thread engagement.",
+    "Connector openings include USB cable moulding clearance; unusual oversized plugs need fit check."
+  ],
+  "manufacturer_component_collisions": [],
+  "print_solids": {
+    "01_POKRYWA_GORNA_R2": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 29772.34
+    },
+    "02_POKRYWA_DOLNA_R2": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 25193.58
+    },
+    "03_MLECZNY_SWIATLOWOD_1szt_R2": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 412.92
+    },
+    "04_BIALE_SWIATLOWODY_12szt_R2": {
+      "valid": true,
+      "solids": 12,
+      "volume_mm3": 4955.08
+    },
+    "06_STOPKA_TPU_1szt_R2": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 551.25
+    },
+    "05_PROBKA_SZCZELINY_R2": {
+      "valid": true,
+      "solids": 1,
+      "volume_mm3": 392.25
+    }
+  },
+  "stl_checks": {
+    "01_POKRYWA_GORNA_R2.stl": {
+      "closed_manifold": true,
+      "triangles": 12890,
+      "size_mm": [
+        112.0,
+        112.0,
+        12.7
+      ],
+      "minimum_z": -0.0
+    },
+    "02_POKRYWA_DOLNA_R2.stl": {
+      "closed_manifold": true,
+      "triangles": 13520,
+      "size_mm": [
+        112.0,
+        112.0,
+        10.5
+      ],
+      "minimum_z": 0.0
+    },
+    "03_MLECZNY_SWIATLOWOD_1szt_R2.stl": {
+      "closed_manifold": true,
+      "triangles": 202,
+      "size_mm": [
+        17.991,
+        12.8,
+        4.86
+      ],
+      "minimum_z": 0.0
+    },
+    "04_BIALE_SWIATLOWODY_12szt_R2.stl": {
+      "closed_manifold": true,
+      "triangles": 2424,
+      "size_mm": [
+        83.991,
+        48.8,
+        4.86
+      ],
+      "minimum_z": 0.0
+    },
+    "05_PROBKA_SZCZELINY_R2.stl": {
+      "closed_manifold": true,
+      "triangles": 32,
+      "size_mm": [
+        5.0,
+        13.0,
+        8.0
+      ],
+      "minimum_z": 0.0
+    },
+    "06_STOPKA_TPU_1szt_R2.stl": {
+      "closed_manifold": true,
+      "triangles": 1956,
+      "size_mm": [
+        10.0,
+        10.0,
+        9.6
+      ],
+      "minimum_z": 0.0
+    }
+  },
+  "optical_performance": "Unverified: test one milky guide over an actual LED before full print",
+  "support_feet": "4 separately printed TPU feet, 60 x 44 mm centre spacing, 6.6 mm air gap"
+}

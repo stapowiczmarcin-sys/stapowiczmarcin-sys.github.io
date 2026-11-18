@@ -1,0 +1,26 @@
+import * as THREE from 'three';
+import {OrbitControls} from './vendor/OrbitControls.js';
+import {STLLoader} from './vendor/STLLoader.js';
+import {SoftwareRenderer} from './software-renderer.js';
+const $=id=>document.getElementById(id),host=$('viewport'),scene=new THREE.Scene();
+let renderer;try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch{renderer=new SoftwareRenderer();}
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setClearColor(0,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.4;host.appendChild(renderer.domElement);renderer.domElement.setAttribute('role','img');renderer.domElement.setAttribute('aria-label','Obrotowy model CAD: obudowa ReSpeaker i boczne mleczne wkładki LED');
+const camera=new THREE.PerspectiveCamera(33,1,.1,2000);camera.up.set(0,0,1);const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.minDistance=65;controls.maxDistance=500;controls.autoRotateSpeed=.75;
+scene.add(new THREE.HemisphereLight(0xfffff3,0x73806f,3));for(const [p,power] of [[[70,-100,180],3],[[-100,30,90],1.5]]){const l=new THREE.DirectionalLight(0xffffff,power);l.position.set(...p);scene.add(l);}
+const color={top:0x293e38,bottom:0x52645b,diffusers:0xfffdf2,pcb:0x253c2c,electronics:0xb9beb6,leds:0xeaf4cd,pads:0x7e8982};
+const models={};let view='assembled',amount=0;
+const titles={assembled:'Złożona obudowa',exploded:'Montaż warstwa po warstwie',top:'Pokrywa górna · otwory i szczeliny',bottom:'Pokrywa dolna · dystanse i złącza',diffusers:'12 mlecznych prowadnic światła',pads:'4 miękkie stopki TPU pod Pi',board:'Oficjalny model płytki Seeed'};
+const notes={assembled:'Boczne mleczne okienka pozostają widoczne z Pi na górze. Cztery stopki TPU zapewniają prześwit 6,6 mm.',exploded:'Od dołu: podstawa, PCB, prowadnice światła, góra i stopki TPU. Wkładki wsuwasz od środka w boczne okienka.',top:'Pełna powierzchnia pod Pi, otwory na stopki i mikrofony. Z boku 12 okienek LED; od środka kanały dźwiękowe.',bottom:'Trzy dystanse pod rzeczywiste otwory PCB. Otwory USB, jack, Mute i Reset przechodzą przez ścianki.',diffusers:'Wkładki prowadzą światło do boku, omijając mikrofony. Mleczny materiał wymaga próby jasności na jednej diodzie.',pads:'Cztery stopki TPU wciskane w górną pokrywę. Wysokość nad pokrywą 6,6 mm; rozstaw 60 × 44 mm.',board:'Geometria z oficjalnego STEP Seeed, z opcjonalnym XIAO. Strona z LED i otworami mikrofonów jest skierowana w górę.'};
+function update(){const e=amount/100;for(const [n,m] of Object.entries(models)){m.visible=false;m.position.set(0,0,0);}
+ if(view==='assembled'||view==='exploded'){for(const [n,m]of Object.entries(models))m.visible=['top','bottom','diffusers','pads'].includes(n)||$('board').checked;models.bottom.position.z=-e*23;models.top.position.z=e*49;models.diffusers.position.z=e*30;models.pads.position.z=e*65;}
+ else if(view==='board'){for(const n of ['pcb','electronics','leds'])models[n].visible=true;}
+ else models[view].visible=true;
+ $('view-name').textContent=titles[view];$('view-note').textContent=notes[view];$('explode-value').textContent=amount+'%';$('explode').value=amount;
+ document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});
+}
+function frame(){let z=0,d=245;if(view==='exploded'){z=12;d=300;}if(view==='bottom'){camera.position.set(95,-140,155);controls.target.set(0,0,-2);}else if(view==='top'){camera.position.set(105,-160,150);controls.target.set(0,0,2);}else{camera.position.set(d*.42,-d*.7,d*.45+z);controls.target.set(0,0,z);}controls.update();}
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(!models.top)return;view=b.dataset.view;amount=view==='exploded'?100:0;update();frame();});
+$('explode').oninput=()=>{if(!models.top)return;amount=Number($('explode').value);view=amount?'exploded':'assembled';update();};$('board').onchange=()=>{if(models.top)update()};$('rotate').onchange=()=>controls.autoRotate=$('rotate').checked;$('reset').onclick=frame;
+new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}).observe(host);
+const loader=new STLLoader();Promise.all(Object.keys(color).map(async n=>{const response=await fetch('models/'+n+'.stl.gz');if(!response.ok)throw Error(n);const bytes=await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();const g=loader.parse(bytes);g.computeVertexNormals();const mat=new THREE.MeshStandardMaterial({color:color[n],roughness:n==='electronics'?.4:.72,metalness:n==='electronics'?.25:0,side:THREE.DoubleSide});const m=new THREE.Mesh(g,mat);models[n]=m;scene.add(m);})).then(()=>{$('loading').remove();update();frame();document.body.dataset.modelReady='true';}).catch(e=>{$('loading').textContent='Nie udało się wczytać modelu. Odśwież stronę.';$('error').hidden=false;$('error').textContent='Możesz też pobrać pliki prototypu poniżej.';console.error(e);});
+function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);}frame();animate();
