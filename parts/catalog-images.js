@@ -115,3 +115,6 @@ window.PART_IMAGES = {
 // Product photos from Amazon listings B09KZRPJ41 and B08CKY18C5 (2026-09-22).
 window.PART_IMAGES["diymore-dm996-6pcs"] = "https://m.media-amazon.com/images/I/717Wd+zhYEL._AC_SL1500_.jpg";
 window.PART_IMAGES["fasient-speakers-b08cky18c5"] = "https://m.media-amazon.com/images/I/615GGdaEHiL._AC_SL1001_.jpg";
+
+// Amazon product photo for Stemedu DS3230MG, ASIN B0CRDQ7S5R.
+window.PART_IMAGES["stemedu-ds3230mg-270-2pcs"] = "https://m.media-amazon.com/images/I/61nsJnWDeFL._SL640_.jpg";

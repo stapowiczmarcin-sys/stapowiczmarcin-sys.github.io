@@ -113,3 +113,10 @@ window.CATALOG_I18N.parts["kora-h01-presence-20x10"] = {
   "short": "Module planned for the removable holder in Kora's head. Exact part number pending.",
   "spec": "PCB about 20 × 10 mm • CAD pocket 20.5 × 10.4 mm"
 };
+
+window.CATALOG_I18N.statuses["Do projektu"] = "Planned";
+window.CATALOG_I18N.parts["stemedu-ds3230mg-270-2pcs"] = {
+  "name": "Stemedu DS3230MG — 30 kg·cm servo, 270°, 2-pack",
+  "short": "Metal-geared digital servos for the Kora project",
+  "spec": "270° • 2 pieces • seller-rated 30 kg·cm torque • metal gears • aluminium centre case • price from the supplied listing screenshot"
+};

@@ -404,3 +404,23 @@ if (!window.PARTS_CATALOG.some((part) => part.id === "kora-h01-presence-20x10"))
     "youtubePl": "Prototyp głowy Kory H-01 ma wymienną wkładkę na czujnik obecności o obrysie około 20 × 10 mm. Oznaczenie płytki jest do potwierdzenia."
   });
 }
+
+// DS3230MG: owner-supplied Amazon link and listing screenshot, 2026-11-19.
+// Redirect resolves to ASIN B0CRDQ7S5R with affiliate tag marcinkorapro-21.
+if (!window.PARTS_CATALOG.some((part) => part.id === "stemedu-ds3230mg-270-2pcs")) {
+  window.PARTS_CATALOG.push({
+    "id": "stemedu-ds3230mg-270-2pcs",
+    "name": "Stemedu DS3230MG — serwo 30 kg·cm, 270°, 2 szt.",
+    "short": "Cyfrowe serwa z metalową przekładnią do projektu Kora",
+    "category": "Napędy",
+    "supplier": "Amazon",
+    "project": "Kora / VEGA",
+    "status": "Do projektu",
+    "price": "£33.99 / 2 szt. · 19.11.2026",
+    "accent": "red",
+    "spec": "270° • 2 szt. • deklarowany moment 30 kg·cm • metalowa przekładnia • aluminiowa część obudowy • cena z oferty na zdjęciu",
+    "url": "https://link.amazon/B0gOPkyEh",
+    "youtubePl": "W katalogu części do Kory: Stemedu DS3230MG — zestaw dwóch cyfrowych serw 270° z metalową przekładnią i deklarowanym momentem 30 kg·cm.",
+    "youtubeEn": "In Kora's parts catalogue: Stemedu DS3230MG — a pair of 270° digital servos with metal gears and a seller-rated torque of 30 kg·cm."
+  });
+}
