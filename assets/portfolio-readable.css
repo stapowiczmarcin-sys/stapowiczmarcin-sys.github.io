@@ -114,3 +114,18 @@ body.portfolio-readable{background:#f3f6f9;color:#102235;font-family:Inter,ui-sa
 .portfolio-readable .site-nav .kora-walk-nav{display:none!important}
 .portfolio-readable [id]{scroll-margin-top:126px}
 @media(max-width:1080px){.portfolio-readable [id]{scroll-margin-top:88px}}
+/* Explicit surfaces for legacy callouts and controls with older inline/dark-theme rules. */
+.portfolio-readable :is(#kora-pi5-hailo-case,#respeaker-xvf3800)>.shell{background:#102235!important;border-color:#38566f!important}
+.portfolio-readable :is(#kora-pi5-hailo-case,#respeaker-xvf3800) :is(h2,p){color:#fff!important}
+.portfolio-readable :is(#kora-pi5-hailo-case,#respeaker-xvf3800) span{color:#c9f478!important;font-size:14px!important}
+.portfolio-readable #kora-pi5-hailo-case>.shell>a{color:#102235!important;background:#c9f478!important;min-height:48px;font-size:17px}
+.portfolio-readable figcaption{background:#102235!important;color:#fff!important;text-shadow:none!important}
+.portfolio-readable .rgb-lamp-showcase figcaption{font-size:16px;padding:12px;border-radius:8px}
+.portfolio-readable main>section .system-panel .architecture-caption{color:#d9e5ef!important}
+.portfolio-readable main>section .radio-archive .youtube-open{color:#fff!important;background:#102235!important;font-size:14px}
+.portfolio-readable main>section:not(.hero) .button:not(.button-primary):not(.button-youtube){color:#102235!important;background:#fff}
+.portfolio-readable main>section:not(.hero) .button.button-primary{color:#fff!important;background:#102235}
+.portfolio-readable main>section:not(.hero) .button.button-youtube{color:#fff!important;background:#a91c35;border-color:#a91c35}
+.portfolio-readable main>section:not(.hero) .button.button-youtube span{color:#fff!important}
+.portfolio-readable main>section:not(.hero) .button.button-primary span{color:#fff!important}
+.portfolio-readable main>section:not(.hero) .button:not(.button-primary):not(.button-youtube):hover{background:#dceaf5}
