@@ -1,0 +1,116 @@
+/* Portfolio readability refresh · 19 November 2026. Loaded after legacy themes. */
+:root{--paper:#f3f6f9;--bg:#f3f6f9;--panel:#fff;--panel-2:#eaf0f5;--ink:#102235;--text:#102235;--muted:#3e5265;--line:#bdcad6;--acid:#c9f478;--mint:#11634f;--orange:#102235;--focus:#1766c9;--radius:16px}
+body.portfolio-readable{background:#f3f6f9;color:#102235;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:18px;line-height:1.7}
+.portfolio-readable .shell{width:min(1280px,calc(100% - 64px))}
+.portfolio-readable :is(h1,h2,h3,h4,h5,h6){letter-spacing:-.035em;line-height:1.16;overflow-wrap:normal}
+.portfolio-readable :is(p,li){line-height:1.7}
+.portfolio-readable .topbar{background:#fff;border-bottom:2px solid #bccbd7;backdrop-filter:none;box-shadow:0 3px 16px #1022350d}
+.portfolio-readable .topbar-inner{gap:24px;min-height:90px}
+.portfolio-readable .brand{font-size:17px;letter-spacing:-.03em}
+.portfolio-readable .brand-mark{width:44px;height:44px;border-radius:12px;background:#102235;color:#c9f478}
+.portfolio-readable :is(.site-nav a,.nav-utility,.nav-menu-toggle,.language-picker select){font-size:15px;font-weight:750;letter-spacing:0;text-transform:none;line-height:1.3;min-height:44px;border-radius:8px}
+.portfolio-readable .site-nav a{padding:9px 11px;color:#102235}
+.portfolio-readable .site-nav a:hover,.portfolio-readable .site-nav a:focus-visible{background:#e8f0f7;color:#102235}
+.portfolio-readable .site-nav .kora-walk-nav{background:#fce9ef!important;color:#8e244a!important;border:1px solid #a53c60!important;font-weight:750!important}
+.portfolio-readable .site-nav .kora-walk-nav:hover{background:#f8d2e0!important}
+.portfolio-readable .language-picker{border:1px solid #8296a7;border-radius:8px;background:#fff;color:#102235}
+.portfolio-readable .language-picker:hover{background:#e8f0f7;color:#102235}
+.portfolio-readable :is(.nav-warning,.nav-youtube){color:#fff!important;background:#a91c35!important;border-color:#a91c35!important}
+.portfolio-readable .nav-print{border-color:#8296a7;color:#102235}
+.portfolio-readable .hero{padding:38px 0 48px;background:#f3f6f9}
+.portfolio-readable .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);border:1px solid #1b3549;border-radius:22px;overflow:hidden;gap:0;background:#102235}
+.portfolio-readable .hero-copy{min-height:590px;padding:clamp(28px,4vw,58px);background:#102235;color:#fff}
+.portfolio-readable .hero-copy::after{display:none}
+.portfolio-readable .hero .hero-name{font-size:18px;line-height:1.5;color:#e6edf4;margin:12px 0 0;font-weight:650}
+.portfolio-readable .hero h1{margin:22px 0;max-width:720px;font-size:clamp(40px,4.4vw,65px);line-height:1.08;letter-spacing:-.045em;color:#fff;text-wrap:balance}
+.portfolio-readable .hero .lead{font-size:19px;line-height:1.65;color:#d7e4ef;max-width:52ch}
+.portfolio-readable .hero .eyebrow{color:#c9f478;font-size:14px;letter-spacing:.1em;line-height:1.5}
+.portfolio-readable .hero .eyebrow::before{background:#c9f478;box-shadow:none}
+.portfolio-readable .hero-media{min-height:590px;margin:0;border:0!important;border-radius:0!important;outline:0;box-shadow:none!important;background:#152a3c}
+.portfolio-readable .hero-media img{filter:none;object-fit:cover;object-position:center;height:100%}
+.portfolio-readable .hero-media::after{background:linear-gradient(transparent 70%,#102235b3)}
+.portfolio-readable .hero-caption{left:16px;right:16px;bottom:16px;font-size:15px;line-height:1.5;border-radius:10px;background:#102235ed!important;padding:14px 16px!important;text-shadow:none}
+.portfolio-readable .hero-copy .hero-buttons{gap:10px;margin-top:25px}
+.portfolio-readable .hero-copy .hero-buttons .button{color:#fff!important;border-color:#91a9bc;background:transparent;text-transform:none;letter-spacing:0;font-size:16px;min-height:48px}
+.portfolio-readable .hero-copy .hero-buttons .portfolio-projects-link{order:-2;background:#c9f478;color:#102235!important;border-color:#c9f478;font-weight:850}
+.portfolio-readable .hero-copy .hero-buttons .button.kora-walk-highlight{order:-1;background:#f9cfdd!important;color:#651837!important;border-color:#f9cfdd!important;box-shadow:none!important}
+.portfolio-readable .hero-copy .hero-buttons .button:hover{background:#e8f0f7!important;color:#102235!important}
+.portfolio-readable .hero-copy .hero-buttons .button:nth-child(n+5){display:none}
+.portfolio-readable .hero-copy .chips{border-color:#486072;margin-top:25px;display:flex;flex-wrap:wrap;gap:8px}
+.portfolio-readable .hero-copy .chip{color:#d7e4ef;font-family:inherit;font-size:14px;line-height:1.4;letter-spacing:0;text-transform:none;padding:10px 0 4px}
+.portfolio-readable .hero-copy .chip+.chip{padding-left:9px}
+.portfolio-readable .hero-copy .chip::after{color:#c9f478}
+.portfolio-readable main>section{padding:64px 0;background:#f3f6f9;color:#102235;border-color:#bdcad6}
+.portfolio-readable main>section:nth-of-type(even){background:#fff}
+.portfolio-readable main>section .section-head{grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:22px 54px;margin-bottom:32px}
+.portfolio-readable main>section .section-head h2{font-size:clamp(30px,3.8vw,48px);line-height:1.14;letter-spacing:-.04em;color:#102235}
+.portfolio-readable main>section .section-head p{font-size:18px;color:#3e5265!important;max-width:62ch}
+.portfolio-readable main>section .number{font-size:14px;line-height:1.5;letter-spacing:.08em;color:#28536a;margin-bottom:0}
+.portfolio-readable main>section :is(.panel,.next-card,.kora-copy,.radio-copy,.history-card,.latest-update,.mirror-copy,.rgb-lamp-copy,.code-guide,.system-panel,.radio-archive){background:#fff;color:#102235!important;border:1px solid #bdcad6;border-radius:16px;box-shadow:0 4px 16px #10223506}
+.portfolio-readable main>section :is(.panel,.next-card,.kora-copy,.radio-copy,.history-card,.latest-update,.mirror-copy,.rgb-lamp-copy,.code-guide,.system-panel,.radio-archive) :is(h2,h3,h4,h5,strong,b,li){color:#102235!important}
+.portfolio-readable main>section :is(.panel,.next-card,.kora-copy,.radio-copy,.history-card,.latest-update,.mirror-copy,.rgb-lamp-copy,.code-guide,.system-panel,.radio-archive) :is(p,span,small){color:#3e5265!important}
+.portfolio-readable main>section :is(.panel,.next-card,.kora-copy,.radio-copy,.history-card,.latest-update,.mirror-copy,.rgb-lamp-copy,.code-guide,.system-panel,.radio-archive) a:not(.button){color:#154e87!important}
+.portfolio-readable :is(.panel,.kora-copy,.radio-copy,.mirror-copy,.rgb-lamp-copy,.code-guide,.system-panel){padding:clamp(22px,3vw,38px)}
+.portfolio-readable :is(.panel h3,.kora-copy h3,.radio-copy h3,.system-panel h3,.history-intro h3){font-size:clamp(25px,2.6vw,34px);line-height:1.2}
+.portfolio-readable :is(.panel p,.process-row p,.history-copy p,.history-intro p,.prototype-stage-head p,.stack-detail p,.system-panel>.stack-intro,.series-dialogue p,.wiring-list span){font-size:17px;line-height:1.7}
+.portfolio-readable :is(.fact,.kora-fact,.radio-fact,.rgb-lamp-fact,.hardware-status article,.flow-node,.stack-detail){color:#102235;background:#edf3f7;border-color:#bdcad6;border-radius:8px;padding:18px}
+.portfolio-readable :is(.fact strong,.kora-fact strong,.radio-fact strong,.rgb-lamp-fact strong,.hardware-status strong,.flow-node strong){font-size:18px;color:#102235!important;line-height:1.4}
+.portfolio-readable :is(.fact span,.kora-fact span,.radio-fact span,.rgb-lamp-fact span,.hardware-status span,.flow-node span){font-size:16px;line-height:1.6;color:#3e5265!important}
+.portfolio-readable :is(.facts,.kora-facts,.radio-facts,.rgb-lamp-facts,.hardware-status,.system-flow){gap:10px;border:0}
+.portfolio-readable :is(.button,.code-action,.stack-chip,.stack-detail-link){font-size:16px;line-height:1.4;letter-spacing:0;text-transform:none;min-height:46px;border-radius:8px}
+.portfolio-readable .button{border-color:#61788d;background:#fff;color:#102235!important;padding:12px 18px}
+.portfolio-readable .button.button-primary{background:#102235;border-color:#102235;color:#fff!important}
+.portfolio-readable .button:hover{background:#dceaf5;color:#102235!important;border-color:#215982}
+.portfolio-readable :is(.chip,.status,.verified-update,.tech-heading,.history-stage,.stack-detail-kicker,.series-kicker,.series-label,.release-kicker){font-size:14px;line-height:1.45;letter-spacing:.05em}
+.portfolio-readable :is(.status,.verified-update,.history-stage){background:#d9edcf!important;color:#163b22!important;border:1px solid #709b63;border-radius:6px;padding:7px 10px}
+.portfolio-readable :is(.gallery-card figcaption,.video-copy span,.radio-card figcaption,.prototype-video figcaption,.merch-spotlight-media figcaption,.quadruped-project-photo figcaption){font-size:16px;line-height:1.55}
+.portfolio-readable :is(.gallery-card,.radio-card,.history-media,.kora-main,.radio-main){border-radius:12px!important;outline:0;box-shadow:none!important;border-color:#7f93a5!important}
+.portfolio-readable .video-copy{background:#fff}
+.portfolio-readable main>section .video-copy :is(strong,span){color:#102235!important;font-size:17px}
+.portfolio-readable .stack-chip{color:#102235;border-color:#728899}
+.portfolio-readable .stack-chip.is-active,.portfolio-readable .stack-chip:hover{color:#fff;background:#102235}
+.portfolio-readable main>section .stack-chip.is-active{color:#fff!important}
+.portfolio-readable .architecture-caption{font-size:16px!important;color:#3e5265!important}
+.portfolio-readable main>section .about .panel:first-child{background:#102235;color:#fff!important}
+.portfolio-readable main>section .about .panel:first-child :is(.quote,.number){color:#fff!important}
+.portfolio-readable .quote{font-size:clamp(28px,3vw,43px);line-height:1.25}
+.portfolio-readable .kora-eyes-release{background:#122b40!important;color:#fff!important;padding:54px 0!important}
+.portfolio-readable .kora-eyes-release :is(h2,p){color:#fff!important}
+.portfolio-readable .kora-eyes-release p{font-size:18px;line-height:1.7;color:#d9e5ef!important}
+.portfolio-readable .kora-eyes-release :is(.eyes-release-label,figcaption){font-size:14px;line-height:1.5;color:#d9e5ef!important}
+.portfolio-readable .eyes-release-link{border-radius:8px;font-size:17px}
+.portfolio-readable .merch-spotlight{background:#edf3f7;border:1px solid #bdcad6;border-radius:16px;color:#102235}
+.portfolio-readable .merch-spotlight-copy h2{font-size:clamp(34px,4.6vw,60px);line-height:1.1}
+.portfolio-readable :is(.merch-spotlight-copy p,.merch-fact){color:#3e5265;font-size:17px}
+.portfolio-readable .merch-fact{background:#fff;border-color:#bdcad6}
+.portfolio-readable main>section .series-card{background:#102235!important;color:#fff!important;border-radius:16px}
+.portfolio-readable main>section .series-card :is(h2,h3,blockquote){color:#fff!important}
+.portfolio-readable main>section .series-card p{color:#d9e5ef!important;font-size:18px;line-height:1.7}
+.portfolio-readable #kora-says .series-parts span{font-size:14px;line-height:1.5}
+.portfolio-readable #kora-says .series-affiliate{font-size:15px;color:#d9e5ef!important}
+.portfolio-readable .income-note{font-size:16px}
+.portfolio-readable .next-card::after{display:none}
+.portfolio-readable .contact-panel{background:#102235;border-radius:16px;border:1px solid #102235}
+.portfolio-readable .contact-panel :is(h2,p,.number){color:#fff!important}
+.portfolio-readable .contact-link{border-radius:10px;border-color:#7c93a6;background:#19364e}
+.portfolio-readable :is(.contact-meta strong,.contact-meta span){font-size:17px}
+.portfolio-readable footer{font-size:16px;color:#e3ebf3;background:#102235}
+.portfolio-readable .footer-links{gap:12px 22px;line-height:1.6}
+.portfolio-readable :is(.wiring-table,.code-panel pre){font-size:16px;line-height:1.6}
+.portfolio-readable .calibration-warning{background:#fff2db;color:#523812;border-color:#a57722}
+.portfolio-readable .calibration-warning strong{color:#6a300b}
+.portfolio-readable .quadruped-wiring{background:#eaf1f7;border-color:#9eb6c9}
+.portfolio-readable .quadruped-wiring-head p{color:#3e5265}
+.portfolio-readable .quadruped-wiring-links .button{background:#fff;color:#102235!important}
+.portfolio-readable .quadruped-release-copy :is(h5,p){color:#fff!important}
+.portfolio-readable .quadruped-release-copy .button{color:#102235!important;background:#fff}
+.portfolio-readable .quadruped-release-copy .button-primary{color:#fff!important;background:#102235}
+.portfolio-readable :where(a,button,select,input,[tabindex]):focus-visible{outline:3px solid #1673d1!important;outline-offset:4px}
+@media(max-width:1080px){.portfolio-readable .topbar-inner{min-height:72px}.portfolio-readable .hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}.portfolio-readable .hero-copy{min-height:530px}.portfolio-readable .hero-media{min-height:530px}.portfolio-readable .top-actions.nav-shell.is-open{background:#fff;color:#102235;max-height:calc(100dvh - 76px);overflow-y:auto;border:1px solid #bdcad6;box-shadow:0 18px 35px #10223522}.portfolio-readable .site-nav a{white-space:normal;background:#f3f6f9;border:1px solid #bdcad6}.portfolio-readable .nav-utilities{grid-template-columns:repeat(2,minmax(0,1fr))}.portfolio-readable .language-picker select{width:100%}}
+@media(max-width:760px){.portfolio-readable .shell{width:calc(100% - 32px)}.portfolio-readable .hero{padding:22px 0 32px}.portfolio-readable .hero-grid{grid-template-columns:1fr}.portfolio-readable .hero-copy{min-height:0;padding:28px 24px}.portfolio-readable .hero h1{font-size:clamp(36px,9.4vw,50px);line-height:1.12;margin:20px 0}.portfolio-readable .hero .lead{font-size:18px}.portfolio-readable .hero .eyebrow{font-size:13px}.portfolio-readable .hero-copy .hero-buttons .button{flex:1 1 100%}.portfolio-readable .hero-media{min-height:0;aspect-ratio:4/3}.portfolio-readable .hero-media img{object-position:center 37%}.portfolio-readable .hero-caption{font-size:14px}.portfolio-readable main>section{padding:44px 0}.portfolio-readable main>section .section-head{grid-template-columns:1fr;gap:16px}.portfolio-readable .section-head h2{font-size:32px}.portfolio-readable .hero-copy .hero-buttons .button:nth-child(n+4){display:none}.portfolio-readable .brand span:last-child{display:block!important;max-width:190px;font-size:15px;white-space:normal;line-height:1.25}.portfolio-readable .nav-menu-toggle{font-size:16px;min-height:46px}.portfolio-readable .site-nav a{font-size:16px}.portfolio-readable .merch-spotlight-copy h2{font-size:38px}.portfolio-readable .contact-link{padding:14px;gap:10px}.portfolio-readable .contact-meta span{font-size:15px}.portfolio-readable .contact-icon{width:36px;height:36px}.portfolio-readable .system-flow{grid-template-columns:1fr}.portfolio-readable .hero-copy .chips{gap:4px 10px}}
+@media(max-width:380px){.portfolio-readable .brand span:last-child{max-width:145px}.portfolio-readable .brand{gap:8px}.portfolio-readable .hero-copy{padding:25px 20px}.portfolio-readable .nav-menu-toggle{padding:8px}.portfolio-readable .nav-menu-icon{display:none}}
+@media print{body.portfolio-readable{background:#fff;color:#000}.portfolio-readable .hero-grid,.portfolio-readable .hero-copy,.portfolio-readable .contact-panel{background:#fff;color:#000}.portfolio-readable .hero-copy :is(h1,p){color:#000}.portfolio-readable .hero-media{height:360px}.portfolio-readable main>section{break-inside:auto;padding:24px 0}}
+/* The latest build is already prominent in the hero; keep the top navigation compact. */
+.portfolio-readable .site-nav .kora-walk-nav{display:none!important}
+.portfolio-readable [id]{scroll-margin-top:126px}
+@media(max-width:1080px){.portfolio-readable [id]{scroll-margin-top:88px}}
